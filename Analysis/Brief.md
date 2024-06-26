@@ -12,6 +12,7 @@ Develop a software product that empowers individuals and teams to effectively ma
 - **Work organization:** Prioritize tasks, set due dates, and categorize them for easy filtering and searching.
 - **Collaboration:** Assign tasks to team members, share files and notes, and facilitate communication within the platform.
 - **Record keeping:** Maintain a historical record of completed tasks and associated information for future reference.
+- TBD time keeping
 
 ## Target Users
 
@@ -27,3 +28,6 @@ Develop a software product that empowers individuals and teams to effectively ma
 - Enhanced collaboration and communication
 - Streamlined workflow and task delegation
 - Better visibility into work progress and history
+
+# Note
+customer intimacy, operational excellence, or product leadership,
