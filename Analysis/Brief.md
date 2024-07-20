@@ -6,7 +6,7 @@ Knowledge workers often juggle various tasks, including ad-hoc requests, recurri
 
 ## Solution
 
-Develop a software product that empowers individuals and teams to effectively manage their workload. The software should offer functionalities for:
+Develop a software product that empowers individuals and teams to effectively manage their work. The software should offer functionalities for:
 
 - **Task recording and tracking:** Create tasks for various categories like projects, support tickets, and ad-hoc requests.
 - **Work organization:** Prioritize tasks, set due dates, and categorize them for easy filtering and searching.
@@ -28,6 +28,44 @@ Develop a software product that empowers individuals and teams to effectively ma
 - Enhanced collaboration and communication
 - Streamlined workflow and task delegation
 - Better visibility into work progress and history
+
+# Domain
+
+## Task context
+
+The origin or work and the context of the tasks that require execution in order to complete the work.
+
+Types:
+
+- Projects
+- Incidents
+- Deployments
+- Ad-hoc tasks
+- Compliance requirements
+- Penetration testing
+- Fraud remediation
+- Others as needed
+
+## Task
+
+A **specific, actionable item** that contributes to achieving the goals of the task context. Tasks are typically **well-defined** and have a **clear outcome**.
+
+Attributes:
+
+- What
+- Why
+- Status (Idle, Busy, Complete, Paused, Cancelled)
+- Due Date
+- Owner
+
+## Activity
+
+These are the **individual steps** you need to take to **complete a task**.  Activities are the most **detailed level** and describe the **specific actions** involved. An activity can be:
+
+- A note
+- A request one someone else
+- An interaction with somone
+- Actual work together with the logged duration
 
 # Note
 customer intimacy, operational excellence, or product leadership,
