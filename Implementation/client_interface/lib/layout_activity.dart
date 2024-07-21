@@ -2,13 +2,15 @@ import 'package:client_interface/activity_widget_layout_constructor.dart' as wid
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'activity_widget_layout_constructor.dart';
 import 'control_activity_command_panel.dart';
 
 class LayoutConstants {
   static const double iconSize = 40;
   static const double rowSpacing = 16;
   static const double columnSpacing = 4;
-  static const double activitySpacing = 32;
+  static const double groupSpacing = 24;
+  static const double activitySpacing = 36;
 }
 
 class LayoutActivity extends StatefulWidget {
@@ -71,30 +73,18 @@ class _DetailsRegion extends StatefulWidget {
 }
 
 class _DetailsRegionState extends State<_DetailsRegion> {
+
   @override
   void initState() {
     super.initState();
-    widget.model.onHeightMayChange = _onHeightMayChange;
     _onHeightMayChange();
-  }
-
-  void _onHeightMayChange() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final RenderBox renderBox = _activityDetailsKey.currentContext!.findRenderObject() as RenderBox;
-       _activityDetailHeight.value = renderBox.size.height;
-      });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('build _DetailsRegion');
     var detailsRows = <Widget>[];
-    _addDetails(widget.model.icon, widget.model.constructDetailsWidgets(_isMouseover), detailsRows);
+    WidgetLayout layout = widget.model.constructDetailsWidgets(_isMouseover, _onHeightMayChange);
+    _addDetails(widget.model.icon, layout, detailsRows);
     return MouseRegion(
       onEnter: (event) {
         setState(() {
@@ -113,23 +103,25 @@ class _DetailsRegionState extends State<_DetailsRegion> {
   void _addDetails(IconData icon, widget_constructor.WidgetLayout widgetLayout, List<Widget> rows) {
     List<Widget> columnChildren = _LayoutHelpers.constructLayout(widgetLayout);
     if (widget.model.isSpaceRequiredAfterDetails()) {
-      columnChildren.add(const SizedBox(height: 2 * LayoutConstants.columnSpacing));
+      columnChildren.add(const SizedBox(height: LayoutConstants.groupSpacing));
     }
     rows.add(Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       _Marker(lineVisible: widget.model.numberOfItems > 0, contentHeight: _activityDetailHeight, iconData: icon),
       const SizedBox(width: LayoutConstants.rowSpacing),
-      Expanded(child: LayoutBuilder(builder: (context, constraints) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          final RenderBox renderBox = _activityDetailsKey.currentContext!.findRenderObject() as RenderBox;
-          _activityDetailHeight.value = renderBox.size.height;
-        });
-        return Column(
+      Expanded(child: Column(
           key: _activityDetailsKey,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: columnChildren,
-        );
-      }))
+        )
+      )
     ]));
+  }
+
+  void _onHeightMayChange() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final RenderBox renderBox = _activityDetailsKey.currentContext!.findRenderObject() as RenderBox;
+      _activityDetailHeight.value = renderBox.size.height;
+    });
   }
 
   bool _isMouseover = false;
@@ -150,18 +142,13 @@ class _ItemRegionState extends State<_ItemRegion> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final RenderBox renderBox = _activityDetailsKey.currentContext!.findRenderObject() as RenderBox;
-      setState(() {
-        _activityDetailHeight.value = renderBox.size.height;
-      });
-    });
+    _onHeightMayChange();
   }
 
   @override
   Widget build(BuildContext context) {
     var detailsRows = <Widget>[];
-    _addItem(widget.model.constructItemWidgets(widget.itemIndex, _isMouseover)!, detailsRows);
+    _addItem(widget.model.constructItemWidgets(widget.itemIndex, _isMouseover, _onHeightMayChange)!, detailsRows);
     return MouseRegion(
       onEnter: (event) {
         setState(() {
@@ -180,7 +167,7 @@ class _ItemRegionState extends State<_ItemRegion> {
   void _addItem(widget_constructor.WidgetLayout widgetLayout, List<Widget> rows) {
     List<Widget> columnChildren = _LayoutHelpers.constructLayout(widgetLayout);
     if ((widget.itemIndex < widget.model.numberOfItems - 1) || widget.model.isSpaceRequiredAfterItems()) {
-      columnChildren.add(const SizedBox(height: 2 * LayoutConstants.columnSpacing));
+      columnChildren.add(const SizedBox(height: LayoutConstants.groupSpacing));
     }
     rows.add(Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       _Marker(lineVisible: true, contentHeight: _activityDetailHeight),
@@ -193,6 +180,13 @@ class _ItemRegionState extends State<_ItemRegion> {
         ),
       )
     ]));
+  }
+
+  void _onHeightMayChange() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final RenderBox renderBox = _activityDetailsKey.currentContext!.findRenderObject() as RenderBox;
+      _activityDetailHeight.value = renderBox.size.height;
+    });
   }
 
   bool _isMouseover = false;
@@ -230,7 +224,7 @@ class _LayoutHelpers {
       }
     }
     columnChildren.add(Row(children: rowChildren));
-    columnChildren.add(const SizedBox(height: 2 * LayoutConstants.columnSpacing));
+    columnChildren.add(const SizedBox(height: LayoutConstants.columnSpacing));
   }
 }
 
@@ -255,6 +249,7 @@ class _MarkerState extends State<_Marker> {
 
   @override
   Widget build(BuildContext context) {
+
     if (widget.contentHeight.value != null && widget.contentHeight.value! > 0) {
       var children = <Widget>[];
       if (widget.lineVisible) {

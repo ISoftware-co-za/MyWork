@@ -14,7 +14,9 @@ class ControlActivityCommandPanel extends StatelessWidget {
     List<Widget> buttons = [];
     buttons.add(const SizedBox(width: LayoutConstants.iconSize + LayoutConstants.rowSpacing));
     _constructButtons(commands, onCommandSelected, buttons);
-    return Row(children: buttons);
+    return SizedBox(
+        height: LayoutConstants.activitySpacing,
+        child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: buttons));
   }
 
   void _constructButtons(List<ActivityCommand> commands, Function(String) onCommandSelected, List<Widget> buttons) {

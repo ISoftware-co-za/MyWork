@@ -38,13 +38,12 @@ abstract class ActivityWidgetConstructorBase {
   IconData get icon;
   int get numberOfItems;
   bool? get isClosed;
-  Function? onHeightMayChange;
 
   List<ActivityCommand> get commands;
 
-  WidgetLayout constructDetailsWidgets(bool isMouseover);
-  WidgetLayout? constructItemWidgets(int index, bool isMouseover);
-  WidgetLayout? constructCloseWidgets(bool isMouseover);
+  WidgetLayout constructDetailsWidgets(bool isMouseover, Function? onHeightMayChange);
+  WidgetLayout? constructItemWidgets(int index, bool isMouseover, Function? onHeightMayChange);
+  WidgetLayout? constructCloseWidgets(bool isMouseover, Function? onHeightMayChange);
 }
 
 extension ActivityWidgetConstructorBaseExtension on ActivityWidgetConstructorBase {
@@ -70,10 +69,7 @@ class ActivityWidgetConstructorNote implements ActivityWidgetConstructorBase {
   List<ActivityCommand> get commands => [];
 
   @override
-  Function? onHeightMayChange;
-
-  @override
-  WidgetLayout constructDetailsWidgets(bool isMouseover) {
+  WidgetLayout constructDetailsWidgets(bool isMouseover, Function? onHeightMayChange) {
     return WidgetLayout(groups: [
       WidgetGroup(orientation: Orientation.column, widgets: [
         ControlActivityTimestamp(timestamp: activity.timestamp),
@@ -89,12 +85,12 @@ class ActivityWidgetConstructorNote implements ActivityWidgetConstructorBase {
   }
 
   @override
-  WidgetLayout? constructItemWidgets(int index, bool isMouseover) {
+  WidgetLayout? constructItemWidgets(int index, bool isMouseover, Function? onHeightMayChange) {
     return null;
   }
 
   @override
-  WidgetLayout? constructCloseWidgets(bool isMouseover) {
+  WidgetLayout? constructCloseWidgets(bool isMouseover, Function? onHeightMayChange) {
     return null;
   }
 }
@@ -114,9 +110,6 @@ class ActivityWidgetConstructorWork implements ActivityWidgetConstructorBase {
   bool? get isClosed => null;
 
   @override
-  Function? onHeightMayChange;
-
-  @override
   List<ActivityCommand> get commands {
     if (isClosed == true) {
       return _commandsNone;
@@ -125,9 +118,9 @@ class ActivityWidgetConstructorWork implements ActivityWidgetConstructorBase {
   }
 
   @override
-  WidgetLayout constructDetailsWidgets(bool isMouseover) {
+  WidgetLayout constructDetailsWidgets(bool isMouseover, Function? onHeightMayChange) {
     var groups = <WidgetGroup>[];
-    groups.add(_constructDetailsWidgetGroup(isMouseover));
+    groups.add(_constructDetailsWidgetGroup(isMouseover, onHeightMayChange));
     if (activity.close != null) {
       groups.add(_constructOpenWorkEstimateWidgetsGroup(isMouseover));
     } else {
@@ -136,12 +129,12 @@ class ActivityWidgetConstructorWork implements ActivityWidgetConstructorBase {
     return WidgetLayout(groups: groups);
   }
   @override
-  WidgetLayout? constructCloseWidgets(bool isMouseover) {
+  WidgetLayout? constructCloseWidgets(bool isMouseover, Function? onHeightMayChange) {
     return null;
   }
 
   @override
-  WidgetLayout? constructItemWidgets(int index, bool isMouseover) {
+  WidgetLayout? constructItemWidgets(int index, bool isMouseover, Function? onHeightMayChange) {
     assert(index >= 0 && index < activity.workLog.length, 'The index of the WorkLog item is out of bounds');
     StateWorkEntry logEntry = activity.workLog[index];
 
@@ -161,7 +154,7 @@ class ActivityWidgetConstructorWork implements ActivityWidgetConstructorBase {
     return WidgetLayout(groups: groups);
   }
 
-  WidgetGroup _constructDetailsWidgetGroup(bool isMouseover) {
+  WidgetGroup _constructDetailsWidgetGroup(bool isMouseover, Function? onHeightMayChange) {
     return WidgetGroup(orientation: Orientation.column, widgets: [
       ControlActivityTimestamp(timestamp: activity.timestamp),
       ControlActivityTitle(
