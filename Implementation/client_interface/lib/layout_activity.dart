@@ -8,7 +8,7 @@ import 'control_activity_command_panel.dart';
 class LayoutConstants {
   static const double iconSize = 40;
   static const double rowSpacing = 16;
-  static const double columnSpacing = 4;
+  static const double columnSpacing = 6;
   static const double groupSpacing = 24;
   static const double activitySpacing = 36;
 }
@@ -255,9 +255,9 @@ class _MarkerState extends State<_Marker> {
       if (widget.lineVisible) {
         children.add(Positioned(
             top: (widget.iconData != null) ? LayoutConstants.iconSize / 2 : 0,
-            left: LayoutConstants.iconSize / 2 - 2,
+            left: LayoutConstants.iconSize / 2 - 1,
             child: Container(
-              width: 4,
+              width: 2,
               height: widget.contentHeight.value,
               color: _markerColor,
             )));
@@ -265,11 +265,13 @@ class _MarkerState extends State<_Marker> {
       if (widget.iconData != null) {
         children.add(Icon(widget.iconData, size: LayoutConstants.iconSize));
       } else if (widget.lineVisible) {
+        double size = LayoutConstants.iconSize / 2.5;
+        double left = (LayoutConstants.iconSize - size) / 2;
         children.add(Positioned(
-            left: LayoutConstants.iconSize / 4,
+            left: left,
             child: Container(
-                width: LayoutConstants.iconSize / 2,
-                height: LayoutConstants.iconSize / 2,
+                width: size,
+                height: size,
                 decoration:
                     const BoxDecoration(shape: BoxShape.circle, color: _markerColor // Specify the circle color here
                         ))));
