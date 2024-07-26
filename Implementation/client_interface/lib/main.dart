@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'activity_widget_layout_constructor.dart';
-import 'state_base.dart';
-import 'layout_activity.dart';
-import 'state_note.dart';
-import 'state_work.dart';
+import 'header/layout_header.dart';
+import 'state/state_base.dart';
+import 'state/state_note.dart';
+import 'state/state_work.dart';
+import 'tabs/layout_tab_bar.dart';
+import 'tabs/page_details/page_details.dart';
+import 'tabs/page_tasks/page_tasks.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,84 +20,64 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      theme: _CustomisedTheme.getTheme(),
+      home: MainPage(
+        title: 'Flutter Demo Home Page',
+        activities: [
+          StateNote(initialText: '', timestamp: DateTime.now()),
+          StateWork(
+              title: "Design error handling mechanism",
+              description:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis ultrices interdum. Mauris tempus sollicitudin eros id maximus. Praesent scelerisque nulla eget volutpat malesuada. Nullam tincidunt, ligula in congue pharetra, urna nisi ornare elit, accumsan tempus libero nisl sit amet nisi. Sed varius lacinia ipsum. Nullam dictum hendrerit tincidunt. Nunc pharetra sollicitudin blandit.",
+              timestamp: DateTime.now(),
+              workLog: [
+                StateWorkEntry(
+                    start: DateTime.now(), durationInMinutes: 60, currentEstimateInMinutes: 60, notes: 'This is the first work entry for this task.'),
+                StateWorkEntry(
+                    start: DateTime.now(), durationInMinutes: 45, currentEstimateInMinutes: 90, notes: 'This is the second work entry for this task.'),
+              ]),
+          StateNote(initialText: 'This is the second note for this task.', timestamp: DateTime.now()),
+        ],
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page', activities: [
-        StateNote(initialText: '', timestamp: DateTime.now()),
-        StateWork(
-            title: "Design error handling mechanism",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis ultrices interdum. Mauris tempus sollicitudin eros id maximus. Praesent scelerisque nulla eget volutpat malesuada. Nullam tincidunt, ligula in congue pharetra, urna nisi ornare elit, accumsan tempus libero nisl sit amet nisi. Sed varius lacinia ipsum. Nullam dictum hendrerit tincidunt. Nunc pharetra sollicitudin blandit.",
-            timestamp: DateTime.now(),
-          workLog: [
-            StateWorkEntry(
-              start: DateTime.now(),
-              durationInMinutes: 60,
-              currentEstimateInMinutes: 60,
-              notes: 'This is the first work entry for this task.'
-            ),
-            StateWorkEntry(
-              start: DateTime.now(),
-              durationInMinutes: 45,
-              currentEstimateInMinutes: 90,
-              notes: 'This is the second work entry for this task.'
-            ),
-          ]
-        ),
-        StateNote(initialText: 'This is the second note for this task.', timestamp: DateTime.now()),
-      ],),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MainPage extends StatefulWidget {
   final String title;
   final List<StateBase> activities;
-  const MyHomePage({required this.title, required this.activities, super.key});
+  const MainPage({required this.title, required this.activities, super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Container(
-        width: 800,
-        padding: const EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: _createActivityWidgets()
-          ),
-        ),
-      ),
-    );
+    return Container(
+        color: Colors.yellow,
+        child: const Column(mainAxisSize: MainAxisSize.max, children: [
+          LayoutHeader(),
+          Expanded(
+              child: Scaffold(
+                  body: DefaultTabController(
+            length: 2,
+            child: Column(
+              children: [
+                LayoutTabBar(),
+                Expanded(
+                  child: TabBarView(
+                    children: [PageDetails(), PageTasks()],
+                  ),
+                ),
+              ],
+            ),
+          )))
+        ]));
   }
 
+/*
   List<Widget> _createActivityWidgets() {
     var widgets = <Widget>[];
     for (var activity in widget.activities) {
@@ -107,5 +89,24 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     return widgets;
   }
+*/
+}
 
+class _CustomisedTheme {
+  static ThemeData getTheme() {
+    return ThemeData(
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple).copyWith(
+        primary: Colors.red,
+        secondary: Colors.black,
+      ),
+      useMaterial3: true,
+    ).copyWith(
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        toolbarHeight: 64.0,
+        iconTheme: IconThemeData(color: Colors.white),
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20.0, decoration: TextDecoration.none),
+      ));
+  }
 }

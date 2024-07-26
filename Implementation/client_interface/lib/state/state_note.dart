@@ -1,3 +1,4 @@
+
 import 'state_base.dart';
 
 class StateNote extends StateActivityBase {

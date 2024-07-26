@@ -1,4 +1,4 @@
-import 'package:client_interface/activity_widget_layout_constructor.dart' as widget_constructor;
+import 'package:client_interface/activities/activity_widget_layout_constructor.dart' as widget_constructor;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
