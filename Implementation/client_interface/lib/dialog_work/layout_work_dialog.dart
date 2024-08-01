@@ -7,16 +7,17 @@ class LayoutWorkDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WorkDialogTheme theme = Theme.of(context).extension<WorkDialogTheme>()!;
     return Container(
         alignment: Alignment.topLeft,
         padding: EdgeInsets.fromLTRB(0, Theme.of(context).appBarTheme.toolbarHeight!, 0, 0),
         child: Container(
-            width: 800,
-            height: 500,
+            width: theme.width,
+            height: theme.height,
             color: Colors.white,
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Column(children: [
+            child: Padding(
+              padding: EdgeInsets.all(theme.gridSize),
+              child: const Column(children: [
                 ControlHeader(),
               ]),
             )));

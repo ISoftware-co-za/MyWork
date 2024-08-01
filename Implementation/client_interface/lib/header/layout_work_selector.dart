@@ -1,3 +1,5 @@
+import 'package:client_interface/header/control_button_add_work.dart';
+import 'package:client_interface/header/control_button_select_work.dart';
 import 'package:flutter/material.dart';
 
 import '../dialog_work/layout_work_dialog.dart';
@@ -14,7 +16,7 @@ class _ControlWorkSelectorState extends State<ControlWorkSelector> {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.center, children: [
-      _createAddWorkButton(context),
+      const ControlButtonAddWork(),
       GestureDetector(
         onTap: () => _showWorkDialog(context),
         child: MouseRegion(
@@ -24,33 +26,10 @@ class _ControlWorkSelectorState extends State<ControlWorkSelector> {
           onExit: (event) => setState(() {
             _isMouseOver = false;
           }),
-          child: _createSelectWorkContainer(),
+          child: ControlButtonSelectWork(label: widget.label, isMouseOver: _isMouseOver)
         ),
       )
     ]);
-  }
-
-  IconButton _createAddWorkButton(BuildContext context) {
-    return IconButton(
-        iconSize: 40,
-        padding: const EdgeInsets.all(2),
-        icon: Icon(Icons.add_circle, color: Theme.of(context).appBarTheme.iconTheme!.color),
-        onPressed: () {
-          debugPrint('Add work button pressed');
-        });
-  }
-
-  Container _createSelectWorkContainer() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      foregroundDecoration:
-          (_isMouseOver) ? BoxDecoration(border: Border.all(color: Colors.white.withOpacity(0.3), width: 2)) : null,
-      child: Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: Text(widget.label,
-            style: const TextStyle(fontSize: 14, color: Colors.white, decoration: TextDecoration.none)),
-      ),
-    );
   }
 
   void _showWorkDialog(BuildContext context) {

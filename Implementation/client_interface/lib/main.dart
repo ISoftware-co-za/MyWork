@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'controls/custom_icon_buttons.dart';
+import 'dialog_work/control_header.dart';
+import 'header/control_button_select_work.dart';
 import 'header/layout_header.dart';
 import 'state/state_base.dart';
 import 'state/state_note.dart';
@@ -100,13 +103,20 @@ class _CustomisedTheme {
         secondary: Colors.black,
       ),
       useMaterial3: true,
+      extensions: <ThemeExtension<dynamic>>[
+        IconButtonAcceptTheme(style: ButtonStyle(iconSize: WidgetStateProperty.all(24.0), padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)), foregroundColor: WidgetStateProperty.all(Colors.green))),
+        IconButtonRejectTheme(style: ButtonStyle(iconSize: WidgetStateProperty.all(24.0), padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)), foregroundColor: WidgetStateProperty.all(Colors.red))),
+        IconButtonActionTheme(style: ButtonStyle(iconSize: WidgetStateProperty.all(24.0), padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)), foregroundColor: WidgetStateProperty.all(Colors.white), backgroundColor: WidgetStateProperty.all(Colors.red))),
+        ControlWorkButtonTheme(padding: 8, hoverColor: Colors.white.withOpacity(0.3), hoverBorderWidth: 2.0),
+        const WorkDialogTheme(gridSize: 8, headerTextStyle: TextStyle(fontSize: 28, decoration: TextDecoration.none, color: Colors.black), width: 800, height: 500, backgroundColor: Colors.white),
+      ]
     ).copyWith(
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
         toolbarHeight: 64.0,
-        iconTheme: IconThemeData(color: Colors.white),
-        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20.0, decoration: TextDecoration.none),
+        iconTheme: IconThemeData(color: Colors.white, size: 40),
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.normal, decoration: TextDecoration.none),
       ));
   }
 }
