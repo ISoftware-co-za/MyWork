@@ -6,7 +6,7 @@ import 'control_activity_description.dart';
 import 'control_activity_requester.dart';
 import 'control_activity_timestamp.dart';
 import 'control_activity_title.dart';
-import '../state/state_work.dart';
+import '../state/state_action.dart';
 
 enum Orientation {
   column,
@@ -96,7 +96,7 @@ class ActivityWidgetConstructorNote implements ActivityWidgetConstructorBase {
 }
 
 class ActivityWidgetConstructorWork implements ActivityWidgetConstructorBase {
-  final StateWork activity;
+  final StateAction activity;
 
   ActivityWidgetConstructorWork({required this.activity});
 

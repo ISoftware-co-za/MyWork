@@ -2,14 +2,14 @@
 
 ## Problem
 
-Knowledge workers often juggle various tasks, including ad-hoc requests, recurring work, projects, production issues, support, and maintenance. This can lead to disorganization, missed deadlines, and difficulty tracking progress. Additionally, collaboration with internal and external stakeholders can be cumbersome.
+Knowledge workers often juggle various tasks, including ad-hoc requests, recurring work, projects, production issues, support, and maintenance. This can lead to disorganisation, missed deadlines, and difficulty tracking progress. Additionally, collaboration with internal and external stakeholders can be cumbersome.
 
 ## Solution
 
 Develop a software product that empowers individuals and teams to effectively manage their work. The software should offer functionalities for:
 
 - **Task recording and tracking:** Create tasks for various categories like projects, support tickets, and ad-hoc requests.
-- **Work organization:** Prioritize tasks, set due dates, and categorize them for easy filtering and searching.
+- **Work organisation:** Prioritise tasks, set due dates, and categorize them for easy filtering and searching.
 - **Collaboration:** Assign tasks to team members, share files and notes, and facilitate communication within the platform.
 - **Record keeping:** Maintain a historical record of completed tasks and associated information for future reference.
 - TBD time keeping
@@ -24,14 +24,14 @@ Develop a software product that empowers individuals and teams to effectively ma
 ## Benefits
 
 - Increased productivity and efficiency
-- Improved time management and organization
+- Improved time management and organisation
 - Enhanced collaboration and communication
 - Streamlined workflow and task delegation
 - Better visibility into work progress and history
 
 # Domain
 
-## Task context
+## Task context (Work)
 
 The origin or work and the context of the tasks that require execution in order to complete the work.
 
