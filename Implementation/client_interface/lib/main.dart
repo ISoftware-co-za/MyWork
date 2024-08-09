@@ -4,9 +4,11 @@ import 'controls/custom_icon_buttons.dart';
 import 'dialog_work/control_header.dart';
 import 'header/control_button_select_work.dart';
 import 'header/layout_header.dart';
+import 'state/provider_state_application.dart';
+import 'state/state_application.dart';
 import 'state/state_base.dart';
 import 'state/state_note.dart';
-import 'state/state_work.dart';
+import 'state/state_action.dart';
 import 'tabs/layout_tab_bar.dart';
 import 'tabs/page_details/page_details.dart';
 import 'tabs/page_tasks/page_tasks.dart';
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo Home Page',
         activities: [
           StateNote(initialText: '', timestamp: DateTime.now()),
-          StateWork(
+          StateAction(
               title: "Design error handling mechanism",
               description:
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis ultrices interdum. Mauris tempus sollicitudin eros id maximus. Praesent scelerisque nulla eget volutpat malesuada. Nullam tincidunt, ligula in congue pharetra, urna nisi ornare elit, accumsan tempus libero nisl sit amet nisi. Sed varius lacinia ipsum. Nullam dictum hendrerit tincidunt. Nunc pharetra sollicitudin blandit.",
@@ -58,26 +60,29 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.yellow,
-        child: const Column(mainAxisSize: MainAxisSize.max, children: [
-          LayoutHeader(),
-          Expanded(
-              child: Scaffold(
-                  body: DefaultTabController(
-            length: 2,
-            child: Column(
-              children: [
-                LayoutTabBar(),
-                Expanded(
-                  child: TabBarView(
-                    children: [PageDetails(), PageTasks()],
+    return ProviderStateApplication(
+      state: StateApplication(),
+      child: Container(
+          color: Colors.yellow,
+          child: const Column(mainAxisSize: MainAxisSize.max, children: [
+            LayoutHeader(),
+            Expanded(
+                child: Scaffold(
+                    body: DefaultTabController(
+              length: 2,
+              child: Column(
+                children: [
+                  LayoutTabBar(),
+                  Expanded(
+                    child: TabBarView(
+                      children: [PageDetails(), PageTasks()],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          )))
-        ]));
+                ],
+              ),
+            )))
+          ])),
+    );
   }
 
 /*
