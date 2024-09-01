@@ -64,12 +64,6 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
     return children;
   }
 
-  void _handlePointerMove(PointerMoveEvent event) {
-    setState(() {
-      debugPrint('_handlePointerMove = ${event.position})');
-    });
-  }
-
   late final List<ListItemDetail> _formFields;
   final UpdatingIndicator _updatingIndicator = UpdatingIndicator();
   static const _columnSpacing = 16.0;
