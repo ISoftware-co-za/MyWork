@@ -29,7 +29,7 @@ class _ControlActivityTitleState extends State<ControlActivityTitle> {
             fillColor: Color.fromARGB(255, 245, 245, 245),
             isCollapsed: true,
             contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
-            border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero)),
+            border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero))
       );
     }
   }

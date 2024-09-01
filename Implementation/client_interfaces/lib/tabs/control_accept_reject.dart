@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../ui%20toolkit/property_changed_registry.dart';
-import '../controls/custom_icon_buttons.dart';
+import '../ui toolkit/custom_icon_buttons.dart';
 
 class ControlAcceptReject extends StatelessWidget {
   const ControlAcceptReject({super.key});
@@ -32,7 +32,7 @@ class ControlAcceptReject extends StatelessWidget {
   void _onAcceptPressed() {
     if (PropertyChangedRegistry.validateChanges()) {
       // Use service API to store changes
-      PropertyChangedRegistry.rejectChanges();
+      PropertyChangedRegistry.acceptChanges();
     }
   }
 }

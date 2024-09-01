@@ -1,9 +1,15 @@
-class Work extends WorkData{
+class Work extends WorkData {
   WorkKey key;
   WorkData data;
 
-  Work({required this.key, required this.data}) : super(name: data.name, classification: data.classification, reference: data.reference, description: data.description);
+  Work({required this.key, required this.data})
+      : super(
+            name: data.name,
+            classification: data.classification,
+            reference: data.reference,
+            description: data.description);
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'key': key.toJson(),
@@ -30,7 +36,11 @@ class WorkData {
   String? reference;
   String? description;
 
-  WorkData({required this.name, this.classification, this.reference, this.description});
+  WorkData(
+      {required this.name,
+      this.classification,
+      this.reference,
+      this.description});
 
   Map<String, dynamic> toJson() {
     return {
@@ -44,7 +54,7 @@ class WorkData {
 
 class WorkUpdate {
   WorkKey key;
-  Map<String,dynamic> updatedProperties = {};
+  Map<String, dynamic> updatedProperties = {};
 
   WorkUpdate({required this.key, required this.updatedProperties});
 }

@@ -15,21 +15,24 @@ class PropertyChangedRegistry {
   static void addChangedProperty(StateProperty property) {
     _changedProperties.add(property);
     hasChanges.value = _changedProperties.isNotEmpty;
+    debugPrint('Changed properties: ${_changedProperties.length}');
   }
 
   static void removeChangedProperty(StateProperty property) {
     _changedProperties.remove(property);
     hasChanges.value = _changedProperties.isNotEmpty;
+    debugPrint('Changed properties: ${_changedProperties.length}');
   }
 
-  static void acceptChanged() {
-    for (var property in _changedProperties) {
+  static void acceptChanges() {
+    for (var property in Set<StateProperty>.from(_changedProperties)) {
       property.acceptChanged();
+      debugPrint('Accept: ${property.value}');
     }
   }
 
   static void rejectChanges() {
-    for (var property in _changedProperties) {
+    for (var property in Set<StateProperty>.from(_changedProperties)) {
       property.discardChange();
     }
   }

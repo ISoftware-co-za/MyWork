@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'controls/custom_icon_buttons.dart';
+import 'ui toolkit/custom_icon_buttons.dart';
 import 'dialog_work/control_header.dart';
 import 'header/control_button_select_work.dart';
 import 'header/layout_header.dart';
 import 'state/provider_state_application.dart';
 import 'state/controller_work.dart';
+import 'ui toolkit/control_form_fields.dart';
 import 'ui toolkit/properties.dart';
 import 'state/state_note.dart';
 import 'state/state_action.dart';
@@ -138,28 +139,41 @@ class _CustomisedTheme {
               width: 800,
               height: 500,
               backgroundColor: Colors.white),
+          const FormTheme(
+            labelStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
+            valueStyle: TextStyle(fontSize: 16.0),
+            textFieldDecoration: InputDecoration(
+                filled: true,
+                fillColor: Color.fromARGB(255, 245, 245, 245),
+                focusColor: Color.fromARGB(255, 235, 235, 235),
+                isCollapsed: true,
+                contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
+                border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero)),
+            fleatherEditorHeight: 400,
+          )
         ]).copyWith(
-        appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.black,
-      foregroundColor: Colors.white,
-      toolbarHeight: 64.0,
-      iconTheme: IconThemeData(color: Colors.white, size: 40),
-      titleTextStyle: TextStyle(
-          color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.normal, decoration: TextDecoration.none),
-    ),
-        inputDecorationTheme: const InputDecorationTheme(
-          labelStyle: TextStyle(
-            color: Colors.grey, // Default label color
-          ),
-          focusColor: Colors.blue,
-          border: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey), // Focused underline color
-          ),
-          focusedBorder:  UnderlineInputBorder(
-            borderSide:BorderSide(color: Colors.black, width: 2) // Focused underline color
-          ),
-          activeIndicatorBorder: BorderSide(color: Colors.black, width: 2), // Focused underline color
-          ),
-        );
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        toolbarHeight: 64.0,
+        iconTheme: IconThemeData(color: Colors.white, size: 40),
+        titleTextStyle: TextStyle(
+            color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.normal, decoration: TextDecoration.none),
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        labelStyle: TextStyle(
+          color: Colors.grey, // Default label color
+        ),
+        focusColor: Colors.blue,
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey), // Focused underline color
+        ),
+        focusedBorder:
+            UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2) // Focused underline color
+                ),
+        activeIndicatorBorder: BorderSide(color: Colors.black, width: 2), // Focused underline color
+      ),
+    );
   }
 }

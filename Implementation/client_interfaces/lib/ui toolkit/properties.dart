@@ -16,8 +16,9 @@ class StateProperty extends ChangeNotifier {
   set value(String? value) {
     if (_value != value) {
       _value = value;
-      _propertyChanged.setChanged(this, _currentValue != _value);
+      _updatePropertyChanged();
       _setInvalidMessage(_validation.validate(input: _value ?? ''));
+      notifyListeners();
     }
   }
 
@@ -27,7 +28,6 @@ class StateProperty extends ChangeNotifier {
   void _setInvalidMessage(String? value) {
     if (_invalidMessage != value) {
       _invalidMessage = value;
-      notifyListeners();
     }
   }
 
@@ -56,12 +56,26 @@ class StateProperty extends ChangeNotifier {
     return isValid;
   }
 
-  void discardChange() {
-    _value = _currentValue;
+  void acceptChanged() {
+    _currentValue = value;
+    _updatePropertyChanged();
   }
 
-  void acceptChanged() {
-    _currentValue = _value;
+  void discardChange() {
+    _validation.reset();
+    value = _currentValue;
+    _updatePropertyChanged();
+  }
+
+  //#endregion
+
+  //#region PRIVATE METHODS
+
+  void _updatePropertyChanged()
+  {
+    if (_propertyChanged.setChanged(this, _currentValue != _value)) {
+      notifyListeners();
+    }
   }
 
   //#endregion
@@ -79,17 +93,20 @@ class StateProperty extends ChangeNotifier {
 
 class _PropertyChanged {
   bool isChanged = false;
+  bool result = false;
 
-  void setChanged(StateProperty property, bool changed) {
-    debugPrint('_PropertyChanged.setChanged($changed)');
+  bool setChanged(StateProperty property, bool changed) {
     isChanged = changed;
     if (isChanged && _changedPropertyRegistered == false) {
       PropertyChangedRegistry.addChangedProperty(property);
       _changedPropertyRegistered = true;
+      result = true;
     } else if (isChanged == false && _changedPropertyRegistered) {
       PropertyChangedRegistry.removeChangedProperty(property);
       _changedPropertyRegistered = false;
+      result = true;
     }
+    return result;
   }
 
   bool _changedPropertyRegistered = false;
@@ -123,6 +140,10 @@ class ValidatorCollection {
     }
     _hasBeenValid = true;
     return null;
+  }
+
+  void reset() {
+    _hasBeenValid = false;
   }
 
   //#endregion
