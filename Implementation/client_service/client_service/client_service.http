@@ -1,0 +1,25 @@
+@client_service_HostAddress = https://localhost:5000
+
+###
+POST {{client_service_HostAddress}}/work
+Content-Type: application/json
+
+{
+  "name":"My First Work",
+  "type": "Type flag",
+  "reference": "External Reference"
+}
+
+###
+PATCH {{client_service_HostAddress}}/work
+Content-Type: application/json
+
+{
+  "updatedFields": [
+    { "Name" :  "Name", "Value":  "The work's new name"},
+    { "Name" :  "Reference", "Value":  "The new value for reference"}
+    ]
+}
+
+###
+DELETE {{client_service_HostAddress}}/work/123
