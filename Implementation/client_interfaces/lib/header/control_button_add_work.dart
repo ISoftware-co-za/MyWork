@@ -15,22 +15,8 @@ class ControlButtonAddWork extends StatelessWidget {
         padding: const EdgeInsets.all(2),
         icon: Icon(Icons.add_circle, color: iconThemeData.color),
         onPressed: () async {
-          ControllerWork workController =
-              ProviderStateApplication.of(context)!.workController;
-          workController.newWork();
-
-          try
-          {
-            var work = WorkCreateRequest(name: "Work name", type: "Incident", reference: "INC123456789");
-            var client = ServiceClient("https://localhost:5000");
-            var response = await client.workCreate(work);
-            debugPrint("Work created with id: ${response.id}");
-          }
-          catch (e)
-          {
-            debugPrint(e.toString());
-          }
-
+          ControllerWork workController = ProviderStateApplication.of(context)!.workController;
+          workController.onNewWork();
         });
   }
 }

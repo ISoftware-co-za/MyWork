@@ -1,4 +1,4 @@
-import '../../ui toolkit/properties.dart';
+import '../../state/properties.dart';
 
 class ListItemDetail {
   final String label;

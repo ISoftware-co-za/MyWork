@@ -35,6 +35,7 @@ dependencies:
   fleather: ^1.18.0
   quill_delta: ^3.0.0-nullsafety.2
   http: ^1.2.2
+  get_it: ^8.0.0
 
 dev_dependencies:
   flutter_test:
