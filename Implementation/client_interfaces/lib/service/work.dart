@@ -1,72 +1,54 @@
-class Work extends WorkData {
-  WorkKey key;
-  WorkData data;
-
-  Work({required this.key, required this.data})
-      : super(
-            name: data.name,
-            classification: data.classification,
-            reference: data.reference,
-            description: data.description);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'key': key.toJson(),
-      'data': data.toJson(),
-    };
-  }
-}
-
-class WorkKey {
-  final int id;
-
-  WorkKey({required this.id});
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-    };
-  }
-}
-
-class WorkData {
-  String name;
-  String? classification;
-  String? reference;
-  String? description;
-
-  WorkData(
-      {required this.name,
-      this.classification,
-      this.reference,
-      this.description});
+class WorkCreateRequest {
+  final String name;
+  final String? type;
+  final String? reference;
+  final String? description;
+  WorkCreateRequest({required this.name, this.type, this.reference, this.description});
 
   Map<String, dynamic> toJson() {
     return {
       'name': name,
-      'classification': classification,
+      'type': type,
       'reference': reference,
-      'description': description,
+      'description': description
     };
   }
 }
 
-class WorkUpdate {
-  WorkKey key;
-  Map<String, dynamic> updatedProperties = {};
+class WorkCreateResponse {
+  final String id;
+  WorkCreateResponse({required this.id});
 
-  WorkUpdate({required this.key, required this.updatedProperties});
+  factory WorkCreateResponse.fromJson(Map<String, dynamic> json) {
+    return WorkCreateResponse(
+      id: json['id'],
+    );
+  }
 }
 
-/*
-Create
-POST WorkData -> WorkKey
+class WorkUpdatedProperty {
+  final String name;
+  final dynamic value;
+  WorkUpdatedProperty({required this.name, this.value});
 
-Update
-PUT WorkUpdate -> void (updatedProperties specifies the values of the properties updated.
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'value': value,
+    };
+  }
+}
 
-Delete
-DELETE WorkKey -> void
+class WorkUpdateRequest {
+  final String id;
+  final Iterable<WorkUpdatedProperty> updatedProperties;
 
- */
+  WorkUpdateRequest({required this.id, required this.updatedProperties});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'updatedProperties': updatedProperties,
+    };
+  }
+}

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'properties.dart';
+import '../state/properties.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 

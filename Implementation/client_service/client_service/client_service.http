@@ -1,6 +1,9 @@
 @client_service_HostAddress = https://localhost:5000
 
 ###
+GET {{client_service_HostAddress}}/work
+
+###
 POST {{client_service_HostAddress}}/work
 Content-Type: application/json
 

@@ -12,19 +12,19 @@ class PageDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ControllerWork applicationState = ProviderStateApplication.of(context)!.workController;
+    ControllerWork controller = ProviderStateApplication.of(context)!.workController;
     return ValueListenableBuilder(
-        valueListenable: applicationState.selectedWork,
+        valueListenable: controller.selectedWork,
         builder: (BuildContext context, StateWork? work, Widget? child) {
-          if (applicationState.hasWork) {
-            return _generateWorkForm(applicationState.selectedWork.value!);
+          if (controller.hasWork) {
+            return _generateWorkForm(controller);
           } else {
             return _displayNoWork();
           }
         });
   }
 
-  Widget _generateWorkForm(StateWork work) {
+  Widget _generateWorkForm(ControllerWork controller) {
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
@@ -32,7 +32,7 @@ class PageDetails extends StatelessWidget {
         constraints: const BoxConstraints(minWidth: 400, maxWidth: 700),
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            return LayoutDetailsForm(work: work);
+            return LayoutDetailsForm(controller: controller);
           },
         ),
       ),

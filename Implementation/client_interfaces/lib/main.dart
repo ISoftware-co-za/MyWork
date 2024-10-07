@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'state/facade_base.dart';
 import 'ui toolkit/custom_icon_buttons.dart';
 import 'dialog_work/control_header.dart';
 import 'header/control_button_select_work.dart';
@@ -7,7 +8,7 @@ import 'header/layout_header.dart';
 import 'state/provider_state_application.dart';
 import 'state/controller_work.dart';
 import 'ui toolkit/control_form_fields.dart';
-import 'ui toolkit/properties.dart';
+import 'state/properties.dart';
 import 'state/state_note.dart';
 import 'state/state_action.dart';
 import 'tabs/layout_tab_bar.dart';
@@ -15,6 +16,7 @@ import 'tabs/page_details/page_details.dart';
 import 'tabs/page_tasks/page_tasks.dart';
 
 void main() {
+  setupFacade();
   runApp(const MyApp());
 }
 

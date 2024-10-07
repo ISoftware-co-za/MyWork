@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../ui%20toolkit/property_changed_registry.dart';
+import '../state/property_changed_registry.dart';
+import '../state/provider_state_application.dart';
 import '../ui toolkit/custom_icon_buttons.dart';
 
 class ControlAcceptReject extends StatelessWidget {
@@ -15,8 +15,8 @@ class ControlAcceptReject extends StatelessWidget {
           return Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              IconButtonReject(Icons.close, onPressed: _onRejectPressed),
-              IconButtonAccept(Icons.check, onPressed: _onAcceptPressed)
+              IconButtonReject(Icons.close, onPressed: () => _onRejectPressed(context)),
+              IconButtonAccept(Icons.check, onPressed: () => _onAcceptPressed(context))
             ],
           );
         }
@@ -25,14 +25,11 @@ class ControlAcceptReject extends StatelessWidget {
     );
   }
 
-  void _onRejectPressed() {
-    PropertyChangedRegistry.rejectChanges();
+  void _onRejectPressed(BuildContext context) {
+    ProviderStateApplication.of(context)!.workController.onCancel();
   }
 
-  void _onAcceptPressed() {
-    if (PropertyChangedRegistry.validateChanges()) {
-      // Use service API to store changes
-      PropertyChangedRegistry.acceptChanges();
-    }
+  void _onAcceptPressed(BuildContext context) {
+    ProviderStateApplication.of(context)!.workController.onSave();
   }
 }

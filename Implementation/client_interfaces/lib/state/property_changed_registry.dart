@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import 'properties.dart';
+import '../state/properties.dart';
 
 class PropertyChangedRegistry {
 

@@ -1,6 +1,5 @@
+import 'package:client_interfaces1/state/property_changed_registry.dart';
 import 'package:flutter/foundation.dart';
-
-import 'property_changed_registry.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9,7 +8,6 @@ class PropertyOwner extends ChangeNotifier {}
 //----------------------------------------------------------------------------------------------------------------------
 
 class StateProperty extends ChangeNotifier {
-
   //#region PROPERTIES
 
   String? get value => _value;
@@ -71,8 +69,7 @@ class StateProperty extends ChangeNotifier {
 
   //#region PRIVATE METHODS
 
-  void _updatePropertyChanged()
-  {
+  void _updatePropertyChanged() {
     if (_propertyChanged.setChanged(this, _currentValue != _value)) {
       notifyListeners();
     }
@@ -161,13 +158,13 @@ class ValidatorCollection {
 abstract class Validator {
   //#region PROPERTIES
 
-  String invalidTemplateMessage;
+  String invalidMessageTemplate;
 
   //#endregion
 
   //#region CONSTRUCTION
 
-  Validator({required this.invalidTemplateMessage});
+  Validator({required this.invalidMessageTemplate});
 
   //#endregion
 
@@ -181,10 +178,9 @@ abstract class Validator {
 //----------------------------------------------------------------------------------------------------------------------
 
 class ValidatorRequired extends Validator {
-
   //#region CONSTRUCTION
 
-  ValidatorRequired({required super.invalidTemplateMessage});
+  ValidatorRequired({required super.invalidMessageTemplate});
 
   //#endregion
 
@@ -193,10 +189,9 @@ class ValidatorRequired extends Validator {
   @override
   String? validate(String input) {
     if (input.isEmpty) {
-      return invalidTemplateMessage;
+      return invalidMessageTemplate;
     }
     return null;
-
   }
 
   //#endregion

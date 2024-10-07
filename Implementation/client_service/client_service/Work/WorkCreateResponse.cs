@@ -1,3 +1,3 @@
 namespace client_service.Work;
 
-public record WorkCreateResponse(int Id);
+public record WorkCreateResponse(string Id);

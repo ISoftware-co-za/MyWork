@@ -1,7 +1,10 @@
+using MongoDB.Driver;
 using NLog.Web;
-using client_service.Work;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+
+using client_service.Work;
+using MongoDB.Bson.Serialization.Conventions;
 
 try
 {
@@ -19,6 +22,22 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
     builder.Services.AddProblemDetails();
+    
+    /*
+    var conventionPack = new ConventionPack
+    {
+        new CamelCaseElementNameConvention()
+    };
+    ConventionRegistry.Register("CamelCase", conventionPack, t => true);
+    */
+    IConfigurationSection mongoDBConfiguration = builder.Configuration.GetSection("MongoDB");
+    string mongoDBConnectionString = mongoDBConfiguration["ConnectionString"]!;
+    builder.Services.AddSingleton<IMongoClient>(sp => new MongoClient(mongoDBConnectionString));
+    builder.Services.AddScoped<IMongoDatabase>(sp =>
+    {
+        var client = sp.GetRequiredService<IMongoClient>();
+        return client.GetDatabase("my_work");
+    });
 
     var app = builder.Build();
     var url = app.Configuration["Service:URL"];

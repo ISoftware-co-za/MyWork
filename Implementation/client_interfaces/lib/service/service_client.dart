@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:client_interfaces1/service/work.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 class ServiceClient {
@@ -25,30 +27,30 @@ class ServiceClient {
     }
   }
 
-}
-
-class WorkCreateRequest {
-  final String name;
-  final String? type;
-  final String? reference;
-  WorkCreateRequest({required this.name, this.type, this.reference});
-
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'type': type,
-      'reference': reference,
-    };
-  }
-}
-
-class WorkCreateResponse {
-  final num id;
-  WorkCreateResponse({required this.id});
-
-  factory WorkCreateResponse.fromJson(Map<String, dynamic> json) {
-    return WorkCreateResponse(
-      id: json['id'],
+  Future workUpdate(WorkUpdateRequest request) async {
+    var uri = Uri.parse('$_baseUrl/work');
+    var body = jsonEncode(request.toJson());
+    final response = await http.patch(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: body
     );
+
+    if (response.statusCode != 200) {
+      debugPrint(response.body);
+      throw Exception('Failed to update work');
+    }
+  }
+
+  Future workDelete(String id) async {
+    var uri = Uri.parse('$_baseUrl/work/$id');
+    final response = await http.delete(
+        uri
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete work');
+    }
   }
 }

@@ -1,5 +1,24 @@
 # Client
 A Flutter based UI. Currently supports web, but will be extended to other platforms in the future. The content is usually updated as part of some other process: in a meeting, on a call etc. The content should be easy to update, the structure flat for easy navigation, and the UI as modeless as possible.
+## Layers
+
+![[Client Interface Layers.jpg|500]]
+
+### Flutter Widgets
+Flutter Widgets, either predefined. The widgets accept data and callbacks. In addition to these, the following will also be handled by this layer.
+- Data entry validation.
+### Facade
+The facade is the bridge between the Flutter Widgets and Service Client. It is responsible for:
+- Manage the application state.
+- Providing data to the Flutter Widgets.
+- Providing callbacks to the Flutter Widgets to process events.
+- Transforming and passing data to the Service using the Service Client.
+- Processing responses, updating the the application state and in turn the Flutter Widgets.
+### Service Client
+- Generate request objects to serialise to the service.
+- Deserialise responses to response objects.
+- Communicate with the service.
+- Pass errors to the Facade for processing.
 ## Document Storage
 A document database is used. The following document collections will be maintained:
 - Work - All the users work.

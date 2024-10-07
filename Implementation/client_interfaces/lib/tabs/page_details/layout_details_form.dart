@@ -1,28 +1,29 @@
 import 'package:client_interfaces1/tabs/page_details/list_item_detail.dart';
 import 'package:flutter/material.dart';
 
+import '../../state/controller_work.dart';
 import '../../state/state_work.dart';
 import '../../ui toolkit/control_form_fields.dart';
 
 class LayoutDetailsForm extends StatefulWidget {
-  const LayoutDetailsForm({required StateWork work, super.key}) : _work = work;
+  const LayoutDetailsForm({required ControllerWork controller, super.key}) : _controller = controller;
 
   @override
   State<LayoutDetailsForm> createState() => _LayoutDetailsFormState();
 
-  final StateWork _work;
+  final ControllerWork _controller;
 }
 
 class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
   @override
   void initState() {
     super.initState();
+    StateWork work = widget._controller.selectedWork.value!;
     _formFields = [
-      ListItemDetail(label: 'Name', property: widget._work.name, editorType: ListItemDetailEditor.text),
-      ListItemDetail(label: 'Type', property: widget._work.type, editorType: ListItemDetailEditor.autocomplete),
-      ListItemDetail(label: 'Reference', property: widget._work.reference, editorType: ListItemDetailEditor.text),
-      ListItemDetail(
-          label: 'Description', property: widget._work.description, editorType: ListItemDetailEditor.parchment)
+      ListItemDetail(label: 'Name', property: work.name, editorType: ListItemDetailEditor.text),
+      ListItemDetail(label: 'Type', property: work.type, editorType: ListItemDetailEditor.autocomplete),
+      ListItemDetail(label: 'Reference', property: work.reference, editorType: ListItemDetailEditor.text),
+      ListItemDetail(label: 'Description', property: work.description, editorType: ListItemDetailEditor.parchment)
     ];
   }
 
@@ -49,9 +50,11 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
     var children = <Widget>[];
     for (var field in _formFields) {
       if (field.editorType == ListItemDetailEditor.text) {
-        children.add(ControlFormField(label: field.label, property: field.property, editable: _updatingIndicator.isUpdating));
+        children.add(
+            ControlFormField(label: field.label, property: field.property, editable: _updatingIndicator.isUpdating));
       } else if (field.editorType == ListItemDetailEditor.parchment) {
-        children.add(ControlFleatherFormField(label: field.label, property: field.property, updatingIndicator: _updatingIndicator));
+        children.add(ControlFleatherFormField(
+            label: field.label, property: field.property, updatingIndicator: _updatingIndicator));
       } else if (field.editorType == ListItemDetailEditor.autocomplete) {
         children.add(ControlAutocompleteFormField(
             label: field.label,
@@ -60,6 +63,14 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
             updatingIndicator: _updatingIndicator));
       }
       children.add(const SizedBox(height: _columnSpacing));
+    }
+
+    if (widget._controller.hasExistingWork) {
+      children.add(TextButton(
+          child: const Text('Delete'),
+          onPressed: () {
+            widget._controller.onWorkDelete();
+          }));
     }
     return children;
   }
