@@ -5,7 +5,7 @@ A Flutter based UI. Currently supports web, but will be extended to other platfo
 ![[Client Interface Layers.jpg|500]]
 
 ### Flutter Widgets
-Flutter Widgets, either predefined. The widgets accept data and callbacks. In addition to these, the following will also be handled by this layer.
+Flutter Widgets, either predefined or custom. The widgets accept data and callbacks. In addition to these, the following will also be handled by this layer.
 - Data entry validation.
 ### Facade
 The facade is the bridge between the Flutter Widgets and Service Client. It is responsible for:

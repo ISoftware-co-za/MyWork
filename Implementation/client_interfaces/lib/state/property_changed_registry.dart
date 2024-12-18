@@ -37,6 +37,7 @@ class PropertyChangedRegistry {
     }
   }
 
+  /*
   static bool validateChanges() {
     bool changesValid = true;
     for (var property in _changedProperties) {
@@ -44,6 +45,7 @@ class PropertyChangedRegistry {
     }
     return changesValid;
   }
+  */
 
   //#endregion
 

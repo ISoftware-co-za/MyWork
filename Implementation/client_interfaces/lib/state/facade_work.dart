@@ -1,8 +1,7 @@
-import 'package:client_interfaces1/service/service_client.dart';
 import 'package:client_interfaces1/state/state_work.dart';
-
 import '../service/work.dart';
 import 'facade_base.dart';
+import 'response_process.dart';
 
 class FacadeWork extends FacadeBase {
 
@@ -25,11 +24,12 @@ class FacadeWork extends FacadeBase {
   Future<StateWork> define({required StateWork item}) async {
     var request = WorkCreateRequest(name: item.name.value!, type: item.type.value, reference: item.reference.value, description: item.description.value);
     var response = await serviceClient.workCreate(request);
-    item.id = response.id.toString();
+    var responseProcess = ResponseProcessFactory.createWorkProcessResponse(response, item);
+    responseProcess?.process();
     return item;
   }
 
-  Future update({required StateWork item}) async{
+  Future update({required StateWork item}) async {
     var updatedProperties = <WorkUpdatedProperty>[];
     if (item.name.isChanged) {
       updatedProperties.add(WorkUpdatedProperty(name: 'Name', value: item.name.value));
@@ -45,6 +45,8 @@ class FacadeWork extends FacadeBase {
     }
     var request = WorkUpdateRequest(id: item.id!, updatedProperties:  updatedProperties);
     var response = await serviceClient.workUpdate(request);
+    var responseProcess = ResponseProcessFactory.createWorkProcessResponse(response, item);
+    responseProcess?.process();
   }
 
   Future delete({required StateWork item}) async {

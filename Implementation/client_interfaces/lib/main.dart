@@ -1,5 +1,7 @@
+import 'package:client_interfaces1/notification/layout_notification_list.dart';
 import 'package:flutter/material.dart';
 
+import 'notification/controller_notifications.dart';
 import 'state/facade_base.dart';
 import 'ui toolkit/custom_icon_buttons.dart';
 import 'dialog_work/control_header.dart';
@@ -67,17 +69,25 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  @override didChangeDependencies() {
+    super.didChangeDependencies();
+    FlutterError.onError = (FlutterErrorDetails details) {
+      debugPrint('FlutterError.onError: ${details.exception}');
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return ProviderStateApplication(
       workController: ControllerWork(),
-      child: Container(
-          color: Colors.yellow,
-          child: const Column(mainAxisSize: MainAxisSize.max, children: [
-            LayoutHeader(),
-            Expanded(
-                child: Scaffold(
-                    body: DefaultTabController(
+      notificationController: ControllerNotifications(),
+      child: const Column(mainAxisSize: MainAxisSize.max, children: [
+        LayoutHeader(),
+        Expanded(
+            child: Scaffold(
+                body: Stack(
+          children: [
+              DefaultTabController(
               length: 2,
               child: Column(
                 children: [
@@ -89,8 +99,11 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ],
               ),
-            )))
-          ])),
+            ),
+            LayoutNotifications(),
+          ],
+        )))
+      ]),
     );
   }
 
@@ -144,10 +157,28 @@ class _CustomisedTheme {
           const FormTheme(
             labelStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
             valueStyle: TextStyle(fontSize: 16.0),
+            valueStyleError:
+                TextStyle(fontSize: 16.0, backgroundColor: Color.fromARGB(255, 255, 200, 200), color: Colors.red),
             textFieldDecoration: InputDecoration(
                 filled: true,
-                fillColor: Color.fromARGB(255, 245, 245, 245),
-                focusColor: Color.fromARGB(255, 235, 235, 235),
+                fillColor: Color.fromARGB(255, 255, 255, 255),
+                hoverColor: Color.fromARGB(255, 245, 245, 245),
+                isCollapsed: true,
+                contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
+                border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero)),
+            textFieldDecorationChanged: InputDecoration(
+                filled: true,
+                fillColor: Color.fromARGB(255, 255, 255, 235),
+                hoverColor: Color.fromARGB(255, 255, 255, 245),
+                isCollapsed: true,
+                contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
+                border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero)),
+            textFieldDecorationError: InputDecoration(
+                filled: true,
+                fillColor: Color.fromARGB(255, 255, 240, 240),
+                hoverColor: Color.fromARGB(255, 255, 250, 250),
                 isCollapsed: true,
                 contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
                 border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero),

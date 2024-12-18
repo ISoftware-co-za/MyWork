@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../notification/command_executor.dart';
+import '../notification/controller_notifications.dart';
+import '../notification/notifications.dart';
+import '../state/controller_work.dart';
 import '../state/property_changed_registry.dart';
 import '../state/provider_state_application.dart';
 import '../ui toolkit/custom_icon_buttons.dart';
@@ -8,28 +12,39 @@ class ControlAcceptReject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ControllerWork controller = ProviderStateApplication.of(context)!.workController;
     return ListenableBuilder(
-      listenable: PropertyChangedRegistry.hasChanges,
-      builder: (context, child) {
-        if (PropertyChangedRegistry.hasChanges.value) {
-          return Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButtonReject(Icons.close, onPressed: () => _onRejectPressed(context)),
-              IconButtonAccept(Icons.check, onPressed: () => _onAcceptPressed(context))
-            ],
-          );
-        }
-        return Container();
-      }
-    );
+        listenable: PropertyChangedRegistry.hasChanges,
+        builder: (context, child) {
+          return ListenableBuilder(
+              listenable: controller.isSaving,
+              builder: (context, child) {
+                if (controller.isSaving.value) {
+                  return const SizedBox(
+                      width: 56,
+                      height: 28,
+                      child: Center(child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator())));
+                } else if (PropertyChangedRegistry.hasChanges.value) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButtonReject(Icons.close, onPressed: () => _onRejectPressed(controller)),
+                      IconButtonAccept(Icons.check, onPressed: () async => await _onAcceptPressed(controller, context))
+                    ],
+                  );
+                }
+                return Container();
+              });
+        });
   }
 
-  void _onRejectPressed(BuildContext context) {
-    ProviderStateApplication.of(context)!.workController.onCancel();
+  void _onRejectPressed(ControllerWork controller) {
+    controller.onCancel();
   }
 
-  void _onAcceptPressed(BuildContext context) {
-    ProviderStateApplication.of(context)!.workController.onSave();
+  Future<void> _onAcceptPressed(ControllerWork controller, BuildContext context) async {
+    CommandExecutor.execute(() async {
+      await controller.onSave();
+    }, context);
   }
 }

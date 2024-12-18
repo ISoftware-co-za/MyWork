@@ -65,12 +65,16 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
       children.add(const SizedBox(height: _columnSpacing));
     }
 
-    if (widget._controller.hasExistingWork) {
-      children.add(TextButton(
-          child: const Text('Delete'),
-          onPressed: () {
-            widget._controller.onWorkDelete();
-          }));
+    if (widget._controller.hasExistingWork && _updatingIndicator.isUpdating) {
+      children.add(Center(
+        child: TextButton.icon(
+            icon: const Icon(Icons.delete),
+            label: const Text('Delete'),
+            style: TextButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+            onPressed: () {
+              widget._controller.onWorkDelete();
+            }),
+      ));
     }
     return children;
   }

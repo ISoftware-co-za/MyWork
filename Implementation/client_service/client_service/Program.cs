@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 using client_service.Work;
-using MongoDB.Bson.Serialization.Conventions;
+using client_service.Validation;
 
 try
 {
@@ -23,21 +23,16 @@ try
     builder.Services.AddSwaggerGen();
     builder.Services.AddProblemDetails();
     
-    /*
-    var conventionPack = new ConventionPack
-    {
-        new CamelCaseElementNameConvention()
-    };
-    ConventionRegistry.Register("CamelCase", conventionPack, t => true);
-    */
     IConfigurationSection mongoDBConfiguration = builder.Configuration.GetSection("MongoDB");
     string mongoDBConnectionString = mongoDBConfiguration["ConnectionString"]!;
+    var validation = new Validation();
     builder.Services.AddSingleton<IMongoClient>(sp => new MongoClient(mongoDBConnectionString));
     builder.Services.AddScoped<IMongoDatabase>(sp =>
     {
         var client = sp.GetRequiredService<IMongoClient>();
         return client.GetDatabase("my_work");
     });
+    builder.Services.AddSingleton<Validation>(validation);
 
     var app = builder.Build();
     var url = app.Configuration["Service:URL"];
@@ -68,6 +63,7 @@ try
     }
     app.UseCors(corsPolicyName);
     app.MapWorkURLs("/work", corsPolicyName);
+    validation.AddWorkValidation();
     app.Run();
 }
 catch (Exception exception)

@@ -23,15 +23,18 @@ class ControlFormField extends StatefulWidget {
 }
 
 class _ControlFormFieldState extends State<ControlFormField> {
+
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController(text: widget.property.value);
+    // _focusNode.requestFocus();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    // _focusNode.dispose();
     super.dispose();
   }
 
@@ -41,14 +44,20 @@ class _ControlFormFieldState extends State<ControlFormField> {
     return ListenableBuilder(
         listenable: widget.property,
         builder: (context, child) {
+
+          // ('ControlFormField.build: ${widget.property.value} (isValid = ${widget.property.isValid})');
+
           var children = <Widget>[Text(widget.label, style: theme.labelStyle)];
-          if (widget.editable || widget.property.isChanged) {
+          if (widget.editable || widget.property.isChanged || !widget.property.isValid) {
             children.add(_createUpdateField(theme));
           } else {
             children.add(Padding(
               padding: const EdgeInsets.symmetric(vertical: 0.5, horizontal: 0),
-              child: Text(widget.property.value ?? '', style: theme.valueStyle)),
-            );
+              child: Text(widget.property.value ?? '', style: theme.valueStyle),
+            ));
+          }
+          if (!widget.property.isValid) {
+            children.add(Text(widget.property.invalidMessage!, style: theme.valueStyle.copyWith(color: Colors.red)));
           }
           return Column(
               mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: children);
@@ -58,13 +67,16 @@ class _ControlFormFieldState extends State<ControlFormField> {
   TextField _createUpdateField(FormTheme theme) {
     return TextField(
         controller: _controller,
+        // focusNode: _focusNode,
         onChanged: (value) {
-          widget.property.value = value;
+            widget.property.value = value;
         },
-        decoration: theme.textFieldDecoration);
+        style: (widget.property.isValid) ? theme.valueStyle : theme.valueStyleError,
+        decoration: (widget.property.isValid) ? ((widget.property.isChanged) ? theme.textFieldDecorationChanged : theme.textFieldDecoration) : theme.textFieldDecorationError);
   }
 
   late TextEditingController _controller;
+  // final FocusNode _focusNode = FocusNode();
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -243,13 +255,19 @@ class FormTheme extends ThemeExtension<FormTheme> {
 
   final TextStyle labelStyle;
   final TextStyle valueStyle;
+  final TextStyle valueStyleError;
   final InputDecoration textFieldDecoration;
+  final InputDecoration textFieldDecorationChanged;
+  final InputDecoration textFieldDecorationError;
   final double fleatherEditorHeight;
 
   const FormTheme({
     required this.labelStyle,
     required this.valueStyle,
+    required this.valueStyleError,
     required this.textFieldDecoration,
+    required this.textFieldDecorationChanged,
+    required this.textFieldDecorationError,
     required this.fleatherEditorHeight,
   });
 
@@ -258,7 +276,10 @@ class FormTheme extends ThemeExtension<FormTheme> {
     return FormTheme(
       labelStyle: labelStyle,
       valueStyle: valueStyle,
+      valueStyleError: valueStyleError,
       textFieldDecoration: textFieldDecoration,
+      textFieldDecorationChanged: textFieldDecorationChanged,
+      textFieldDecorationError: textFieldDecorationError,
       fleatherEditorHeight: fleatherEditorHeight,
     );
   }
@@ -269,7 +290,10 @@ class FormTheme extends ThemeExtension<FormTheme> {
     return FormTheme(
       labelStyle: TextStyle.lerp(labelStyle, other.labelStyle, t)!,
       valueStyle: TextStyle.lerp(valueStyle, other.valueStyle, t)!,
+      valueStyleError: TextStyle.lerp(valueStyleError, other.valueStyleError, t)!,
       textFieldDecoration: other.textFieldDecoration,
+      textFieldDecorationChanged: other.textFieldDecorationChanged,
+      textFieldDecorationError: other.textFieldDecorationError,
       fleatherEditorHeight: fleatherEditorHeight + (other.fleatherEditorHeight - fleatherEditorHeight) * t,
     );
   }
