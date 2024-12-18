@@ -1,0 +1,648 @@
+2024-10-01 05:58:52.0598 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-01 05:58:52.0752 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-01 05:58:52.0752 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-01 05:58:52.0805 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-01 05:58:52.1163 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-01 05:58:52.1257 Info Configuration initialized.
+2024-10-01 07:26:24.1507 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-01 07:26:24.1659 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-01 07:26:24.1663 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-01 07:26:24.1709 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-01 07:26:24.2169 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-01 07:26:24.2268 Info Configuration initialized.
+2024-10-04 20:23:58.4328 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-04 20:23:58.4483 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-04 20:23:58.4483 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-04 20:23:58.4538 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-04 20:23:58.5250 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-04 20:23:58.5353 Info Configuration initialized.
+2024-10-05 08:10:10.9527 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-05 08:10:10.9674 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-05 08:10:10.9674 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-05 08:10:10.9721 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-05 08:10:11.0323 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-05 08:10:11.0428 Info Configuration initialized.
+2024-10-05 13:56:49.6993 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-05 13:56:49.7145 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-05 13:56:49.7145 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-05 13:56:49.7189 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-05 13:56:49.7777 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-05 13:56:49.7873 Info Configuration initialized.
+2024-10-05 13:59:37.6003 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-05 13:59:37.6155 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-05 13:59:37.6155 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-05 13:59:37.6204 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-05 13:59:37.6787 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-05 13:59:37.6883 Info Configuration initialized.
+2024-10-05 14:03:58.8727 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-05 14:03:58.8880 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-05 14:03:58.8880 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-05 14:03:58.8940 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-05 14:03:58.9530 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-05 14:03:58.9632 Info Configuration initialized.
+2024-10-05 14:05:17.1982 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-05 14:05:17.2130 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-05 14:05:17.2133 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-05 14:05:17.2178 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-05 14:05:17.2769 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-05 14:05:17.2866 Info Configuration initialized.
+2024-10-05 19:20:27.9226 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-05 19:20:27.9377 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-05 19:20:27.9377 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-05 19:20:27.9427 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-05 19:20:28.0025 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-05 19:20:28.0126 Info Configuration initialized.
+2024-10-05 19:26:00.6414 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-05 19:26:00.6562 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-05 19:26:00.6562 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-05 19:26:00.6614 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-05 19:26:00.7273 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-05 19:26:00.7367 Info Configuration initialized.
+2024-10-05 19:30:44.9910 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-05 19:30:45.0090 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-05 19:30:45.0090 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-05 19:30:45.0137 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-05 19:30:45.0807 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-05 19:30:45.0908 Info Configuration initialized.
+2024-10-06 06:10:07.8623 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 06:10:07.8773 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 06:10:07.8773 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 06:10:07.8820 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 06:10:07.9468 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 06:10:07.9558 Info Configuration initialized.
+2024-10-06 06:27:22.4275 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 06:27:22.4420 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 06:27:22.4420 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 06:27:22.4469 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 06:27:22.5147 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 06:27:22.5250 Info Configuration initialized.
+2024-10-06 07:00:43.2333 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 07:00:43.2480 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 07:00:43.2483 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 07:00:43.2527 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 07:00:43.3208 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 07:00:43.3304 Info Configuration initialized.
+2024-10-06 07:17:12.0406 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 07:17:12.0559 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 07:17:12.0559 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 07:17:12.0607 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 07:17:12.1279 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 07:17:12.1375 Info Configuration initialized.
+2024-10-06 07:40:10.2651 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 07:40:10.2810 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 07:40:10.2814 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 07:40:10.2862 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 07:40:10.3514 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 07:40:10.3612 Info Configuration initialized.
+2024-10-06 07:41:37.8984 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 07:41:37.9134 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 07:41:37.9134 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 07:41:37.9184 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 07:41:37.9864 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 07:41:37.9966 Info Configuration initialized.
+2024-10-06 07:42:31.1660 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 07:42:31.1811 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 07:42:31.1811 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 07:42:31.1860 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 07:42:31.2540 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 07:42:31.2633 Info Configuration initialized.
+2024-10-06 07:57:16.3416 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 07:57:16.3574 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 07:57:16.3577 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 07:57:16.3620 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 07:57:16.4330 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 07:57:16.4428 Info Configuration initialized.
+2024-10-06 07:58:40.4236 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 07:58:40.4392 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 07:58:40.4392 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 07:58:40.4454 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 07:58:40.5143 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 07:58:40.5253 Info Configuration initialized.
+2024-10-06 08:05:41.6472 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 08:05:41.6624 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 08:05:41.6624 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 08:05:41.6676 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 08:05:41.7475 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 08:05:41.7585 Info Configuration initialized.
+2024-10-06 09:39:35.2979 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 09:39:35.3133 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 09:39:35.3133 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 09:39:35.3181 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 09:39:35.3778 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 09:39:35.3874 Info Configuration initialized.
+2024-10-06 12:46:17.7813 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 12:46:17.7956 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 12:46:17.7956 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 12:46:17.8008 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 12:46:17.8620 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 12:46:17.8718 Info Configuration initialized.
+2024-10-06 12:53:06.6703 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 12:53:06.6860 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 12:53:06.6860 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 12:53:06.6909 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 12:53:06.7537 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 12:53:06.7631 Info Configuration initialized.
+2024-10-06 18:32:18.3498 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 18:32:18.3649 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 18:32:18.3649 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 18:32:18.3703 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 18:32:18.4312 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 18:32:18.4428 Info Configuration initialized.
+2024-10-06 19:16:16.5066 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 19:16:16.5201 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 19:16:16.5205 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 19:16:16.5252 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 19:16:16.5851 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 19:16:16.5950 Info Configuration initialized.
+2024-10-06 19:43:12.4621 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 19:43:12.4781 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 19:43:12.4784 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 19:43:12.4827 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 19:43:12.5458 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 19:43:12.5561 Info Configuration initialized.
+2024-10-06 19:50:01.2984 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 19:50:01.3138 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 19:50:01.3138 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 19:50:01.3190 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 19:50:01.3875 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 19:50:01.3980 Info Configuration initialized.
+2024-10-06 19:51:36.0437 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 19:51:36.0593 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 19:51:36.0597 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 19:51:36.0645 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 19:51:36.1285 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 19:51:36.1387 Info Configuration initialized.
+2024-10-06 19:58:36.8320 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 19:58:36.8491 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 19:58:36.8491 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 19:58:36.8543 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 19:58:36.9163 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 19:58:36.9260 Info Configuration initialized.
+2024-10-06 20:03:50.4154 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 20:03:50.4302 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 20:03:50.4305 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 20:03:50.4351 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 20:03:50.4994 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 20:03:50.5098 Info Configuration initialized.
+2024-10-06 20:05:27.0422 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 20:05:27.0572 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 20:05:27.0572 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 20:05:27.0620 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 20:05:27.1233 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 20:05:27.1333 Info Configuration initialized.
+2024-10-06 20:07:34.5646 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-06 20:07:34.5801 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-06 20:07:34.5805 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-06 20:07:34.5850 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-06 20:07:34.6445 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-06 20:07:34.6548 Info Configuration initialized.
+2024-10-07 06:01:29.9749 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 06:01:29.9927 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 06:01:29.9936 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 06:01:29.9987 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 06:01:30.0719 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 06:01:30.0823 Info Configuration initialized.
+2024-10-07 06:13:31.6229 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 06:13:31.6373 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 06:13:31.6373 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 06:13:31.6421 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 06:13:31.7070 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 06:13:31.7169 Info Configuration initialized.
+2024-10-07 06:18:28.5354 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 06:18:28.5494 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 06:18:28.5494 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 06:18:28.5544 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 06:18:28.6233 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 06:18:28.6332 Info Configuration initialized.
+2024-10-07 06:20:03.3322 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 06:20:03.3470 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 06:20:03.3470 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 06:20:03.3525 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 06:20:03.4180 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 06:20:03.4270 Info Configuration initialized.
+2024-10-07 06:27:06.3899 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 06:27:06.4067 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 06:27:06.4071 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 06:27:06.4118 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 06:27:06.4779 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 06:27:06.4875 Info Configuration initialized.
+2024-10-07 06:31:48.6394 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 06:31:48.6544 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 06:31:48.6544 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 06:31:48.6594 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 06:31:48.7565 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 06:31:48.7706 Info Configuration initialized.
+2024-10-07 06:32:46.4860 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 06:32:46.5007 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 06:32:46.5007 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 06:32:46.5059 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 06:32:46.5722 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 06:32:46.5816 Info Configuration initialized.
+2024-10-07 07:18:16.5714 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 07:18:16.5859 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 07:18:16.5859 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 07:18:16.5915 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 07:18:16.6669 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 07:18:16.6776 Info Configuration initialized.
+2024-10-07 07:23:29.9502 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 07:23:29.9646 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 07:23:29.9646 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 07:23:29.9696 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 07:23:30.0365 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 07:23:30.0459 Info Configuration initialized.
+2024-10-07 07:37:37.4645 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 07:37:37.4805 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 07:37:37.4805 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 07:37:37.4857 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 07:37:37.5521 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 07:37:37.5619 Info Configuration initialized.
+2024-10-07 07:43:48.4107 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 07:43:48.4262 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 07:43:48.4266 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 07:43:48.4310 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 07:43:48.4950 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 07:43:48.5058 Info Configuration initialized.
+2024-10-07 07:49:20.7388 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 07:49:20.7525 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 07:49:20.7525 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 07:49:20.7576 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 07:49:20.8248 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 07:49:20.8343 Info Configuration initialized.
+2024-10-07 08:15:22.4183 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-07 08:15:22.4334 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-07 08:15:22.4338 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-07 08:15:22.4386 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-07 08:15:22.5036 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-07 08:15:22.5134 Info Configuration initialized.
+2024-10-12 07:53:29.5904 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-12 07:53:29.6067 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-12 07:53:29.6067 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-12 07:53:29.6116 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-12 07:53:29.6886 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-12 07:53:29.6989 Info Configuration initialized.
+2024-10-16 05:17:34.9930 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-16 05:17:35.0071 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-16 05:17:35.0071 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-16 05:17:35.0123 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-16 05:17:35.0715 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-16 05:17:35.0815 Info Configuration initialized.
+2024-10-20 17:30:57.9677 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-20 17:30:57.9829 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-20 17:30:57.9829 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-20 17:30:57.9880 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-20 17:30:58.0313 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-20 17:30:58.0418 Info Configuration initialized.
+2024-10-20 17:32:37.2292 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-20 17:32:37.2445 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-20 17:32:37.2445 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-20 17:32:37.2494 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-20 17:32:37.2929 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-20 17:32:37.3030 Info Configuration initialized.
+2024-10-20 17:35:02.5675 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-20 17:35:02.5827 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-20 17:35:02.5832 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-20 17:35:02.5881 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-20 17:35:02.6291 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-20 17:35:02.6396 Info Configuration initialized.
+2024-10-20 17:36:43.6541 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-20 17:36:43.6704 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-20 17:36:43.6721 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-20 17:36:43.6771 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-20 17:36:43.7220 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-20 17:36:43.7330 Info Configuration initialized.
+2024-10-20 17:37:48.0248 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-20 17:37:48.0403 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-20 17:37:48.0403 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-20 17:37:48.0456 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-20 17:37:48.0888 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-20 17:37:48.0997 Info Configuration initialized.
+2024-10-20 18:14:33.7370 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-20 18:14:33.7530 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-20 18:14:33.7530 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-20 18:14:33.7581 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-20 18:14:33.8056 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-20 18:14:33.8151 Info Configuration initialized.
+2024-10-20 18:42:40.6396 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-20 18:42:40.6552 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-20 18:42:40.6555 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-20 18:42:40.6601 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-20 18:42:40.7058 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-20 18:42:40.7160 Info Configuration initialized.
+2024-10-25 06:16:25.8185 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-25 06:16:25.8488 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-25 06:16:25.8501 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-25 06:16:25.8571 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-25 06:16:25.9355 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-25 06:16:25.9489 Info Configuration initialized.
+2024-10-26 08:06:12.8123 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-26 08:06:12.8276 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-26 08:06:12.8279 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-26 08:06:12.8325 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-26 08:06:12.9037 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-26 08:06:12.9135 Info Configuration initialized.
+2024-10-26 08:07:36.0841 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-26 08:07:36.0986 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-26 08:07:36.0989 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-26 08:07:36.1035 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-26 08:07:36.1679 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-26 08:07:36.1794 Info Configuration initialized.
+2024-10-27 07:19:50.3445 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-27 07:19:50.3603 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-27 07:19:50.3607 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-27 07:19:50.3654 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-27 07:19:50.4247 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-27 07:19:50.4340 Info Configuration initialized.
+2024-10-27 07:21:53.6014 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-27 07:21:53.6161 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-27 07:21:53.6161 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-27 07:21:53.6216 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-27 07:21:53.6788 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-27 07:21:53.6883 Info Configuration initialized.
+2024-10-27 07:30:06.6246 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-27 07:30:06.6394 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-27 07:30:06.6394 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-27 07:30:06.6443 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-27 07:30:06.7044 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-27 07:30:06.7142 Info Configuration initialized.
+2024-10-27 08:40:44.4474 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-27 08:40:44.4625 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-27 08:40:44.4629 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-27 08:40:44.4676 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-27 08:40:44.5306 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-27 08:40:44.5402 Info Configuration initialized.
+2024-10-27 08:41:44.7787 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-27 08:41:44.7934 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-27 08:41:44.7937 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-27 08:41:44.7980 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-27 08:41:44.8620 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-27 08:41:44.8722 Info Configuration initialized.
+2024-10-27 09:19:38.9872 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-27 09:19:39.0008 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-27 09:19:39.0008 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-27 09:19:39.0059 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-27 09:19:39.0653 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-27 09:19:39.0758 Info Configuration initialized.
+2024-10-27 09:27:41.4756 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-10-27 09:27:41.4933 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-10-27 09:27:41.4939 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-10-27 09:27:41.4988 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-10-27 09:27:41.5587 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-10-27 09:27:41.5680 Info Configuration initialized.
+2024-11-02 08:26:30.5200 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 08:26:30.5353 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 08:26:30.5357 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 08:26:30.5406 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 08:26:30.6050 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 08:26:30.6148 Info Configuration initialized.
+2024-11-02 08:29:52.3364 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 08:29:52.3510 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 08:29:52.3510 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 08:29:52.3563 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 08:29:52.4195 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 08:29:52.4316 Info Configuration initialized.
+2024-11-02 09:20:55.2608 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 09:20:55.2762 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 09:20:55.2762 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 09:20:55.2814 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 09:20:55.3420 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 09:20:55.3522 Info Configuration initialized.
+2024-11-02 09:23:13.0159 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 09:23:13.0306 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 09:23:13.0306 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 09:23:13.0354 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 09:23:13.1010 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 09:23:13.1104 Info Configuration initialized.
+2024-11-02 09:24:09.2087 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 09:24:09.2242 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 09:24:09.2242 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 09:24:09.2291 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 09:24:09.2998 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 09:24:09.3093 Info Configuration initialized.
+2024-11-02 09:26:38.0679 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 09:26:38.0836 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 09:26:38.0836 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 09:26:38.0890 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 09:26:38.1517 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 09:26:38.1611 Info Configuration initialized.
+2024-11-02 09:27:24.0978 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 09:27:24.1117 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 09:27:24.1117 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 09:27:24.1170 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 09:27:24.1830 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 09:27:24.1926 Info Configuration initialized.
+2024-11-02 09:27:56.2370 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 09:27:56.2511 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 09:27:56.2511 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 09:27:56.2567 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 09:27:56.3293 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 09:27:56.3392 Info Configuration initialized.
+2024-11-02 09:29:56.9077 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 09:29:56.9233 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 09:29:56.9238 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 09:29:56.9287 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 09:29:57.0016 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 09:29:57.0111 Info Configuration initialized.
+2024-11-02 09:31:14.5784 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 09:31:14.5949 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 09:31:14.5949 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 09:31:14.6001 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 09:31:14.6621 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 09:31:14.6722 Info Configuration initialized.
+2024-11-02 14:27:45.9875 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 14:27:46.0048 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 14:27:46.0053 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 14:27:46.0102 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 14:27:46.0719 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 14:27:46.0815 Info Configuration initialized.
+2024-11-02 14:30:36.8414 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 14:30:36.8556 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 14:30:36.8559 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 14:30:36.8612 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 14:30:36.9245 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 14:30:36.9341 Info Configuration initialized.
+2024-11-02 14:32:36.0141 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 14:32:36.0283 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 14:32:36.0286 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 14:32:36.0331 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 14:32:36.0983 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 14:32:36.1079 Info Configuration initialized.
+2024-11-02 14:38:19.7614 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 14:38:19.7764 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 14:38:19.7767 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 14:38:19.7812 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 14:38:19.8448 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 14:38:19.8546 Info Configuration initialized.
+2024-11-02 14:44:47.7345 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 14:44:47.7503 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 14:44:47.7508 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 14:44:47.7555 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 14:44:47.8167 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 14:44:47.8266 Info Configuration initialized.
+2024-11-02 14:53:50.8186 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-02 14:53:50.8316 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-02 14:53:50.8320 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-02 14:53:50.8367 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-02 14:53:50.9003 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-02 14:53:50.9101 Info Configuration initialized.
+2024-11-03 07:22:37.5846 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-03 07:22:37.5999 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-03 07:22:37.5999 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-03 07:22:37.6051 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-03 07:22:37.6713 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-03 07:22:37.6811 Info Configuration initialized.
+2024-11-03 08:02:42.7434 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-03 08:02:42.7594 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-03 08:02:42.7599 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-03 08:02:42.7654 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-03 08:02:42.8377 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-03 08:02:42.8485 Info Configuration initialized.
+2024-11-03 16:38:09.4742 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-03 16:38:09.4916 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-03 16:38:09.4920 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-03 16:38:09.4966 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-03 16:38:09.5818 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-03 16:38:09.5938 Info Configuration initialized.
+2024-11-03 17:08:21.8020 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-03 17:08:21.8179 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-03 17:08:21.8179 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-03 17:08:21.8230 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-03 17:08:21.9234 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-03 17:08:21.9338 Info Configuration initialized.
+2024-11-03 17:11:51.6001 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-03 17:11:51.6176 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-03 17:11:51.6176 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-03 17:11:51.6231 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-03 17:11:51.7012 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-03 17:11:51.7117 Info Configuration initialized.
+2024-11-04 05:30:52.5047 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-04 05:30:52.5207 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-04 05:30:52.5207 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-04 05:30:52.5265 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-04 05:30:52.6094 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-04 05:30:52.6206 Info Configuration initialized.
+2024-11-04 05:56:43.0544 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-04 05:56:43.0988 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-04 05:56:43.0993 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-04 05:56:43.1045 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-04 05:56:43.2144 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-04 05:56:43.2244 Info Configuration initialized.
+2024-11-06 06:07:47.1899 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-06 06:07:47.2055 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-06 06:07:47.2058 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-06 06:07:47.2103 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-06 06:07:47.2652 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-06 06:07:47.2744 Info Configuration initialized.
+2024-11-06 06:09:40.3383 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-06 06:09:40.3852 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-06 06:09:40.3852 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-06 06:09:40.3969 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-06 06:09:40.4664 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-06 06:09:40.4763 Info Configuration initialized.
+2024-11-06 06:16:06.9725 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-06 06:16:06.9872 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-06 06:16:06.9872 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-06 06:16:06.9918 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-06 06:16:07.0495 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-06 06:16:07.0587 Info Configuration initialized.
+2024-11-06 06:30:13.8384 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-06 06:30:13.8540 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-06 06:30:13.8540 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-06 06:30:13.8591 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-06 06:30:13.9172 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-06 06:30:13.9275 Info Configuration initialized.
+2024-11-06 06:35:21.1836 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-06 06:35:21.1968 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-06 06:35:21.1968 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-06 06:35:21.2020 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-06 06:35:21.2587 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-06 06:35:21.2688 Info Configuration initialized.
+2024-11-10 06:02:18.1052 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-10 06:02:18.1204 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-10 06:02:18.1208 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-10 06:02:18.1256 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-10 06:02:18.1911 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-10 06:02:18.2020 Info Configuration initialized.
+2024-11-10 06:08:03.1564 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-10 06:08:03.1722 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-10 06:08:03.1726 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-10 06:08:03.1774 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-10 06:08:03.2493 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-10 06:08:03.2599 Info Configuration initialized.
+2024-11-10 06:09:27.0040 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-10 06:09:27.0270 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-10 06:09:27.0270 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-10 06:09:27.0327 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-10 06:09:27.1056 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-10 06:09:27.1168 Info Configuration initialized.
+2024-11-10 06:16:10.9038 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-10 06:16:10.9195 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-10 06:16:10.9199 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-10 06:16:10.9247 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-10 06:16:10.9880 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-10 06:16:10.9982 Info Configuration initialized.
+2024-11-10 06:21:27.8950 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-10 06:21:27.9114 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-10 06:21:27.9114 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-10 06:21:27.9162 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-10 06:21:27.9773 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-10 06:21:27.9873 Info Configuration initialized.
+2024-11-10 06:26:28.9320 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-10 06:26:28.9469 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-10 06:26:28.9473 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-10 06:26:28.9519 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-10 06:26:29.0149 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-10 06:26:29.0252 Info Configuration initialized.
+2024-11-10 06:27:22.3190 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-10 06:27:22.3343 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-10 06:27:22.3346 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-10 06:27:22.3388 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-10 06:27:22.4002 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-10 06:27:22.4118 Info Configuration initialized.
+2024-11-10 06:33:08.3729 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-10 06:33:08.3910 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-10 06:33:08.3913 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-10 06:33:08.3959 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-10 06:33:08.4629 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-10 06:33:08.4731 Info Configuration initialized.
+2024-11-22 07:15:29.7624 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-22 07:15:29.7774 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-22 07:15:29.7778 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-22 07:15:29.7824 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-22 07:15:29.8477 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-22 07:15:29.8573 Info Configuration initialized.
+2024-11-22 07:29:06.1285 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-22 07:29:06.1429 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-22 07:29:06.1429 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-22 07:29:06.1478 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-22 07:29:06.2095 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-22 07:29:06.2199 Info Configuration initialized.
+2024-11-22 07:40:46.8983 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-22 07:40:46.9122 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-22 07:40:46.9125 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-22 07:40:46.9178 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-22 07:40:46.9829 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-22 07:40:46.9937 Info Configuration initialized.
+2024-11-23 08:09:43.5608 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-23 08:09:43.5768 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-23 08:09:43.5768 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-23 08:09:43.5819 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-23 08:09:43.6293 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-23 08:09:43.6392 Info Configuration initialized.
+2024-11-27 05:08:49.6075 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-27 05:08:49.6244 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-11-27 05:08:49.6244 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-11-27 05:08:49.6297 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-27 05:08:49.6966 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-11-27 05:08:49.7058 Info Configuration initialized.
+2024-12-14 08:19:49.2905 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-12-14 08:19:49.3031 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-12-14 08:19:49.3031 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-12-14 08:19:49.3077 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-12-14 08:19:49.3752 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-12-14 08:19:49.3846 Info Configuration initialized.
+2024-12-14 09:03:59.2873 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-12-14 09:03:59.3023 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-12-14 09:03:59.3028 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-12-14 09:03:59.3069 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-12-14 09:03:59.3793 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/NLog.config
+2024-12-14 09:03:59.3887 Info Configuration initialized.
