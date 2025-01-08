@@ -206,7 +206,10 @@ class _ControlAutocompleteFormFieldState extends State<ControlAutocompleteFormFi
       fieldViewBuilder: (BuildContext context, TextEditingController fieldTextEditingController,
           FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
         fieldFocusNode.addListener(() {
-          widget.updatingIndicator!.isFieldFocused = fieldFocusNode.hasFocus;
+          if (widget.updatingIndicator!.isFieldFocused != fieldFocusNode.hasFocus) {
+            widget.updatingIndicator!.isFieldFocused = fieldFocusNode.hasFocus;
+            debugPrint('widget.updatingIndicator!.isFieldFocused = ${widget.updatingIndicator!.isFieldFocused}');
+          }
         });
         fieldTextEditingController.text = widget.property.value ?? '';
         return TextField(
@@ -222,21 +225,31 @@ class _ControlAutocompleteFormFieldState extends State<ControlAutocompleteFormFi
             height: 400,
             child: Material(
               elevation: 4,
-              child: ListView(
-                children: options.map((String option) {
-                  return ListTile(
-                    title: Text(option),
-                    onTap: () {
-                      widget.updatingIndicator!.isFieldFocused = false;
-                      onSelected(option);
-                    },
-                  );
-                }).toList(),
+              child: MouseRegion(
+                onEnter: (_) {
+                  widget.updatingIndicator!.isMouseover = true;
+                  debugPrint('AC: _updatingIndicator.isMouseover = ${widget.updatingIndicator!.isMouseover}');
+                },
+                onExit: (_) {
+                  widget.updatingIndicator!.isMouseover = false;
+                  debugPrint('AC: _updatingIndicator.isMouseover = ${widget.updatingIndicator!.isMouseover}');
+                },
+                child: ListView(
+                  children: options.map((String option) {
+                    return ListTile(
+                      title: Text(option),
+                      onTap: () {
+                        widget.updatingIndicator!.isFieldFocused = false;
+                        onSelected(option);
+                      },
+                    );
+                  }).toList(),
+                ),
               ),
             ),
           ),
         );
-      },
+      }
     );
   }
 }

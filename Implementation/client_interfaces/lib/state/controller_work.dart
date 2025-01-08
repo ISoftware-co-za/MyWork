@@ -35,10 +35,10 @@ class ControllerWork {
     }
   }
 
-  void onWorkDelete() {
+  Future<void> onWorkDelete() async {
     assert(selectedWork.value != null);
     var facade = GetIt.instance<FacadeWork>();
-    facade.delete(item: selectedWork.value!);
+    await facade.delete(item: selectedWork.value!);
     selectedWork.value = null;
     _workState = ControllerWorkState.noWork;
   }

@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
+using client_service.Execution;
 using client_service.Validation;
-using Microsoft.Extensions.Logging.Abstractions;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -54,66 +53,67 @@ public static class WorkHandlers
     
     #region PRIVATE METHODS
 
-    private static IResult Post(WorkCreateRequest request, Validation.Validation validation, IMongoDatabase database, ILogger<Program> logger)
+    private static async Task<IResult> Post(WorkCreateRequest request, Validation.Validation validation, IMongoDatabase database, ILogger<Program> logger, HttpContext httpContext)
     {
         var validationResults = validation.Validate(request);
         if (validationResults.Length == 0)
         {
-            Stopwatch stopWatch = new();
-            stopWatch.Start();
-            IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
-            var workDocument = new DocumentWork
+            return await Executor.RunProcessAsync($"{CollectionName}.InsertOne(workDocument)", Executor.CategoryMongoDB, "Unable to save the new work", async () =>
             {
-                Name = request.Name!,
-                Type = request.Type,
-                Reference = request.Reference,
-                Description = request.Description
-            };
-            workCollection.InsertOne(workDocument);
-            stopWatch.Stop();
-            var url = $"{_urlPrefix}/{workDocument.Id}";
-            logger.LogInformation("POST {Url} {Duration}ms", url, stopWatch.ElapsedMilliseconds);
-            // Task.Delay(5000).GetAwaiter().GetResult();
-            return Results.Created($"{_urlPrefix}/{workDocument.Id}", new WorkCreateResponse(workDocument.Id.ToString()));
+                IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
+                DocumentWork? workDocument  = new DocumentWork
+                {
+                    Name = request.Name!,
+                    Type = request.Type,
+                    Reference = request.Reference,
+                    Description = request.Description
+                };
+                await workCollection.InsertOneAsync(workDocument);
+                // Task.Delay(5000).GetAwaiter().GetResult();
+                return Results.Created($"{_urlPrefix}/{workDocument!.Id}", new WorkCreateResponse(workDocument.Id.ToString()));
+            });
         }
         return GenerateValidationFailedResponse(validationResults);
     }
 
-    private static IResult Patch(string id, WorkUpdateRequest request, Validation.Validation validation, IMongoDatabase database, ILogger<Program> logger)
+    private static async Task<IResult> Patch(string id, WorkUpdateRequest request, Validation.Validation validation, IMongoDatabase database, ILogger<Program> logger)
     {
         var validationResults = validation.Validate(request);
         if (validationResults.Length == 0)
         {
-            Stopwatch stopWatch = new();
-            stopWatch.Start();
-            var filter = Builders<DocumentWork>.Filter.Eq("_id", ObjectId.Parse(id));
-            UpdateDefinition<DocumentWork>? update = null;
-            for (int index = 0; index < request.UpdatedProperties.Count; ++index)
-            {
-                if (index == 0)
-                    update = Builders<DocumentWork>.Update.Set(request.UpdatedProperties[index].Name,
-                        request.UpdatedProperties[index].Value);
-                else
-                    update = update!.Set(request.UpdatedProperties[index].Name, request.UpdatedProperties[index].Value);
-            }
-
-            IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
-            var result = workCollection.UpdateOne(filter, update!);
-            stopWatch.Stop();
-            logger.LogInformation("PATCH {UrlPrefix} {UpdateCount}", _urlPrefix, result.MatchedCount);
-            // Task.Delay(5000).GetAwaiter().GetResult();
-            return Results.NoContent();
+            return await Executor.RunProcessAsync($"{CollectionName}.UpdateOneAsync({id})", Executor.CategoryMongoDB, "Unable to save the updated work",
+                async () =>
+                {
+                    var filter = Builders<DocumentWork>.Filter.Eq("_id", ObjectId.Parse(id));
+                    UpdateDefinition<DocumentWork>? update = null;
+                    for (int index = 0; index < request.UpdatedProperties.Count; ++index)
+                    {
+                        if (index == 0)
+                            update = Builders<DocumentWork>.Update.Set(request.UpdatedProperties[index].Name,
+                                request.UpdatedProperties[index].Value);
+                        else
+                            update = update!.Set(request.UpdatedProperties[index].Name,
+                                request.UpdatedProperties[index].Value);
+                    }
+                    IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
+                    await workCollection.UpdateOneAsync(filter, update!);
+                    // Task.Delay(5000).GetAwaiter().GetResult();
+                    return Results.NoContent();
+                });
         }
         return GenerateValidationFailedResponse(validationResults);
     }
     
     private static async Task<IResult> Delete(string id, IMongoDatabase database, ILogger<Program> logger)
     {
-        IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
-        var filter = Builders<DocumentWork>.Filter.Eq("_id", ObjectId.Parse(id));
-        await workCollection.DeleteOneAsync(filter);
-        logger.LogInformation("DELETE {UrlPrefix}/{Id}", _urlPrefix, id);
-        return Results.NoContent();
+        return await Executor.RunProcessAsync($"{CollectionName}.DeleteOneAsync({id})", Executor.CategoryMongoDB, "Unable to delete the work",
+            async () =>
+            {
+                IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
+                var filter = Builders<DocumentWork>.Filter.Eq("_id", ObjectId.Parse(id));
+                await workCollection.DeleteOneAsync(filter);
+                return Results.NoContent();
+            });
     }
     
     private static IResult GenerateValidationFailedResponse(ValidationResult[] validationResults)

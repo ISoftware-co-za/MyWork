@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../notification/command_executor.dart';
+import '../execution/executor.dart';
 import '../notification/controller_notifications.dart';
 import '../notification/notifications.dart';
 import '../state/controller_work.dart';
@@ -8,11 +8,12 @@ import '../state/provider_state_application.dart';
 import '../ui toolkit/custom_icon_buttons.dart';
 
 class ControlAcceptReject extends StatelessWidget {
-  const ControlAcceptReject({super.key});
+  const ControlAcceptReject({super.key = const Key('ControlAcceptReject')});
 
   @override
   Widget build(BuildContext context) {
-    ControllerWork controller = ProviderStateApplication.of(context)!.workController;
+    ControllerWork controller =
+        ProviderStateApplication.of(context)!.workController;
     return ListenableBuilder(
         listenable: PropertyChangedRegistry.hasChanges,
         builder: (context, child) {
@@ -23,13 +24,20 @@ class ControlAcceptReject extends StatelessWidget {
                   return const SizedBox(
                       width: 56,
                       height: 28,
-                      child: Center(child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator())));
+                      child: Center(
+                          child: SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator())));
                 } else if (PropertyChangedRegistry.hasChanges.value) {
                   return Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      IconButtonReject(Icons.close, onPressed: () => _onRejectPressed(controller)),
-                      IconButtonAccept(Icons.check, onPressed: () async => await _onAcceptPressed(controller, context))
+                      IconButtonReject(Icons.close,
+                          onPressed: () => _onRejectPressed(controller)),
+                      IconButtonAccept(Icons.check,
+                          onPressed: () async =>
+                              await _onAcceptPressed(controller, context))
                     ],
                   );
                 }
@@ -42,8 +50,9 @@ class ControlAcceptReject extends StatelessWidget {
     controller.onCancel();
   }
 
-  Future<void> _onAcceptPressed(ControllerWork controller, BuildContext context) async {
-    CommandExecutor.execute(() async {
+  Future<void> _onAcceptPressed(
+      ControllerWork controller, BuildContext context) async {
+    Executor.runCommand('Accept', null, () async {
       await controller.onSave();
     }, context);
   }

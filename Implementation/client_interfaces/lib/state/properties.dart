@@ -24,7 +24,6 @@ class StateProperty extends PropertyChangeNotifier {
 
   String? get value => _value;
   set value(String? value) {
-    debugPrint('StateProperty.value: $value');
     if (_value != value) {
       _value = value;
       _updatePropertyChanged();
