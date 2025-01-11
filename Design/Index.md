@@ -21,6 +21,7 @@ The facade is the bridge between the Flutter Widgets and Service Client. It is r
 - Pass errors to the Facade for processing.
 ## Document Storage
 A document database is used. The following document collections will be maintained:
+- Users - Email, password and work types.
 - Work - All the users work.
 - Tasks - A document per work item, containing all the tasks for the work item.
 - Activities - A document per task, containing all the activities for the task.

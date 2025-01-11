@@ -23,7 +23,6 @@ class ControlFormField extends StatefulWidget {
 }
 
 class _ControlFormFieldState extends State<ControlFormField> {
-
   @override
   void initState() {
     super.initState();
@@ -44,7 +43,6 @@ class _ControlFormFieldState extends State<ControlFormField> {
     return ListenableBuilder(
         listenable: widget.property,
         builder: (context, child) {
-
           // ('ControlFormField.build: ${widget.property.value} (isValid = ${widget.property.isValid})');
 
           var children = <Widget>[Text(widget.label, style: theme.labelStyle)];
@@ -69,10 +67,12 @@ class _ControlFormFieldState extends State<ControlFormField> {
         controller: _controller,
         // focusNode: _focusNode,
         onChanged: (value) {
-            widget.property.value = value;
+          widget.property.value = value;
         },
         style: (widget.property.isValid) ? theme.valueStyle : theme.valueStyleError,
-        decoration: (widget.property.isValid) ? ((widget.property.isChanged) ? theme.textFieldDecorationChanged : theme.textFieldDecoration) : theme.textFieldDecorationError);
+        decoration: (widget.property.isValid)
+            ? ((widget.property.isChanged) ? theme.textFieldDecorationChanged : theme.textFieldDecoration)
+            : theme.textFieldDecorationError);
   }
 
   late TextEditingController _controller;
@@ -84,9 +84,9 @@ class _ControlFormFieldState extends State<ControlFormField> {
 class ControlFleatherFormField extends StatefulWidget {
   final String label;
   final StateProperty property;
-  final UpdatingIndicator? updatingIndicator;
+  final bool editable;
 
-  const ControlFleatherFormField({required this.label, required this.property, this.updatingIndicator, super.key});
+  const ControlFleatherFormField({required this.label, required this.property, required this.editable, super.key});
 
   @override
   State<ControlFleatherFormField> createState() => _ControlFleatherFormFieldState();
@@ -96,10 +96,6 @@ class _ControlFleatherFormFieldState extends State<ControlFleatherFormField> {
   @override
   void initState() {
     super.initState();
-    _focusNode = FocusNode();
-    _focusNode.addListener(() {
-        widget.updatingIndicator!.isFieldFocused = _focusNode.hasFocus;
-    });
     ParchmentDocument document;
     if (widget.property.value == null || widget.property.value!.isEmpty) {
       document = ParchmentDocument();
@@ -122,13 +118,13 @@ class _ControlFleatherFormFieldState extends State<ControlFleatherFormField> {
         listenable: widget.property,
         builder: (context, child) {
           var children = <Widget>[Text(widget.label, style: theme.labelStyle)];
-          if ((widget.updatingIndicator != null && widget.updatingIndicator!.isUpdating) || widget.property.isChanged) {
+          if (widget.editable || widget.property.isChanged) {
             children.add(SizedBox(
               height: 400,
               child: Column(children: [
                 FleatherToolbar.basic(controller: _controller),
                 Expanded(
-                  child: FleatherEditor(controller: _controller, focusNode: _focusNode),
+                  child: FleatherEditor(controller: _controller),
                 )
               ]),
             ));
@@ -149,15 +145,15 @@ class _ControlFleatherFormFieldState extends State<ControlFleatherFormField> {
 class ControlAutocompleteFormField extends StatefulWidget {
   final String label;
   final StateProperty property;
+  final bool editable;
   final Iterable<String> suggestions;
-  final UpdatingIndicator? updatingIndicator;
   final double? width;
 
   const ControlAutocompleteFormField(
       {required this.label,
       required this.property,
+      required this.editable,
       required this.suggestions,
-      this.updatingIndicator,
       this.width,
       super.key});
 
@@ -173,7 +169,7 @@ class _ControlAutocompleteFormFieldState extends State<ControlAutocompleteFormFi
         listenable: widget.property,
         builder: (context, child) {
           var children = <Widget>[Text(widget.label, style: theme.labelStyle)];
-          if ((widget.updatingIndicator != null && widget.updatingIndicator!.isUpdating) || widget.property.isChanged) {
+          if (widget.editable || widget.property.isChanged) {
             children.add(_createUpdateField(theme));
           } else {
             children.add(Padding(
@@ -187,85 +183,52 @@ class _ControlAutocompleteFormFieldState extends State<ControlAutocompleteFormFi
   }
 
   Autocomplete<String> _createUpdateField(FormTheme theme) {
-    return Autocomplete<String>(
-      optionsBuilder: (TextEditingValue textEditingValue) {
-        if (textEditingValue.text.isEmpty) {
-          return widget.suggestions;
-        }
-        var matchingOptions = widget.suggestions.where((String option) {
-          return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
-        }).toList();
-        if (!matchingOptions.contains(textEditingValue.text)) {
-          matchingOptions.insert(0, textEditingValue.text);
-        }
-        return matchingOptions;
-      },
-      onSelected: (String selection) {
-        widget.property.value = selection;
-      },
-      fieldViewBuilder: (BuildContext context, TextEditingController fieldTextEditingController,
-          FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
-        fieldFocusNode.addListener(() {
-          if (widget.updatingIndicator!.isFieldFocused != fieldFocusNode.hasFocus) {
-            widget.updatingIndicator!.isFieldFocused = fieldFocusNode.hasFocus;
-            debugPrint('widget.updatingIndicator!.isFieldFocused = ${widget.updatingIndicator!.isFieldFocused}');
-          }
-        });
-        fieldTextEditingController.text = widget.property.value ?? '';
-        return TextField(
-            controller: fieldTextEditingController,
-            focusNode: fieldFocusNode,
-            decoration: theme.textFieldDecoration);
-      },
-      optionsViewBuilder: (BuildContext context, AutocompleteOnSelected<String> onSelected, Iterable<String> options) {
-        return Align(
-          alignment: Alignment.topLeft,
-          child: SizedBox(
-            width: widget.width ?? 200,
-            height: 400,
-            child: Material(
-              elevation: 4,
-              child: MouseRegion(
-                onEnter: (_) {
-                  widget.updatingIndicator!.isMouseover = true;
-                  debugPrint('AC: _updatingIndicator.isMouseover = ${widget.updatingIndicator!.isMouseover}');
-                },
-                onExit: (_) {
-                  widget.updatingIndicator!.isMouseover = false;
-                  debugPrint('AC: _updatingIndicator.isMouseover = ${widget.updatingIndicator!.isMouseover}');
-                },
-                child: ListView(
-                  children: options.map((String option) {
-                    return ListTile(
-                      title: Text(option),
-                      onTap: () {
-                        widget.updatingIndicator!.isFieldFocused = false;
-                        onSelected(option);
-                      },
-                    );
-                  }).toList(),
-                ),
-              ),
+    return Autocomplete<String>(optionsBuilder: (TextEditingValue textEditingValue) {
+      if (textEditingValue.text.isEmpty) {
+        return widget.suggestions;
+      }
+      var matchingOptions = widget.suggestions.where((String option) {
+        return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+      }).toList();
+      if (!matchingOptions.contains(textEditingValue.text)) {
+        matchingOptions.insert(0, textEditingValue.text);
+      }
+      return matchingOptions;
+    }, onSelected: (String selection) {
+      widget.property.value = selection;
+    }, fieldViewBuilder: (BuildContext context, TextEditingController fieldTextEditingController,
+        FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
+      fieldTextEditingController.text = widget.property.value ?? '';
+      return TextField(
+          controller: fieldTextEditingController, focusNode: fieldFocusNode, decoration: theme.textFieldDecoration);
+    }, optionsViewBuilder: (BuildContext context, AutocompleteOnSelected<String> onSelected, Iterable<String> options) {
+      return Align(
+        alignment: Alignment.topLeft,
+        child: SizedBox(
+          width: widget.width ?? 200,
+          height: 400,
+          child: Material(
+            elevation: 4,
+            child: ListView(
+              children: options.map((String option) {
+                return ListTile(
+                  title: Text(option),
+                  onTap: () {
+                    onSelected(option);
+                  },
+                );
+              }).toList(),
             ),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class UpdatingIndicator {
-  bool isMouseover = false;
-  bool isFieldFocused = false;
-  bool get isUpdating => isMouseover || isFieldFocused;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 class FormTheme extends ThemeExtension<FormTheme> {
-
   final TextStyle labelStyle;
   final TextStyle valueStyle;
   final TextStyle valueStyleError;

@@ -19,6 +19,7 @@ import 'state/state_action.dart';
 import 'tabs/layout_tab_bar.dart';
 import 'tabs/page_details/page_details.dart';
 import 'tabs/page_tasks/page_tasks.dart';
+import 'ui toolkit/hover.dart';
 
 void main() async {
   await SentryFlutter.init(
@@ -115,10 +116,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               children: [
                 LayoutTabBar(controller: _tabController),
                 Expanded(
-                  child: Listener(
-                    onPointerHover: (event) {
-                      debugPrint('event.position = ${event.position}');
-                    },
+                  child: ProviderHover(
+                    controller: _controllerHover,
                     child: TabBarView(
                       controller: _tabController,
                       children: [PageDetails(), PageTasks()],
@@ -141,10 +140,17 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   }
 
   void setCurrentContainerFromTabIndex() {
-    Executor.uiContext.setCurrentContainer(_tabController.index == 0 ? UIContainer.tabWorkDetails : UIContainer.tabTasks);
+    if (_tabController.index == 0 ) {
+      Executor.uiContext.setCurrentContainer(UIContainer.tabWorkDetails);
+      _controllerHover.setVisibility(name: ControllerHover.workDetails, isVisible: true);
+    } else {
+      Executor.uiContext.setCurrentContainer(UIContainer.tabTasks);
+      _controllerHover.setVisibility(name: ControllerHover.workDetails, isVisible: false);
+    }
   }
   
   late final TabController _tabController;
+  final ControllerHover _controllerHover = ControllerHover();
 
 /*
   List<Widget> _createActivityWidgets() {
