@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:client_interfaces1/state/property_changed_registry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
@@ -11,6 +13,7 @@ class ControllerWork {
   //#region PROPERTIES
 
   ValueNotifier<StateWork?> selectedWork = ValueNotifier<StateWork?>(null);
+  ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
   bool get hasWork => selectedWork.value != null;
   bool get hasExistingWork => _workState == ControllerWorkState.existingWork;
 
@@ -18,43 +21,45 @@ class ControllerWork {
 
   //#region EVENT HANDLERS
 
-  void onNewWork() {
-    if (_saveExistingWork()) {
+  Future<void> onNewWork() async {
+    if (await _saveExistingWork()) {
       selectedWork.value = StateWork();
       _workState = ControllerWorkState.newWork;
     }
   }
 
-  void onWorkSelected(StateWork work) {
-    if (_saveExistingWork()) {
+  Future<void> onWorkSelected(StateWork work) async {
+    if (await _saveExistingWork()) {
       selectedWork.value = work;
       _workState = ControllerWorkState.existingWork;
     }
   }
 
-  void onWorkDelete() {
+  Future<void> onWorkDelete() async {
     assert(selectedWork.value != null);
     var facade = GetIt.instance<FacadeWork>();
-    facade.delete(item: selectedWork.value!);
+    await facade.delete(item: selectedWork.value!);
     selectedWork.value = null;
     _workState = ControllerWorkState.noWork;
   }
 
-  bool onSave() {
+  Future<bool> onSave() async {
     assert(selectedWork.value != null);
-    if (PropertyChangedRegistry.hasChanges.value == false) {
-      return true;
-    }
 
-    if (PropertyChangedRegistry.validateChanges()) {
-      var facade = GetIt.instance<FacadeWork>();
-      if (_workState == ControllerWorkState.newWork) {
-        facade.define(item: selectedWork.value!);
-        _workState = ControllerWorkState.existingWork;
-      } else {
-        facade.update(item: selectedWork.value!);
+    if (selectedWork.value!.validate()) {
+      isSaving.value = true;
+      try {
+        var facade = GetIt.instance<FacadeWork>();
+        if (_workState == ControllerWorkState.newWork) {
+          await facade.define(item: selectedWork.value!);
+          _workState = ControllerWorkState.existingWork;
+        } else {
+          await facade.update(item: selectedWork.value!);
+        }
+        PropertyChangedRegistry.acceptChanges();
+      } finally {
+        isSaving.value = false;
       }
-      PropertyChangedRegistry.acceptChanges();
       return true;
     }
     return false;
@@ -68,10 +73,10 @@ class ControllerWork {
 
   //#region PRIVATE METHODS
 
-  bool _saveExistingWork() {
+  Future<bool> _saveExistingWork() async {
     bool mustCreateNewWork = true;
     if (hasWork) {
-      mustCreateNewWork = onSave();
+      mustCreateNewWork = await onSave();
     }
     return mustCreateNewWork;
   }

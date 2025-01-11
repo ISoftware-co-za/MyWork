@@ -14,13 +14,24 @@ Content-Type: application/json
 }
 
 ###
+POST {{client_service_HostAddress}}/work
+Content-Type: application/json
+
+{
+  "name":"",
+  "type": "Type flag",
+  "reference": "External Reference"
+}
+
+
+###
 PATCH {{client_service_HostAddress}}/work
 Content-Type: application/json
 
 {
-  "updatedFields": [
-    { "Name" :  "Name", "Value":  "The work's new name"},
-    { "Name" :  "Reference", "Value":  "The new value for reference"}
+  "updatedProperties": [
+    { "Name" :  "Name", "Value":  "" },
+    { "Name" :  "Reference", "Value":  "1234567890 1234567890 1234567890 1234567890 "}
     ]
 }
 

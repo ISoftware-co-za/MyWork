@@ -1,3 +1,5 @@
+import 'service_client.dart';
+
 class WorkCreateRequest {
   final String name;
   final String? type;
@@ -15,7 +17,7 @@ class WorkCreateRequest {
   }
 }
 
-class WorkCreateResponse {
+class WorkCreateResponse extends ServiceClientResponse {
   final String id;
   WorkCreateResponse({required this.id});
 

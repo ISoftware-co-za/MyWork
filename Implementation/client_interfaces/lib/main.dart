@@ -1,5 +1,10 @@
+import 'package:client_interfaces1/notification/layout_notification_list.dart';
 import 'package:flutter/material.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'execution/executor.dart';
+import 'execution/ui_container_context.dart';
+import 'notification/controller_notifications.dart';
 import 'state/facade_base.dart';
 import 'ui toolkit/custom_icon_buttons.dart';
 import 'dialog_work/control_header.dart';
@@ -14,10 +19,23 @@ import 'state/state_action.dart';
 import 'tabs/layout_tab_bar.dart';
 import 'tabs/page_details/page_details.dart';
 import 'tabs/page_tasks/page_tasks.dart';
+import 'ui toolkit/hover.dart';
 
-void main() {
-  setupFacade();
-  runApp(const MyApp());
+void main() async {
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://df440e5981662d9f3951e28cf7f3f041@o4506012740026368.ingest.us.sentry.io/4508544378863616';
+      options.tracesSampleRate = 1.0;
+      options.profilesSampleRate = 1.0;
+      options.enableUserInteractionTracing = true;
+      options.enableUserInteractionBreadcrumbs = true;
+    },
+    appRunner: () {
+      setupFacade();
+      runApp(const MyApp());
+    },
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -50,7 +68,9 @@ class MyApp extends StatelessWidget {
                     currentEstimateInMinutes: 90,
                     notes: 'This is the second work entry for this task.'),
               ]),
-          StateNote(initialText: 'This is the second note for this task.', timestamp: DateTime.now()),
+          StateNote(
+              initialText: 'This is the second note for this task.',
+              timestamp: DateTime.now()),
         ],
       ),
     );
@@ -66,33 +86,71 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(_onTabSelected);
+    setCurrentContainerFromTabIndex();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ProviderStateApplication(
       workController: ControllerWork(),
-      child: Container(
-          color: Colors.yellow,
-          child: const Column(mainAxisSize: MainAxisSize.max, children: [
-            LayoutHeader(),
-            Expanded(
-                child: Scaffold(
-                    body: DefaultTabController(
-              length: 2,
-              child: Column(
-                children: [
-                  LayoutTabBar(),
-                  Expanded(
+      notificationController: ControllerNotifications(),
+      child: Column(mainAxisSize: MainAxisSize.max, children: [
+        LayoutHeader(),
+        Expanded(
+            child: Scaffold(
+                body: Stack(
+          children: [
+            Column(
+              children: [
+                LayoutTabBar(controller: _tabController),
+                Expanded(
+                  child: ProviderHover(
+                    controller: _controllerHover,
                     child: TabBarView(
+                      controller: _tabController,
                       children: [PageDetails(), PageTasks()],
                     ),
                   ),
-                ],
-              ),
-            )))
-          ])),
+                ),
+              ],
+            ),
+            LayoutNotifications(),
+          ],
+        )))
+      ]),
     );
   }
+
+  void _onTabSelected() {
+    if (_tabController.indexIsChanging) {
+      setCurrentContainerFromTabIndex();
+    }
+  }
+
+  void setCurrentContainerFromTabIndex() {
+    if (_tabController.index == 0 ) {
+      Executor.uiContext.setCurrentContainer(UIContainer.tabWorkDetails);
+      _controllerHover.setVisibility(name: ControllerHover.workDetails, isVisible: true);
+    } else {
+      Executor.uiContext.setCurrentContainer(UIContainer.tabTasks);
+      _controllerHover.setVisibility(name: ControllerHover.workDetails, isVisible: false);
+    }
+  }
+  
+  late final TabController _tabController;
+  final ControllerHover _controllerHover = ControllerHover();
 
 /*
   List<Widget> _createActivityWidgets() {
@@ -112,7 +170,8 @@ class _MainPageState extends State<MainPage> {
 class _CustomisedTheme {
   static ThemeData getTheme() {
     return ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple).copyWith(
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Colors.deepPurple).copyWith(
           primary: Colors.red,
           secondary: Colors.black,
         ),
@@ -134,24 +193,62 @@ class _CustomisedTheme {
                   padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)),
                   foregroundColor: WidgetStateProperty.all(Colors.white),
                   backgroundColor: WidgetStateProperty.all(Colors.red))),
-          ControlWorkButtonTheme(padding: 8, hoverColor: Colors.white.withOpacity(0.3), hoverBorderWidth: 2.0),
+          ControlWorkButtonTheme(
+              padding: 8,
+              hoverColor: Colors.white.withOpacity(0.3),
+              hoverBorderWidth: 2.0),
           const WorkDialogTheme(
               gridSize: 8,
-              headerTextStyle: TextStyle(fontSize: 28, decoration: TextDecoration.none, color: Colors.black),
+              headerTextStyle: TextStyle(
+                  fontSize: 28,
+                  decoration: TextDecoration.none,
+                  color: Colors.black),
               width: 800,
               height: 500,
               backgroundColor: Colors.white),
           const FormTheme(
             labelStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
             valueStyle: TextStyle(fontSize: 16.0),
+            valueStyleError: TextStyle(
+                fontSize: 16.0,
+                backgroundColor: Color.fromARGB(255, 255, 200, 200),
+                color: Colors.red),
             textFieldDecoration: InputDecoration(
                 filled: true,
-                fillColor: Color.fromARGB(255, 245, 245, 245),
-                focusColor: Color.fromARGB(255, 235, 235, 235),
+                fillColor: Color.fromARGB(255, 255, 255, 255),
+                hoverColor: Color.fromARGB(255, 245, 245, 245),
                 isCollapsed: true,
                 contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
-                border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero),
-                focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero)),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.zero),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.zero)),
+            textFieldDecorationChanged: InputDecoration(
+                filled: true,
+                fillColor: Color.fromARGB(255, 255, 255, 235),
+                hoverColor: Color.fromARGB(255, 255, 255, 245),
+                isCollapsed: true,
+                contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.zero),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.zero)),
+            textFieldDecorationError: InputDecoration(
+                filled: true,
+                fillColor: Color.fromARGB(255, 255, 240, 240),
+                hoverColor: Color.fromARGB(255, 255, 250, 250),
+                isCollapsed: true,
+                contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.zero),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.zero)),
             fleatherEditorHeight: 400,
           )
         ]).copyWith(
@@ -161,7 +258,10 @@ class _CustomisedTheme {
         toolbarHeight: 64.0,
         iconTheme: IconThemeData(color: Colors.white, size: 40),
         titleTextStyle: TextStyle(
-            color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.normal, decoration: TextDecoration.none),
+            color: Colors.white,
+            fontSize: 18.0,
+            fontWeight: FontWeight.normal,
+            decoration: TextDecoration.none),
       ),
       inputDecorationTheme: const InputDecorationTheme(
         labelStyle: TextStyle(
@@ -171,10 +271,12 @@ class _CustomisedTheme {
         border: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.grey), // Focused underline color
         ),
-        focusedBorder:
-            UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2) // Focused underline color
-                ),
-        activeIndicatorBorder: BorderSide(color: Colors.black, width: 2), // Focused underline color
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+                color: Colors.black, width: 2) // Focused underline color
+            ),
+        activeIndicatorBorder: BorderSide(
+            color: Colors.black, width: 2), // Focused underline color
       ),
     );
   }

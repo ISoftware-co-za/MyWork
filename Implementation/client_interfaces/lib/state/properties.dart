@@ -7,7 +7,19 @@ class PropertyOwner extends ChangeNotifier {}
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class StateProperty extends ChangeNotifier {
+class PropertyChangeNotifier extends ChangeNotifier {
+
+  String? notifyingProperty;
+
+  void notifyPropertyChange(String propertyName) {
+    notifyingProperty = propertyName;
+    notifyListeners();
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class StateProperty extends PropertyChangeNotifier {
   //#region PROPERTIES
 
   String? get value => _value;
@@ -16,7 +28,7 @@ class StateProperty extends ChangeNotifier {
       _value = value;
       _updatePropertyChanged();
       _setInvalidMessage(_validation.validate(input: _value ?? ''));
-      notifyListeners();
+      notifyPropertyChange("value");
     }
   }
 
@@ -26,6 +38,7 @@ class StateProperty extends ChangeNotifier {
   void _setInvalidMessage(String? value) {
     if (_invalidMessage != value) {
       _invalidMessage = value;
+      notifyPropertyChange("invalidMessage");
     }
   }
 
@@ -54,6 +67,10 @@ class StateProperty extends ChangeNotifier {
     return isValid;
   }
 
+  void invalidate({required String message}) {
+    _setInvalidMessage(message);
+  }
+
   void acceptChanged() {
     _currentValue = value;
     _updatePropertyChanged();
@@ -71,7 +88,7 @@ class StateProperty extends ChangeNotifier {
 
   void _updatePropertyChanged() {
     if (_propertyChanged.setChanged(this, _currentValue != _value)) {
-      notifyListeners();
+      notifyPropertyChange("isChanged");
     }
   }
 
@@ -195,4 +212,30 @@ class ValidatorRequired extends Validator {
   }
 
   //#endregion
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class ValidatorMaximumCharacters extends Validator {
+  //#region PROPERTIES
+  final int maximumCharacters;
+  //#endregion
+
+  //#region CONSTRUCTION
+
+  ValidatorMaximumCharacters({required this.maximumCharacters,  required super.invalidMessageTemplate});
+
+  //#endregion
+
+  //#region METHODS
+
+  @override
+  String? validate(String input) {
+    if (input.length > maximumCharacters) {
+      return invalidMessageTemplate;
+    }
+    return null;
+  }
+
+//#endregion
 }

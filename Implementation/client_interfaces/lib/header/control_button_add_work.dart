@@ -1,4 +1,3 @@
-import 'package:client_interfaces1/service/service_client.dart';
 import 'package:flutter/material.dart';
 
 import '../state/controller_work.dart';
@@ -15,8 +14,8 @@ class ControlButtonAddWork extends StatelessWidget {
         padding: const EdgeInsets.all(2),
         icon: Icon(Icons.add_circle, color: iconThemeData.color),
         onPressed: () async {
-          ControllerWork workController = ProviderStateApplication.of(context)!.workController;
-          workController.onNewWork();
+            ControllerWork workController = ProviderStateApplication.of(context)!.workController;
+            await workController.onNewWork();
         });
   }
 }
