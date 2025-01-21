@@ -1,12 +1,12 @@
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System.ComponentModel.DataAnnotations;
 using client_service.Execution;
 using client_service.Validation;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace client_service.Work;
 
-public static class WorkHandlers
+public static class HandlersWork
 {
     #region METHODS
     
@@ -14,7 +14,7 @@ public static class WorkHandlers
     {
         _urlPrefix = urlPrefix;
         RouteGroupBuilder groupBuilder = app.MapGroup(urlPrefix);
-        groupBuilder.MapGet("/", Get).RequireCors(corsPolicyName);
+        groupBuilder.MapGet("/{userId}", ListWork).RequireCors(corsPolicyName);
         groupBuilder.MapPost("/", Post).RequireCors(corsPolicyName);
         groupBuilder.MapPatch("/{id}", Patch).RequireCors(corsPolicyName);
         groupBuilder.MapDelete("/{id}", Delete).RequireCors(corsPolicyName);
@@ -38,14 +38,25 @@ public static class WorkHandlers
         ));
     }
     
-    private static WorkListResponse Get(ILogger<Program> logger)
+    private static async Task<IResult> ListWork(string userId, IMongoDatabase database, ILogger<Program> logger)
     {
-        logger.LogInformation("GET {UrlPrefix}", _urlPrefix);
-        return new WorkListResponse(new List<Work>
+        return await Executor.RunProcessAsync($"{CollectionName}.Find(filter).ToListAsync()", Executor.CategoryMongoDB, "Unable to obtain the list of work.", async () =>
         {
-            new Work(1, "Work 1", "Type 1", "Reference 1"),
-            new Work(2, "Work 2", "Type 2", "Reference 2"),
-            new Work(3, "Work 3", "Type 3", "Reference 3")
+            var workItems = new List<Work>(); 
+            IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
+            var filter = Builders<DocumentWork>.Filter.Eq(p => p.UserId, ObjectId.Parse(userId)); 
+            var workDocuments = await workCollection.Find(filter).ToListAsync(); 
+            foreach (var document in workDocuments)
+            {
+                Work workItem = new Work(
+                    document.Id,
+                    document.Name!,
+                    document.Type,
+                    document.Reference,
+                    document.Description);
+                workItems.Add(workItem);
+            }
+            return Results.Ok(new WorkListResponse(workItems));
         });
     }
     
@@ -73,7 +84,7 @@ public static class WorkHandlers
                 return Results.Created($"{_urlPrefix}/{workDocument!.Id}", new WorkCreateResponse(workDocument.Id.ToString()));
             });
         }
-        return GenerateValidationFailedResponse(validationResults);
+        return Validation.Validation.GenerateValidationFailedResponse(validationResults);
     }
 
     private static async Task<IResult> Patch(string id, WorkUpdateRequest request, Validation.Validation validation, IMongoDatabase database, ILogger<Program> logger)
@@ -101,7 +112,7 @@ public static class WorkHandlers
                     return Results.NoContent();
                 });
         }
-        return GenerateValidationFailedResponse(validationResults);
+        return Validation.Validation.GenerateValidationFailedResponse(validationResults);
     }
     
     private static async Task<IResult> Delete(string id, IMongoDatabase database, ILogger<Program> logger)
@@ -114,22 +125,6 @@ public static class WorkHandlers
                 await workCollection.DeleteOneAsync(filter);
                 return Results.NoContent();
             });
-    }
-    
-    private static IResult GenerateValidationFailedResponse(ValidationResult[] validationResults)
-    {
-        var consolidatedError = new Dictionary<string, string[]>();
-        foreach(var validationResult in validationResults)
-        {
-            foreach(var memberName in validationResult.MemberNames)
-            {
-                if (consolidatedError.TryGetValue(memberName, out var value))
-                    value.Append(validationResult.ErrorMessage);
-                else
-                    consolidatedError[memberName.ToLower()] = [validationResult.ErrorMessage];
-            }
-        }
-        return Results.ValidationProblem(consolidatedError);
     }
     
     #endregion

@@ -1,3 +1,4 @@
+using client_service.Users;
 using MongoDB.Driver;
 using NLog.Web;
 using client_service.Work;
@@ -74,6 +75,8 @@ try
     app.UseCors(corsPolicyName);
     app.MapWorkURLs("/work", corsPolicyName);
     validation.AddWorkValidation();
+    app.MapUsersURLs("/users", corsPolicyName);
+    validation.AddUserValidation();
     
     logger?.Info("Service is running");
     app.Run();

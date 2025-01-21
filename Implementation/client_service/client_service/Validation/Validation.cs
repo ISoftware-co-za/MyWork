@@ -18,6 +18,22 @@ public class Validation
         _validationRequests.Add(request);
     }
     
+    public static IResult GenerateValidationFailedResponse(ValidationResult[] validationResults)
+    {
+        var consolidatedError = new Dictionary<string, string[]>();
+        foreach(var validationResult in validationResults)
+        {
+            foreach(var memberName in validationResult.MemberNames)
+            {
+                if (consolidatedError.TryGetValue(memberName, out var value))
+                    value.Append(validationResult.ErrorMessage);
+                else
+                    consolidatedError[memberName.ToLower()] = [validationResult.ErrorMessage];
+            }
+        }
+        return Results.ValidationProblem(consolidatedError);
+    }
+    
     #endregion
     
     #region PRIVATE METHODS

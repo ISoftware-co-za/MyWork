@@ -1,6 +1,6 @@
 namespace client_service.Work;
 
-public record WorkCreateRequest
+public record class WorkCreateRequest
 {
     public required string Name { get; init; }
     
