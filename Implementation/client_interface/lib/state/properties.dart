@@ -19,20 +19,23 @@ class PropertyChangeNotifier extends ChangeNotifier {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class StateProperty extends PropertyChangeNotifier {
+class StateProperty<T> extends PropertyChangeNotifier {
+
   //#region PROPERTIES
 
-  String? get value => _value;
-  set value(String? value) {
+  T? get value => _value;
+  set value(T? value) {
     if (_value != value) {
       _value = value;
       _updatePropertyChanged();
-      _setInvalidMessage(_validation.validate(input: _value ?? ''));
+      _setInvalidMessage(_validation.validate(input: _value.toString() ?? ''));
       notifyPropertyChange("value");
+
+      debugPrint('value = $value');
     }
   }
 
-  String? _value;
+  T? _value;
 
   String? get invalidMessage => _invalidMessage;
   void _setInvalidMessage(String? value) {
@@ -50,20 +53,26 @@ class StateProperty extends PropertyChangeNotifier {
 
   bool get isValid => _invalidMessage == null;
 
+  String get valueAsString => (_value != null ) ? _value.toString() : '';
+
   //#endregion
 
   //#region CONSTRUCTION
 
-  StateProperty({Object? value, List<Validator>? validators}) : _validation = ValidatorCollection(validators) {
-    _value = _currentValue = value?.toString() ?? '';
+  StateProperty({T? value, List<Validator>? validators}) : _validation = ValidatorCollection(validators) {
+    _value = value;
   }
 
   //#endregion
 
   //#region METHODS
 
+  void setValue(Object object) {
+    value = object as T;
+  }
+
   bool validate() {
-    _setInvalidMessage(_validation.validate(input: _value ?? '', forceErrors: true));
+    _setInvalidMessage(_validation.validate(input: _value, forceErrors: true));
     return isValid;
   }
 
@@ -97,7 +106,7 @@ class StateProperty extends PropertyChangeNotifier {
   //#region FIELDS
 
   final ValidatorCollection _validation;
-  String? _currentValue;
+  T? _currentValue;
   final _PropertyChanged _propertyChanged = _PropertyChanged();
 
   //#endregion
@@ -145,7 +154,7 @@ class ValidatorCollection {
     _validators.add(validator);
   }
 
-  String? validate({required String input, bool? forceErrors = false}) {
+  String? validate({required dynamic input, bool? forceErrors = false}) {
     for (var validator in _validators) {
       final result = validator.validate(input);
       if ((_hasBeenValid || forceErrors!) && result != null) {
@@ -172,7 +181,7 @@ class ValidatorCollection {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-abstract class Validator {
+abstract class Validator<T> {
   //#region PROPERTIES
 
   String invalidMessageTemplate;
@@ -187,14 +196,14 @@ abstract class Validator {
 
   //#region METHODS
 
-  String? validate(String input);
+  String? validate(T input);
 
   //#endregion
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class ValidatorRequired extends Validator {
+class ValidatorRequired<T> extends Validator<T> {
   //#region CONSTRUCTION
 
   ValidatorRequired({required super.invalidMessageTemplate});
@@ -204,8 +213,8 @@ class ValidatorRequired extends Validator {
   //#region METHODS
 
   @override
-  String? validate(String input) {
-    if (input.isEmpty) {
+  String? validate(T input) {
+    if (input == null || input.toString().isEmpty) {
       return invalidMessageTemplate;
     }
     return null;
@@ -216,7 +225,7 @@ class ValidatorRequired extends Validator {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class ValidatorMaximumCharacters extends Validator {
+class ValidatorMaximumCharacters<T> extends Validator<T> {
   //#region PROPERTIES
   final int maximumCharacters;
   //#endregion
@@ -230,8 +239,8 @@ class ValidatorMaximumCharacters extends Validator {
   //#region METHODS
 
   @override
-  String? validate(String input) {
-    if (input.length > maximumCharacters) {
+  String? validate(T input) {
+    if (input.toString().length > maximumCharacters) {
       return invalidMessageTemplate;
     }
     return null;

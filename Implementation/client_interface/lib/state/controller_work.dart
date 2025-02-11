@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:client_interfaces1/state/property_changed_registry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
@@ -37,8 +35,7 @@ class ControllerWork {
 
   Future<void> onWorkDelete() async {
     assert(selectedWork.value != null);
-    var facade = GetIt.instance<FacadeWork>();
-    await facade.delete(item: selectedWork.value!);
+    await _facade.delete(item: selectedWork.value!);
     selectedWork.value = null;
     _workState = ControllerWorkState.noWork;
   }
@@ -49,12 +46,11 @@ class ControllerWork {
     if (selectedWork.value!.validate()) {
       isSaving.value = true;
       try {
-        var facade = GetIt.instance<FacadeWork>();
         if (_workState == ControllerWorkState.newWork) {
-          await facade.define(item: selectedWork.value!);
+          await _facade.define(item: selectedWork.value!);
           _workState = ControllerWorkState.existingWork;
         } else {
-          await facade.update(item: selectedWork.value!);
+          await _facade.update(item: selectedWork.value!);
         }
         PropertyChangedRegistry.acceptChanges();
       } finally {
@@ -86,6 +82,7 @@ class ControllerWork {
   //#region FIELDS
 
   ControllerWorkState _workState = ControllerWorkState.noWork;
+  final FacadeWork _facade = GetIt.instance<FacadeWork>();
 
   //#endregion
 }

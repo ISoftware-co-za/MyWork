@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'service_client.dart';
+import 'service_base.dart';
 
 class ValidationProblemResponse extends ServiceClientResponse {
   final String type;

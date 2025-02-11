@@ -1,6 +1,15 @@
 @client_service_HostAddress = https://localhost:5000
 
 ###
+POST {{client_service_HostAddress}}/users/login
+Content-Type: application/json
+
+{
+  "email": "libbie.kirlin@crooks.ca",
+  "password": "&<)*bP[,[@"
+}
+
+###
 GET {{client_service_HostAddress}}/work/678bdabaf1fc1b68ef000000
 
 ###

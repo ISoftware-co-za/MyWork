@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace client_service.Validation;
 
-public class Validation
+public class RequestValidation
 {
     #region METHODS
     

@@ -26,6 +26,8 @@ class _LayoutNotificationsState extends State<LayoutNotifications> {
 
   List<Widget> _listNotifications(List<Notification> notifications) {
     var list = <Widget>[];
+
+    debugPrint('Displaying notifications: ${notifications.length}');
     for(int index = 0; index < notifications.length; index++) {
       Notification notification = notifications[index];
       if (notification is NotificationError) {

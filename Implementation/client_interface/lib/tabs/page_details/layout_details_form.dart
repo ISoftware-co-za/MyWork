@@ -1,3 +1,4 @@
+import 'package:client_interfaces1/state/provider_state_application.dart';
 import 'package:client_interfaces1/tabs/page_details/list_item_detail.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +47,7 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = _buildForm();
+    List<Widget> children = _buildForm(context);
     return Container(
       key: _formKey,
       color: Colors.transparent,
@@ -54,7 +55,8 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
     );
   }
 
-  List<Widget> _buildForm() {
+  List<Widget> _buildForm(BuildContext context) {
+    final provider = ProviderStateApplication.of(context)!;
     var children = <Widget>[];
     for (var field in _formFields) {
       if (field.editorType == ListItemDetailEditor.text) {
@@ -64,11 +66,12 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
         children.add(ControlFleatherFormField(
             label: field.label, property: field.property, editable: _isMouseover));
       } else if (field.editorType == ListItemDetailEditor.autocomplete) {
+        provider.workTypesController.setStateProperty(field.property);
         children.add(ControlAutocompleteFormField(
             label: field.label,
             property: field.property,
             editable: _isMouseover,
-            suggestions: const ['One', 'Two', 'Three']));
+            dataSource: provider.workTypesController));
       }
       children.add(const SizedBox(height: _columnSpacing));
     }
@@ -80,7 +83,7 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
             label: const Text('Delete'),
             style: TextButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
             onPressed: () {
-              Executor.runCommand("Delete", null, () async {
+              Executor.runCommandAsync("Delete", null, () async {
                 await widget._controller.onWorkDelete();
               }, context);
             }),

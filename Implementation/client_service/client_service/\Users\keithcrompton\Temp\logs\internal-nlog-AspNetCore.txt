@@ -196,3 +196,642 @@
 2025-01-19 07:50:34.9547 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
 2025-01-19 07:50:34.9618 Info Configuration initialized.
 2025-01-19 07:50:35.2530 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-01-31 05:57:43.9115 Info Loading assembly name: NLog.Web.AspNetCore
+2025-01-31 05:57:43.9297 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-01-31 05:57:43.9701 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-01-31 05:57:43.9714 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-01-31 05:57:43.9723 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-01-31 05:57:43.9756 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-01-31 05:57:44.1955 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-01-31 05:57:44.2023 Info Configuration initialized.
+2025-01-31 05:57:44.4850 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-01-31 06:20:43.5893 Info Loading assembly name: NLog.Web.AspNetCore
+2025-01-31 06:20:43.6098 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-01-31 06:20:43.6454 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-01-31 06:20:43.6465 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-01-31 06:20:43.6465 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-01-31 06:20:43.6504 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-01-31 06:20:43.7172 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-01-31 06:20:43.7237 Info Configuration initialized.
+2025-01-31 06:20:43.9458 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-01-31 06:36:08.9681 Info Loading assembly name: NLog.Web.AspNetCore
+2025-01-31 06:36:08.9876 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-01-31 06:36:09.0272 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-01-31 06:36:09.0284 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-01-31 06:36:09.0292 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-01-31 06:36:09.0329 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-01-31 06:36:09.0991 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-01-31 06:36:09.1066 Info Configuration initialized.
+2025-01-31 06:36:09.3768 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-01 03:31:40.9028 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-01 03:31:40.9200 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-01 03:31:40.9576 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-01 03:31:40.9587 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-01 03:31:40.9595 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-01 03:31:40.9626 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-01 03:31:41.0429 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-01 03:31:41.0499 Info Configuration initialized.
+2025-02-01 03:31:41.2829 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-01 04:09:52.2567 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-01 04:09:52.2722 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-01 04:09:52.3176 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-01 04:09:52.3187 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-01 04:09:52.3195 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-01 04:09:52.3225 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-01 04:09:52.4010 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-01 04:09:52.4076 Info Configuration initialized.
+2025-02-01 04:09:52.6195 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-01 07:52:35.0774 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-01 07:52:35.0975 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-01 07:52:35.1439 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-01 07:52:35.1451 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-01 07:52:35.1451 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-01 07:52:35.1489 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-01 07:52:35.2416 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-01 07:52:35.2490 Info Configuration initialized.
+2025-02-01 07:52:35.5409 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:25:16.8798 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 07:25:16.8977 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 07:25:16.9354 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 07:25:16.9365 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 07:25:16.9372 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 07:25:16.9401 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 07:25:17.0281 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:25:17.0352 Info Configuration initialized.
+2025-02-02 07:25:17.2833 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:30:25.7355 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 07:30:25.7539 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 07:30:25.7908 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 07:30:25.7920 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 07:30:25.7928 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 07:30:25.7961 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 07:30:25.8783 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:30:25.8852 Info Configuration initialized.
+2025-02-02 07:30:26.1172 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:36:12.5614 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 07:36:12.5825 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 07:36:12.6183 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 07:36:12.6195 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 07:36:12.6202 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 07:36:12.6233 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 07:36:12.7153 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:36:12.7220 Info Configuration initialized.
+2025-02-02 07:36:12.9518 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:38:46.6650 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 07:38:46.6858 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 07:38:46.7213 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 07:38:46.7223 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 07:38:46.7231 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 07:38:46.7259 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 07:38:46.8393 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:38:46.8463 Info Configuration initialized.
+2025-02-02 07:38:47.0640 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:38:56.5835 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 07:38:56.6027 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 07:38:56.6390 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 07:38:56.6401 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 07:38:56.6408 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 07:38:56.6438 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 07:38:56.7066 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:38:56.7138 Info Configuration initialized.
+2025-02-02 07:38:56.9341 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:39:07.0279 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 07:39:07.0448 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 07:39:07.0791 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 07:39:07.0802 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 07:39:07.0809 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 07:39:07.0839 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 07:39:07.1710 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:39:07.1781 Info Configuration initialized.
+2025-02-02 07:39:07.3844 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:41:21.1215 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 07:41:21.1388 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 07:41:21.1750 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 07:41:21.1762 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 07:41:21.1762 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 07:41:21.1799 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 07:41:21.2630 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:41:21.2700 Info Configuration initialized.
+2025-02-02 07:41:21.4790 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:45:46.0850 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 07:45:46.1044 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 07:45:46.1445 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 07:45:46.1456 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 07:45:46.1464 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 07:45:46.1493 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 07:45:46.2428 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 07:45:46.2495 Info Configuration initialized.
+2025-02-02 07:45:46.4757 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 08:01:11.6815 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 08:01:11.6999 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 08:01:11.7347 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 08:01:11.7357 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 08:01:11.7357 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 08:01:11.7394 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 08:01:11.8278 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 08:01:11.8347 Info Configuration initialized.
+2025-02-02 08:01:12.0491 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 08:02:13.4757 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 08:02:13.4933 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 08:02:13.5265 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 08:02:13.5276 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 08:02:13.5284 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 08:02:13.5315 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 08:02:13.5935 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 08:02:13.6006 Info Configuration initialized.
+2025-02-02 08:02:13.8110 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 08:02:39.0229 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 08:02:39.0404 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 08:02:39.0756 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 08:02:39.0770 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 08:02:39.0779 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 08:02:39.0807 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 08:02:39.1969 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 08:02:39.2045 Info Configuration initialized.
+2025-02-02 08:02:39.4256 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 08:02:58.2960 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-02 08:02:58.3178 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-02 08:02:58.3537 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-02 08:02:58.3549 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-02 08:02:58.3556 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-02 08:02:58.3587 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-02 08:02:58.4446 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-02 08:02:58.4517 Info Configuration initialized.
+2025-02-02 08:02:58.6689 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 05:31:15.3013 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 05:31:15.3221 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 05:31:15.3672 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 05:31:15.3685 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 05:31:15.3685 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 05:31:15.3728 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 05:31:15.4811 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 05:31:15.4926 Info Configuration initialized.
+2025-02-04 05:31:15.8165 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 05:32:23.3054 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 05:32:23.3270 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 05:32:23.3632 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 05:32:23.3642 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 05:32:23.3649 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 05:32:23.3683 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 05:32:23.4383 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 05:32:23.4460 Info Configuration initialized.
+2025-02-04 05:32:23.6800 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 05:34:52.5885 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 05:34:52.6075 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 05:34:52.6414 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 05:34:52.6425 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 05:34:52.6432 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 05:34:52.6461 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 05:34:52.7364 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 05:34:52.7428 Info Configuration initialized.
+2025-02-04 05:34:52.9796 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 05:36:59.0501 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 05:36:59.0717 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 05:36:59.1053 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 05:36:59.1066 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 05:36:59.1074 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 05:36:59.1103 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 05:36:59.1751 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 05:36:59.1826 Info Configuration initialized.
+2025-02-04 05:36:59.4144 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 05:48:10.1151 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 05:48:10.1366 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 05:48:10.1707 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 05:48:10.1718 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 05:48:10.1718 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 05:48:10.1755 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 05:48:10.2402 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 05:48:10.2472 Info Configuration initialized.
+2025-02-04 05:48:10.4662 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:02:30.5553 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:02:30.5773 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:02:30.6164 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:02:30.6174 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:02:30.6174 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:02:30.6212 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:02:30.6848 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:02:30.6915 Info Configuration initialized.
+2025-02-04 06:02:30.9420 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:19:40.9283 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:19:40.9507 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:19:40.9852 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:19:40.9862 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:19:40.9870 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:19:40.9898 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:19:41.0824 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:19:41.0891 Info Configuration initialized.
+2025-02-04 06:19:41.3014 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:21:34.7072 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:21:34.7263 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:21:34.7613 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:21:34.7624 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:21:34.7624 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:21:34.7662 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:21:34.8549 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:21:34.8617 Info Configuration initialized.
+2025-02-04 06:21:35.0938 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:24:56.6024 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:24:56.6216 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:24:56.6539 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:24:56.6549 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:24:56.6556 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:24:56.6585 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:24:56.7193 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:24:56.7259 Info Configuration initialized.
+2025-02-04 06:24:56.9485 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:30:01.7863 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:30:01.8042 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:30:01.8379 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:30:01.8390 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:30:01.8399 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:30:01.8431 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:30:01.9332 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:30:01.9402 Info Configuration initialized.
+2025-02-04 06:30:02.1530 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:31:20.8749 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:31:20.8937 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:31:20.9274 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:31:20.9286 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:31:20.9294 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:31:20.9325 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:31:20.9934 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:31:21.0001 Info Configuration initialized.
+2025-02-04 06:31:21.2239 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:32:21.1563 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:32:21.1754 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:32:21.2083 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:32:21.2094 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:32:21.2102 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:32:21.2132 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:32:21.3003 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:32:21.3074 Info Configuration initialized.
+2025-02-04 06:32:21.5206 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:34:29.3884 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:34:29.4131 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:34:29.4469 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:34:29.4480 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:34:29.4480 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:34:29.4520 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:34:29.5346 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:34:29.5415 Info Configuration initialized.
+2025-02-04 06:34:29.7511 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:35:14.7908 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:35:14.8095 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:35:14.8433 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:35:14.8443 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:35:14.8443 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:35:14.8481 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:35:14.9392 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:35:14.9462 Info Configuration initialized.
+2025-02-04 06:35:15.1608 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:35:34.8706 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:35:34.8897 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:35:34.9227 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:35:34.9237 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:35:34.9244 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:35:34.9273 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:35:35.0156 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:35:35.0223 Info Configuration initialized.
+2025-02-04 06:35:35.2292 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:37:54.0969 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:37:54.1153 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:37:54.1477 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:37:54.1488 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:37:54.1495 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:37:54.1525 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:37:54.2157 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:37:54.2225 Info Configuration initialized.
+2025-02-04 06:37:54.4400 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:38:53.6879 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:38:53.7061 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:38:53.7388 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:38:53.7398 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:38:53.7398 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:38:53.7433 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:38:53.8090 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:38:53.8155 Info Configuration initialized.
+2025-02-04 06:38:54.0351 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:40:52.1278 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:40:52.1510 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:40:52.1868 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:40:52.1879 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:40:52.1879 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:40:52.1915 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:40:52.2779 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:40:52.2848 Info Configuration initialized.
+2025-02-04 06:40:52.4963 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:41:10.9562 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:41:10.9749 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:41:11.0074 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:41:11.0084 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:41:11.0090 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:41:11.0120 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:41:11.1025 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:41:11.1094 Info Configuration initialized.
+2025-02-04 06:41:11.3256 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:41:59.4388 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:41:59.4578 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:41:59.4917 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:41:59.4928 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:41:59.4935 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:41:59.4964 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:41:59.5823 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:41:59.5892 Info Configuration initialized.
+2025-02-04 06:41:59.8089 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:43:59.8136 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:43:59.8373 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:43:59.8718 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:43:59.8729 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:43:59.8736 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:43:59.8765 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:43:59.9692 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:43:59.9760 Info Configuration initialized.
+2025-02-04 06:44:00.1917 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:46:36.4492 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:46:36.4681 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:46:36.5019 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:46:36.5030 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:46:36.5038 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:46:36.5066 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:46:36.5717 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:46:36.5786 Info Configuration initialized.
+2025-02-04 06:46:36.7921 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:50:02.5261 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:50:02.5446 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:50:02.5844 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:50:02.5854 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:50:02.5854 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:50:02.5894 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:50:02.6770 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:50:02.6846 Info Configuration initialized.
+2025-02-04 06:50:02.9027 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:51:10.7010 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:51:10.7178 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:51:10.7511 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:51:10.7522 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:51:10.7530 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:51:10.7558 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:51:10.8248 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:51:10.8314 Info Configuration initialized.
+2025-02-04 06:51:11.0549 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:54:07.3619 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 06:54:07.3806 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 06:54:07.4158 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 06:54:07.4170 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 06:54:07.4177 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 06:54:07.4206 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 06:54:07.5132 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 06:54:07.5202 Info Configuration initialized.
+2025-02-04 06:54:07.7298 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 07:13:27.7710 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 07:13:27.7928 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 07:13:27.8394 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 07:13:27.8405 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 07:13:27.8413 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 07:13:27.8443 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 07:13:27.9716 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 07:13:27.9782 Info Configuration initialized.
+2025-02-04 07:13:28.2644 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 07:16:58.4733 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 07:16:58.4938 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 07:16:58.5272 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 07:16:58.5281 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 07:16:58.5288 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 07:16:58.5319 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 07:16:58.5917 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 07:16:58.5984 Info Configuration initialized.
+2025-02-04 07:16:58.8247 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 07:22:37.6688 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 07:22:37.6907 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 07:22:37.7246 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 07:22:37.7259 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 07:22:37.7267 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 07:22:37.7298 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 07:22:37.8491 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 07:22:37.8559 Info Configuration initialized.
+2025-02-04 07:22:38.0991 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 07:24:52.3936 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-04 07:24:52.4131 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-04 07:24:52.4466 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-04 07:24:52.4476 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-04 07:24:52.4483 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-04 07:24:52.4511 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-04 07:24:52.5387 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-04 07:24:52.5463 Info Configuration initialized.
+2025-02-04 07:24:52.7667 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-05 05:15:03.7323 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-05 05:15:03.7520 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-05 05:15:03.7909 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-05 05:15:03.7923 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-05 05:15:03.7932 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-05 05:15:03.7960 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-05 05:15:03.9060 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-05 05:15:03.9134 Info Configuration initialized.
+2025-02-05 05:15:04.1969 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-07 06:47:31.8410 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-07 06:47:31.8612 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-07 06:47:31.8980 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-07 06:47:31.8992 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-07 06:47:31.8999 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-07 06:47:31.9028 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-07 06:47:31.9962 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-07 06:47:32.0034 Info Configuration initialized.
+2025-02-07 06:47:32.2706 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-08 10:16:19.3013 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-08 10:16:19.3208 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-08 10:16:19.3603 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-08 10:16:19.3614 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-08 10:16:19.3621 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-08 10:16:19.3651 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-08 10:16:19.4721 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-08 10:16:19.4786 Info Configuration initialized.
+2025-02-08 10:16:19.7885 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-08 12:15:20.6671 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-08 12:15:20.6870 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-08 12:15:20.7252 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-08 12:15:20.7263 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-08 12:15:20.7270 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-08 12:15:20.7306 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-08 12:15:20.8388 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-08 12:15:20.8459 Info Configuration initialized.
+2025-02-08 12:15:21.1030 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 07:27:08.8755 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 07:27:08.8955 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 07:27:08.9411 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 07:27:08.9423 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 07:27:08.9435 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 07:27:08.9469 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 07:27:08.9856 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 07:27:08.9930 Info Configuration initialized.
+2025-02-09 07:27:09.3185 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 08:22:41.2037 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 08:22:41.2236 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 08:22:41.2594 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 08:22:41.2605 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 08:22:41.2605 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 08:22:41.2643 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 08:22:41.3531 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 08:22:41.3597 Info Configuration initialized.
+2025-02-09 08:22:41.5822 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 08:42:43.6682 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 08:42:43.6898 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 08:42:43.7341 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 08:42:43.7358 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 08:42:43.7370 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 08:42:43.7407 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 08:42:43.8348 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 08:42:43.8416 Info Configuration initialized.
+2025-02-09 08:42:44.1411 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 10:05:06.2557 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 10:05:06.3012 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 10:05:06.3461 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 10:05:06.3474 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 10:05:06.3482 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 10:05:06.3513 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 10:05:06.4634 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 10:05:06.4702 Info Configuration initialized.
+2025-02-09 10:05:06.7782 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 10:05:44.9137 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 10:05:44.9334 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 10:05:44.9733 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 10:05:44.9748 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 10:05:44.9757 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 10:05:44.9789 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 10:05:45.0581 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 10:05:45.0650 Info Configuration initialized.
+2025-02-09 10:05:45.3292 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 10:23:35.1081 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 10:23:35.1271 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 10:23:35.1614 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 10:23:35.1627 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 10:23:35.1635 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 10:23:35.1672 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 10:23:35.2933 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 10:23:35.3006 Info Configuration initialized.
+2025-02-09 10:23:35.5352 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:17:28.7022 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 11:17:28.7239 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 11:17:28.7644 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 11:17:28.7654 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 11:17:28.7654 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 11:17:28.7691 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 11:17:28.8914 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:17:28.8991 Info Configuration initialized.
+2025-02-09 11:17:29.1302 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:29:51.8578 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 11:29:51.8764 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 11:29:51.9110 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 11:29:51.9121 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 11:29:51.9128 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 11:29:51.9156 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 11:29:51.9859 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:29:51.9929 Info Configuration initialized.
+2025-02-09 11:29:52.2232 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:32:47.3258 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 11:32:47.3455 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 11:32:47.3848 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 11:32:47.3860 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 11:32:47.3860 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 11:32:47.3896 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 11:32:47.5025 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:32:47.5096 Info Configuration initialized.
+2025-02-09 11:32:47.7723 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:37:54.1363 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 11:37:54.1578 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 11:37:54.1938 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 11:37:54.1949 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 11:37:54.1949 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 11:37:54.1986 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 11:37:54.2946 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:37:54.3015 Info Configuration initialized.
+2025-02-09 11:37:54.5377 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:44:38.8621 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 11:44:38.8816 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 11:44:38.9165 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 11:44:38.9178 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 11:44:38.9186 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 11:44:38.9217 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 11:44:39.0056 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:44:39.0121 Info Configuration initialized.
+2025-02-09 11:44:39.2704 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:47:25.3767 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-09 11:47:25.3957 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-09 11:47:25.4293 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-09 11:47:25.4303 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-09 11:47:25.4311 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-09 11:47:25.4339 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-09 11:47:25.5296 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-09 11:47:25.5362 Info Configuration initialized.
+2025-02-09 11:47:25.7636 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 06:41:28.2214 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-10 06:41:28.2416 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-10 06:41:28.2826 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-10 06:41:28.2840 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-10 06:41:28.2851 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-10 06:41:28.2883 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-10 06:41:28.3908 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 06:41:28.3979 Info Configuration initialized.
+2025-02-10 06:41:28.6944 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 06:53:11.9717 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-10 06:53:11.9932 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-10 06:53:12.0336 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-10 06:53:12.0348 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-10 06:53:12.0356 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-10 06:53:12.0391 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-10 06:53:12.1501 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 06:53:12.1571 Info Configuration initialized.
+2025-02-10 06:53:12.4404 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 07:17:45.7862 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-10 07:17:45.8075 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-10 07:17:45.8483 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-10 07:17:45.8493 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-10 07:17:45.8500 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-10 07:17:45.8528 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-10 07:17:45.9466 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 07:17:45.9535 Info Configuration initialized.
+2025-02-10 07:17:46.1910 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 17:20:01.6903 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-10 17:20:01.7118 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-10 17:20:01.7568 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-10 17:20:01.7581 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-10 17:20:01.7590 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-10 17:20:01.7625 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-10 17:20:01.8700 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 17:20:01.8774 Info Configuration initialized.
+2025-02-10 17:20:02.2098 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 17:39:51.8111 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-10 17:39:51.8297 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-10 17:39:51.8688 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-10 17:39:51.8702 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-10 17:39:51.8712 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-10 17:39:51.8744 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-10 17:39:51.9534 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 17:39:51.9600 Info Configuration initialized.
+2025-02-10 17:39:52.2295 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 17:43:05.9095 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-10 17:43:05.9290 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-10 17:43:05.9674 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-10 17:43:05.9685 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-10 17:43:05.9693 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-10 17:43:05.9726 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-10 17:43:06.0801 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 17:43:06.0878 Info Configuration initialized.
+2025-02-10 17:43:06.3723 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 17:48:30.7560 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-10 17:48:30.7758 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-10 17:48:30.8170 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-10 17:48:30.8182 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-10 17:48:30.8193 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-10 17:48:30.8229 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-10 17:48:30.9040 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-10 17:48:30.9110 Info Configuration initialized.
+2025-02-10 17:48:31.2022 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-11 04:51:21.0669 Info Loading assembly name: NLog.Web.AspNetCore
+2025-02-11 04:51:21.0921 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.13.1144. Product version: 5.3.13+628b0876960af3ee3454c99b7985dbb5e1c46bf0. GlobalAssemblyCache: False
+2025-02-11 04:51:21.1392 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-02-11 04:51:21.1404 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-02-11 04:51:21.1416 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2025-02-11 04:51:21.1448 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-02-11 04:51:21.2283 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config
+2025-02-11 04:51:21.2358 Info Configuration initialized.
+2025-02-11 04:51:21.5946 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=/Users/keithcrompton/Work/MyWork/Implementation/client_service/client_service/bin/Debug/net8.0/NLog.config

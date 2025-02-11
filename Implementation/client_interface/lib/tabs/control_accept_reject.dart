@@ -52,7 +52,7 @@ class ControlAcceptReject extends StatelessWidget {
 
   Future<void> _onAcceptPressed(
       ControllerWork controller, BuildContext context) async {
-    Executor.runCommand('Accept', null, () async {
+    Executor.runCommandAsync('Accept', null, () async {
       await controller.onSave();
     }, context);
   }

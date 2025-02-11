@@ -1,7 +1,7 @@
 import 'package:client_interfaces1/service/validation_problem_response.dart';
-import 'package:client_interfaces1/service/work.dart';
+import 'package:client_interfaces1/service/work_request_response.dart';
 
-import '../service/service_client.dart';
+import '../service/service_base.dart';
 import 'state_work.dart';
 
 class ResponseProcessFactory {

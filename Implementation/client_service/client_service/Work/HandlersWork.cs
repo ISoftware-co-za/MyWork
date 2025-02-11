@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System.ComponentModel.DataAnnotations;
 using client_service.Execution;
 using client_service.Validation;
+using Microsoft.AspNetCore.Mvc;
 
 namespace client_service.Work;
 
@@ -20,7 +21,7 @@ public static class HandlersWork
         groupBuilder.MapDelete("/{id}", Delete).RequireCors(corsPolicyName);
     }
     
-    public static void AddWorkValidation(this Validation.Validation validation)
+    public static void AddWorkValidation(this RequestValidation requestValidation)
     {
         List<ValidatedProperty> properties =
         [
@@ -31,14 +32,14 @@ public static class HandlersWork
             new ValidatedProperty(nameof(WorkCreateRequest.Reference),
                 [new StringLengthAttribute(maximumLength: 40)])
         ];
-        validation.RegisterValidation(new ValidatedRequest(
+        requestValidation.RegisterValidation(new ValidatedRequest(
             typeof(WorkCreateRequest), 
             typeof(WorkUpdateRequest), 
             new ValidatedPropertyCollection(properties.ToArray())
         ));
     }
     
-    private static async Task<IResult> ListWork(string userId, IMongoDatabase database, ILogger<Program> logger)
+    private static async Task<IResult> ListWork(string userId, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
     {
         return await Executor.RunProcessAsync($"{CollectionName}.Find(filter).ToListAsync()", Executor.CategoryMongoDB, "Unable to obtain the list of work.", async () =>
         {
@@ -64,9 +65,9 @@ public static class HandlersWork
     
     #region PRIVATE METHODS
 
-    private static async Task<IResult> Post(WorkCreateRequest request, Validation.Validation validation, IMongoDatabase database, ILogger<Program> logger, HttpContext httpContext)
+    private static async Task<IResult> Post([FromBody] WorkCreateRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
     {
-        var validationResults = validation.Validate(request);
+        var validationResults = requestValidation.Validate(request);
         if (validationResults.Length == 0)
         {
             return await Executor.RunProcessAsync($"{CollectionName}.InsertOne(workDocument)", Executor.CategoryMongoDB, "Unable to save the new work", async () =>
@@ -81,15 +82,15 @@ public static class HandlersWork
                 };
                 await workCollection.InsertOneAsync(workDocument);
                 // Task.Delay(5000).GetAwaiter().GetResult();
-                return Results.Created($"{_urlPrefix}/{workDocument!.Id}", new WorkCreateResponse(workDocument.Id.ToString()));
+                return Results.Created($"{_urlPrefix}/{workDocument.Id}", new WorkCreateResponse(workDocument.Id.ToString()));
             });
         }
-        return Validation.Validation.GenerateValidationFailedResponse(validationResults);
+        return Validation.RequestValidation.GenerateValidationFailedResponse(validationResults);
     }
 
-    private static async Task<IResult> Patch(string id, WorkUpdateRequest request, Validation.Validation validation, IMongoDatabase database, ILogger<Program> logger)
+    private static async Task<IResult> Patch(string id, WorkUpdateRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
     {
-        var validationResults = validation.Validate(request);
+        var validationResults = requestValidation.Validate(request);
         if (validationResults.Length == 0)
         {
             return await Executor.RunProcessAsync($"{CollectionName}.UpdateOneAsync({id})", Executor.CategoryMongoDB, "Unable to save the updated work",
@@ -112,10 +113,10 @@ public static class HandlersWork
                     return Results.NoContent();
                 });
         }
-        return Validation.Validation.GenerateValidationFailedResponse(validationResults);
+        return Validation.RequestValidation.GenerateValidationFailedResponse(validationResults);
     }
     
-    private static async Task<IResult> Delete(string id, IMongoDatabase database, ILogger<Program> logger)
+    private static async Task<IResult> Delete(string id, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
     {
         return await Executor.RunProcessAsync($"{CollectionName}.DeleteOneAsync({id})", Executor.CategoryMongoDB, "Unable to delete the work",
             async () =>
@@ -130,9 +131,9 @@ public static class HandlersWork
     #endregion
     
     #region FIELDS
-
-    private static String? _urlPrefix;
-    private const string CollectionName = "work";
     
+    private const string CollectionName = "work";
+    private static string? _urlPrefix;
+
     #endregion
 }

@@ -1,19 +1,26 @@
-import 'service_client.dart';
+import 'package:client_interfaces1/state/state_work_type.dart';
+
+import 'service_base.dart';
 
 class WorkCreateRequest {
   final String name;
-  final String? type;
+  final StateWorkType? type;
   final String? reference;
   final String? description;
   WorkCreateRequest({required this.name, this.type, this.reference, this.description});
 
   Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'type': type,
-      'reference': reference,
-      'description': description
-    };
+    var json = <String, dynamic>{'name': name};
+    if (type != null) {
+      json['type'] = type!.name;
+    }
+    if (reference != null) {
+      json['reference'] = reference;
+    }
+    if (description != null) {
+      json['description'] = description;
+    }
+    return json;
   }
 }
 
