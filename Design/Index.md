@@ -7,11 +7,14 @@ A Flutter based UI. Currently supports web, but will be extended to other platfo
 ### Flutter Widgets
 Flutter Widgets, either predefined or custom. The widgets accept data and callbacks. In addition to these, the following will also be handled by this layer.
 - Data entry validation.
-### Facade
-The facade is the bridge between the Flutter Widgets and Service Client. It is responsible for:
+
+### Controller
 - Manage the application state.
 - Providing data to the Flutter Widgets.
 - Providing callbacks to the Flutter Widgets to process events.
+- Delegating to the Facade to call the service. Data is passed via parameters which can be state objects. Responses can be state objects or result objects.
+### Facade
+The facade is the bridge between the Flutter Widgets and Service Client. It is responsible for:
 - Transforming and passing data to the Service using the Service Client.
 - Processing responses, updating the the application state and in turn the Flutter Widgets.
 ### Service Client
@@ -22,7 +25,7 @@ The facade is the bridge between the Flutter Widgets and Service Client. It is r
 ## Document Storage
 A document database is used. The following document collections will be maintained:
 - Users - Email, password and work types.
-- Work - All the users work.
+- Work - All the users work. References a user through `user_id:ObjectID`.
 - Tasks - A document per work item, containing all the tasks for the work item.
 - Activities - A document per task, containing all the activities for the task.
 ## Service Interaction

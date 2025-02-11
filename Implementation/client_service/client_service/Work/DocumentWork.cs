@@ -3,16 +3,26 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace client_service.Work;
 
-public class DocumentWork
+public record class DocumentWork
 {
     [BsonId]
-    public ObjectId Id { get; set; }
+    public ObjectId Id { get; init; }
     
-    public string Name { get; set; }
+    [BsonElement("user_id")]
+    public ObjectId UserId { get; init; }
     
-    public string? Type { get; set; }
+    [BsonElement("name")]
+    public required string Name { get; init; }
     
-    public string? Reference { get; set; }
+    [BsonElement("type")]
+    public string? Type { get; init; }
+    
+    [BsonElement("reference")]
+    public string? Reference { get; init; }
 
-    public string? Description { get; set; }
+    [BsonElement("description")]
+    public string? Description { get; init; }
+    
+    [BsonElement("archived")]
+    public bool Archived { get; init; }
 }
