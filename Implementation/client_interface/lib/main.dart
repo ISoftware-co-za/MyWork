@@ -1,7 +1,5 @@
 import 'package:client_interfaces1/notification/layout_notification_list.dart';
-import 'package:client_interfaces1/state/facade_user.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'execution/executor.dart';
@@ -134,7 +132,11 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   //#region PRIVATE METHODS
 
   Future<dynamic> _initializeAsync() async {
-    await _userController.login();
+    if (_isLoggedIn == false) {
+    debugPrint('-------- MainPage._initializeAsync --------');
+      await _userController.login();
+      _isLoggedIn = true;
+    }
   }
 
   Widget _mainPage() {
@@ -203,6 +205,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   late final ControllerWorkTypes _workTypesController;
   late final TabController _tabController;
   final ControllerHover _controllerHover = ControllerHover();
+  static bool _isLoggedIn = false;
 
   //#endregion
 }
@@ -232,7 +235,7 @@ class _CustomisedTheme {
                   padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)),
                   foregroundColor: WidgetStateProperty.all(Colors.white),
                   backgroundColor: WidgetStateProperty.all(Colors.red))),
-          ControlWorkButtonTheme(padding: 8, hoverColor: Colors.white.withOpacity(0.3), hoverBorderWidth: 2.0),
+          ControlWorkButtonTheme(padding: 8, hoverColor: Colors.white.withValues(alpha: 0.3), hoverBorderWidth: 2.0),
           const WorkDialogTheme(
               gridSize: 8,
               headerTextStyle: TextStyle(fontSize: 28, decoration: TextDecoration.none, color: Colors.black),

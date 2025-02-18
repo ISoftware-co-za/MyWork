@@ -17,6 +17,10 @@ class ControllerUser {
     _workTypesController.setWorkTypes(result.workTypes);
   }
 
+  Future logout() async {
+      await _facade.logout();
+  }
+
   final FacadeUser _facade = GetIt.instance<FacadeUser>();
   late ControllerWorkTypes _workTypesController;
 }
