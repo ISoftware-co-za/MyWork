@@ -19,7 +19,12 @@ public class ObservabilitySentry : IObservability
         _currentSpan!.Finish();
         _currentSpan = null;
     }
-    
+
+    public void EndProcess(Exception exception)
+    {
+        SentrySdk.CaptureException(exception);
+    }
+
     #endregion
 
     #region FIELDS

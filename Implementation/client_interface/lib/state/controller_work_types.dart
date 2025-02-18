@@ -61,10 +61,10 @@ class ControllerWorkTypes implements AutocompleteDataSource {
       _property?.value = existingWorkType;
       return;
     }
+    await _facade.addWorkType(_controllerUser!.userId!, workType.name);
     _property?.value = workType;
     _workTypes.add(workType);
     _sortWorkTypes(_workTypes);
-    await _facade.addWorkType(_controllerUser!.userId!, workType.name);
   }
 
   //#endregion

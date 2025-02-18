@@ -18,6 +18,11 @@ class FacadeUser {
     return ResultLogin(userId: response.userId, workTypes:  response.workTypes.map((e) => StateWorkType(e)).toList());
   }
 
+  Future<bool> logout() async {
+    await _serviceClient.logout() as LoginResponse;
+    return true;
+  }
+
   Future<bool> addWorkType(String userId, String workType) async {
     await _serviceClient.addWorkType(userId, AddWorkTypeRequest(workType: workType));
     return true;

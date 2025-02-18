@@ -1,21 +1,16 @@
-import 'dart:io';
-
+import 'package:http/browser_client.dart';
 import 'package:http/http.dart';
-import 'package:http/io_client.dart';
 import 'dart:convert';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:http/http.dart' as http;
 
-
-import '../execution/observability.dart';
 import 'validation_problem_response.dart';
 
 class ServiceClientBase {
   //#region CONSTRUCTION
 
-  ServiceClientBase(String baseUrl, Observability observability)
-      : _baseUrl = baseUrl,
-        _observability = observability {
+  ServiceClientBase(String baseUrl)
+      : _baseUrl = baseUrl {
+    _browserClient = BrowserClient()..withCredentials = true;
     _http = SentryHttpClient();
   }
 
@@ -33,20 +28,19 @@ class ServiceClientBase {
 
   Map<String, String> setupCommonHeaders() {
     final headers = <String, String>{'Content-Type': 'application/json; charset=UTF-8'};
-    // _observability.startServiceCall(headers);
     return headers;
   }
 
   Future<Response> httpPost(Uri uri, Map<String, String> headers, String body) async {
-    return await _http.post(uri, headers: headers, body: body).timeout(const Duration(seconds: _httpTimeoutInSeconds));
+    return await _browserClient.post(uri, headers: headers, body: body).timeout(const Duration(seconds: _httpTimeoutInSeconds));
   }
 
   Future<Response> httpPatch(Uri uri, Map<String, String> headers, String body) async {
-    return await _http.patch(uri, headers: headers, body: body).timeout(const Duration(seconds: _httpTimeoutInSeconds));
+    return await _browserClient.patch(uri, headers: headers, body: body).timeout(const Duration(seconds: _httpTimeoutInSeconds));
   }
 
   Future<Response> httpDelete(Uri uri, Map<String, String> headers) async {
-    return await _http.delete(uri, headers: headers).timeout(const Duration(seconds: _httpTimeoutInSeconds));
+    return await _browserClient.delete(uri, headers: headers).timeout(const Duration(seconds: _httpTimeoutInSeconds));
   }
 
   ServiceClientResponse? processResponse(
@@ -60,6 +54,9 @@ class ServiceClientBase {
     } else if (response.statusCode == 404 || response.statusCode == 405) {
       throw Exception('A problem occurred while processing the request (${response.statusCode}).');
     } else {
+      if (response.body.isEmpty) {
+        throw Exception('An unknown problem occurred (${response.statusCode}). Support has been notified and is working on the problem.');
+      }
       var problemResponse = jsonDecode(response.body);
       throw Exception(problemResponse['detail']);
     }
@@ -72,7 +69,7 @@ class ServiceClientBase {
   static const int _httpTimeoutInSeconds = 10;
   final String _baseUrl;
   late final SentryHttpClient _http;
-  final Observability _observability;
+  late final BrowserClient _browserClient;
 
   //#endregion
 }

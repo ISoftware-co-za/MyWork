@@ -12,7 +12,7 @@ public static class Executor
     
     #region PROPERTIES
 
-    public static IObservability? Observability { get; set; } = new ObservabilitySentry();
+    public static IObservabilityFactory ObservabilityFactory { get; set; } = new ObservabilityFactorySentry();
     
     #endregion
     
@@ -20,16 +20,17 @@ public static class Executor
 
     public static async Task<IResult> RunProcessAsync(string description, string category, string errorMessage, Func<Task<IResult>> asyncProcess )
     {
+        IObservability observability = ObservabilityFactory.Produce();
         try
         {
-            Observability?.StartProcess(description, category);
+            observability?.StartProcess(description, category);
             var result = await asyncProcess();
-            Observability?.EndProcess();
+            observability?.EndProcess();
             return result;
         }
         catch (Exception exception)
         {
-            SentrySdk.CaptureException(exception);
+            observability.EndProcess(exception);
             var problemDetails = new ProblemDetails
             {
                 Status = StatusCodes.Status500InternalServerError,

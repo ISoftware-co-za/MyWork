@@ -8,7 +8,7 @@ import 'user_request_response.dart';
 class UserServiceClient extends ServiceClientBase {
   //#region CONSTRUCTION
 
-  UserServiceClient(super.baseUrl, super.observability);
+  UserServiceClient(super.baseUrl);
 
   //#endregion
 
@@ -22,6 +22,15 @@ class UserServiceClient extends ServiceClientBase {
     final body = jsonEncode(request.toJson());
     final response = await httpPost(uri, headers, body);
     return processResponse(response, HttpStatus.ok, () => LoginResponse.fromJson(jsonDecode(response.body)))!;
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------
+
+  Future<ServiceClientResponse> logout() async {
+    Map<String, String> headers = setupCommonHeaders();
+    final uri = generateUri('/users/logout');
+    final response = await httpPost(uri, headers, '');
+    return processResponse(response, HttpStatus.ok, () => ServiceClientResponse())!;
   }
 
   //--------------------------------------------------------------------------------------------------------------------

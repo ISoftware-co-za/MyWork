@@ -3,6 +3,8 @@ using client_service.Validation;
 using MongoDB.Driver;
 using NLog.Web;
 using client_service.Work;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Diagnostics;
 using NLog;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;
@@ -17,8 +19,7 @@ try
 
     const string corsPolicyName = "WyWorkCORSPolicy";
     var builder = WebApplication.CreateBuilder(args);
-
-    // Configure logging
+    
     builder.Logging.ClearProviders();
     builder.Logging.AddConsole();
     builder.Logging.AddDebug();
@@ -43,16 +44,16 @@ try
         options.AddPolicy(corsPolicyName,
             policy =>
             {
-                policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+                policy.WithOrigins("http://localhost:53000").AllowCredentials().AllowAnyMethod().AllowAnyHeader()
                     .WithExposedHeaders("sentry-trace", "baggage");
             });
     });
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
     builder.Services.AddProblemDetails();
-    
+
     builder.Services.AddSingleton<RequestValidation>();
-    
+
     IConfigurationSection mongoDBConfiguration = builder.Configuration.GetSection("MongoDB");
     string mongoDBConnectionString = mongoDBConfiguration["ConnectionString"]!;
     builder.Services.AddSingleton<IMongoClient>(_ => new MongoClient(mongoDBConnectionString));
@@ -61,7 +62,22 @@ try
         var client = sp.GetRequiredService<IMongoClient>();
         return client.GetDatabase("my_work");
     });
-    
+
+    builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+    {
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.None;
+        options.ExpireTimeSpan = TimeSpan.FromDays(1);
+    });
+    builder.Services.AddAuthorization();
+
+    builder.Services.AddAuthorizationBuilder()
+        .AddPolicy("Policy_User", policy =>
+            policy
+                .RequireRole("User"));
+
+
     var app = builder.Build();
     var url = app.Configuration["Service:URL"];
     if (url == null)
@@ -82,13 +98,16 @@ try
         app.UseSwaggerUI();
     }
 
-    var validation = app.Services.GetRequiredService<RequestValidation>();
     app.UseCors(corsPolicyName);
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    var validation = app.Services.GetRequiredService<RequestValidation>();
     app.MapUsersURLs("/users", corsPolicyName);
     validation.AddUserValidation();
     app.MapWorkURLs("/work", corsPolicyName);
     validation.AddWorkValidation();
-    
+
     logger?.Info("Service is running");
     app.Run();
 }

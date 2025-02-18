@@ -1,38 +1,34 @@
 ## Value Proposition
-
-- Help people who are involved in lots of parallel work manage and coordinate the work
-- Keep all details of the work in once place
-- Use generative AI summarise the detail to provide useful overviews
+- Help people who are involved in lots of parallel work manage and coordinate the work.
+- Keep all details of the work in _one_ place.
+- Use generative AI summaries to help with data entry, provide summaries, and act as a useful assistant.
 ## Target segment
-
 - Knowledge workers
 - Workers involved in many initiatives
 - Workers who interact with many people
 
 ## Revenue model
-
 - The basic service will be free (TBD)
-- The storage of documents is an extra that will be charged for.
-- The use of AI to help entry is an extra that will be charged for.
-- The use of AI to generate useful summaries is an extra that will be charged for.
-- Integration with other platforms (Jira, Azure DevOps, Trello, etc) is an extra and will be charge for.
-
+- Document storage is an extra, for which there will be a charge.
+- AI assistance with data entry is an extra, for which there will be a charge.
+- AI-generated summaries are an extra, for which there will be a charge.
+- AI assistant features are an extra, for which there will be a charge.
+- Integration with other platforms (Jira, Azure DevOps, Trello, etc.) is an extra, for which there will be a charge.
 ## Cost structure
-- Development costs
-- Operation costs
-	- Hosing fees
+- Development costs.
+- Operation costs:
+	- Hosting fees
 	- Database storage
 	- BLOB storage
 	- Access to AI services
-- Advertising costs
-- Support costs
+- Advertising costs.
+- Support costs.
 ## Key resources and activities
-- Development of the MyWork website
-- Development of marketing and sales website
-- Development of customer support website and services. 
-
+- Development of the MyWork website.
+- Development of the marketing and sales website.
+- Development of the customer support website and services.
 ## Channels
-- Initially website
+- The initial channel will be the website.
 - Followed by the following:
 	- Desktop applications (MacOS and Windows)
 	- Mobile applications (Android and iOS)
@@ -45,4 +41,4 @@
 	- Email
 	- Instagram
 	- Facebook
-	- Ticket system for bugs, complains and suggestions
+	- Ticket system for bugs, complaints, and suggestions.
