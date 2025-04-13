@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
-
-import 'service_base.dart';
+part of service_client_base;
 
 class ValidationProblemResponse extends ServiceClientResponse {
   final String type;
@@ -8,7 +6,11 @@ class ValidationProblemResponse extends ServiceClientResponse {
   final int statusCode;
   final Map<String, List<String>> errors;
 
-  ValidationProblemResponse({required this.type, required this.title, required this.statusCode, required this.errors});
+  ValidationProblemResponse(
+      {required this.type,
+      required this.title,
+      required this.statusCode,
+      required this.errors});
 
   factory ValidationProblemResponse.fromJson(Map<String, dynamic> json) {
     var propertyErrors = <String, List<String>>{};
@@ -17,10 +19,9 @@ class ValidationProblemResponse extends ServiceClientResponse {
     }
 
     return ValidationProblemResponse(
-      type: json['type'],
-      title: json['title'],
-      statusCode: json['status'],
-      errors: propertyErrors
-    );
+        type: json['type'],
+        title: json['title'],
+        statusCode: json['status'],
+        errors: propertyErrors);
   }
 }

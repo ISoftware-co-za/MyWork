@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../execution/executor.dart';
-import '../notification/controller_notifications.dart';
-import '../notification/notifications.dart';
 import '../state/controller_work.dart';
 import '../state/property_changed_registry.dart';
 import '../state/provider_state_application.dart';

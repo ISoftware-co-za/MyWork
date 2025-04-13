@@ -5,8 +5,8 @@ POST {{client_service_HostAddress}}/users/login
 Content-Type: application/json
 
 {
-  "email": "libbie.kirlin@crooks.ca",
-  "password": "&<)*bP[,[@"
+  "email": "earnestine_wuckert@oga.us",
+  "password": "g[4h\"rK](U"
 }
 
 ###
@@ -48,9 +48,9 @@ Content-Type: application/json
 DELETE {{client_service_HostAddress}}/work/123
 
 ###
-POST {{client_service_HostAddress}}/users/67847de9e08f5665af000000/workTypes
+POST {{client_service_HostAddress}}/users/workTypes
 Content-Type: application/json
 
 {
-  "workType": "My new work type"
+  "workType": "New work 2025-02-25:01"
 }

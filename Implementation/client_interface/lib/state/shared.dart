@@ -1,0 +1,3 @@
+class ServiceSharedData {
+  String? userId;
+}

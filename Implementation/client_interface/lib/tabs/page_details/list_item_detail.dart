@@ -5,7 +5,8 @@ class ListItemDetail {
   final StateProperty property;
   final ListItemDetailEditor editorType;
 
-  ListItemDetail({required this.label, required this.property, required this.editorType});
+  ListItemDetail(
+      {required this.label, required this.property, required this.editorType});
 }
 
 enum ListItemDetailEditor {
