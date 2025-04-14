@@ -1,12 +1,12 @@
+import 'package:client_interfaces1/state/work_type.dart';
 import 'package:get_it/get_it.dart';
 
-import '../ui toolkit/form/theme_form.dart';
+import '../ui_toolkit/form/form.dart';
 import 'facade_user.dart';
 import 'properties.dart';
 import 'shared.dart';
-import 'work_type.dart';
 
-class ControllerWorkTypes extends AutocompleteFormFieldDataSource {
+class ControllerWorkTypes implements AutocompleteDataSource {
 //#region PROPERTIES
 
   final List<WorkType> workTypes = [];
@@ -20,6 +20,7 @@ class ControllerWorkTypes extends AutocompleteFormFieldDataSource {
     workTypes.addAll(newWorkTypes);
     _sortWorkTypes(workTypes);
   }
+
 
   void setStateProperty(StateProperty property) {
     _property = property as StateProperty<WorkType>;
@@ -48,7 +49,7 @@ class ControllerWorkTypes extends AutocompleteFormFieldDataSource {
   }
 
   @override
-  Future onTextEntered(String text) async {
+  void onTextEntered(String text)  {
     assert(_property != null,
         'Call ControllerWorkTypes.setStateProperty(property) before using ControllerWorkTypes.onTextEntered(text).');
     assert(_serviceSharedData.userId != null,
@@ -65,7 +66,6 @@ class ControllerWorkTypes extends AutocompleteFormFieldDataSource {
       _property?.value = existingWorkType;
       return;
     }
-    await _facade.addWorkType(_serviceSharedData.userId!, workType.name);
     _property?.value = workType;
     workTypes.add(workType);
     _sortWorkTypes(workTypes);

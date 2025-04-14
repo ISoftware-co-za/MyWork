@@ -4,8 +4,8 @@ import '../../execution/executor.dart';
 import '../../state/controller_work.dart';
 import '../../state/provider_state_application.dart';
 import '../../state/state_work.dart';
-import '../../ui toolkit/hover.dart';
-import '../../ui toolkit/form/theme_form.dart';
+import '../../ui_toolkit/form/form.dart';
+import '../../ui_toolkit/hover.dart';
 import 'list_item_detail.dart';
 
 class LayoutDetailsForm extends StatefulWidget {
@@ -68,10 +68,10 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
         if (field.editorType == ListItemDetailEditor.text) {
           _addFormField(field, children);
         } else if (field.editorType == ListItemDetailEditor.parchment) {
-          // _addFleatherFormField(field, children);
+          _addFleatherFormField(field, children);
         } else if (field.editorType == ListItemDetailEditor.autocomplete) {
           provider.workTypesController.setStateProperty(field.property);
-          // _addAutocompleteFormField(field, provider, children);
+            _addAutocompleteFormField(field, provider, children);
         }
         children.add(const SizedBox(height: _columnSpacing));
       }

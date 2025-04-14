@@ -1,19 +1,6 @@
-library form;
+part of form;
 
-import 'dart:convert';
-
-import 'package:fleather/fleather.dart';
-import 'package:flutter/material.dart';
-
-import '../../execution/executor.dart';
-import '../../state/properties.dart';
-
-part 'control_form_field.dart';
-part 'control_fleather_form_field.dart';
-part 'control_automcomplete_form_fields.dart';
-part 'auto_complete_form_field_data_source.dart';
-
-class ThemeForm extends ThemeExtension<ThemeForm> {
+class FormTheme extends ThemeExtension<FormTheme> {
   final TextStyle labelStyle;
   final TextStyle valueStyle;
   final TextStyle valueStyleError;
@@ -22,7 +9,7 @@ class ThemeForm extends ThemeExtension<ThemeForm> {
   final InputDecoration textFieldDecorationError;
   final double fleatherEditorHeight;
 
-  const ThemeForm({
+  const FormTheme({
     required this.labelStyle,
     required this.valueStyle,
     required this.valueStyleError,
@@ -33,8 +20,8 @@ class ThemeForm extends ThemeExtension<ThemeForm> {
   });
 
   @override
-  ThemeExtension<ThemeForm> copyWith() {
-    return ThemeForm(
+  ThemeExtension<FormTheme> copyWith() {
+    return FormTheme(
       labelStyle: labelStyle,
       valueStyle: valueStyle,
       valueStyleError: valueStyleError,
@@ -46,13 +33,13 @@ class ThemeForm extends ThemeExtension<ThemeForm> {
   }
 
   @override
-  ThemeExtension<ThemeForm> lerp(covariant ThemeForm? other, double t) {
+  ThemeExtension<FormTheme> lerp(covariant FormTheme? other, double t) {
     if (other == null) return this;
-    return ThemeForm(
+    return FormTheme(
       labelStyle: TextStyle.lerp(labelStyle, other.labelStyle, t)!,
       valueStyle: TextStyle.lerp(valueStyle, other.valueStyle, t)!,
       valueStyleError:
-          TextStyle.lerp(valueStyleError, other.valueStyleError, t)!,
+      TextStyle.lerp(valueStyleError, other.valueStyleError, t)!,
       textFieldDecoration: other.textFieldDecoration,
       textFieldDecorationChanged: other.textFieldDecorationChanged,
       textFieldDecorationError: other.textFieldDecorationError,

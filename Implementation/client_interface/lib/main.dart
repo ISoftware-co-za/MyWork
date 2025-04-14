@@ -14,8 +14,7 @@ import 'state/controller_work_types.dart';
 import 'state/facade_base.dart';
 import 'state/orchestrators.dart';
 import 'state/shared.dart';
-import 'ui toolkit/Form/theme_form.dart';
-import 'ui toolkit/custom_icon_buttons.dart';
+import 'ui_toolkit/custom_icon_buttons.dart';
 import 'header/control_button_select_work.dart';
 import 'state/provider_state_application.dart';
 import 'state/controller_work.dart';
@@ -25,7 +24,8 @@ import 'state/state_action.dart';
 import 'tabs/layout_tab_bar.dart';
 import 'tabs/page_details/page_details.dart';
 import 'tabs/page_tasks/page_tasks.dart';
-import 'ui toolkit/hover.dart';
+import 'ui_toolkit/form/form.dart';
+import 'ui_toolkit/hover.dart';
 
 void main() async {
   // TODO: Remove this line before production
@@ -53,7 +53,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = _CustomisedTheme.getTheme();
-    var formTheme = theme.extension<ThemeForm>()!;
     return MaterialApp(
       title: 'Flutter Demo',
       theme: theme,
@@ -115,7 +114,7 @@ class _MainPageState extends State<MainPage>
 
     GetIt.instance.registerSingleton<OrchestratorLogin>(
         OrchestratorLogin(_userController, _workTypesController));
-  }
+}
 
   @override
   void dispose() {
@@ -272,7 +271,7 @@ class _CustomisedTheme {
                   decoration: TextDecoration.none,
                   color: Colors.black),
               backgroundColor: Colors.white),
-          const ThemeForm(
+          const FormTheme(
             labelStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
             valueStyle: TextStyle(fontSize: 16.0),
             valueStyleError: TextStyle(
