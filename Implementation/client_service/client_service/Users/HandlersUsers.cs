@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using client_service.Execution;
+using client_service.Utilities;
 using client_service.Validation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -19,7 +20,7 @@ public static class HandlersUsers
         RouteGroupBuilder groupBuilder = app.MapGroup(urlPrefix);
         groupBuilder.MapPost("/login", PostLogin).RequireCors(corsPolicyName);
         groupBuilder.MapPost("/logout", PostLogout).RequireAuthorization("Policy_User").RequireCors(corsPolicyName);
-        groupBuilder.MapPost("/{userID}/workTypes", PostWorkType).RequireAuthorization("Policy_User").RequireCors(corsPolicyName);
+        groupBuilder.MapPost("/workTypes", PostWorkType).RequireAuthorization("Policy_User").RequireCors(corsPolicyName);
     }
     
     public static void AddUserValidation(this Validation.RequestValidation requestValidation)
@@ -53,7 +54,7 @@ public static class HandlersUsers
     
     #region HTTP HANDLERS
     
-    private static async Task<IResult> PostLogin([FromBody] LoginRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpContext httpContext)
+    private static async Task<IResult> PostLogin([FromBody] LoginRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpRequest httpRequest)
     {
         var validationResults = requestValidation.Validate(request);
         if (validationResults.Length == 0)
@@ -67,7 +68,7 @@ public static class HandlersUsers
                 var user = await database.GetCollection<DocumentUser>(CollectionName).Find(filter).FirstOrDefaultAsync();
                 if (user != null)
                 {
-                    await SignInUser(httpContext, user);
+                    await SignInUser(httpRequest.HttpContext, user);
                     var response = new LoginResponse(user.Id.ToString(), user.WorkTypes);
                     return Results.Ok(response);
                 }
@@ -77,20 +78,20 @@ public static class HandlersUsers
         return RequestValidation.GenerateValidationFailedResponse(validationResults);
     }
     
-    private static async Task<IResult> PostLogout([FromServices] ILogger<Program> logger, HttpContext httpContext)
+    private static async Task<IResult> PostLogout([FromServices] ILogger<Program> logger, HttpRequest httpRequest)
     {
-        await httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        await httpRequest.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return Results.Ok();
     }
 
-    private static async Task<IResult> PostWorkType(string userId, AddWorkTypeRequest request, [FromServices]  RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpContext httpContext)
+    private static async Task<IResult> PostWorkType(AddWorkTypeRequest request, [FromServices]  RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpRequest httpRequest)
     {
         var validationResults = requestValidation.Validate(request);
         if (validationResults.Length == 0)
         {
             return await Executor.RunProcessAsync($"{CollectionName}.UpdateOneAsync(filter, update)", Executor.CategoryMongoDB, "Unable to add a work type.", async () =>
             {
-                var filter = Builders<DocumentUser>.Filter.Eq("_id", ObjectId.Parse(userId));
+                var filter = Builders<DocumentUser>.Filter.Eq("_id", ObjectId.Parse(httpRequest.HttpContext.User.Claims.First(claim => claim.Type == ClaimTypes.Sid).Value));
                 var update = Builders<DocumentUser>.Update.AddToSet(u => u.WorkTypes, request.WorkType);
                 var result = await database.GetCollection<DocumentUser>(CollectionName).UpdateOneAsync(filter, update);
                 return result.ModifiedCount == 1 ? Results.NoContent() : Results.NotFound();

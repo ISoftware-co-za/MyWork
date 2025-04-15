@@ -1,3 +1,4 @@
+import 'package:client_interfaces1/dialog_work/controller_dialog_work.dart';
 import 'package:client_interfaces1/state/controller_work_types.dart';
 import 'package:flutter/widgets.dart';
 
@@ -9,6 +10,9 @@ class ProviderStateApplication extends InheritedWidget {
   final ControllerUser userController;
   final ControllerWork workController;
   final ControllerWorkTypes workTypesController;
+
+  final ControllerDialogWork workDialogController;
+
   final ControllerNotifications notificationController;
 
   const ProviderStateApplication({
@@ -16,6 +20,7 @@ class ProviderStateApplication extends InheritedWidget {
     required this.workController,
     required this.workTypesController,
     required this.notificationController,
+    required this.workDialogController,
     required super.child,
     super.key,
   });
@@ -27,6 +32,7 @@ class ProviderStateApplication extends InheritedWidget {
 
   @override
   bool updateShouldNotify(ProviderStateApplication oldWidget) {
-    return oldWidget.workController.selectedWork != workController.selectedWork;
+    return oldWidget.workController.selectedWork.value !=
+        workController.selectedWork.value;
   }
 }

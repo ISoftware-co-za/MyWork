@@ -15,9 +15,13 @@ class _LayoutNotificationsState extends State<LayoutNotifications> {
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-        listenable: ProviderStateApplication.of(context)!.notificationController,
+        listenable:
+            ProviderStateApplication.of(context)!.notificationController,
         builder: (BuildContext context, Widget? child) {
-          List<Widget> notifications = _listNotifications(ProviderStateApplication.of(context)!.notificationController.notifications);
+          List<Widget> notifications = _listNotifications(
+              ProviderStateApplication.of(context)!
+                  .notificationController
+                  .notifications);
           return Column(
             children: notifications,
           );
@@ -26,9 +30,7 @@ class _LayoutNotificationsState extends State<LayoutNotifications> {
 
   List<Widget> _listNotifications(List<Notification> notifications) {
     var list = <Widget>[];
-
-    debugPrint('Displaying notifications: ${notifications.length}');
-    for(int index = 0; index < notifications.length; index++) {
+    for (int index = 0; index < notifications.length; index++) {
       Notification notification = notifications[index];
       if (notification is NotificationError) {
         list.add(ControlNotificationError(notification: notification));

@@ -1,8 +1,7 @@
 import 'dart:core';
 
-import '../service/user_request_response.dart';
-import '../service/user_service_client.dart';
-import 'state_work_type.dart';
+import '../service/user/service_client_user.dart';
+import 'work_type.dart';
 
 class FacadeUser {
   //#region CONSTRUCTION
@@ -14,17 +13,21 @@ class FacadeUser {
   //#region METHODS
 
   Future<ResultLogin> login(String email, String password) async {
-    var response = await _serviceClient.login(LoginRequest(email: email, password: password)) as LoginResponse;
-    return ResultLogin(userId: response.userId, workTypes:  response.workTypes.map((e) => StateWorkType(e)).toList());
+    var response = await _serviceClient
+        .login(RequestLogin(email: email, password: password));
+    return ResultLogin(
+        userId: response.userId,
+        workTypes: response.workTypes.map((e) => WorkType(e)).toList());
   }
 
   Future<bool> logout() async {
-    await _serviceClient.logout() as LoginResponse;
+    await _serviceClient.logout() as ResponseLogin;
     return true;
   }
 
   Future<bool> addWorkType(String userId, String workType) async {
-    await _serviceClient.addWorkType(userId, AddWorkTypeRequest(workType: workType));
+    await _serviceClient.addWorkType(
+        userId, RequestAddWorkType(workType: workType));
     return true;
   }
 
@@ -32,7 +35,7 @@ class FacadeUser {
 
 //# region FIELDS
 
-  final UserServiceClient _serviceClient;
+  final ServiceClientUser _serviceClient;
 
 //#endregion
 }
@@ -41,7 +44,7 @@ class FacadeUser {
 
 class ResultLogin {
   final String userId;
-  final List<StateWorkType> workTypes;
+  final List<WorkType> workTypes;
 
   ResultLogin({required this.userId, required this.workTypes});
 }

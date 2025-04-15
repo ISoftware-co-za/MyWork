@@ -8,11 +8,12 @@ import '../../state/state_work.dart';
 //----------------------------------------------------------------------------------------------------------------------
 
 class PageDetails extends StatelessWidget {
-  const PageDetails({super.key});
+  PageDetails({super.key}) {}
 
   @override
   Widget build(BuildContext context) {
-    ControllerWork controller = ProviderStateApplication.of(context)!.workController;
+    ControllerWork controller =
+        ProviderStateApplication.of(context)!.workController;
     return ValueListenableBuilder(
         valueListenable: controller.selectedWork,
         builder: (BuildContext context, StateWork? work, Widget? child) {
@@ -30,11 +31,7 @@ class PageDetails extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(16),
         constraints: const BoxConstraints(minWidth: 400, maxWidth: 700),
-        child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            return LayoutDetailsForm(controller: controller);
-          },
-        ),
+        child: LayoutDetailsForm(controller: controller),
       ),
     );
   }

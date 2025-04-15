@@ -1,26 +1,29 @@
-import 'package:client_interfaces1/state/properties.dart';
-import 'package:client_interfaces1/state/state_work_type.dart';
+import 'package:client_interfaces1/state/work_type.dart';
 import 'package:get_it/get_it.dart';
 
-import '../ui toolkit/control_form_fields.dart';
-import 'controller_user.dart';
+import '../ui_toolkit/form/form.dart';
 import 'facade_user.dart';
+import 'properties.dart';
+import 'shared.dart';
 
 class ControllerWorkTypes implements AutocompleteDataSource {
-  //#region METHODS
+//#region PROPERTIES
 
-  void attachControllerUser(ControllerUser controllerUser) {
-    _controllerUser = controllerUser;
+  final List<WorkType> workTypes = [];
+
+//#endregion
+
+//#region METHODS
+
+  void setWorkTypes(Iterable<WorkType> newWorkTypes) {
+    workTypes.clear();
+    workTypes.addAll(newWorkTypes);
+    _sortWorkTypes(workTypes);
   }
 
-  void setWorkTypes(List<StateWorkType> workTypes) {
-    _workTypes.clear();
-    _workTypes.addAll(workTypes);
-    _sortWorkTypes(_workTypes);
-  }
 
   void setStateProperty(StateProperty property) {
-    _property = property as StateProperty<StateWorkType>;
+    _property = property as StateProperty<WorkType>;
   }
 
   @override
@@ -29,56 +32,57 @@ class ControllerWorkTypes implements AutocompleteDataSource {
   }
 
   @override
-  Iterable<Object> listItems(String filter) {
+  Iterable<Object> listItems([String filter = '']) {
     final lowerCaseFilter = filter.toLowerCase();
-    return _workTypes.where((element) => element.matchesFilter(lowerCaseFilter)).toList();
+    return workTypes
+        .where((element) => element.matchesFilter(lowerCaseFilter))
+        .toList();
   }
 
   @override
   void onItemSelected(Object item) {
-    assert(_property != null, 'Call ControllerWorkTypes.setStateProperty(property) before using ControllerWorkTypes.onTextEntered(text).');
+    assert(_property != null,
+        'Call ControllerWorkTypes.setStateProperty(property) before using ControllerWorkTypes.onTextEntered(text).');
 
-    var selectedWorkType = item as StateWorkType;
+    var selectedWorkType = item as WorkType;
     _property?.value = selectedWorkType;
   }
 
   @override
-  Future<void> onTextEntered(String text) async {
-    assert(_property != null, 'Call ControllerWorkTypes.setStateProperty(property) before using ControllerWorkTypes.onTextEntered(text).');
-    assert(_controllerUser != null,
-        'Call ControllerWorkTypes.attachControllerUser(userController) before using ControllerWorkTypes.onTextEntered(text).');
-    assert(
-        _controllerUser!.userId != null, 'It is not possible to add a work type for a user if no user is logged in.');
+  void onTextEntered(String text)  {
+    assert(_property != null,
+        'Call ControllerWorkTypes.setStateProperty(property) before using ControllerWorkTypes.onTextEntered(text).');
+    assert(_serviceSharedData.userId != null,
+        'It is not possible to add a work type for a user if no user is logged in.');
 
     String cleanText = text.trim();
     if (cleanText.isEmpty) {
       _property?.value = null;
       return;
     }
-    var workType = StateWorkType(cleanText);
-    var existingWorkType = _findWorkType(workType.lowerCaseName);
+    var workType = WorkType(cleanText);
+    var existingWorkType = _findWorkType(workType.lowercaseName);
     if (existingWorkType != null) {
       _property?.value = existingWorkType;
       return;
     }
-    await _facade.addWorkType(_controllerUser!.userId!, workType.name);
     _property?.value = workType;
-    _workTypes.add(workType);
-    _sortWorkTypes(_workTypes);
+    workTypes.add(workType);
+    _sortWorkTypes(workTypes);
   }
 
-  //#endregion
+//#endregion
 
-  //#region WORK TYPES
+//#region PRIVATE METHODS
 
-  void _sortWorkTypes(List<StateWorkType> workTypes) {
+  void _sortWorkTypes(List<WorkType> workTypes) {
     workTypes.sort((a, b) => a.compareTo(b));
   }
 
-  StateWorkType? _findWorkType(String workTypeName) {
-    StateWorkType? locatedWorkType;
-    for (var workType in _workTypes) {
-      if (workType.lowerCaseName == workTypeName) {
+  WorkType? _findWorkType(String workTypeName) {
+    WorkType? locatedWorkType;
+    for (var workType in workTypes) {
+      if (workType.lowercaseName == workTypeName) {
         locatedWorkType = workType;
         break;
       }
@@ -86,15 +90,15 @@ class ControllerWorkTypes implements AutocompleteDataSource {
     return locatedWorkType;
   }
 
-  //#endregion
+//#endregion
 
-  //#region FIELDS
+//#region FIELDS
 
-  late final ControllerUser? _controllerUser;
-  final List<StateWorkType> _workTypes = [];
-  final List<StateWorkType> _emptyList = [];
-  StateProperty<StateWorkType>? _property;
+  final List<WorkType> _emptyList = [];
+  StateProperty<WorkType>? _property;
   final FacadeUser _facade = GetIt.instance<FacadeUser>();
+  final ServiceSharedData _serviceSharedData =
+      GetIt.instance<ServiceSharedData>();
 
-  //#endregion
+//#endregion
 }

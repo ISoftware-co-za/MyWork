@@ -2,38 +2,56 @@ import 'package:client_interfaces1/state/property_changed_registry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 
+import 'handler_on_work_selected.dart';
+import 'data_source_work.dart';
 import 'facade_work.dart';
 import 'state_work.dart';
 
 enum ControllerWorkState { noWork, newWork, existingWork }
 
-class ControllerWork {
+class ControllerWork implements HandlerOnWorkSelected {
   //#region PROPERTIES
-
-  ValueNotifier<StateWork?> selectedWork = ValueNotifier<StateWork?>(null);
-  ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
+  final DataSourceWork workDataSource = DataSourceWork();
+  final ValueNotifier<StateWork?> selectedWork =
+      ValueNotifier<StateWork?>(null);
   bool get hasWork => selectedWork.value != null;
+  ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
   bool get hasExistingWork => _workState == ControllerWorkState.existingWork;
+
+  //#endregion
+
+  //#region CONSTRUCTION
+
+  Future initialise() async {
+    var workItems = await _facade.listAll();
+    workDataSource.workItems = workItems;
+  }
 
   //#endregion
 
   //#region EVENT HANDLERS
 
-  Future<void> onNewWork() async {
+  Future onNewWork() async {
     if (await _saveExistingWork()) {
-      selectedWork.value = StateWork();
+      selectedWork.value = new StateWork();
       _workState = ControllerWorkState.newWork;
     }
   }
 
-  Future<void> onWorkSelected(StateWork work) async {
+  Future onWorkSelected(WorkSummary selectedWorkSummary) async {
     if (await _saveExistingWork()) {
+      var work = StateWork(
+          id: selectedWorkSummary.id,
+          name: selectedWorkSummary.name,
+          reference: selectedWorkSummary.reference,
+          type: selectedWorkSummary.type,
+          archived: selectedWorkSummary.archived);
       selectedWork.value = work;
       _workState = ControllerWorkState.existingWork;
     }
   }
 
-  Future<void> onWorkDelete() async {
+  Future onWorkDelete() async {
     assert(selectedWork.value != null);
     await _facade.delete(item: selectedWork.value!);
     selectedWork.value = null;

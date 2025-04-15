@@ -1,12 +1,11 @@
-import 'package:client_interfaces1/service/validation_problem_response.dart';
-import 'package:client_interfaces1/service/work_request_response.dart';
-
-import '../service/service_base.dart';
+import '../service/service_client_base.dart';
+import '../service/work/service_client_work.dart';
 import 'state_work.dart';
 
 class ResponseProcessFactory {
-  static ResponseProcess? createWorkProcessResponse(ServiceClientResponse? responseBody, StateWork work) {
-    if (responseBody is WorkCreateResponse) {
+  static ResponseProcess? createWorkProcessResponse(
+      ServiceClientResponse? responseBody, StateWork work) {
+    if (responseBody is ResponseWorkCreate) {
       return ResponseProcessWorkCreated(responseBody, work);
     } else if (responseBody is ValidationProblemResponse) {
       return ResponseProcessWorkValidationProblem(responseBody, work);
@@ -21,19 +20,24 @@ abstract class ResponseProcess {
 }
 
 class ResponseProcessWorkCreated extends ResponseProcess {
-  ResponseProcessWorkCreated(WorkCreateResponse response, StateWork work) : _response = response, _work = work;
+  ResponseProcessWorkCreated(ResponseWorkCreate response, StateWork work)
+      : _response = response,
+        _work = work;
 
   @override
   void process() {
     _work.id = _response.id;
   }
 
-  final WorkCreateResponse _response;
+  final ResponseWorkCreate _response;
   final StateWork _work;
 }
 
 class ResponseProcessWorkValidationProblem extends ResponseProcess {
-  ResponseProcessWorkValidationProblem(ValidationProblemResponse response, StateWork work) : _response = response, _work = work;
+  ResponseProcessWorkValidationProblem(
+      ValidationProblemResponse response, StateWork work)
+      : _response = response,
+        _work = work;
 
   @override
   void process() {
@@ -43,4 +47,3 @@ class ResponseProcessWorkValidationProblem extends ResponseProcess {
   final ValidationProblemResponse _response;
   final StateWork _work;
 }
-

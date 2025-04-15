@@ -8,7 +8,6 @@ class PropertyOwner extends ChangeNotifier {}
 //----------------------------------------------------------------------------------------------------------------------
 
 class PropertyChangeNotifier extends ChangeNotifier {
-
   String? notifyingProperty;
 
   void notifyPropertyChange(String propertyName) {
@@ -20,7 +19,6 @@ class PropertyChangeNotifier extends ChangeNotifier {
 //----------------------------------------------------------------------------------------------------------------------
 
 class StateProperty<T> extends PropertyChangeNotifier {
-
   //#region PROPERTIES
 
   T? get value => _value;
@@ -30,8 +28,6 @@ class StateProperty<T> extends PropertyChangeNotifier {
       _updatePropertyChanged();
       _setInvalidMessage(_validation.validate(input: _value.toString() ?? ''));
       notifyPropertyChange("value");
-
-      debugPrint('value = $value');
     }
   }
 
@@ -53,13 +49,14 @@ class StateProperty<T> extends PropertyChangeNotifier {
 
   bool get isValid => _invalidMessage == null;
 
-  String get valueAsString => (_value != null ) ? _value.toString() : '';
+  String get valueAsString => (_value != null) ? _value.toString() : '';
 
   //#endregion
 
   //#region CONSTRUCTION
 
-  StateProperty({T? value, List<Validator>? validators}) : _validation = ValidatorCollection(validators) {
+  StateProperty({T? value, List<Validator>? validators})
+      : _validation = ValidatorCollection(validators) {
     _value = value;
   }
 
@@ -232,7 +229,8 @@ class ValidatorMaximumCharacters<T> extends Validator<T> {
 
   //#region CONSTRUCTION
 
-  ValidatorMaximumCharacters({required this.maximumCharacters,  required super.invalidMessageTemplate});
+  ValidatorMaximumCharacters(
+      {required this.maximumCharacters, required super.invalidMessageTemplate});
 
   //#endregion
 
