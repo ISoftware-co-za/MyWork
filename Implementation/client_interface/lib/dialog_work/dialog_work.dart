@@ -44,7 +44,7 @@ class LayoutWorkDialog extends StatelessWidget {
 //----------------------------------------------------------------------------------------------------------------------
 
 class _LayoutDialogHeader extends StatelessWidget {
-  const _LayoutDialogHeader({required WorkDialogTheme theme, super.key})
+  const _LayoutDialogHeader({required WorkDialogTheme theme})
       : _theme = theme;
 
   @override
@@ -75,14 +75,9 @@ class _LayoutTableHeader extends StatelessWidget {
   _LayoutTableHeader(
       {required ControllerDialogWork controller,
       required Iterable<WorkType> workTypes,
-      required WorkDialogTheme theme,
-      super.key})
+      required WorkDialogTheme theme})
       : _controller = controller,
         _theme = theme {
-    _workTypes = workTypes
-        .map((item) =>
-            TableColumnListItem(item.name, ValueNotifier<bool>(false)))
-        .toList();
   }
 
   @override
@@ -129,7 +124,6 @@ class _LayoutTableHeader extends StatelessWidget {
   }
 
   final ControllerDialogWork _controller;
-  late final Iterable<TableColumnListItem> _workTypes;
   final WorkDialogTheme _theme;
 }
 
@@ -138,8 +132,7 @@ class _LayoutTableHeader extends StatelessWidget {
 class _LayoutTableBody extends StatelessWidget {
   const _LayoutTableBody(
       {required ControllerDialogWork controller,
-      required WorkDialogTheme theme,
-      super.key})
+      required WorkDialogTheme theme})
       : _controller = controller,
         _theme = theme;
 
@@ -176,8 +169,7 @@ class _LayoutTabelRow extends StatefulWidget {
       {required TableColumnCollection columns,
       required WorkSummary workSummary,
       required AsyncValueSetter<WorkSummary> onWorkSummarySelectedHandler,
-      required WorkDialogTheme theme,
-      super.key})
+      required WorkDialogTheme theme})
       : _columns = columns,
         _workSummary = workSummary,
         _onWorkSummarySelectedHandler = onWorkSummarySelectedHandler,
@@ -261,7 +253,7 @@ class _LayoutTabelRowState extends State<_LayoutTabelRow> {
 //----------------------------------------------------------------------------------------------------------------------
 
 class _ControlColumnText extends StatefulWidget {
-  const _ControlColumnText({required TableColumnText column, super.key})
+  const _ControlColumnText({required TableColumnText column})
       : _column = column;
 
   @override
@@ -311,7 +303,7 @@ class _ControlColumnBoolean extends StatefulWidget {
   //#endregion
 
   //#region CONSTRUCTION
-  const _ControlColumnBoolean({required this.column, super.key});
+  const _ControlColumnBoolean({required this.column});
 
   @override
   State<_ControlColumnBoolean> createState() => _ControlColumnBooleanState();
@@ -344,7 +336,7 @@ class _ControlColumnBooleanState extends State<_ControlColumnBoolean> {
 //----------------------------------------------------------------------------------------------------------------------
 
 class _ControlColumnList extends StatefulWidget {
-  const _ControlColumnList({required TableColumnList column, super.key})
+  const _ControlColumnList({required TableColumnList column})
       : _column = column;
 
   @override
@@ -456,8 +448,7 @@ class TypesFilterHeader extends StatelessWidget {
 class _ControlColumnListItem extends StatefulWidget {
   const _ControlColumnListItem(
       {required TableColumnList column,
-      required TableColumnListItem listItem,
-      super.key})
+      required TableColumnListItem listItem})
       : _column = column,
         _listItem = listItem;
 

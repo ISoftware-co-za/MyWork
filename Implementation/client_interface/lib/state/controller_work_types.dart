@@ -2,7 +2,6 @@ import 'package:client_interfaces1/state/work_type.dart';
 import 'package:get_it/get_it.dart';
 
 import '../ui_toolkit/form/form.dart';
-import 'facade_user.dart';
 import 'properties.dart';
 import 'shared.dart';
 
@@ -96,7 +95,6 @@ class ControllerWorkTypes implements AutocompleteDataSource {
 
   final List<WorkType> _emptyList = [];
   StateProperty<WorkType>? _property;
-  final FacadeUser _facade = GetIt.instance<FacadeUser>();
   final ServiceSharedData _serviceSharedData =
       GetIt.instance<ServiceSharedData>();
 

@@ -1,6 +1,4 @@
-import 'properties.dart';
-
-class StateActivityBase extends PropertyOwner {
+class StateActivityBase {
   final DateTime timestamp;
 
   StateActivityBase({required this.timestamp});
