@@ -18,9 +18,6 @@ import 'ui_toolkit/custom_icon_buttons.dart';
 import 'header/control_button_select_work.dart';
 import 'state/provider_state_application.dart';
 import 'state/controller_work.dart';
-import 'state/properties.dart';
-import 'state/state_note.dart';
-import 'state/state_action.dart';
 import 'tabs/layout_tab_bar.dart';
 import 'tabs/page_details/page_details.dart';
 import 'tabs/page_tasks/page_tasks.dart';
@@ -58,6 +55,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       home: MainPage(
         title: 'Flutter Demo Home Page',
+        /*
         activities: [
           StateNote(initialText: '', timestamp: DateTime.now()),
           StateAction(
@@ -81,6 +79,7 @@ class MyApp extends StatelessWidget {
               initialText: 'This is the second note for this task.',
               timestamp: DateTime.now()),
         ],
+         */
       ),
     );
   }
@@ -88,8 +87,7 @@ class MyApp extends StatelessWidget {
 
 class MainPage extends StatefulWidget {
   final String title;
-  final List<PropertyOwner> activities;
-  const MainPage({required this.title, required this.activities, super.key});
+  const MainPage({required this.title, super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();

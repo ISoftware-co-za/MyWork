@@ -37,7 +37,7 @@ class StateAction extends StateActivityBase {
   }
 }
 
-class StateWorkEntry extends PropertyOwner {
+class StateWorkEntry {
   late final DateTime start;
   late final StateProperty durationInMinutes;
   late final StateProperty currentEstimateInMinutes;
@@ -50,7 +50,7 @@ class StateWorkEntry extends PropertyOwner {
   }
 }
 
-class StateWorkClose extends PropertyOwner {
+class StateWorkClose {
   late final StateProperty notes;
 
   StateWorkClose({String? notes}) {

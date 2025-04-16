@@ -47,7 +47,7 @@ class WorkSummary {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class StateWork extends PropertyOwner {
+class StateWork {
   String? id;
   late final StateProperty<String> name;
   late final StateProperty<String> reference;

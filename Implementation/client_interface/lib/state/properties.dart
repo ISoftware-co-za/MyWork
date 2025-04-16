@@ -3,22 +3,9 @@ import 'package:flutter/foundation.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class PropertyOwner extends ChangeNotifier {}
-
 //----------------------------------------------------------------------------------------------------------------------
 
-class PropertyChangeNotifier extends ChangeNotifier {
-  String? notifyingProperty;
-
-  void notifyPropertyChange(String propertyName) {
-    notifyingProperty = propertyName;
-    notifyListeners();
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-class StateProperty<T> extends PropertyChangeNotifier {
+class StateProperty<T> extends ChangeNotifier {
   //#region PROPERTIES
 
   T? get value => _value;
@@ -26,8 +13,7 @@ class StateProperty<T> extends PropertyChangeNotifier {
     if (_value != value) {
       _value = value;
       _updatePropertyChanged();
-      _setInvalidMessage(_validation.validate(input: _value.toString() ?? ''));
-      notifyPropertyChange("value");
+      _setInvalidMessage(_validation.validate(input: _value.toString()));
     }
   }
 
@@ -35,20 +21,35 @@ class StateProperty<T> extends PropertyChangeNotifier {
 
   String? get invalidMessage => _invalidMessage;
   void _setInvalidMessage(String? value) {
-    if (_invalidMessage != value) {
+     if (_invalidMessage != value) {
       _invalidMessage = value;
-      notifyPropertyChange("invalidMessage");
+      isValid = _invalidMessage == null || _invalidMessage!.isEmpty;
     }
   }
 
   String? _invalidMessage;
 
-  bool get isChanged => _propertyChanged.isChanged;
+  bool get isValid => _isValid;
+  set isValid(bool value) {
+    if (_isValid != value) {
+      _isValid = value;
+      notifyListeners();
+    }
+  }
+
+  bool _isValid = true;
+
+  bool get isChanged => _isChanged;
+  set isChanged(bool value) {
+    if (_isChanged != value) {
+      _isChanged = value;
+      notifyListeners();
+    }
+  }
+
+  bool _isChanged = false;
 
   bool get hasValue => _value != null;
-
-  bool get isValid => _invalidMessage == null;
-
   String get valueAsString => (_value != null) ? _value.toString() : '';
 
   //#endregion
@@ -70,6 +71,7 @@ class StateProperty<T> extends PropertyChangeNotifier {
 
   bool validate() {
     _setInvalidMessage(_validation.validate(input: _value, forceErrors: true));
+    isValid = (_invalidMessage == null);
     return isValid;
   }
 
@@ -94,7 +96,9 @@ class StateProperty<T> extends PropertyChangeNotifier {
 
   void _updatePropertyChanged() {
     if (_propertyChanged.setChanged(this, _currentValue != _value)) {
-      notifyPropertyChange("isChanged");
+      isChanged = true;
+    } else {
+      isChanged = false;
     }
   }
 

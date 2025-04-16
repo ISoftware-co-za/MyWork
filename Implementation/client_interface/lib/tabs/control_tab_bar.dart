@@ -12,7 +12,7 @@ class ControlTabBar extends StatelessWidget {
         indicator: const BoxDecoration(),
         labelColor: Theme.of(context).colorScheme.primary,
         unselectedLabelColor:
-            Theme.of(context).colorScheme.primary.withOpacity(0.33),
+            Theme.of(context).colorScheme.primary.withValues(alpha: 0.33),
         tabs: const [
           Tab(icon: Icon(Icons.note)),
           Tab(icon: Icon(Icons.work)),
