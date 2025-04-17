@@ -1,3 +1,4 @@
+import 'package:client_interfaces1/state/controller_work.dart';
 import 'package:client_interfaces1/state/provider_state_application.dart';
 import 'package:client_interfaces1/state/work_type.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,15 @@ class ControlWorkSelector extends StatefulWidget {
 class _ControlWorkSelectorState extends State<ControlWorkSelector> {
   @override
   Widget build(BuildContext context) {
+    ControllerWork workController =
+        ProviderStateApplication.of(context)!.workController;
     return Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const ControlButtonAddWork(),
-          GestureDetector(
+          Flexible(
+              child: GestureDetector(
             onTap: () => _showWorkDialog(context),
             child: MouseRegion(
                 onEnter: (event) => setState(() {
@@ -31,9 +35,16 @@ class _ControlWorkSelectorState extends State<ControlWorkSelector> {
                 onExit: (event) => setState(() {
                       _isMouseOver = false;
                     }),
-                child: ControlButtonSelectWork(
-                    label: widget.label, isMouseOver: _isMouseOver)),
-          )
+                child: ValueListenableBuilder(
+                    valueListenable: workController.selectedWork,
+                    builder: (context, work, child) {
+                      String label = workController.hasWork
+                          ? work!.name.value!
+                          : 'Select work';
+                      return ControlButtonSelectWork(
+                          label: label, isMouseOver: _isMouseOver);
+                    })),
+          ))
         ]);
   }
 
