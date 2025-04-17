@@ -19,8 +19,7 @@ class LayoutHeader extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ControlWorkSelector(label: 'Add work', ),
-          Spacer(flex: 1,),
+          Expanded(flex: 1, child: ControlWorkSelector(label: 'Select work', )),
           Expanded(flex: 1, child: ControlSearch()),
           Spacer(flex: 1,),
           ControlNotifications(),
