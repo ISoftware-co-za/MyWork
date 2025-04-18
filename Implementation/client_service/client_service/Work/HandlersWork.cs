@@ -135,7 +135,7 @@ public static class HandlersWork
                                 request.UpdatedProperties[index].Value);
                     }
                     IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
-                    await workCollection.UpdateOneAsync(filter, update!);
+                    UpdateResult result = await workCollection.UpdateOneAsync(filter, update!);
                     // Task.Delay(5000).GetAwaiter().GetResult();
                     return Results.NoContent();
                 });

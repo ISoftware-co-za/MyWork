@@ -1,3 +1,6 @@
+import 'package:get_it/get_it.dart';
+
+import 'facade_work.dart';
 import 'state_task.dart';
 import 'properties.dart';
 import 'work_type.dart';
@@ -6,10 +9,10 @@ import 'work_type.dart';
 
 class WorkSummary {
   final String id;
-  final String name;
-  final String reference;
-  final String type;
-  final bool archived;
+  String name;
+  String reference;
+  String type;
+  bool archived;
 
   WorkSummary(
       {required this.id,
@@ -56,41 +59,13 @@ class StateWork {
   late final StateProperty<bool> archived;
   late final List<StateTask> tasks;
 
-  StateWork(
-      {String? id,
-      String? name,
-      String? reference,
-      String? description,
-      String? type,
-      bool? archived,
-      List<StateTask>? tasks}) {
-    this.name = StateProperty(value: name, validators: [
-      ValidatorRequired(invalidMessageTemplate: 'Name is required'),
-      ValidatorMaximumCharacters(
-          maximumCharacters: 80,
-          invalidMessageTemplate: 'Name should be 80 characters or less')
-    ]);
-    this.reference = StateProperty(value: reference, validators: [
-      ValidatorMaximumCharacters(
-          maximumCharacters: 40,
-          invalidMessageTemplate: 'Reference should be 40 characters or less')
-    ]);
-    this.description = StateProperty(value: description);
-    this.archived = StateProperty(value: archived ?? false);
-    this.type = StateProperty<WorkType>(
-        value: type == null ? null : WorkType(type),
-        validators: [
-          ValidatorMaximumCharacters(
-              maximumCharacters: 40,
-              invalidMessageTemplate: 'Type should be 40 characters or less')
-        ]);
-    this.tasks = tasks ?? [];
-    _properties = {
-      'name': this.name,
-      'reference': this.reference,
-      'description': this.description,
-      'type': this.type
-    };
+  StateWork.new() {
+    _initialiseStateProperties(null, null, null, null);
+  }
+
+  StateWork.fromWorkSummary(WorkSummary workSummary) {
+    id = workSummary.id;
+    _initialiseStateProperties(workSummary.name, workSummary.reference, workSummary.archived, workSummary.type);
   }
 
   bool validate() {
@@ -107,7 +82,53 @@ class StateWork {
     }
   }
 
+  Future define() async {
+    await GetIt.instance<FacadeWork>().define(item: this);
+    // TODO: Need to generate a WorkSummary and add to the appropriate list.
+  }
+
+  Future save() async {
+    await GetIt.instance<FacadeWork>().update(item: this);
+    if (_workSummary != null) {
+      _workSummary!.name = name.value!;
+      _workSummary!.reference = reference.value ?? '';
+      _workSummary!.archived = archived.value!;
+      _workSummary!.type = type.value?.name ?? '';
+    }
+  }
+
+  void _initialiseStateProperties(String? name, String? reference, bool? archived, String? type) {
+    this.name = StateProperty(value: name, validators: [
+      ValidatorRequired(invalidMessageTemplate: 'Name is required'),
+      ValidatorMaximumCharacters(
+          maximumCharacters: 80,
+          invalidMessageTemplate: 'Name should be 80 characters or less')
+    ]);
+    this.reference = StateProperty(value: reference, validators: [
+      ValidatorMaximumCharacters(
+          maximumCharacters: 40,
+          invalidMessageTemplate: 'Reference should be 40 characters or less')
+    ]);
+    this.archived = StateProperty(value: archived ?? false);
+    this.type = StateProperty<WorkType>(
+        value: type == null ? null : WorkType(type),
+        validators: [
+          ValidatorMaximumCharacters(
+              maximumCharacters: 40,
+              invalidMessageTemplate: 'Type should be 40 characters or less')
+        ]);
+    this.tasks = [];
+    this.description = StateProperty(value: null);
+    _properties = {
+      'name': this.name,
+      'reference': this.reference,
+      'description': this.description,
+      'type': this.type
+    };
+  }
+
   late final Map<String, StateProperty> _properties;
+  WorkSummary? _workSummary;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

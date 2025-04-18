@@ -33,15 +33,21 @@ void main() async {
           'https://df440e5981662d9f3951e28cf7f3f041@o4506012740026368.ingest.us.sentry.io/4508544378863616';
       options.tracesSampleRate = 1.0;
       options.profilesSampleRate = 1.0;
+      options.sendDefaultPii = true;
       options.enableUserInteractionTracing = true;
       options.enableUserInteractionBreadcrumbs = true;
     },
     appRunner: () {
       setupFacades();
-      runApp(const MyApp());
+      runApp(
+        SentryWidget(
+          child: MyApp(),
+        ),
+      );
     },
   );
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

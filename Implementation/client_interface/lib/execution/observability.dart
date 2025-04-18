@@ -3,7 +3,7 @@ abstract class Observability {
   static const String categoryCommand = "command";
 
   void startTransaction(String transactionName, String category);
-  void logException(Exception exception);
+  void logException(Object error, StackTrace stackTrace);
   void logErrorMessage(String message);
   void endTransaction();
 
