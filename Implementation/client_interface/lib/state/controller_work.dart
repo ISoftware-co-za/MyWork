@@ -33,19 +33,14 @@ class ControllerWork implements HandlerOnWorkSelected {
 
   Future onNewWork() async {
     if (await _saveExistingWork()) {
-      selectedWork.value = new StateWork();
+      selectedWork.value = new StateWork.new();
       _workState = ControllerWorkState.newWork;
     }
   }
 
   Future onWorkSelected(WorkSummary selectedWorkSummary) async {
     if (await _saveExistingWork()) {
-      var work = StateWork(
-          id: selectedWorkSummary.id,
-          name: selectedWorkSummary.name,
-          reference: selectedWorkSummary.reference,
-          type: selectedWorkSummary.type,
-          archived: selectedWorkSummary.archived);
+      var work = StateWork.fromWorkSummary(selectedWorkSummary);
       selectedWork.value = work;
       _workState = ControllerWorkState.existingWork;
     }
