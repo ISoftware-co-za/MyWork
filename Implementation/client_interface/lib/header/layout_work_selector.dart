@@ -1,10 +1,10 @@
+import 'package:client_interfaces1/dialog_work/controller_dialog_work.dart';
 import 'package:client_interfaces1/state/provider_state_application.dart';
-import 'package:client_interfaces1/state/work_type.dart';
 import 'package:flutter/material.dart';
 
+import '../dialog_work/dialog_work_layout.dart';
 import 'control_button_add_work.dart';
 import 'control_button_select_work.dart';
-import '../dialog_work/dialog_work.dart';
 
 class ControlWorkSelector extends StatefulWidget {
   final String label;
@@ -38,15 +38,18 @@ class _ControlWorkSelectorState extends State<ControlWorkSelector> {
   }
 
   void _showWorkDialog(BuildContext context) {
-    final workDialogController =
-        ProviderStateApplication.of(context)!.workDialogController;
-    final Iterable<WorkType> workTypes =
-        ProviderStateApplication.of(context)!.workTypesController.workTypes;
+    ProviderStateApplication stateProvider = ProviderStateApplication.of(context)!;
+    ControllerDialogWork? controller = stateProvider.lazyLoadControllers.workDialogController;
+    if (controller == null) {
+      controller = stateProvider.lazyLoadControllers.workDialogController = ControllerDialogWork(
+          stateProvider.workTypesController, stateProvider.workController);
+    }
+
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return LayoutWorkDialog(
-              controller: workDialogController, workTypes: workTypes);
+          return DialogWorkLayout(
+              controller: controller!, workTypes: stateProvider.workTypesController.workTypes!);
         });
   }
 

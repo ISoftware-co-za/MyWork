@@ -6,21 +6,23 @@ import '../notification/controller_notifications.dart';
 import 'controller_user.dart';
 import 'controller_work.dart';
 
+class ProviderStateApplicationLazyLoadedController {
+  ControllerDialogWork? workDialogController;
+}
+
 class ProviderStateApplication extends InheritedWidget {
   final ControllerUser userController;
   final ControllerWork workController;
   final ControllerWorkTypes workTypesController;
-
-  final ControllerDialogWork workDialogController;
-
   final ControllerNotifications notificationController;
+  final ProviderStateApplicationLazyLoadedController lazyLoadControllers =
+      ProviderStateApplicationLazyLoadedController();
 
-  const ProviderStateApplication({
+  ProviderStateApplication({
     required this.userController,
     required this.workController,
     required this.workTypesController,
     required this.notificationController,
-    required this.workDialogController,
     required super.child,
     super.key,
   });

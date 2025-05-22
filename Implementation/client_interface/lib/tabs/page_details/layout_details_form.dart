@@ -1,33 +1,47 @@
+import 'package:client_interfaces1/model/work_type_list.dart';
+import 'package:client_interfaces1/tabs/page_details/list_item_detail_autocomplete.dart';
+import 'package:client_interfaces1/tabs/page_details/list_item_detail_parchment.dart';
 import 'package:flutter/material.dart';
 
 import '../../execution/executor.dart';
 import '../../state/controller_work.dart';
 import '../../state/provider_state_application.dart';
-import '../../state/state_work.dart';
+import '../../model/work.dart';
 import '../../ui_toolkit/form/form.dart';
 import '../../ui_toolkit/hover.dart';
-import 'list_item_detail.dart';
+import 'autocomplete_data_source_work_type.dart';
+import 'list_item_detail_base.dart';
+import 'list_item_detail_text.dart';
 
 class LayoutDetailsForm extends StatefulWidget {
-  LayoutDetailsForm({required ControllerWork controller, super.key}) : _controller = controller {
+  LayoutDetailsForm(
+      {required String userID, required WorkTypeList workTypes, required ControllerWork controller, super.key})
+      : _userID = userID,
+        _workTypes = workTypes,
+        _controller = controller {
     _fields = _createFormFields(controller);
   }
 
   @override
   State<LayoutDetailsForm> createState() => _LayoutDetailsFormState();
 
-  List<ListItemDetail> _createFormFields(ControllerWork controller) {
-    StateWork work = controller.selectedWork.value!;
+  List<ListItemDetailBase> _createFormFields(ControllerWork controller) {
+    Work work = controller.selectedWork.value!;
     return [
-      ListItemDetail(label: 'Name', property: work.name, editorType: ListItemDetailEditor.text),
-      ListItemDetail(label: 'Type', property: work.type, editorType: ListItemDetailEditor.autocomplete),
-      ListItemDetail(label: 'Reference', property: work.reference, editorType: ListItemDetailEditor.text),
-      ListItemDetail(label: 'Description', property: work.description, editorType: ListItemDetailEditor.parchment)
+      ListItemDetailText(label: 'Name', property: work.name),
+      ListItemDetailAutocomplete(
+          label: 'Type',
+          property: work.type,
+          dataSource: AutocompleteDataSourceWorkType(_userID, _workTypes, work.type)),
+      ListItemDetailText(label: 'Reference', property: work.reference),
+      ListItemDetailParchment(label: 'Description', property: work.description)
     ];
   }
 
+  final String _userID;
+  final WorkTypeList _workTypes;
   final ControllerWork _controller;
-  late final List<ListItemDetail> _fields;
+  late final List<ListItemDetailBase> _fields;
 }
 
 class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
@@ -65,13 +79,12 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
     var children = <Widget>[];
     try {
       for (var field in widget._fields) {
-        if (field.editorType == ListItemDetailEditor.text) {
+        if (field is ListItemDetailText) {
           _addFormField(field, children);
-        } else if (field.editorType == ListItemDetailEditor.parchment) {
+        } else if (field is ListItemDetailParchment) {
           _addFleatherFormField(field, children);
-        } else if (field.editorType == ListItemDetailEditor.autocomplete) {
-          provider.workTypesController.setStateProperty(field.property);
-            _addAutocompleteFormField(field, provider, children);
+        } else if (field is ListItemDetailAutocomplete) {
+          _addAutocompleteFormField(field, children);
         }
         children.add(const SizedBox(height: _columnSpacing));
       }
@@ -96,12 +109,12 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
     return children;
   }
 
-  void _addFormField(ListItemDetail field, List<Widget> children) {
+  void _addFormField(ListItemDetailText field, List<Widget> children) {
     var widget = ControlFormField(label: field.label, property: field.property, editable: _isMouseover);
     children.add(widget);
   }
 
-  void _addFleatherFormField(ListItemDetail field, List<Widget> children) {
+  void _addFleatherFormField(ListItemDetailParchment field, List<Widget> children) {
     var widget = ControlFleatherFormField(
       label: field.label,
       property: field.property,
@@ -110,12 +123,9 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
     children.add(widget);
   }
 
-  void _addAutocompleteFormField(ListItemDetail field, ProviderStateApplication provider, List<Widget> children) {
+  void _addAutocompleteFormField(ListItemDetailAutocomplete field, List<Widget> children) {
     var widget = ControlAutocompleteFormField(
-        label: field.label,
-        property: field.property,
-        editable: _isMouseover,
-        dataSource: provider.workTypesController);
+        label: field.label, property: field.property, editable: _isMouseover, dataSource: field.dataSource);
     children.add(widget);
   }
 

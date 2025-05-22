@@ -31,7 +31,7 @@ class ControlAutocompleteFormField extends StatelessWidget {
         builder: (context, child) {
           var children = <Widget>[Text(label, style: theme.labelStyle)];
           if (editable || property.isChanged) {
-            // children.add(_createUpdateField(theme, context));
+            children.add(_createUpdateField(theme, context));
           } else {
             children.add(Padding(
               padding: const EdgeInsets.symmetric(vertical: 0.5, horizontal: 0),

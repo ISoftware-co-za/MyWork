@@ -3,7 +3,7 @@ library service_client_work;
 import 'dart:convert';
 
 import '../service_client_base.dart';
-import '../../state/work_type.dart';
+import '../../model/work_type.dart';
 
 part 'work_list.dart';
 part 'create_work.dart';
@@ -27,7 +27,7 @@ class ServiceClientWork extends ServiceClientBase {
         as WorkListResponse;
   }
 
-  Future<ServiceClientResponse> create(RequestCreateWork request) async {
+  Future<ServiceClientResponse?> create(RequestCreateWork request) async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/work');
     final body = jsonEncode(request.toJson());

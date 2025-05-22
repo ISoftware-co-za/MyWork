@@ -6,7 +6,7 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 
 import '../../execution/executor.dart';
-import '../../state/properties.dart';
+import '../../model/properties.dart';
 import '../custom_icon_buttons.dart';
 
 part 'control_form_field.dart';

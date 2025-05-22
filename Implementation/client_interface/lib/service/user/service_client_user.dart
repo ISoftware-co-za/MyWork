@@ -37,7 +37,7 @@ class ServiceClientUser extends ServiceClientBase {
   Future<ServiceClientResponse> addWorkType(
       String userId, RequestAddWorkType request) async {
     Map<String, String> headers = setupCommonHeaders();
-    final uri = generateUri('/users/$userId/workTypes');
+    final uri = generateUri('/users/workTypes');
     final body = jsonEncode(request.toJson());
     final response = await httpPost(uri, headers, body);
     return processResponse(

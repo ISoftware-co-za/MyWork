@@ -1,12 +1,15 @@
 import 'dart:core';
 
+import 'package:get_it/get_it.dart';
+
 import '../service/user/service_client_user.dart';
 import 'work_type.dart';
 
-class FacadeUser {
+class User {
+  String? userID;
   //#region CONSTRUCTION
 
-  FacadeUser(this._serviceClient);
+  User();
 
   //#endregion
 
@@ -15,6 +18,7 @@ class FacadeUser {
   Future<ResultLogin> login(String email, String password) async {
     var response = await _serviceClient
         .login(RequestLogin(email: email, password: password));
+    userID = response.userId;
     return ResultLogin(
         userId: response.userId,
         workTypes: response.workTypes.map((e) => WorkType(e)).toList());
@@ -25,17 +29,11 @@ class FacadeUser {
     return true;
   }
 
-  Future<bool> addWorkType(String userId, String workType) async {
-    await _serviceClient.addWorkType(
-        userId, RequestAddWorkType(workType: workType));
-    return true;
-  }
-
   //#endregion
 
 //# region FIELDS
 
-  final ServiceClientUser _serviceClient;
+  final ServiceClientUser _serviceClient = GetIt.instance<ServiceClientUser>();
 
 //#endregion
 }

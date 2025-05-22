@@ -16,60 +16,34 @@ class ControlFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme3 = Theme.of(context);
-    FormTheme formTheme = theme3.extension<FormTheme>()!;
-
-    debugPrint('_ControlFormFieldState - "${property.value}"');
-    debugPrint('--> 2');
     ThemeData? themeData = Theme.of(context);
-    debugPrint('--> 3');
     FormTheme? theme = themeData.extension<FormTheme>();
-    IconButtonAcceptTheme? theme2 = themeData.extension<IconButtonAcceptTheme>();
+    return ListenableBuilder(
+        listenable: property,
+        builder: (context, child) {
+          debugPrint('ControlFormField: ${property.valueAsString} ${property.isValid} ${property.isChanged}');
 
-    for(var entry in themeData.extensions.entries) {
-      if (entry.value is IconButtonAcceptTheme) {
-        debugPrint('Found IconButtonAcceptTheme');
-      } else if (entry.value is FormTheme) {
-        theme = entry.value as FormTheme;
-        debugPrint('Found ThemeFormXXX ${theme}');
-      }
-      debugPrint('ThemeData - ${entry.key.runtimeType.toString()} - ${entry.value} - ${entry.value.runtimeType.toString()}');
-    }
+          var children = <Widget>[Text(label, style: theme!.labelStyle)];
+          if (editable ||
+              property.isChanged ||
+              !property.isValid) {
+            children.add(_createUpdateField(theme));
+          } else {
+            children.add(Padding(
+              padding: const EdgeInsets.symmetric(vertical: 0.5, horizontal: 0),
+              child: Text(property.valueAsString, style: theme.valueStyle),
+            ));
+          }
+          if (!property.isValid) {
+            children.add(Text(property.invalidMessage!,
+                style: theme.valueStyle.copyWith(color: Colors.red)));
+          }
 
-    if (theme2 == null) {
-      debugPrint('--> 3.1 - theme2');
-      throw Exception('ThemeForm not found in ThemeData');
-    }
-    if (theme == null) {
-      debugPrint('--> 3.1');
-      throw Exception('ThemeForm not found in ThemeData');
-    }
-    debugPrint('--> 4');
-    var children = <Widget>[Text(label, style: theme!.labelStyle)];
-    debugPrint('--> 5');
-
-    if (editable ||
-        property.isChanged ||
-        !property.isValid) {
-      debugPrint('--> 6');
-      children.add(_createUpdateField(theme));
-    } else {
-      children.add(Padding(
-        padding: const EdgeInsets.symmetric(vertical: 0.5, horizontal: 0),
-        child: Text(property.valueAsString, style: theme.valueStyle),
-      ));
-      debugPrint('--> 7');
-    }
-    if (!property.isValid) {
-      children.add(Text(property.invalidMessage!,
-          style: theme.valueStyle.copyWith(color: Colors.red)));
-      debugPrint('--> 8');
-    }
-    debugPrint('--> 9');
-    return Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: children);
+          return Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: children);;
+        });
   }
 
   TextField _createUpdateField(FormTheme theme) {

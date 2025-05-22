@@ -1,5 +1,7 @@
-import 'package:client_interfaces1/state/property_changed_registry.dart';
 import 'package:flutter/foundation.dart';
+
+import 'property_changed_registry.dart';
+import 'validator_base.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -25,8 +27,8 @@ class StateProperty<T> extends PropertyChangeNotifier {
   set value(T? value) {
     if (_value != value) {
       _value = value;
-      _updatePropertyChanged();
       _setInvalidMessage(_validation.validate(input: _value.toString() ?? ''));
+      _updatePropertyChanged();
       notifyPropertyChange("value");
     }
   }
@@ -104,6 +106,7 @@ class StateProperty<T> extends PropertyChangeNotifier {
 
   final ValidatorCollection _validation;
   T? _currentValue;
+  ValueNotifier<bool> _isChanged = ValueNotifier<bool>(false);
   final _PropertyChanged _propertyChanged = _PropertyChanged();
 
   //#endregion
@@ -133,116 +136,3 @@ class _PropertyChanged {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-
-class ValidatorCollection {
-  //#region CONSTRUCTION
-
-  ValidatorCollection(List<Validator>? validators) {
-    if (validators != null) {
-      _validators.addAll(validators);
-    }
-  }
-
-  //#endregion
-
-  //#region METHODS
-
-  void add(Validator validator) {
-    _validators.add(validator);
-  }
-
-  String? validate({required dynamic input, bool? forceErrors = false}) {
-    for (var validator in _validators) {
-      final result = validator.validate(input);
-      if ((_hasBeenValid || forceErrors!) && result != null) {
-        return result;
-      }
-    }
-    _hasBeenValid = true;
-    return null;
-  }
-
-  void reset() {
-    _hasBeenValid = false;
-  }
-
-  //#endregion
-
-  //#region FIELDS
-
-  final _validators = <Validator>[];
-  bool _hasBeenValid = false;
-
-  //#endregion
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-abstract class Validator<T> {
-  //#region PROPERTIES
-
-  String invalidMessageTemplate;
-
-  //#endregion
-
-  //#region CONSTRUCTION
-
-  Validator({required this.invalidMessageTemplate});
-
-  //#endregion
-
-  //#region METHODS
-
-  String? validate(T input);
-
-  //#endregion
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-class ValidatorRequired<T> extends Validator<T> {
-  //#region CONSTRUCTION
-
-  ValidatorRequired({required super.invalidMessageTemplate});
-
-  //#endregion
-
-  //#region METHODS
-
-  @override
-  String? validate(T input) {
-    if (input == null || input.toString().isEmpty) {
-      return invalidMessageTemplate;
-    }
-    return null;
-  }
-
-  //#endregion
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-class ValidatorMaximumCharacters<T> extends Validator<T> {
-  //#region PROPERTIES
-  final int maximumCharacters;
-  //#endregion
-
-  //#region CONSTRUCTION
-
-  ValidatorMaximumCharacters(
-      {required this.maximumCharacters, required super.invalidMessageTemplate});
-
-  //#endregion
-
-  //#region METHODS
-
-  @override
-  String? validate(T input) {
-    if (input.toString().length > maximumCharacters) {
-      return invalidMessageTemplate;
-    }
-    return null;
-  }
-
-//#endregion
-}
