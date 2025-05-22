@@ -1,11 +1,10 @@
-import 'package:client_interfaces1/state/controller_work.dart';
+import 'package:client_interfaces1/dialog_work/controller_dialog_work.dart';
 import 'package:client_interfaces1/state/provider_state_application.dart';
-import 'package:client_interfaces1/state/work_type.dart';
 import 'package:flutter/material.dart';
 
+import '../dialog_work/dialog_work_layout.dart';
 import 'control_button_add_work.dart';
 import 'control_button_select_work.dart';
-import '../dialog_work/dialog_work.dart';
 
 class ControlWorkSelector extends StatefulWidget {
   final String label;
@@ -18,15 +17,12 @@ class ControlWorkSelector extends StatefulWidget {
 class _ControlWorkSelectorState extends State<ControlWorkSelector> {
   @override
   Widget build(BuildContext context) {
-    ControllerWork workController =
-        ProviderStateApplication.of(context)!.workController;
     return Row(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const ControlButtonAddWork(),
-          Flexible(
-              child: GestureDetector(
+          GestureDetector(
             onTap: () => _showWorkDialog(context),
             child: MouseRegion(
                 onEnter: (event) => setState(() {
@@ -35,29 +31,25 @@ class _ControlWorkSelectorState extends State<ControlWorkSelector> {
                 onExit: (event) => setState(() {
                       _isMouseOver = false;
                     }),
-                child: ValueListenableBuilder(
-                    valueListenable: workController.selectedWork,
-                    builder: (context, work, child) {
-                      String label = workController.hasWork
-                          ? work!.name.value!
-                          : 'Select work';
-                      return ControlButtonSelectWork(
-                          label: label, isMouseOver: _isMouseOver);
-                    })),
-          ))
+                child: ControlButtonSelectWork(
+                    label: widget.label, isMouseOver: _isMouseOver)),
+          )
         ]);
   }
 
   void _showWorkDialog(BuildContext context) {
-    final workDialogController =
-        ProviderStateApplication.of(context)!.workDialogController;
-    final Iterable<WorkType> workTypes =
-        ProviderStateApplication.of(context)!.workTypesController.workTypes;
+    ProviderStateApplication stateProvider = ProviderStateApplication.of(context)!;
+    ControllerDialogWork? controller = stateProvider.lazyLoadControllers.workDialogController;
+    if (controller == null) {
+      controller = stateProvider.lazyLoadControllers.workDialogController = ControllerDialogWork(
+          stateProvider.workTypesController, stateProvider.workController);
+    }
+
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return LayoutWorkDialog(
-              controller: workDialogController, workTypes: workTypes);
+          return DialogWorkLayout(
+              controller: controller!, workTypes: stateProvider.workTypesController.workTypes!);
         });
   }
 

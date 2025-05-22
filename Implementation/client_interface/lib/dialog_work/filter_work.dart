@@ -1,18 +1,14 @@
 import 'package:flutter/foundation.dart';
 
-import '../state/data_source_work.dart';
-import '../state/handler_on_work_selected.dart' show HandlerOnWorkSelected;
-import '../state/state_work.dart';
+import 'list_item_work.dart';
 import 'table_columns.dart';
 
 class FilterWork {
-  final ValueNotifier<List<WorkSummary>> filteredWorkItems =
-      ValueNotifier<List<WorkSummary>>([]);
+  final ValueNotifier<List<ListItemWork>> filteredWorkItems =
+      ValueNotifier<List<ListItemWork>>([]);
 
-  FilterWork(TableColumnCollection columns, DataSourceWork workDataSource,
-      HandlerOnWorkSelected handlerOnWorkSelected)
-      : _dataSource = workDataSource,
-        _handlerOnWorkSelected = handlerOnWorkSelected {
+  FilterWork(TableColumnCollection columns, List<ListItemWork> workList)
+      : _workList = workList {
     _type = columns.getColumnByLabel<TableColumnList>("Type");
     _name = columns.getColumnByLabel<TableColumnText>("Name");
     _reference = columns.getColumnByLabel<TableColumnText>("Reference");
@@ -33,20 +29,15 @@ class FilterWork {
     _archived!.filterValue.addListener(_onFilterChanged);
   }
 
-  Future onWorkSelected(WorkSummary selectedWorkSummary) async {
-    await _handlerOnWorkSelected.onWorkSelected(selectedWorkSummary);
-  }
-
   void _onFilterChanged() {
-    List<WorkSummary> filteredItems = [];
+    List<ListItemWork> filteredItems = [];
     String? lowercaseName = _name!.filterValue.value.toLowerCase();
     String? lowercaseReference = _reference!.filterValue.value.toLowerCase();
-    List<String> selectedTypes =
-        _type!.filterValue.map((workType) => workType.toLowerCase()).toList();
+    List<TableColumnListItemWorkType> selectedTypes = _type!.listSelectedType();
+    bool? archived = _archived!.filterValue.value;
 
-    for (WorkSummary workItem in _dataSource.workItems) {
-      if (workItem.isMatch(lowercaseName, lowercaseReference, selectedTypes,
-          _archived!.filterValue.value)) {
+    for (ListItemWork workItem in _workList) {
+      if (workItem.isMatch(lowercaseName, lowercaseReference, selectedTypes.map((e) => e.workType.lowercaseName).toList(), archived)) {
         filteredItems.add(workItem);
       }
     }
@@ -57,6 +48,5 @@ class FilterWork {
   TableColumnText? _name;
   TableColumnText? _reference;
   TableColumnBoolean? _archived;
-  final DataSourceWork _dataSource;
-  final HandlerOnWorkSelected _handlerOnWorkSelected;
+  final List<ListItemWork> _workList;
 }

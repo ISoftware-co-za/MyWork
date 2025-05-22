@@ -2,7 +2,7 @@ part of 'service_client_work.dart';
 
 class RequestCreateWork {
   final String name;
-  final WorkType? type;
+  final String? type;
   final String? reference;
   final String? description;
   RequestCreateWork(
@@ -11,7 +11,7 @@ class RequestCreateWork {
   Map<String, dynamic> toJson() {
     var json = <String, dynamic>{'name': name};
     if (type != null) {
-      json['type'] = type!.name;
+      json['type'] = type;
     }
     if (reference != null) {
       json['reference'] = reference;

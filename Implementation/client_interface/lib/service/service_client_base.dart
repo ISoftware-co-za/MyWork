@@ -4,6 +4,8 @@ import 'package:http/browser_client.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 part 'validation_problem_response.dart';
 
 class ServiceClientBase {
@@ -15,7 +17,7 @@ class ServiceClientBase {
   }
 
   void dispose() {
-    // _http.close();
+    //_http.close();
   }
 
   //#endregion

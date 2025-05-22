@@ -1,5 +1,5 @@
 import 'state_activity_base.dart';
-import 'properties.dart';
+import '../model/properties.dart';
 
 class StateAction extends StateActivityBase {
   late final StateProperty title;

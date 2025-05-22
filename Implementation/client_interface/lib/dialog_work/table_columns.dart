@@ -1,21 +1,11 @@
+import 'package:client_interfaces1/model/work_type.dart';
 import 'package:flutter/material.dart';
-
-import '../state/state_work.dart';
+import 'list_item_work.dart';
 
 class TableColumnCollection {
-  //#region PROPERTIES
-
   final List<TableColumn> columns;
 
-  //#endregion
-
-  //#region CONSTRUCTION
-
   TableColumnCollection(this.columns);
-
-  //#endregion
-
-  //#region METHODS
 
   T? getColumnByLabel<T>(String? label) {
     for (TableColumn column in columns) {
@@ -25,142 +15,80 @@ class TableColumnCollection {
     }
     return null;
   }
-
-  //#endregion
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef CellValueGetter = dynamic Function(WorkSummary);
+typedef CellValueGetter = dynamic Function(ListItemWork);
 
 //----------------------------------------------------------------------------------------------------------------------
 
 abstract class TableColumn {
-  //#region PROPERTIES
-
   final String label;
   final int width;
   final bool relativeWidth;
   final CellValueGetter cellValueGetter;
 
-  //#endregion
-
-  //#region CONSTRUCTION
-
   const TableColumn(
       this.label, this.width, this.relativeWidth, this.cellValueGetter);
-
-  //#endregion
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 class TableColumnText extends TableColumn {
-  //#region PROPERTIES
-
   final ValueNotifier<String> filterValue = ValueNotifier<String>('');
 
   TableColumnText(
       super.label, super.width, super.relativeWidth, super.cellValueGetter);
-
-  //#endregion
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 class TableColumnBoolean extends TableColumn {
-  //#region PROPERTIES
-
   final ValueNotifier<bool?> filterValue = ValueNotifier<bool?>(null);
-
-  //#endregion
-
-  //#region CONSTRUCTION
 
   TableColumnBoolean(
       super.label, super.width, super.relativeWidth, super.cellValueGetter);
-
-//#endregion
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 abstract class TableColumnListItemBase {
   final String label;
-  final String lowercaseLabel;
-  TableColumnListItemBase(this.label) : lowercaseLabel = label.toLowerCase();
+  bool isSelected = false;
+  TableColumnListItemBase(this.label);
 }
-
-//----------------------------------------------------------------------------------------------------------------------
-
-abstract class lowercaseLabelProvider {
-  String get lowercaseName;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typedef ListGetter = Iterable<lowercaseLabelProvider> Function(
-    BuildContext context);
 
 //----------------------------------------------------------------------------------------------------------------------
 
 class TableColumnList extends TableColumn {
-  //#region PROPERTIES
-
-  final List<String> filterValue = [];
+  final List<TableColumnListItemBase> items;
   final ValueNotifier<int> selectedCount = ValueNotifier<int>(0);
 
-  //#endregion
+  TableColumnList(super.label, super.width, super.relativeWidth, this.items, super.cellValueGetter);
 
-  //#region CONSTRUCTION
-
-  TableColumnList(super.label, super.width, super.relativeWidth,
-      ListGetter listGetter, super.cellValueGetter)
-      : _listGetter = listGetter;
-
-  //#endregion
-
-  //#region METHODS
-
-  List<TableColumnListItem> listFilterItems(BuildContext context) {
-    List<TableColumnListItem> result = [];
-    Iterable<lowercaseLabelProvider> allItems = _listGetter!(context);
-    for (lowercaseLabelProvider item in allItems) {
-      bool isSelected = filterValue.contains(item.lowercaseName);
-      result.add(TableColumnListItem(
-          item.toString(), ValueNotifier<bool>(isSelected)));
-    }
-    return result;
+  void selectWorkType(TableColumnListItemBase item) {
+    item.isSelected = true;
+    selectedCount.value += 1;
   }
 
-  void selectWorkType(String lowercaseWorkType) {
-    filterValue.add(lowercaseWorkType);
-    selectedCount.value = filterValue.length;
+  void deselectWorkType(TableColumnListItemBase item) {
+    item.isSelected = false;
+    selectedCount.value -= 1;
   }
 
-  void deselectWorkType(String lowercaseworkType) {
-    filterValue.remove(lowercaseworkType);
-    selectedCount.value = filterValue.length;
+  List<Type> listSelectedType<Type>() {
+    return items.where((item) => item.isSelected).cast<Type>().toList();
   }
-
-  //#endregion
-
-  //#region FIELDS
-
-  final ListGetter? _listGetter;
-
-  //#endregion
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+class TableColumnListItemWorkType extends TableColumnListItemBase {
+  final WorkType workType;
 
-class TableColumnListItem {
-  final String label;
-  final String lowercaseLabel;
-  final ValueNotifier<bool> isSelected;
+  TableColumnListItemWorkType(this.workType) : super(workType.name);
 
-  TableColumnListItem(this.label, this.isSelected)
-      : lowercaseLabel = label.toLowerCase();
+  @override
+  String toString() {
+    return workType.name;
+  }
 }
-
-//----------------------------------------------------------------------------------------------------------------------

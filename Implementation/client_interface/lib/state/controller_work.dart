@@ -1,30 +1,27 @@
-import 'package:client_interfaces1/state/property_changed_registry.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get_it/get_it.dart';
 
-import 'handler_on_work_selected.dart';
-import 'data_source_work.dart';
-import 'facade_work.dart';
-import 'state_work.dart';
+import '../model/property_changed_registry.dart';
+import '../model/work_list.dart';
+import '../model/work.dart';
 
 enum ControllerWorkState { noWork, newWork, existingWork }
 
-class ControllerWork implements HandlerOnWorkSelected {
+class ControllerWork  {
   //#region PROPERTIES
-  final DataSourceWork workDataSource = DataSourceWork();
-  final ValueNotifier<StateWork?> selectedWork =
-      ValueNotifier<StateWork?>(null);
+
+  final WorkList workList = WorkList();
+  final ValueNotifier<Work?> selectedWork =
+      ValueNotifier<Work?>(null);
   bool get hasWork => selectedWork.value != null;
+  bool get hasExistingWork => hasWork && !selectedWork.value!.isNew;
   ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
-  bool get hasExistingWork => _workState == ControllerWorkState.existingWork;
 
   //#endregion
 
   //#region CONSTRUCTION
 
   Future initialise() async {
-    var workItems = await _facade.listAll();
-    workDataSource.workItems = workItems;
+    await workList.obtain();
   }
 
   //#endregion
@@ -33,24 +30,21 @@ class ControllerWork implements HandlerOnWorkSelected {
 
   Future onNewWork() async {
     if (await _saveExistingWork()) {
-      selectedWork.value = new StateWork.new();
-      _workState = ControllerWorkState.newWork;
+      selectedWork.value = new Work.create();
     }
   }
 
-  Future onWorkSelected(WorkSummary selectedWorkSummary) async {
+  Future onWorkSelected(Work work) async {
     if (await _saveExistingWork()) {
-      var work = StateWork.fromWorkSummary(selectedWorkSummary);
       selectedWork.value = work;
-      _workState = ControllerWorkState.existingWork;
     }
   }
 
   Future onWorkDelete() async {
     assert(selectedWork.value != null);
-    await _facade.delete(item: selectedWork.value!);
+    selectedWork.value!.delete();
+    workList.delete(selectedWork.value!);
     selectedWork.value = null;
-    _workState = ControllerWorkState.noWork;
   }
 
   Future<bool> onSave() async {
@@ -59,11 +53,11 @@ class ControllerWork implements HandlerOnWorkSelected {
     if (selectedWork.value!.validate()) {
       isSaving.value = true;
       try {
-        if (_workState == ControllerWorkState.newWork) {
-          await _facade.define(item: selectedWork.value!);
-          _workState = ControllerWorkState.existingWork;
+        if (selectedWork.value!.isNew) {
+          await selectedWork.value!.define();
+          workList.add(selectedWork.value!);
         } else {
-          await _facade.update(item: selectedWork.value!);
+          await selectedWork.value!.update();
         }
         PropertyChangedRegistry.acceptChanges();
       } finally {
@@ -89,13 +83,6 @@ class ControllerWork implements HandlerOnWorkSelected {
     }
     return mustCreateNewWork;
   }
-
-  //#endregion
-
-  //#region FIELDS
-
-  ControllerWorkState _workState = ControllerWorkState.noWork;
-  final FacadeWork _facade = GetIt.instance<FacadeWork>();
 
   //#endregion
 }
