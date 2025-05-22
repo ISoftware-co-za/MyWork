@@ -9,7 +9,7 @@ enum TaskState {
   cancelled
 }
 
-class StateTask extends PropertyOwner {
+class StateTask {
   late final StateProperty what;
   late final StateProperty why;
   late final StateProperty notes;

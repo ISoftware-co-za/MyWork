@@ -26,8 +26,8 @@ class Executor {
 
     try {
       command();
-    } catch (e) {
-      _processException(e, observability, context);
+    } catch (e, stackTrace) {
+      _processException(e, stackTrace, observability, context);
     }  finally {
       observability.endTransaction();
     }
@@ -40,8 +40,8 @@ class Executor {
 
     try {
       await command();
-    } catch (e) {
-      _processException(e, observability, context);
+    } catch (e, stackTrace) {
+      _processException(e, stackTrace, observability, context);
     }  finally {
       observability.endTransaction();
     }
@@ -51,16 +51,10 @@ class Executor {
 
   //#region PRIVATE METHODS
 
-  static void _processException(Object e, Observability observability, BuildContext context) {
-    if (e is Exception) {
-      observability.logException(e);
-    }
+  static void _processException(Object e, StackTrace stackTrace, Observability observability, BuildContext context) {
+    observability.logException(e, stackTrace);
     String message = e.toString().replaceFirst('Exception: ', '');
-    if (e is SocketException || e is HttpException || e is ClientException) {
-      message = 'The application communicates with a server. Unable to connect to the server. Please check your internet connection or try again later.';
-    } else if (e is TimeoutException) {
-      message = 'The application communicates with a server. This server is not responding. Please check your internet connection or try again later.';
-    }
+    message = _convertToUserFriendlyError(e, message);
     observability.logErrorMessage(message);
 
     if (context.mounted) {
@@ -70,6 +64,17 @@ class Executor {
           .notificationController;
       notificationController.add(NotificationError(message));
     }
+  }
+
+  static String _convertToUserFriendlyError(Object e, String message) {
+    if (e is SocketException || e is HttpException || e is ClientException) {
+      message = 'The application communicates with a server. Unable to connect to the server. Please check your internet connection or try again later.';
+    } else if (e is TimeoutException) {
+      message = 'The application communicates with a server. This server is not responding. Please check your internet connection or try again later.';
+    } else if ( e is TypeError) {
+      message = 'A technical error occurred. Our engineers are looking into the error. Please try again a little later';
+    }
+    return message;
   }
 
   //#endregion

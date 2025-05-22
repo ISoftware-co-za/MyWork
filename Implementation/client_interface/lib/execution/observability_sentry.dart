@@ -12,8 +12,8 @@ class ObservabilitySentry implements Observability {
   }
 
   @override
-  void logException(Exception exception) {
-    Sentry.captureException(exception);
+  void logException(Object error, StackTrace stackTrace) {
+    Sentry.captureException(error, stackTrace: stackTrace);
   }
 
   @override
