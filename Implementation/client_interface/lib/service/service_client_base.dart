@@ -12,12 +12,13 @@ class ServiceClientBase {
   //#region CONSTRUCTION
 
   ServiceClientBase(String baseUrl) : _baseUrl = baseUrl {
-    _browserClient = BrowserClient()..withCredentials = true;
-    // _http = SentryHttpClient();
+    // _browserClient = BrowserClient()..withCredentials = true;
+    var wrappedClient = BrowserClient()..withCredentials = true;
+    _http = SentryHttpClient(client: wrappedClient);
   }
 
   void dispose() {
-    //_http.close();
+    _http.close();
   }
 
   //#endregion
@@ -36,27 +37,27 @@ class ServiceClientBase {
   }
 
   Future<Response> httpGet(Uri uri, Map<String, String> headers) async {
-    return await _browserClient
+    return await _http
         .get(uri, headers: headers)
         .timeout(const Duration(seconds: _httpTimeoutInSeconds));
   }
 
   Future<Response> httpPost(
       Uri uri, Map<String, String> headers, String body) async {
-    return await _browserClient
+    return await _http
         .post(uri, headers: headers, body: body)
         .timeout(const Duration(seconds: _httpTimeoutInSeconds));
   }
 
   Future<Response> httpPatch(
       Uri uri, Map<String, String> headers, String body) async {
-    return await _browserClient
+    return await _http
         .patch(uri, headers: headers, body: body)
         .timeout(const Duration(seconds: _httpTimeoutInSeconds));
   }
 
   Future<Response> httpDelete(Uri uri, Map<String, String> headers) async {
-    return await _browserClient
+    return await _http
         .delete(uri, headers: headers)
         .timeout(const Duration(seconds: _httpTimeoutInSeconds));
   }
@@ -88,8 +89,8 @@ class ServiceClientBase {
 
   static const int _httpTimeoutInSeconds = 10;
   final String _baseUrl;
-  // late final SentryHttpClient _http;
-  late final BrowserClient _browserClient;
+  late final SentryHttpClient _http;
+  // late final BrowserClient _browserClient;
 
   //#endregion
 }

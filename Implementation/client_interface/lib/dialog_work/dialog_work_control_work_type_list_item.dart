@@ -3,8 +3,7 @@ part of dialog_work;
 class _DialogWorkControlWorkTypeListItem extends StatefulWidget {
   const _DialogWorkControlWorkTypeListItem(
       {required TableColumnList column,
-        required TableColumnListItemBase listItem,
-        super.key})
+        required TableColumnListItemBase listItem})
       : _column = column,
         _listItem = listItem;
 

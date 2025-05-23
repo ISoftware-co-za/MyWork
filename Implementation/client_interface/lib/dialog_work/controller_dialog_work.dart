@@ -18,7 +18,7 @@ class ControllerDialogWork {
 
   //#region CONSTRUCTION
 
-  ControllerDialogWork(ControllerWorkTypes workTypesController, ControllerWork workController) : _workTypesController = workTypesController, _workController = workController {
+  ControllerDialogWork(ControllerWorkTypes workTypesController, ControllerWork workController) : _workController = workController {
     columns = TableColumnCollection([
       TableColumnList(
           'Type', 1, true, workTypesController.workTypes!.workTypes.map((workType) => TableColumnListItemWorkType(workType)).toList(),(row) => row.work.type.value?.toString()),
@@ -36,7 +36,6 @@ class ControllerDialogWork {
     _workController.selectedWork.value = selectedWork;
   }
 
-  final ControllerWorkTypes _workTypesController;
   final ControllerWork _workController;
 }
 

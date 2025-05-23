@@ -3,7 +3,6 @@ library service_client_work;
 import 'dart:convert';
 
 import '../service_client_base.dart';
-import '../../model/work_type.dart';
 
 part 'work_list.dart';
 part 'create_work.dart';

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../../execution/executor.dart';
 import '../../state/controller_work.dart';
-import '../../state/provider_state_application.dart';
 import '../../model/work.dart';
 import '../../ui_toolkit/form/form.dart';
 import '../../ui_toolkit/hover.dart';
@@ -75,7 +74,6 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
   }
 
   List<Widget> _buildForm(BuildContext context) {
-    final provider = ProviderStateApplication.of(context)!;
     var children = <Widget>[];
     try {
       for (var field in widget._fields) {

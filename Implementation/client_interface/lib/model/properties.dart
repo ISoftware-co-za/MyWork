@@ -27,7 +27,7 @@ class StateProperty<T> extends PropertyChangeNotifier {
   set value(T? value) {
     if (_value != value) {
       _value = value;
-      _setInvalidMessage(_validation.validate(input: _value.toString() ?? ''));
+      _setInvalidMessage(_validation.validate(input: _value.toString()));
       _updatePropertyChanged();
       notifyPropertyChange("value");
     }
@@ -106,7 +106,6 @@ class StateProperty<T> extends PropertyChangeNotifier {
 
   final ValidatorCollection _validation;
   T? _currentValue;
-  ValueNotifier<bool> _isChanged = ValueNotifier<bool>(false);
   final _PropertyChanged _propertyChanged = _PropertyChanged();
 
   //#endregion

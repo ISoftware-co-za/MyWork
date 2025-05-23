@@ -22,13 +22,13 @@ class PageDetails extends StatelessWidget {
     ControllerWorkTypes controllerWorkTypes =
         ProviderStateApplication.of(context)!.workTypesController;
 
-    assert(controllerUser.user?.userID != null, "Cannot display work details without a logged in user");
+    assert(controllerUser.user.userID != null, "Cannot display work details without a logged in user");
 
     return ValueListenableBuilder(
         valueListenable: controllerWork.selectedWork,
         builder: (BuildContext context, Work? work, Widget? child) {
           if (controllerWork.hasWork) {
-            return _generateWorkForm(controllerUser.user!.userID!, controllerWorkTypes.workTypes!, controllerWork);
+            return _generateWorkForm(controllerUser.user.userID!, controllerWorkTypes.workTypes!, controllerWork);
           } else {
             return _displayNoWork();
           }

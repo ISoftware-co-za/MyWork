@@ -1,7 +1,7 @@
 part of dialog_work;
 
 class _DialogWorkControlColumnList extends StatefulWidget {
-  const _DialogWorkControlColumnList({required TableColumnList column, super.key})
+  const _DialogWorkControlColumnList({required TableColumnList column})
       : _column = column;
 
   @override

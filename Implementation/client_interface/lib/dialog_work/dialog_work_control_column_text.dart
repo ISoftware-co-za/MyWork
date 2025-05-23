@@ -1,7 +1,7 @@
 part of dialog_work;
 
 class _DialogWorkControlColumnText extends StatelessWidget {
-  _DialogWorkControlColumnText({required TableColumnText column, super.key})
+  _DialogWorkControlColumnText({required TableColumnText column})
       : _column = column {
     _controller = TextEditingController(text: _column.filterValue.value);
   }

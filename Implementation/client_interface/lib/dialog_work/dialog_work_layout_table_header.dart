@@ -4,11 +4,9 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
   _DialogWorkLayoutTableHeader(
       {required ControllerDialogWork controller,
       required WorkTypeList workTypes,
-      required WorkDialogTheme theme,
-      super.key})
+      required WorkDialogTheme theme})
       : _controller = controller,
         _theme = theme {
-    _workTypes = workTypes.workTypes.map((item) => TableColumnListItemWorkType(item)).toList();
   }
 
   @override
@@ -53,6 +51,5 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
   }
 
   final ControllerDialogWork _controller;
-  late final Iterable<TableColumnListItemWorkType> _workTypes;
   final WorkDialogTheme _theme;
 }
