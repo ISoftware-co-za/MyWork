@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../state/controller_work.dart';
-import '../state/provider_state_application.dart';
+import '../app/controller_work.dart';
+import '../app/provider_state_application.dart';
 
 class ControlButtonAddWork extends StatelessWidget {
   const ControlButtonAddWork({super.key});

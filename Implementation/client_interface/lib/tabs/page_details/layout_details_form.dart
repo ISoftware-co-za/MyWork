@@ -4,7 +4,7 @@ import 'package:client_interfaces1/tabs/page_details/list_item_detail_parchment.
 import 'package:flutter/material.dart';
 
 import '../../execution/executor.dart';
-import '../../state/controller_work.dart';
+import '../../app/controller_work.dart';
 import '../../model/work.dart';
 import '../../ui_toolkit/form/form.dart';
 import '../../ui_toolkit/hover.dart';

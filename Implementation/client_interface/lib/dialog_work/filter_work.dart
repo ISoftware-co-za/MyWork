@@ -7,8 +7,7 @@ class FilterWork {
   final ValueNotifier<List<ListItemWork>> filteredWorkItems =
       ValueNotifier<List<ListItemWork>>([]);
 
-  FilterWork(TableColumnCollection columns, List<ListItemWork> workList)
-      : _workList = workList {
+  FilterWork(TableColumnCollection columns) {
     _type = columns.getColumnByLabel<TableColumnList>("Type");
     _name = columns.getColumnByLabel<TableColumnText>("Name");
     _reference = columns.getColumnByLabel<TableColumnText>("Reference");
@@ -29,6 +28,11 @@ class FilterWork {
     _archived!.filterValue.addListener(_onFilterChanged);
   }
 
+  void showWorkList(List<ListItemWork>? workList) {
+    _workList = workList;
+    _onFilterChanged();
+  }
+
   void _onFilterChanged() {
     List<ListItemWork> filteredItems = [];
     String? lowercaseName = _name!.filterValue.value.toLowerCase();
@@ -36,7 +40,7 @@ class FilterWork {
     List<TableColumnListItemWorkType> selectedTypes = _type!.listSelectedType();
     bool? archived = _archived!.filterValue.value;
 
-    for (ListItemWork workItem in _workList) {
+    for (ListItemWork workItem in _workList!) {
       if (workItem.isMatch(lowercaseName, lowercaseReference, selectedTypes.map((e) => e.workType.lowercaseName).toList(), archived)) {
         filteredItems.add(workItem);
       }
@@ -48,5 +52,5 @@ class FilterWork {
   TableColumnText? _name;
   TableColumnText? _reference;
   TableColumnBoolean? _archived;
-  final List<ListItemWork> _workList;
+  List<ListItemWork>? _workList;
 }

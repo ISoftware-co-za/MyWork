@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import '../service/service_client_base.dart';
 import '../service/work/service_client_work.dart';
-import '../state/state_task.dart';
+import '../app/state_task.dart';
 import 'properties.dart';
 import 'validator_base.dart';
 

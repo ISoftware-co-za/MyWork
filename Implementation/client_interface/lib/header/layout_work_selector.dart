@@ -1,7 +1,7 @@
-import 'package:client_interfaces1/dialog_work/controller_dialog_work.dart';
-import 'package:client_interfaces1/state/provider_state_application.dart';
 import 'package:flutter/material.dart';
 
+import '../app/provider_state_application.dart';
+import '../dialog_work/controller_dialog_work.dart';
 import '../dialog_work/dialog_work_layout.dart';
 import 'control_button_add_work.dart';
 import 'control_button_select_work.dart';
@@ -44,7 +44,7 @@ class _ControlWorkSelectorState extends State<ControlWorkSelector> {
       controller = stateProvider.lazyLoadControllers.workDialogController = ControllerDialogWork(
           stateProvider.workTypesController, stateProvider.workController);
     }
-
+    controller.showWorkList();
     showDialog(
         context: context,
         builder: (BuildContext context) {
