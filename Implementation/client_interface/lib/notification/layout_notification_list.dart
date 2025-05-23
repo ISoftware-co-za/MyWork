@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart' hide Notification;
 
-import '../state/provider_state_application.dart';
+import '../app/provider_state_application.dart';
 import 'control_notifications.dart';
 import 'notifications.dart';
 
