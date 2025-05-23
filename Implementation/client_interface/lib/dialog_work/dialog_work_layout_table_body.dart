@@ -3,8 +3,7 @@ part of dialog_work;
 class _DialogWorkLayoutTableBody extends StatelessWidget {
   const _DialogWorkLayoutTableBody(
       {required ControllerDialogWork controller,
-        required WorkDialogTheme theme,
-        super.key})
+        required WorkDialogTheme theme})
       : _controller = controller,
         _theme = theme;
 

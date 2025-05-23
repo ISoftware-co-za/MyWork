@@ -5,8 +5,7 @@ class _DialogWorkLayoutTableRow extends StatefulWidget {
       {required TableColumnCollection columns,
         required ListItemWork work,
         required AsyncValueSetter<ListItemWork> onWorkSummarySelectedHandler,
-        required WorkDialogTheme theme,
-        super.key})
+        required WorkDialogTheme theme})
       : _columns = columns,
         _work = work,
         _onWorkSummarySelectedHandler = onWorkSummarySelectedHandler,

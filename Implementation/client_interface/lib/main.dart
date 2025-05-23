@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'dialog_work/controller_dialog_work.dart';
 import 'dialog_work/dialog_work_layout.dart';
 import 'execution/executor.dart';
 import 'execution/ui_container_context.dart';
@@ -26,12 +25,13 @@ import 'tabs/page_tasks/page_tasks.dart';
 import 'ui_toolkit/form/form.dart';
 import 'ui_toolkit/hover.dart';
 
-void main() async {
+Future<void> main() async {
   // TODO: Remove this line before production
   // debugPaintSizeEnabled = true;
   await SentryFlutter.init(
     (options) {
       options.dsn = 'https://df440e5981662d9f3951e28cf7f3f041@o4506012740026368.ingest.us.sentry.io/4508544378863616';
+      options.sendDefaultPii = true;
       options.tracesSampleRate = 1.0;
       options.profilesSampleRate = 1.0;
       options.enableUserInteractionTracing = true;
@@ -39,7 +39,7 @@ void main() async {
     },
     appRunner: () {
       setupFacades();
-      runApp(const MyApp());
+      runApp(SentryWidget(child: MyApp()));
     },
   );
 }

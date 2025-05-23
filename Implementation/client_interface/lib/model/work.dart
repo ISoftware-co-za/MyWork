@@ -79,7 +79,7 @@ class Work extends PropertyOwner {
     }
     if (updatedProperties.isNotEmpty) {
       var request =
-      RequestWorkUpdate(id: id!, updatedProperties: updatedProperties);
+      RequestWorkUpdate(id: id, updatedProperties: updatedProperties);
       var response = await _serviceClient.update(request);
       /*
       var responseProcess =

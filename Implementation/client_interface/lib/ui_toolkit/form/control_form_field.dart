@@ -42,7 +42,7 @@ class ControlFormField extends StatelessWidget {
           return Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: children);;
+              children: children);
         });
   }
 

@@ -1,7 +1,7 @@
 part of dialog_work;
 
 class _DialogWorkLayoutHeader extends StatelessWidget {
-  const _DialogWorkLayoutHeader({required WorkDialogTheme theme, super.key})
+  const _DialogWorkLayoutHeader({required WorkDialogTheme theme})
       : _theme = theme;
 
   @override

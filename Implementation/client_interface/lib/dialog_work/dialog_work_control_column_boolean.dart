@@ -7,7 +7,7 @@ class _DialogWorkControlColumnBoolean extends StatefulWidget {
   //#endregion
 
   //#region CONSTRUCTION
-  const _DialogWorkControlColumnBoolean({required this.column, super.key});
+  const _DialogWorkControlColumnBoolean({required this.column});
 
   @override
   State<_DialogWorkControlColumnBoolean> createState() => _DialogWorkControlColumnBooleanState();
