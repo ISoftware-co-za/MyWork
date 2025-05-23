@@ -33,7 +33,7 @@ class ControllerDialogWork {
   //#endregion
 
   void onWorkSelected(Work selectedWork) {
-    _workController.selectedWork.value = selectedWork;
+    _workController.onWorkSelected(selectedWork);
   }
 
   final ControllerWork _workController;

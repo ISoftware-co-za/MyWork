@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 import '../model/property_changed_registry.dart';
 import '../model/work_list.dart';
@@ -10,8 +11,7 @@ class ControllerWork  {
   //#region PROPERTIES
 
   final WorkList workList = WorkList();
-  final ValueNotifier<Work?> selectedWork =
-      ValueNotifier<Work?>(null);
+  ValueListenable<Work?> get selectedWork => _selectedWork;
   bool get hasWork => selectedWork.value != null;
   bool get hasExistingWork => hasWork && !selectedWork.value!.isNew;
   ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
@@ -29,14 +29,14 @@ class ControllerWork  {
   //#region EVENT HANDLERS
 
   Future onNewWork() async {
-    if (await _saveExistingWork()) {
-      selectedWork.value = new Work.create();
+    if (!hasWork || await onSave()) {
+      _selectedWork.value = new Work.create();
     }
   }
 
   Future onWorkSelected(Work work) async {
-    if (await _saveExistingWork()) {
-      selectedWork.value = work;
+    if (!hasWork || await onSave()) {
+      _selectedWork.value = work;
     }
   }
 
@@ -44,7 +44,7 @@ class ControllerWork  {
     assert(selectedWork.value != null);
     selectedWork.value!.delete();
     workList.delete(selectedWork.value!);
-    selectedWork.value = null;
+    _selectedWork.value = null;
   }
 
   Future<bool> onSave() async {
@@ -76,6 +76,7 @@ class ControllerWork  {
 
   //#region PRIVATE METHODS
 
+  /*
   Future<bool> _saveExistingWork() async {
     bool mustCreateNewWork = true;
     if (hasWork) {
@@ -83,6 +84,9 @@ class ControllerWork  {
     }
     return mustCreateNewWork;
   }
+  */
 
   //#endregion
+
+  final _selectedWork = ValueNotifier<Work?>(null);
 }
