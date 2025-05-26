@@ -73,22 +73,13 @@ public static class HandlersWork
     {
         return await Executor.RunProcessAsync($"{CollectionName}.Find(filter).ToListAsync()", Executor.CategoryMongoDB, "Unable to obtain the list of work.", async () =>
         {
-            var workItems = new List<WorkSummary>(); 
             IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
             var filter = Builders<DocumentWork>.Filter.Eq(p => p.Id, ObjectId.Parse(id)); 
-            var workDocuments = await workCollection.Find(filter).ToListAsync(); 
-            foreach (var document in workDocuments)
-            {
-                WorkSummary workSummaryItem = new WorkSummary(
-                    document.Id.ToString(),
-                    document.Name!,
-                    document.Type,
-                    document.Reference,
-                    document.Archived
-                    );
-                workItems.Add(workSummaryItem);
-            }
-            return Results.Ok(new WorkSummaryListResponse(workItems));
+            var workDocument = await workCollection.Find(filter).ToListAsync();
+            return Results.NotFound($"Work with ID {id} not found.");
+            if (workDocument.Count != 1)
+                return Results.NotFound($"Work with ID {id} not found.");
+            return Results.Ok(new WorkDetailsResponse(new WorkDetails(workDocument[0].Description)));
         });
     }
 

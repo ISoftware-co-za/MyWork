@@ -66,8 +66,9 @@ class StateProperty<T> extends PropertyChangeNotifier {
 
   //#region METHODS
 
-  void setValue(Object object) {
-    value = object as T;
+  void setValue(T newValue) {
+    _currentValue = _value = newValue;
+    _updatePropertyChanged();
   }
 
   bool validate() {

@@ -36,6 +36,7 @@ class ControllerWork  {
 
   Future onWorkSelected(Work work) async {
     if (!hasWork || await onSave()) {
+      await work.loadDetails();
       _selectedWork.value = work;
     }
   }
