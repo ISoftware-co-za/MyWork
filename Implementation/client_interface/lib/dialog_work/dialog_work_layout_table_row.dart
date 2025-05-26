@@ -3,12 +3,14 @@ part of dialog_work;
 class _DialogWorkLayoutTableRow extends StatefulWidget {
   const _DialogWorkLayoutTableRow(
       {required TableColumnCollection columns,
-        required ListItemWork work,
-        required AsyncValueSetter<ListItemWork> onWorkSummarySelectedHandler,
-        required WorkDialogTheme theme})
+      required ListItemWork work,
+      required AsyncValueSetter<ListItemWork> onWorkSummarySelectedHandler,
+      required ControllerNotifications notificationsController,
+      required WorkDialogTheme theme})
       : _columns = columns,
         _work = work,
         _onWorkSummarySelectedHandler = onWorkSummarySelectedHandler,
+        _controllerNotifications = notificationsController,
         _theme = theme;
 
   @override
@@ -16,6 +18,7 @@ class _DialogWorkLayoutTableRow extends StatefulWidget {
 
   final TableColumnCollection _columns;
   final ListItemWork _work;
+  final ControllerNotifications _controllerNotifications;
   final WorkDialogTheme _theme;
   final AsyncValueSetter<ListItemWork> _onWorkSummarySelectedHandler;
 }
@@ -50,8 +53,7 @@ class _DialogWorkLayoutTableRowState extends State<_DialogWorkLayoutTableRow> {
           child: cellWidget,
         ));
       } else {
-        widgets
-            .add(SizedBox(width: column.width.toDouble(), child: cellWidget));
+        widgets.add(SizedBox(width: column.width.toDouble(), child: cellWidget));
       }
     }
     return MouseRegion(
@@ -67,15 +69,14 @@ class _DialogWorkLayoutTableRowState extends State<_DialogWorkLayoutTableRow> {
       },
       child: GestureDetector(
         onTap: () async {
-          await Executor.runCommandAsync('_LayoutTableRow', 'DialogWork',
-                  () async {
-                await widget._onWorkSummarySelectedHandler(widget._work);
-                Navigator.pop(context);
-              }, context);
+          await Executor.runCommandAsync('_DialogWorkLayoutTableRowState.GestureDetector.onTap:', 'DialogWork',
+              () async {
+            Navigator.pop(context);
+            await widget._onWorkSummarySelectedHandler(widget._work);
+          }, context, widget._controllerNotifications);
         },
         child: Container(
-          padding: EdgeInsets.fromLTRB(widget._theme.padding, 0,
-              widget._theme.padding, widget._theme.verticalSpacing),
+          padding: EdgeInsets.fromLTRB(widget._theme.padding, 0, widget._theme.padding, widget._theme.verticalSpacing),
           color: (_isMouseOver) ? Colors.grey[300] : Colors.white,
           child: Row(children: widgets),
         ),

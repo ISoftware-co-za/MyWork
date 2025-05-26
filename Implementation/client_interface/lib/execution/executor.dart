@@ -11,9 +11,7 @@ import '../notification/controller_notifications.dart';
 import '../notification/notifications.dart';
 import 'observability_factory.dart';
 
-
 class Executor {
-
   static UIContainerContext uiContext = UIContainerContext();
   static ObservabilityFactory observabilityFactory = ObservabilityFactory();
 
@@ -28,12 +26,14 @@ class Executor {
       command();
     } catch (e, stackTrace) {
       _processException(e, stackTrace, observability, context);
-    }  finally {
+    } finally {
       observability.endTransaction();
     }
   }
 
-  static Future<void> runCommandAsync(String control, String? pageName, Future<void> Function() command, BuildContext context) async {
+  static Future<void> runCommandAsync(
+      String control, String? pageName, Future<void> Function() command, BuildContext context,
+      [ControllerNotifications? notificationControllerOverride = null]) async {
     final transactionName = '${pageName ?? uiContext.currentContainer}.$control';
     var observability = observabilityFactory.createObservability();
     observability.startTransaction(transactionName, Observability.categoryCommand);
@@ -41,8 +41,8 @@ class Executor {
     try {
       await command();
     } catch (e, stackTrace) {
-      _processException(e, stackTrace, observability, context);
-    }  finally {
+      _processException(e, stackTrace, observability, context, notificationControllerOverride);
+    } finally {
       observability.endTransaction();
     }
   }
@@ -51,27 +51,29 @@ class Executor {
 
   //#region PRIVATE METHODS
 
-  static void _processException(Object e, StackTrace stackTrace, Observability observability, BuildContext context) {
+  static void _processException(Object e, StackTrace stackTrace, Observability observability, BuildContext context,
+      [ControllerNotifications? notificationControllerOverride = null]) {
     observability.logException(e, stackTrace);
     String message = e.toString().replaceFirst('Exception: ', '');
     message = _convertToUserFriendlyError(e, message);
     observability.logErrorMessage(message);
 
-    if (context.mounted) {
-      ProviderStateApplication provider = ProviderStateApplication.of(
-          context)!;
-      ControllerNotifications notificationController = provider
-          .notificationController;
-      notificationController.add(NotificationError(message));
+    ControllerNotifications? notificationController = notificationControllerOverride;
+    if (notificationController == null && context.mounted) {
+      ProviderStateApplication provider = ProviderStateApplication.of(context)!;
+      notificationController = provider.notificationController;
     }
+    notificationController!.add(NotificationError(message));
   }
 
   static String _convertToUserFriendlyError(Object e, String message) {
     if (e is SocketException || e is HttpException || e is ClientException) {
-      message = 'The application communicates with a server. Unable to connect to the server. Please check your internet connection or try again later.';
+      message =
+          'The application communicates with a server. Unable to connect to the server. Please check your internet connection or try again later.';
     } else if (e is TimeoutException) {
-      message = 'The application communicates with a server. This server is not responding. Please check your internet connection or try again later.';
-    } else if ( e is TypeError) {
+      message =
+          'The application communicates with a server. This server is not responding. Please check your internet connection or try again later.';
+    } else if (e is TypeError) {
       message = 'A technical error occurred. Our engineers are looking into the error. Please try again a little later';
     }
     return message;

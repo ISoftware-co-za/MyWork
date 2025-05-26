@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import '../service/service_client_base.dart';
 import '../service/work/service_client_work.dart';
 import '../app/state_task.dart';
+import '../service/work/work_details_response.dart';
+import 'data_conversion_service_to_model.dart';
 import 'properties.dart';
 import 'validator_base.dart';
 
@@ -19,16 +21,15 @@ class Work extends PropertyOwner {
 
   Work.create() {
     id = '';
-    _defineValidation('', '', '', false, '');
+    _defineValidation('', '', false, '');
   }
 
   Work({required this.id,
     String? name,
     String? reference,
-    String? description,
     String? type,
     bool? archived}) {
-    _defineValidation(name, reference, description, archived, type);
+    _defineValidation(name, reference, archived, type);
   }
 
   bool validate() {
@@ -59,6 +60,14 @@ class Work extends PropertyOwner {
     }
   }
 
+  Future loadDetails() async {
+    if (!_isLoaded) {
+      WorkDetailsResponse response = await _serviceClient.loadDetails(id);
+      description.setValue(DataConversionServiceToModel.nullToEmptyString(response.details.description));
+      _isLoaded = true;
+    }
+  }
+
   Future update() async {
     var updatedProperties = <WorkUpdatedProperty>[];
     if (name.isChanged) {
@@ -81,10 +90,6 @@ class Work extends PropertyOwner {
       var request =
       RequestWorkUpdate(id: id, updatedProperties: updatedProperties);
       var response = await _serviceClient.update(request);
-      /*
-      var responseProcess =
-      ResponseProcessFactory.createWorkProcessResponse(response, this);
-      */
       if (response is ValidationProblemResponse) {
         invalidate(response.errors);
       }
@@ -95,7 +100,7 @@ class Work extends PropertyOwner {
     await _serviceClient.delete(id);
   }
 
-  void _defineValidation(String? name, String? reference, String? description, bool? archived, String? type) {
+  void _defineValidation(String? name, String? reference, bool? archived, String? type) {
     this.name = StateProperty(value: name, validators: [
       ValidatorRequired(invalidMessageTemplate: 'Name is required'),
       ValidatorMaximumCharacters(
@@ -107,7 +112,7 @@ class Work extends PropertyOwner {
           maximumCharacters: 40,
           invalidMessageTemplate: 'Reference should be 40 characters or less')
     ]);
-    this.description = StateProperty(value: description);
+    this.description = StateProperty(value: null);
     this.archived = StateProperty(value: archived ?? false);
     this.type = StateProperty<String>(
         value: type,
@@ -127,6 +132,7 @@ class Work extends PropertyOwner {
 
   late final Map<String, StateProperty> _properties;
   final ServiceClientWork _serviceClient = GetIt.instance<ServiceClientWork>();
+  bool _isLoaded = false;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

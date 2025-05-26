@@ -2,6 +2,8 @@ library service_client_work;
 
 import 'dart:convert';
 
+import 'package:client_interfaces1/service/work/work_details_response.dart';
+
 import '../service_client_base.dart';
 
 part 'work_list.dart';
@@ -24,6 +26,15 @@ class ServiceClientWork extends ServiceClientBase {
     return processResponse(response, 200,
             () => WorkListResponse.fromJson(jsonDecode(response.body)))!
         as WorkListResponse;
+  }
+
+  Future<WorkDetailsResponse> loadDetails(String id) async {
+    Map<String, String> headers = setupCommonHeaders();
+    final uri = generateUri('/work/$id');
+    final response = await httpGet(uri, headers);
+    return processResponse(response, 200,
+            () => WorkDetailsResponse.fromJson(jsonDecode(response.body)))!
+    as WorkDetailsResponse;
   }
 
   Future<ServiceClientResponse?> create(RequestCreateWork request) async {

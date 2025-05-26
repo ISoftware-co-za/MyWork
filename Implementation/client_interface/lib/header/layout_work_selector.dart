@@ -42,7 +42,7 @@ class _ControlWorkSelectorState extends State<ControlWorkSelector> {
     ControllerDialogWork? controller = stateProvider.lazyLoadControllers.workDialogController;
     if (controller == null) {
       controller = stateProvider.lazyLoadControllers.workDialogController = ControllerDialogWork(
-          stateProvider.workTypesController, stateProvider.workController);
+          stateProvider.workTypesController, stateProvider.workController, stateProvider.notificationController);
     }
     controller.showWorkList();
     showDialog(

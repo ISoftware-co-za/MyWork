@@ -20,13 +20,14 @@ class _DialogWorkLayoutTableBody extends StatelessWidget {
                     columns: _controller.columns,
                     work: row,
                     onWorkSummarySelectedHandler: workSelectedHandler,
+                    notificationsController: _controller.notificationsController,
                     theme: _theme);
               })),
     );
   }
 
   Future workSelectedHandler(ListItemWork selectedWork) async {
-    _controller.onWorkSelected(selectedWork.work);
+    await _controller.onWorkSelected(selectedWork.work);
   }
 
   final ControllerDialogWork _controller;
