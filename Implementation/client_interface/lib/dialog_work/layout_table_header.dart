@@ -4,7 +4,7 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
   _DialogWorkLayoutTableHeader(
       {required ControllerDialogWork controller,
       required WorkTypeList workTypes,
-      required WorkDialogTheme theme})
+      required ThemeExtensionWorkDialog theme})
       : _controller = controller,
         _theme = theme {
   }
@@ -13,7 +13,7 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> columns = _createColumns();
     return Container(
-      color: Color.fromARGB(255, 255, 240, 240),
+      color: _theme.tableHeaderColor,
       padding: EdgeInsets.symmetric(horizontal: _theme.padding, vertical: _theme.verticalSpacing),
       child: Row(children: columns),
     );
@@ -25,11 +25,11 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
       var column = _controller.columns.columns[index];
       Widget columnWidget;
       if (column is TableColumnText) {
-        columnWidget = _DialogWorkControlColumnText(column: column);
+        columnWidget = _DialogWorkControlColumnText(column: column, labelStyle: _theme.tableHeaderTextStyle);
       } else if (column is TableColumnList) {
-        columnWidget = _DialogWorkControlColumnList(column: column);
+        columnWidget = _DialogWorkControlColumnList(column: column, labelStyle: _theme.tableHeaderTextStyle);
       } else if (column is TableColumnBoolean) {
-        columnWidget = _DialogWorkControlColumnBoolean(column: column);
+        columnWidget = _DialogWorkControlColumnBoolean(column: column, labelStyle: _theme.tableHeaderTextStyle);
       } else {
         throw Exception(
             'There is no Widget defined for the column ${column.runtimeType}. Please define how a this type of column should be handled in LayoutTableHeader._createColumns.');
@@ -51,5 +51,5 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
   }
 
   final ControllerDialogWork _controller;
-  final WorkDialogTheme _theme;
+  final ThemeExtensionWorkDialog _theme;
 }

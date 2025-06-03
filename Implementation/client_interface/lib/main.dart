@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'dialog_work/dialog_work_layout.dart';
+import 'custom_theme_data.dart';
 import 'execution/executor.dart';
 import 'execution/ui_container_context.dart';
 import 'header/layout_header.dart';
@@ -12,8 +12,6 @@ import 'app/controller_user.dart';
 import 'app/controller_work_types.dart';
 import 'service/service_setup.dart';
 import 'app/coordinator_login.dart';
-import 'ui_toolkit/custom_icon_buttons.dart';
-import 'header/control_button_select_work.dart';
 import 'app/provider_state_application.dart';
 import 'app/controller_work.dart';
 import 'model/properties.dart';
@@ -22,7 +20,6 @@ import 'app/state_action.dart';
 import 'tabs/layout_tab_bar.dart';
 import 'tabs/page_details/page_details.dart';
 import 'tabs/page_tasks/page_tasks.dart';
-import 'ui_toolkit/form/form.dart';
 import 'ui_toolkit/hover.dart';
 
 Future<void> main() async {
@@ -50,7 +47,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var theme = _CustomisedTheme.getTheme();
+    var theme = CustomThemeData.getTheme();
     return MaterialApp(
       title: 'Flutter Demo',
       theme: theme,
@@ -214,93 +211,3 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   //#endregion
 }
 
-class _CustomisedTheme {
-  static ThemeData getTheme() {
-    return ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple).copyWith(
-          primary: Colors.red,
-          secondary: Colors.black,
-        ),
-        useMaterial3: true,
-        extensions: <ThemeExtension<dynamic>>[
-          IconButtonAcceptTheme(
-              style: ButtonStyle(
-                  iconSize: WidgetStateProperty.all(24.0),
-                  padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)),
-                  foregroundColor: WidgetStateProperty.all(Colors.green))),
-          IconButtonRejectTheme(
-              style: ButtonStyle(
-                  iconSize: WidgetStateProperty.all(24.0),
-                  padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)),
-                  foregroundColor: WidgetStateProperty.all(Colors.red))),
-          IconButtonActionTheme(
-              style: ButtonStyle(
-                  iconSize: WidgetStateProperty.all(24.0),
-                  padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)),
-                  foregroundColor: WidgetStateProperty.all(Colors.white),
-                  backgroundColor: WidgetStateProperty.all(Colors.red))),
-          ControlWorkButtonTheme(padding: 8, hoverColor: Colors.white.withValues(alpha: 0.3), hoverBorderWidth: 2.0),
-          const WorkDialogTheme(
-              width: 800,
-              height: 500,
-              padding: 16,
-              horizontalSpacing: 8,
-              verticalSpacing: 8,
-              headerTextStyle: TextStyle(fontSize: 28, decoration: TextDecoration.none, color: Colors.black),
-              backgroundColor: Colors.white),
-          const FormTheme(
-            labelStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
-            valueStyle: TextStyle(fontSize: 16.0),
-            valueStyleError:
-                TextStyle(fontSize: 16.0, backgroundColor: Color.fromARGB(255, 255, 200, 200), color: Colors.red),
-            textFieldDecoration: InputDecoration(
-                filled: true,
-                fillColor: Color.fromARGB(255, 255, 255, 255),
-                hoverColor: Color.fromARGB(255, 245, 245, 245),
-                isCollapsed: true,
-                contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
-                border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero),
-                focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero)),
-            textFieldDecorationChanged: InputDecoration(
-                filled: true,
-                fillColor: Color.fromARGB(255, 255, 255, 235),
-                hoverColor: Color.fromARGB(255, 255, 255, 245),
-                isCollapsed: true,
-                contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
-                border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero),
-                focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero)),
-            textFieldDecorationError: InputDecoration(
-                filled: true,
-                fillColor: Color.fromARGB(255, 255, 240, 240),
-                hoverColor: Color.fromARGB(255, 255, 250, 250),
-                isCollapsed: true,
-                contentPadding: EdgeInsets.fromLTRB(3.0, 4.0, 3.0, 4.0),
-                border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero),
-                focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.zero)),
-            fleatherEditorHeight: 400,
-          )
-        ]).copyWith(
-      appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-        toolbarHeight: 64.0,
-        iconTheme: IconThemeData(color: Colors.white, size: 40),
-        titleTextStyle: TextStyle(
-            color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.normal, decoration: TextDecoration.none),
-      ),
-      inputDecorationTheme: const InputDecorationTheme(
-        labelStyle: TextStyle(
-          color: Colors.grey, // Default label color
-        ),
-        focusColor: Colors.blue,
-        border: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey), // Focused underline color
-        ),
-        focusedBorder:
-            UnderlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2) // Focused underline color
-                ),
-        activeIndicatorBorder: BorderSide(color: Colors.black, width: 2), // Focused underline color
-      ),
-    );
-  }
-}

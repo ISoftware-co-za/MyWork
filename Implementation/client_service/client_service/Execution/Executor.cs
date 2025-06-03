@@ -35,7 +35,7 @@ public static class Executor
             {
                 Status = StatusCodes.Status500InternalServerError,
                 Title = "An unexpected error occurred",
-                Detail = $"{errorMessage}. We are looking into the error.",
+                Detail = $"{errorMessage} We are looking into the error.",
             };  
             return Results.Problem(problemDetails);
         }

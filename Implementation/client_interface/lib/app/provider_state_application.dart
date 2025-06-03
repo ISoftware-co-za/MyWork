@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../dialog_work/controller_dialog_work.dart';
+import '../dialog_work/dialog_work_controller.dart';
 import '../notification/controller_notifications.dart';
 import 'controller_user.dart';
 import 'controller_work.dart';

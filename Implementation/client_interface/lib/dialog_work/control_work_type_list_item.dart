@@ -3,15 +3,17 @@ part of dialog_work;
 class _DialogWorkControlWorkTypeListItem extends StatefulWidget {
   const _DialogWorkControlWorkTypeListItem(
       {required TableColumnList column,
-        required TableColumnListItemBase listItem})
+        required TableColumnListItemBase listItem, required ThemeExtensionDialogWorkTypesFilter themeExtension})
       : _column = column,
-        _listItem = listItem;
+        _listItem = listItem,
+  _themeExtension = themeExtension;
 
   @override
   State<_DialogWorkControlWorkTypeListItem> createState() => _DialogWorkControlWorkTypeListItemState();
 
   final TableColumnList _column;
   final TableColumnListItemBase _listItem;
+  final ThemeExtensionDialogWorkTypesFilter _themeExtension;
 }
 
 class _DialogWorkControlWorkTypeListItemState extends State<_DialogWorkControlWorkTypeListItem> {
@@ -33,7 +35,7 @@ class _DialogWorkControlWorkTypeListItemState extends State<_DialogWorkControlWo
                 }
               });
             }),
-        Text(widget._listItem.label),
+        Text(widget._listItem.label, style: widget._themeExtension.workTypeTextStyle),
       ],
     );
   }

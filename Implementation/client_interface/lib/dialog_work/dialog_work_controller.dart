@@ -20,13 +20,14 @@ class ControllerDialogWork {
     columns = TableColumnCollection([
       TableColumnList(
           'Type',
-          1,
-          true,
+          150,
+          false,
+          false,
           workTypesController.workTypes!.workTypes.map((workType) => TableColumnListItemWorkType(workType)).toList(),
           (row) => row.work.type.value?.toString()),
-      TableColumnText('Name', 3, true, (row) => row.work.name.value),
-      TableColumnText('Reference', 2, true, (row) => row.work.reference.value),
-      TableColumnBoolean('Archived', 80, false, (row) => row.work.archived.value),
+      TableColumnText('Name', 3, true, true, (row) => row.work.name.value),
+      TableColumnText('Reference', 2, true, false, (row) => row.work.reference.value),
+      TableColumnBoolean('Archived', 150, false, true, (row) => row.work.archived.value),
     ]);
     filter = FilterWork(columns);
   }
