@@ -6,7 +6,7 @@ class _DialogWorkLayoutTableRow extends StatefulWidget {
       required ListItemWork work,
       required AsyncValueSetter<ListItemWork> onWorkSummarySelectedHandler,
       required ControllerNotifications notificationsController,
-      required WorkDialogTheme theme})
+      required ThemeExtensionWorkDialog theme})
       : _columns = columns,
         _work = work,
         _onWorkSummarySelectedHandler = onWorkSummarySelectedHandler,
@@ -19,7 +19,7 @@ class _DialogWorkLayoutTableRow extends StatefulWidget {
   final TableColumnCollection _columns;
   final ListItemWork _work;
   final ControllerNotifications _controllerNotifications;
-  final WorkDialogTheme _theme;
+  final ThemeExtensionWorkDialog _theme;
   final AsyncValueSetter<ListItemWork> _onWorkSummarySelectedHandler;
 }
 
@@ -33,12 +33,15 @@ class _DialogWorkLayoutTableRowState extends State<_DialogWorkLayoutTableRow> {
       Widget cellWidget;
       if (cellValue is bool) {
         if (cellValue == true) {
-          cellWidget = Icon(Icons.check, color: Colors.black, size: 20);
+          cellWidget = Icon(Icons.check);
         } else {
+          // TODO: Fix this, is dependent on the check size
           cellWidget = SizedBox(width: 20, height: 20);
         }
       } else if (cellValue is String) {
-        cellWidget = Text(cellValue, overflow: TextOverflow.ellipsis);
+        cellWidget = Text(cellValue,
+            overflow: TextOverflow.ellipsis,
+            style: column.isEmphasised ? widget._theme.emphasisedCellTextStyle : widget._theme.normalCellTextStyle);
       } else {
         throw Exception(
             'TableRow is not able to display a ${cellValue.runtimeType} type. Please add support for this type in TableRow.');
@@ -76,7 +79,7 @@ class _DialogWorkLayoutTableRowState extends State<_DialogWorkLayoutTableRow> {
           }, context, widget._controllerNotifications);
         },
         child: Container(
-          padding: EdgeInsets.fromLTRB(widget._theme.padding, 0, widget._theme.padding, widget._theme.verticalSpacing),
+          padding: EdgeInsets.fromLTRB(widget._theme.padding, widget._theme.verticalSpacing/2, widget._theme.padding, widget._theme.verticalSpacing/2),
           color: (_isMouseOver) ? Colors.grey[300] : Colors.white,
           child: Row(children: widgets),
         ),

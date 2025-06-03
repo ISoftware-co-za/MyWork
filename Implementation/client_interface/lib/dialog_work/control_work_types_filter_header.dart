@@ -1,0 +1,28 @@
+part of dialog_work;
+
+class ControlWorkTypesFilterHeader extends StatelessWidget {
+  const ControlWorkTypesFilterHeader(
+      {required TableColumnList column, required ThemeExtensionDialogWorkTypesFilter themeExtension, super.key})
+      : _column = column,
+        _themeExtension = themeExtension;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: ValueListenableBuilder(
+              valueListenable: _column.selectedCount,
+              builder: (context, value, child) {
+                return Text('Selected ${_column.selectedCount.value}',
+                    style: _themeExtension.headerTextStyle);
+              }),
+        ),
+        IconButtonLarge(icon: Icon(Icons.close), onPressed: () => Navigator.pop(context))
+      ],
+    );
+  }
+
+  final TableColumnList _column;
+  final ThemeExtensionDialogWorkTypesFilter _themeExtension;
+}

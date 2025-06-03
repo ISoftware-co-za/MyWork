@@ -76,7 +76,6 @@ public static class HandlersWork
             IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
             var filter = Builders<DocumentWork>.Filter.Eq(p => p.Id, ObjectId.Parse(id)); 
             var workDocument = await workCollection.Find(filter).ToListAsync();
-            return Results.NotFound($"Work with ID {id} not found.");
             if (workDocument.Count != 1)
                 return Results.NotFound($"Work with ID {id} not found.");
             return Results.Ok(new WorkDetailsResponse(new WorkDetails(workDocument[0].Description)));

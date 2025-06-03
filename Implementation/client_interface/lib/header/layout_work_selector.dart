@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
 import '../app/provider_state_application.dart';
-import '../dialog_work/controller_dialog_work.dart';
+import '../dialog_work/dialog_work_controller.dart';
 import '../dialog_work/dialog_work_layout.dart';
+import '../theme_extension_control_work_button.dart';
 import 'control_button_add_work.dart';
 import 'control_button_select_work.dart';
 
-class ControlWorkSelector extends StatefulWidget {
+class LayoutWorkSelector extends StatefulWidget {
   final String label;
-  const ControlWorkSelector({required this.label, super.key});
+  final ThemeExtensionControlWorkButton workButtonTheme;
+  const LayoutWorkSelector({required this.label, required this.workButtonTheme,  super.key});
 
   @override
-  State<ControlWorkSelector> createState() => _ControlWorkSelectorState();
+  State<LayoutWorkSelector> createState() => _LayoutWorkSelectorState();
 }
 
-class _ControlWorkSelectorState extends State<ControlWorkSelector> {
+class _LayoutWorkSelectorState extends State<LayoutWorkSelector> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,6 +24,7 @@ class _ControlWorkSelectorState extends State<ControlWorkSelector> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const ControlButtonAddWork(),
+          SizedBox(width: widget.workButtonTheme.padding), // Add some space between buttons
           GestureDetector(
             onTap: () => _showWorkDialog(context),
             child: MouseRegion(
@@ -32,7 +35,7 @@ class _ControlWorkSelectorState extends State<ControlWorkSelector> {
                       _isMouseOver = false;
                     }),
                 child: ControlButtonSelectWork(
-                    label: widget.label, isMouseOver: _isMouseOver)),
+                    label: widget.label, workButtonTheme: widget.workButtonTheme, isMouseOver: _isMouseOver)),
           )
         ]);
   }
