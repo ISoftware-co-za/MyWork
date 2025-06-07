@@ -1,5 +1,5 @@
+import 'properties.dart';
 import 'state_activity_base.dart';
-import '../model/properties.dart';
 
 enum TaskState {
   idle,

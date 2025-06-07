@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import '../icon_button_size_theme_extension.dart';
 
-class IconButtonSmall extends StatelessWidget {
+import '../theme/theme_extension_icon_button_size.dart';
+
+class ControlIconButtonSmall extends StatelessWidget {
   final Icon icon;
   final VoidCallback? onPressed;
   final String? tooltip;
   final Color? color;
   final EdgeInsetsGeometry? padding;
 
-  const IconButtonSmall({
+  const ControlIconButtonSmall({
     Key? key,
     required this.icon,
     this.onPressed,
@@ -19,7 +20,7 @@ class IconButtonSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeExt = Theme.of(context).extension<IconButtonSizeThemeExtension>();
+    final themeExt = Theme.of(context).extension<ThemeExtensionIconButtonSize>();
     assert(themeExt != null, 'IconButtonSizeThemeExtension must be provided in the Theme extensions.');
     final double iconSize = themeExt!.smallIconSize;
     final double buttonSize = iconSize + (padding?.horizontal ?? 4.0);

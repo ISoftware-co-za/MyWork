@@ -15,10 +15,10 @@ class _DialogWorkLayoutHeader extends StatelessWidget {
           children: [
             Text('Work', style: _theme.dialogHeaderTextStyle),
             SizedBox(width: _theme.horizontalSpacing),
-            IconButtonLarge(icon: Icon(Icons.add),
+            ControlIconButtonLarge(icon: Icon(Icons.add),
                 onPressed: () => debugPrint('Add work pressed')),
             const Spacer(),
-            IconButtonLarge(icon: Icon(Icons.close), onPressed: () => Navigator.pop(context))
+            ControlIconButtonLarge(icon: Icon(Icons.close), onPressed: () => Navigator.pop(context))
           ],
         ),
       ),

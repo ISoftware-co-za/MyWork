@@ -1,8 +1,7 @@
-import 'package:client_interfaces1/theme_constants.dart';
-import 'package:client_interfaces1/theme_extension_app_header.dart';
+import 'package:client_interfaces1/theme/theme_constants.dart';
 import 'package:flutter/material.dart';
-
-import 'icon_button_size_theme_extension.dart';
+import 'theme_extension_icon_button_size.dart';
+import 'theme_extension_app_header.dart';
 import 'theme_extension_control_work_button.dart';
 import 'theme_extension_dialog_work.dart';
 import 'theme_extension_dialog_work_types_filter.dart';
@@ -22,7 +21,7 @@ class CustomThemeDataAppHeader {
         side: BorderSide(color: Colors.white, width: 1.0),
       ),
       extensions: <ThemeExtension<dynamic>>[
-        IconButtonSizeThemeExtension(smallIconSize: 8.0, largeIconSize: 24.0, smallPadding: 2.0, largePadding: 4.0),
+        ThemeExtensionIconButtonSize(smallIconSize: 8.0, largeIconSize: 24.0, smallPadding: 2.0, largePadding: 4.0),
         const ThemeExtensionAppHeader(backgroundColor: Colors.black, height: 64),
         ThemeExtensionControlWorkButton(
             padding: 8,

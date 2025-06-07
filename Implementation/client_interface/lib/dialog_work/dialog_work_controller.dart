@@ -2,6 +2,7 @@ import 'package:client_interfaces1/dialog_work/list_item_work.dart';
 import 'package:client_interfaces1/dialog_work/table_columns.dart';
 import 'package:client_interfaces1/notification/controller_notifications.dart';
 
+import '../app/controller_base.dart';
 import '../app/controller_work.dart';
 import '../app/controller_work_types.dart';
 import '../model/work.dart';
@@ -9,7 +10,7 @@ import 'filter_work.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class ControllerDialogWork {
+class ControllerDialogWork extends ControllerBase {
   late final TableColumnCollection columns;
   late final FilterWork filter;
   final ControllerNotifications notificationsController;

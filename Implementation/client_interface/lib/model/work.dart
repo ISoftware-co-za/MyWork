@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import '../service/service_client_base.dart';
 import '../service/work/service_client_work.dart';
-import '../app/state_task.dart';
+import 'state_task.dart';
 import '../service/work/work_details_response.dart';
 import 'data_conversion_service_to_model.dart';
 import 'properties.dart';

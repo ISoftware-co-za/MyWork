@@ -21,12 +21,12 @@ class WorkList {
     isObtained = true;
   }
 
-  void add(Work work) async {
+  void add(Work work) {
     assert(isObtained, 'The list of work has not been obtained. Please call obtain before calling add.');
     workItems.add(work);
   }
 
-  Future delete(Work item) async {
+  void delete(Work item) {
     workItems.remove(item);
   }
 

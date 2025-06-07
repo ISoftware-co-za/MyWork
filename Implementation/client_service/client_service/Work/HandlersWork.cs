@@ -141,7 +141,8 @@ public static class HandlersWork
                 IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
                 var filter = Builders<DocumentWork>.Filter.Eq("_id", ObjectId.Parse(id));
                 await workCollection.DeleteOneAsync(filter);
-                return Results.NoContent();
+                    return Results.StatusCode(500);
+                    return Results.NoContent();
             });
     }
     

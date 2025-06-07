@@ -3,7 +3,7 @@ import '../execution/executor.dart';
 import '../model/property_changed_registry.dart';
 import '../app/controller_work.dart';
 import '../app/provider_state_application.dart';
-import '../ui_toolkit/custom_icon_buttons.dart';
+import '../ui_toolkit/control_custom_icon_buttons.dart';
 
 class ControlAcceptReject extends StatelessWidget {
   const ControlAcceptReject({super.key = const Key('ControlAcceptReject')});
@@ -11,7 +11,7 @@ class ControlAcceptReject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ControllerWork controller =
-        ProviderStateApplication.of(context)!.workController;
+        ProviderStateApplication.of(context)!.getController<ControllerWork>()!;
     return ListenableBuilder(
         listenable: PropertyChangedRegistry.hasChanges,
         builder: (context, child) {

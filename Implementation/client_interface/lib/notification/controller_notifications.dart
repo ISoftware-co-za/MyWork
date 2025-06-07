@@ -1,8 +1,7 @@
-import 'package:flutter/widgets.dart' hide Notification;
-
+import '../app/controller_base.dart';
 import 'notifications.dart';
 
-class ControllerNotifications extends ChangeNotifier {
+class ControllerNotifications extends ControllerBase {
   //#region PROPERTIES
 
   List<Notification> get notifications => _notifications;
