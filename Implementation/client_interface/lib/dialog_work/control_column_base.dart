@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../ui_toolkit/icon_button_small.dart';
+import '../ui_toolkit/control_icon_button_small.dart';
 import 'table_columns.dart';
 
 class ControlColumnBase extends StatelessWidget {
@@ -26,7 +26,7 @@ class ControlColumnBase extends StatelessWidget {
             if (_column.hasFilerValue.value)
               Positioned(
                 right: 0,
-                child: IconButtonSmall(
+                child: ControlIconButtonSmall(
                     icon: Icon(Icons.clear),
                     onPressed: () {
                       _column.resetFilter();

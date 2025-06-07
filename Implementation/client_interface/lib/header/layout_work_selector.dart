@@ -1,11 +1,14 @@
+import 'package:client_interfaces1/app/controller_work_types.dart';
+import 'package:client_interfaces1/notification/controller_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../app/controller_work.dart';
 import '../app/provider_state_application.dart';
 import '../dialog_work/dialog_work_controller.dart';
 import '../dialog_work/dialog_work_layout.dart';
 import '../model/work.dart';
-import '../theme_extension_control_work_button.dart';
+import '../theme/theme_extension_control_work_button.dart';
 import 'control_button_add_work.dart';
 import 'control_button_select_work.dart';
 
@@ -33,6 +36,11 @@ class _LayoutWorkSelectorState extends State<LayoutWorkSelector> {
       GestureDetector(
         onTap: () => _showWorkDialog(context),
         child: MouseRegion(
+            onHover: (event) {
+              if (kDebugMode) {
+                debugPrint('Mouse hovered over work selector');
+              }
+            },
             onEnter: (event) => setState(() {
                   _isMouseOver = true;
                 }),
@@ -47,16 +55,17 @@ class _LayoutWorkSelectorState extends State<LayoutWorkSelector> {
 
   void _showWorkDialog(BuildContext context) {
     ProviderStateApplication stateProvider = ProviderStateApplication.of(context)!;
-    ControllerDialogWork? controller = stateProvider.lazyLoadControllers.workDialogController;
+
+    ControllerDialogWork? controller = stateProvider.getController<ControllerDialogWork>();
     if (controller == null) {
-      controller = stateProvider.lazyLoadControllers.workDialogController = ControllerDialogWork(
-          stateProvider.workTypesController, stateProvider.workController, stateProvider.notificationController);
+      controller = ControllerDialogWork(
+          stateProvider.getController<ControllerWorkTypes>()!, stateProvider.getController<ControllerWork>()!, stateProvider.getController<ControllerNotifications>()!);
     }
     controller.showWorkList();
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return DialogWorkLayout(controller: controller!, workTypes: stateProvider.workTypesController.workTypes!);
+          return DialogWorkLayout(controller: controller!, workTypes: stateProvider.getController<ControllerWorkTypes>()!.workTypes!);
         });
   }
 

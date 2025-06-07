@@ -1,19 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 import '../model/property_changed_registry.dart';
 import '../model/work_list.dart';
 import '../model/work.dart';
+import 'controller_base.dart';
 
 enum ControllerWorkState { noWork, newWork, existingWork }
 
-class ControllerWork  {
+class ControllerWork extends ControllerBase {
   //#region PROPERTIES
 
   final WorkList workList = WorkList();
   ValueListenable<Work?> get selectedWork => _selectedWork;
   bool get hasWork => selectedWork.value != null;
-  bool get hasExistingWork => hasWork && !selectedWork.value!.isNew;
+  bool get hasExistingWork => hasWork && selectedWork.value!.isNew == false;
   ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
 
   //#endregion
@@ -42,8 +42,8 @@ class ControllerWork  {
   }
 
   Future onWorkDelete() async {
-    assert(selectedWork.value != null);
-    selectedWork.value!.delete();
+    assert(hasWork, 'There is no work selected to delete.');
+    await selectedWork.value!.delete();
     workList.delete(selectedWork.value!);
     _selectedWork.value = null;
   }

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart' hide Notification;
 
 import '../app/provider_state_application.dart';
 import 'control_notifications.dart';
+import 'controller_notifications.dart';
 import 'notifications.dart';
 
 class LayoutNotifications extends StatefulWidget {
@@ -16,11 +17,11 @@ class _LayoutNotificationsState extends State<LayoutNotifications> {
   Widget build(BuildContext context) {
     return ListenableBuilder(
         listenable:
-            ProviderStateApplication.of(context)!.notificationController,
+            ProviderStateApplication.of(context)!.getController<ControllerNotifications>()!,
         builder: (BuildContext context, Widget? child) {
           List<Widget> notifications = _listNotifications(
               ProviderStateApplication.of(context)!
-                  .notificationController
+                  .getController<ControllerNotifications>()!
                   .notifications);
           return Column(
             children: notifications,

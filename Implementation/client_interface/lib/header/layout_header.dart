@@ -1,11 +1,12 @@
-import 'package:client_interfaces1/theme_extension_control_work_button.dart';
+import 'package:client_interfaces1/app/controller_work.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../app/provider_state_application.dart';
-import '../custom_theme_data_app_header.dart';
+import '../theme/custom_theme_data_app_header.dart';
 import '../model/work.dart';
-import '../theme_extension_app_header.dart';
+import '../theme/theme_extension_app_header.dart';
+import '../theme/theme_extension_control_work_button.dart';
 import 'layout_work_selector.dart';
 import 'control_search.dart';
 import 'control_notifications.dart';
@@ -19,7 +20,7 @@ class LayoutHeader extends StatelessWidget {
     ThemeData theme = CustomThemeDataAppHeader.getTheme();
     ThemeExtensionAppHeader appHeaderThemeExtension = theme.extension<ThemeExtensionAppHeader>()!;
     ThemeExtensionControlWorkButton workButtonTheme = theme.extension<ThemeExtensionControlWorkButton>()!;
-    ValueListenable<Work?> selectedWork = ProviderStateApplication.of(context)!.workController.selectedWork;
+    ValueListenable<Work?> selectedWork = ProviderStateApplication.of(context)!.getController<ControllerWork>()!.selectedWork;
 
     return Theme(
       data: theme,

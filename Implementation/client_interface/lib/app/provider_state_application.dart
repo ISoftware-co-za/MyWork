@@ -1,28 +1,15 @@
+import 'package:client_interfaces1/app/controller_base.dart';
 import 'package:flutter/widgets.dart';
 
 import '../dialog_work/dialog_work_controller.dart';
-import '../notification/controller_notifications.dart';
-import 'controller_user.dart';
-import 'controller_work.dart';
-import 'controller_work_types.dart';
 
 class ProviderStateApplicationLazyLoadedController {
   ControllerDialogWork? workDialogController;
 }
 
 class ProviderStateApplication extends InheritedWidget {
-  final ControllerUser userController;
-  final ControllerWork workController;
-  final ControllerWorkTypes workTypesController;
-  final ControllerNotifications notificationController;
-  final ProviderStateApplicationLazyLoadedController lazyLoadControllers =
-      ProviderStateApplicationLazyLoadedController();
 
   ProviderStateApplication({
-    required this.userController,
-    required this.workController,
-    required this.workTypesController,
-    required this.notificationController,
     required super.child,
     super.key,
   });
@@ -32,9 +19,16 @@ class ProviderStateApplication extends InheritedWidget {
         .dependOnInheritedWidgetOfExactType<ProviderStateApplication>();
   }
 
-  @override
-  bool updateShouldNotify(ProviderStateApplication oldWidget) {
-    return oldWidget.workController.selectedWork.value !=
-        workController.selectedWork.value;
+  void registerController<T extends ControllerBase>(T controller) {
+    _controllerMap[T] = controller;
   }
+
+  T? getController<T extends ControllerBase>() {
+    return _controllerMap[T] as T?;
+  }
+
+  @override
+  bool updateShouldNotify(ProviderStateApplication oldWidget) => false;
+
+  final Map<Type, ControllerBase> _controllerMap = {};
 }

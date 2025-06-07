@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class IconButtonSizeThemeExtension extends ThemeExtension<IconButtonSizeThemeExtension> {
+class ThemeExtensionIconButtonSize extends ThemeExtension<ThemeExtensionIconButtonSize> {
   final double smallIconSize;
   final double largeIconSize;
   final double smallPadding;
   final double largePadding;
 
-  const IconButtonSizeThemeExtension({
+  const ThemeExtensionIconButtonSize({
     required this.smallIconSize,
     required this.largeIconSize,
     required this.smallPadding,
@@ -14,13 +14,13 @@ class IconButtonSizeThemeExtension extends ThemeExtension<IconButtonSizeThemeExt
   });
 
   @override
-  IconButtonSizeThemeExtension copyWith({
+  ThemeExtensionIconButtonSize copyWith({
     double? smallIconSize,
     double? largeIconSize,
     double? smallPadding,
     double? largePadding,
   }) {
-    return IconButtonSizeThemeExtension(
+    return ThemeExtensionIconButtonSize(
       smallIconSize: smallIconSize ?? this.smallIconSize,
       largeIconSize: largeIconSize ?? this.largeIconSize,
       smallPadding: smallPadding ?? this.smallPadding,
@@ -29,9 +29,9 @@ class IconButtonSizeThemeExtension extends ThemeExtension<IconButtonSizeThemeExt
   }
 
   @override
-  IconButtonSizeThemeExtension lerp(ThemeExtension<IconButtonSizeThemeExtension>? other, double t) {
-    if (other is! IconButtonSizeThemeExtension) return this;
-    return IconButtonSizeThemeExtension(
+  ThemeExtensionIconButtonSize lerp(ThemeExtension<ThemeExtensionIconButtonSize>? other, double t) {
+    if (other is! ThemeExtensionIconButtonSize) return this;
+    return ThemeExtensionIconButtonSize(
       smallIconSize: smallIconSize + (other.smallIconSize - smallIconSize) * t,
       largeIconSize: largeIconSize + (other.largeIconSize - largeIconSize) * t,
       smallPadding: smallPadding + (other.smallPadding - smallPadding) * t,
@@ -42,7 +42,7 @@ class IconButtonSizeThemeExtension extends ThemeExtension<IconButtonSizeThemeExt
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is IconButtonSizeThemeExtension &&
+          other is ThemeExtensionIconButtonSize &&
               runtimeType == other.runtimeType &&
               smallIconSize == other.smallIconSize &&
               largeIconSize == other.largeIconSize &&

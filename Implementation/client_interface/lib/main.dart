@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'custom_theme_data.dart';
+import 'theme/custom_theme_data.dart';
 import 'execution/executor.dart';
 import 'execution/ui_container_context.dart';
 import 'header/layout_header.dart';
@@ -15,8 +15,8 @@ import 'app/coordinator_login.dart';
 import 'app/provider_state_application.dart';
 import 'app/controller_work.dart';
 import 'model/properties.dart';
-import 'app/state_note.dart';
-import 'app/state_action.dart';
+import 'model/state_note.dart';
+import 'model/state_action.dart';
 import 'tabs/layout_tab_bar.dart';
 import 'tabs/page_details/page_details.dart';
 import 'tabs/page_tasks/page_tasks.dart';
@@ -110,11 +110,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    return ProviderStateApplication(
-      userController: _userController,
-      workController: _workController,
-      workTypesController: _workTypesController,
-      notificationController: ControllerNotifications(),
+    var stateProvider = ProviderStateApplication(
       child: Builder(builder: (context) {
         return FutureBuilder(
           future: Executor.runCommandAsync('login', null, _initializeAsync, context),
@@ -128,6 +124,12 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         );
       }),
     );
+
+    stateProvider.registerController(_userController);
+    stateProvider.registerController(_workController);
+    stateProvider.registerController(_workTypesController);
+    stateProvider.registerController(ControllerNotifications());
+    return stateProvider;
   }
 
   //#region PRIVATE METHODS

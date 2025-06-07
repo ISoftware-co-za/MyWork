@@ -16,11 +16,11 @@ class PageDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ControllerWork controllerWork =
-        ProviderStateApplication.of(context)!.workController;
+        ProviderStateApplication.of(context)!.getController<ControllerWork>()!;
     ControllerUser controllerUser =
-        ProviderStateApplication.of(context)!.userController;
+        ProviderStateApplication.of(context)!.getController<ControllerUser>()!;
     ControllerWorkTypes controllerWorkTypes =
-        ProviderStateApplication.of(context)!.workTypesController;
+        ProviderStateApplication.of(context)!.getController<ControllerWorkTypes>()!;
 
     assert(controllerUser.user.userID != null, "Cannot display work details without a logged in user");
 

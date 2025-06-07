@@ -7,13 +7,8 @@ import 'work_type.dart';
 
 class User {
   String? userID;
-  //#region CONSTRUCTION
 
   User();
-
-  //#endregion
-
-  //#region METHODS
 
   Future<ResultLogin> login(String email, String password) async {
     var response = await _serviceClient
@@ -29,13 +24,7 @@ class User {
     return true;
   }
 
-  //#endregion
-
-//# region FIELDS
-
   final ServiceClientUser _serviceClient = GetIt.instance<ServiceClientUser>();
-
-//#endregion
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -47,4 +36,3 @@ class ResultLogin {
   ResultLogin({required this.userId, required this.workTypes});
 }
 
-//----------------------------------------------------------------------------------------------------------------------

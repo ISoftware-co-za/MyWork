@@ -18,7 +18,7 @@ class ControlWorkTypesFilterHeader extends StatelessWidget {
                     style: _themeExtension.headerTextStyle);
               }),
         ),
-        IconButtonLarge(icon: Icon(Icons.close), onPressed: () => Navigator.pop(context))
+        ControlIconButtonLarge(icon: Icon(Icons.close), onPressed: () => Navigator.pop(context))
       ],
     );
   }

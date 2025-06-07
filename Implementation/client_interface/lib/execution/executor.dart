@@ -61,7 +61,7 @@ class Executor {
     ControllerNotifications? notificationController = notificationControllerOverride;
     if (notificationController == null && context.mounted) {
       ProviderStateApplication provider = ProviderStateApplication.of(context)!;
-      notificationController = provider.notificationController;
+      notificationController = provider.getController<ControllerNotifications>();
     }
     notificationController!.add(NotificationError(message));
   }

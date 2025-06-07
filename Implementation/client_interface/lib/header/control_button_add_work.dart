@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../app/controller_work.dart';
 import '../app/provider_state_application.dart';
-import '../ui_toolkit/icon_button_large.dart';
+import '../ui_toolkit/control_icon_button_large.dart';
 
 class ControlButtonAddWork extends StatelessWidget {
   const ControlButtonAddWork({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return IconButtonLarge(
+    return ControlIconButtonLarge(
         icon: Icon(Icons.add),
         onPressed: () async {
-            ControllerWork workController = ProviderStateApplication.of(context)!.workController;
+            ControllerWork workController = ProviderStateApplication.of(context)!.getController<ControllerWork>()!;
             await workController.onNewWork();
         });
   }

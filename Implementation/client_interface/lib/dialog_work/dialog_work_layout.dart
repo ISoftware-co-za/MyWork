@@ -2,15 +2,15 @@ library dialog_work;
 
 import 'package:client_interfaces1/dialog_work/control_column_base.dart';
 import 'package:client_interfaces1/notification/controller_notifications.dart';
-import 'package:client_interfaces1/theme_extension_dialog_work_types_filter.dart';
+import 'package:client_interfaces1/theme/theme_extension_dialog_work_types_filter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../custom_theme_data_app_header.dart';
+import '../theme/custom_theme_data_app_header.dart';
 import '../execution/executor.dart';
 import '../model/work_type_list.dart';
-import '../theme_extension_dialog_work.dart';
-import '../ui_toolkit/icon_button_large.dart';
+import '../theme/theme_extension_dialog_work.dart';
+import '../ui_toolkit/control_icon_button_large.dart';
 import 'dialog_work_controller.dart';
 import 'list_item_work.dart';
 import 'table_columns.dart';

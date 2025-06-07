@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../app/state_note.dart';
+import '../model/state_note.dart';
 import 'control_activity_control_palette.dart';
 import 'control_activity_description.dart';
 import 'control_activity_requester.dart';
 import 'control_activity_timestamp.dart';
 import 'control_activity_title.dart';
-import '../app/state_action.dart';
+import '../model/state_action.dart';
 
 enum Orientation {
   column,
