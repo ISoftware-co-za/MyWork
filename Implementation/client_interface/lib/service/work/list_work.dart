@@ -1,34 +1,34 @@
 part of 'service_client_work.dart';
 
-class WorkListResponse extends ServiceClientResponse {
-  final List<WorkListItem> items;
+class ListWorkResponse extends ServiceClientResponse {
+  final List<ListWorkItem> items;
 
-  WorkListResponse.ResponseWorkList({required this.items});
+  ListWorkResponse.ResponseWorkList({required this.items});
 
-  factory WorkListResponse.fromJson(Map<String, dynamic> json) {
-    return WorkListResponse.ResponseWorkList(
+  factory ListWorkResponse.fromJson(Map<String, dynamic> json) {
+    return ListWorkResponse.ResponseWorkList(
         items: (json['items'] as List)
-            .map((e) => WorkListItem.fromJson(e))
+            .map((e) => ListWorkItem.fromJson(e))
             .toList());
   }
 }
 
-class WorkListItem {
+class ListWorkItem {
   final String id;
   final String name;
   final String? reference;
   final String? type;
   final bool archived;
 
-  WorkListItem(
+  ListWorkItem(
       {required this.id,
       required this.name,
       this.reference,
       this.type,
       required this.archived});
 
-  factory WorkListItem.fromJson(Map<String, dynamic> json) {
-    return WorkListItem(
+  factory ListWorkItem.fromJson(Map<String, dynamic> json) {
+    return ListWorkItem(
         id: json['id'],
         name: json['name'],
         reference: json['reference'],

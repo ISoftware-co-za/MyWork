@@ -2,30 +2,25 @@ library service_client_work;
 
 import 'dart:convert';
 
-import 'package:client_interfaces1/service/work/work_details_response.dart';
+import 'package:client_interfaces1/service/work/load_work_details.dart';
 
 import '../service_client_base.dart';
 
-part 'work_list.dart';
+part 'list_work.dart';
 part 'create_work.dart';
-part 'work_update.dart';
+part 'update_work.dart';
 
 class ServiceClientWork extends ServiceClientBase {
-  //#region CONSTRUCTION
 
   ServiceClientWork(super.baseUrl);
 
-  //#endregion
-
-  //#region METHODS
-
-  Future<WorkListResponse> listAll() async {
+  Future<ListWorkResponse> listAll() async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/work');
     final response = await httpGet(uri, headers);
     return processResponse(response, 200,
-            () => WorkListResponse.fromJson(jsonDecode(response.body)))!
-        as WorkListResponse;
+            () => ListWorkResponse.fromJson(jsonDecode(response.body)))!
+        as ListWorkResponse;
   }
 
   Future<WorkDetailsResponse> loadDetails(String id) async {
@@ -46,7 +41,7 @@ class ServiceClientWork extends ServiceClientBase {
         () => ResponseWorkCreate.fromJson(jsonDecode(response.body)))!;
   }
 
-  Future<ServiceClientResponse?> update(RequestWorkUpdate request) async {
+  Future<ServiceClientResponse?> update(RequestUpdateWork request) async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/work/${request.id}');
     final body = jsonEncode(request.toJson());

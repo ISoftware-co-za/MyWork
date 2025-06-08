@@ -2,7 +2,7 @@ part of dialog_work;
 
 class ControlWorkTypesFilterHeader extends StatelessWidget {
   const ControlWorkTypesFilterHeader(
-      {required TableColumnList column, required ThemeExtensionDialogWorkTypesFilter themeExtension, super.key})
+      {required ColumnList column, required ThemeExtensionDialogWorkTypesFilter themeExtension, super.key})
       : _column = column,
         _themeExtension = themeExtension;
 
@@ -23,6 +23,6 @@ class ControlWorkTypesFilterHeader extends StatelessWidget {
     );
   }
 
-  final TableColumnList _column;
+  final ColumnList _column;
   final ThemeExtensionDialogWorkTypesFilter _themeExtension;
 }

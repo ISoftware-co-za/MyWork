@@ -1,20 +1,20 @@
 import '../service_client_base.dart';
 
-class WorkDetails {
+class LoadWorkDetails {
   String? description;
 
-  WorkDetails({this.description});
+  LoadWorkDetails({this.description});
 }
 
 class WorkDetailsResponse extends ServiceClientResponse {
-  WorkDetails details;
+  LoadWorkDetails details;
 
   WorkDetailsResponse({required this.details});
 
   factory WorkDetailsResponse.fromJson(Map<String, dynamic> json) {
     var details = json['details'] as Map<String, dynamic>?;
     return WorkDetailsResponse(
-      details: WorkDetails(
+      details: LoadWorkDetails(
           description: details!['description']
       ),
     );

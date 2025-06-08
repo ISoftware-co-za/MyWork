@@ -2,8 +2,8 @@ part of dialog_work;
 
 class _DialogWorkControlWorkTypeListItem extends StatefulWidget {
   const _DialogWorkControlWorkTypeListItem(
-      {required TableColumnList column,
-        required TableColumnListItemBase listItem, required ThemeExtensionDialogWorkTypesFilter themeExtension})
+      {required ColumnList column,
+        required ColumnListItemBase listItem, required ThemeExtensionDialogWorkTypesFilter themeExtension})
       : _column = column,
         _listItem = listItem,
   _themeExtension = themeExtension;
@@ -11,8 +11,8 @@ class _DialogWorkControlWorkTypeListItem extends StatefulWidget {
   @override
   State<_DialogWorkControlWorkTypeListItem> createState() => _DialogWorkControlWorkTypeListItemState();
 
-  final TableColumnList _column;
-  final TableColumnListItemBase _listItem;
+  final ColumnList _column;
+  final ColumnListItemBase _listItem;
   final ThemeExtensionDialogWorkTypesFilter _themeExtension;
 }
 

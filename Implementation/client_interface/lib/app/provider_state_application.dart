@@ -1,7 +1,7 @@
 import 'package:client_interfaces1/app/controller_base.dart';
 import 'package:flutter/widgets.dart';
 
-import '../dialog_work/dialog_work_controller.dart';
+import '../dialog_work/app/controller_dialog_work.dart';
 
 class ProviderStateApplicationLazyLoadedController {
   ControllerDialogWork? workDialogController;

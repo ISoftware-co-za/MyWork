@@ -18,7 +18,7 @@ import 'model/properties.dart';
 import 'model/state_note.dart';
 import 'model/state_action.dart';
 import 'tabs/layout_tab_bar.dart';
-import 'tabs/page_details/page_details.dart';
+import 'tabs/page_details/widgets/layout_page_details.dart';
 import 'tabs/page_tasks/page_tasks.dart';
 import 'ui_toolkit/hover.dart';
 
@@ -157,7 +157,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                   controller: _controllerHover,
                   child: TabBarView(
                     controller: _tabController,
-                    children: [PageDetails(), PageTasks()],
+                    children: [LayoutPageDetails(), PageTasks()],
                   ),
                 ),
               ),

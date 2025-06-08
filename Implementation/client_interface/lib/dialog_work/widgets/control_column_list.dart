@@ -1,7 +1,7 @@
 part of dialog_work;
 
 class _DialogWorkControlColumnList extends StatelessWidget {
-  _DialogWorkControlColumnList({required TableColumnList column, required TextStyle labelStyle})
+  _DialogWorkControlColumnList({required ColumnList column, required TextStyle labelStyle})
       : _column = column,
         _labelStyle = labelStyle;
 
@@ -26,7 +26,7 @@ class _DialogWorkControlColumnList extends StatelessWidget {
                             top: widgetPosition.dy,
                             left: widgetPosition.dx,
                             child: Material(
-                              child: DialogWorkLayoutWorkTypesFilter(workTypes: _column.items, column: _column),
+                              child: LayoutDialogWorkTypesFilter(workTypes: _column.items, column: _column),
                             ),
                           )
                         ]);
@@ -37,6 +37,6 @@ class _DialogWorkControlColumnList extends StatelessWidget {
   }
 
   final GlobalKey selectedWorkTypeCountKey = GlobalKey();
-  final TableColumnList _column;
+  final ColumnList _column;
   final TextStyle _labelStyle;
 }

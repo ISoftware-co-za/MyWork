@@ -1,14 +1,14 @@
 part of dialog_work;
 
 class _DialogWorkControlColumnText extends StatefulWidget {
-  _DialogWorkControlColumnText({required TableColumnText column, required TextStyle labelStyle})
+  _DialogWorkControlColumnText({required ColumnText column, required TextStyle labelStyle})
       : _column = column,
         _labelStyle = labelStyle;
 
   @override
   State<_DialogWorkControlColumnText> createState() => _DialogWorkControlColumnTextState();
 
-  final TableColumnText _column;
+  final ColumnText _column;
   final TextStyle _labelStyle;
 }
 

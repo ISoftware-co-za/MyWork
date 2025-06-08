@@ -1,4 +1,4 @@
-import '../../model/properties.dart';
+import '../../../model/properties.dart';
 
 class ListItemDetailBase {
   final String label;

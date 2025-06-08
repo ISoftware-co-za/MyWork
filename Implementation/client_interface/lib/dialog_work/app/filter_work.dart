@@ -1,17 +1,20 @@
 import 'package:flutter/foundation.dart';
 
+import 'column_boolean.dart';
+import 'column_list.dart';
+import 'column_text.dart';
+import 'column_collection.dart';
 import 'list_item_work.dart';
-import 'table_columns.dart';
 
 class FilterWork {
   final ValueNotifier<List<ListItemWork>> filteredWorkItems =
       ValueNotifier<List<ListItemWork>>([]);
 
-  FilterWork(TableColumnCollection columns) {
-    _type = columns.getColumnByLabel<TableColumnList>("Type");
-    _name = columns.getColumnByLabel<TableColumnText>("Name");
-    _reference = columns.getColumnByLabel<TableColumnText>("Reference");
-    _archived = columns.getColumnByLabel<TableColumnBoolean>("Archived");
+  FilterWork(ColumnCollection columns) {
+    _type = columns.getColumnByLabel<ColumnList>("Type");
+    _name = columns.getColumnByLabel<ColumnText>("Name");
+    _reference = columns.getColumnByLabel<ColumnText>("Reference");
+    _archived = columns.getColumnByLabel<ColumnBoolean>("Archived");
 
     assert(_type != null,
         "FilterWork requires the Type TableColumnList, this is not provided");
@@ -37,7 +40,7 @@ class FilterWork {
     List<ListItemWork> filteredItems = [];
     String? lowercaseName = _name!.filterValue.value.toLowerCase();
     String? lowercaseReference = _reference!.filterValue.value.toLowerCase();
-    List<TableColumnListItemWorkType> selectedTypes = _type!.listSelectedType();
+    List<ColumnListItemWorkType> selectedTypes = _type!.listSelectedType();
     bool? archived = _archived!.filterValue.value;
 
     for (ListItemWork workItem in _workList!) {
@@ -48,9 +51,9 @@ class FilterWork {
     filteredWorkItems.value = filteredItems;
   }
 
-  TableColumnList? _type;
-  TableColumnText? _name;
-  TableColumnText? _reference;
-  TableColumnBoolean? _archived;
+  ColumnList? _type;
+  ColumnText? _name;
+  ColumnText? _reference;
+  ColumnBoolean? _archived;
   List<ListItemWork>? _workList;
 }

@@ -1,10 +1,10 @@
 part of 'service_client_work.dart';
 
-class RequestWorkUpdate {
+class RequestUpdateWork {
   final String id;
-  final Iterable<WorkUpdatedProperty> updatedProperties;
+  final Iterable<UpdateWorkProperty> updatedProperties;
 
-  RequestWorkUpdate({required this.id, required this.updatedProperties});
+  RequestUpdateWork({required this.id, required this.updatedProperties});
 
   Map<String, dynamic> toJson() {
     return {
@@ -14,10 +14,10 @@ class RequestWorkUpdate {
   }
 }
 
-class WorkUpdatedProperty {
+class UpdateWorkProperty {
   final String name;
   final dynamic value;
-  WorkUpdatedProperty({required this.name, this.value});
+  UpdateWorkProperty({required this.name, this.value});
 
   Map<String, dynamic> toJson() {
     return {

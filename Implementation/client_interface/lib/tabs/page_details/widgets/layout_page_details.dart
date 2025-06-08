@@ -1,17 +1,17 @@
-import 'package:client_interfaces1/tabs/page_details/layout_details_form.dart';
+import 'package:client_interfaces1/tabs/page_details/widgets/layout_details_form.dart';
 import 'package:flutter/material.dart';
 
-import '../../app/controller_user.dart';
-import '../../app/controller_work.dart';
-import '../../app/controller_work_types.dart';
-import '../../app/provider_state_application.dart';
-import '../../model/work.dart';
-import '../../model/work_type_list.dart';
+import '../../../app/controller_user.dart';
+import '../../../app/controller_work.dart';
+import '../../../app/controller_work_types.dart';
+import '../../../app/provider_state_application.dart';
+import '../../../model/work.dart';
+import '../../../model/work_type_list.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class PageDetails extends StatelessWidget {
-  PageDetails({super.key}) {}
+class LayoutPageDetails extends StatelessWidget {
+  LayoutPageDetails({super.key}) {}
 
   @override
   Widget build(BuildContext context) {

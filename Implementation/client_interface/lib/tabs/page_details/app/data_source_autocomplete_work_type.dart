@@ -1,12 +1,12 @@
 import 'package:client_interfaces1/model/work_type_list.dart';
 import 'package:client_interfaces1/ui_toolkit/form/form.dart';
 
-import '../../model/work_type.dart';
-import '../../model/properties.dart';
+import '../../../model/work_type.dart';
+import '../../../model/properties.dart';
 
-class AutocompleteDataSourceWorkType extends AutocompleteDataSource {
+class DataSourceAutocompleteWorkType extends AutocompleteDataSource {
 
-  AutocompleteDataSourceWorkType(String userID, WorkTypeList workTypes, StateProperty<String>? property)
+  DataSourceAutocompleteWorkType(String userID, WorkTypeList workTypes, StateProperty<String>? property)
       : _userID = userID,_workTypes = workTypes, _property = property;
 
   @override

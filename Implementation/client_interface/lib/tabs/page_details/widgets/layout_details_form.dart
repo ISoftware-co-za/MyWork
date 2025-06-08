@@ -1,16 +1,16 @@
 import 'package:client_interfaces1/model/work_type_list.dart';
-import 'package:client_interfaces1/tabs/page_details/list_item_detail_autocomplete.dart';
-import 'package:client_interfaces1/tabs/page_details/list_item_detail_parchment.dart';
+import 'package:client_interfaces1/tabs/page_details/app/list_item_detail_autocomplete.dart';
 import 'package:flutter/material.dart';
 
-import '../../execution/executor.dart';
-import '../../app/controller_work.dart';
-import '../../model/work.dart';
-import '../../ui_toolkit/form/form.dart';
-import '../../ui_toolkit/hover.dart';
-import 'autocomplete_data_source_work_type.dart';
-import 'list_item_detail_base.dart';
-import 'list_item_detail_text.dart';
+import '../../../execution/executor.dart';
+import '../../../app/controller_work.dart';
+import '../../../model/work.dart';
+import '../../../ui_toolkit/form/form.dart';
+import '../../../ui_toolkit/hover.dart';
+import '../app/data_source_autocomplete_work_type.dart';
+import '../app/list_item_detail_base.dart';
+import '../app/list_item_detail_parchment.dart';
+import '../app/list_item_detail_text.dart';
 
 class LayoutDetailsForm extends StatefulWidget {
   LayoutDetailsForm(
@@ -31,7 +31,7 @@ class LayoutDetailsForm extends StatefulWidget {
       ListItemDetailAutocomplete(
           label: 'Type',
           property: work.type,
-          dataSource: AutocompleteDataSourceWorkType(_userID, _workTypes, work.type)),
+          dataSource: DataSourceAutocompleteWorkType(_userID, _workTypes, work.type)),
       ListItemDetailText(label: 'Reference', property: work.reference),
       ListItemDetailParchment(label: 'Description', property: work.description)
     ];
