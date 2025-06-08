@@ -35,4 +35,3 @@ class ResultLogin {
 
   ResultLogin({required this.userId, required this.workTypes});
 }
-

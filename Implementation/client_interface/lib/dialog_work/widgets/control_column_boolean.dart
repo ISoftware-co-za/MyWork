@@ -1,7 +1,7 @@
 part of dialog_work;
 
 class _DialogWorkControlColumnBoolean extends StatelessWidget {
-  final TableColumnBoolean column;
+  final ColumnBoolean column;
 
   const _DialogWorkControlColumnBoolean({required this.column, required TextStyle labelStyle})
       : _labelStyle = labelStyle;

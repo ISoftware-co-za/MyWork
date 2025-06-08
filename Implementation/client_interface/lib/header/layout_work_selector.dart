@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../app/controller_work.dart';
 import '../app/provider_state_application.dart';
-import '../dialog_work/dialog_work_controller.dart';
-import '../dialog_work/dialog_work_layout.dart';
+import '../dialog_work/app/controller_dialog_work.dart';
+import '../dialog_work/widgets/layout_dialog_work.dart';
 import '../model/work.dart';
 import '../theme/theme_extension_control_work_button.dart';
 import 'control_button_add_work.dart';
@@ -65,7 +65,7 @@ class _LayoutWorkSelectorState extends State<LayoutWorkSelector> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return DialogWorkLayout(controller: controller!, workTypes: stateProvider.getController<ControllerWorkTypes>()!.workTypes!);
+          return LayoutDialogWork(controller: controller!, workTypes: stateProvider.getController<ControllerWorkTypes>()!.workTypes!);
         });
   }
 

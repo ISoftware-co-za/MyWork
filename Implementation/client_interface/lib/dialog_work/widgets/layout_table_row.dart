@@ -2,7 +2,7 @@ part of dialog_work;
 
 class _DialogWorkLayoutTableRow extends StatefulWidget {
   const _DialogWorkLayoutTableRow(
-      {required TableColumnCollection columns,
+      {required ColumnCollection columns,
       required ListItemWork work,
       required AsyncValueSetter<ListItemWork> onWorkSummarySelectedHandler,
       required ControllerNotifications notificationsController,
@@ -16,7 +16,7 @@ class _DialogWorkLayoutTableRow extends StatefulWidget {
   @override
   State<_DialogWorkLayoutTableRow> createState() => _DialogWorkLayoutTableRowState();
 
-  final TableColumnCollection _columns;
+  final ColumnCollection _columns;
   final ListItemWork _work;
   final ControllerNotifications _controllerNotifications;
   final ThemeExtensionWorkDialog _theme;

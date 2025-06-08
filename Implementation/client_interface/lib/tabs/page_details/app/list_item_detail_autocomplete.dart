@@ -1,5 +1,5 @@
-import '../../model/properties.dart';
-import '../../ui_toolkit/form/form.dart';
+import '../../../model/properties.dart';
+import '../../../ui_toolkit/form/form.dart';
 import 'list_item_detail_base.dart';
 
 class ListItemDetailAutocomplete extends ListItemDetailBase {

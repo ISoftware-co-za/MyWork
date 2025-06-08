@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../ui_toolkit/control_icon_button_small.dart';
-import 'table_columns.dart';
+import '../../ui_toolkit/control_icon_button_small.dart';
+import '../app/column_base.dart';
 
 class ControlColumnBase extends StatelessWidget {
-   ControlColumnBase({required Widget child, required TableColumnBase column, required TextStyle labelStyle, super.key})
+   ControlColumnBase({required Widget child, required ColumnBase column, required TextStyle labelStyle, super.key})
       : _child = child,
         _column = column,
          _labelStyle = labelStyle;
@@ -43,6 +43,6 @@ class ControlColumnBase extends StatelessWidget {
   }
 
   final Widget _child;
-  final TableColumnBase _column;
+  final ColumnBase _column;
   final TextStyle _labelStyle;
 }

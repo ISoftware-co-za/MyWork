@@ -1,4 +1,4 @@
-import '../../model/properties.dart';
+import '../../../model/properties.dart';
 import 'list_item_detail_base.dart';
 
 class ListItemDetailText extends ListItemDetailBase {

@@ -1,19 +1,22 @@
 library dialog_work;
 
-import 'package:client_interfaces1/dialog_work/control_column_base.dart';
+import 'package:client_interfaces1/dialog_work/widgets/control_column_base.dart';
 import 'package:client_interfaces1/notification/controller_notifications.dart';
 import 'package:client_interfaces1/theme/theme_extension_dialog_work_types_filter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../theme/custom_theme_data_app_header.dart';
-import '../execution/executor.dart';
-import '../model/work_type_list.dart';
-import '../theme/theme_extension_dialog_work.dart';
-import '../ui_toolkit/control_icon_button_large.dart';
-import 'dialog_work_controller.dart';
-import 'list_item_work.dart';
-import 'table_columns.dart';
+import '../../theme/custom_theme_data_app_header.dart';
+import '../../execution/executor.dart';
+import '../../model/work_type_list.dart';
+import '../../theme/theme_extension_dialog_work.dart';
+import '../../ui_toolkit/control_icon_button_large.dart';
+import '../app/column_boolean.dart';
+import '../app/column_collection.dart';
+import '../app/column_list.dart';
+import '../app/column_text.dart';
+import '../app/controller_dialog_work.dart';
+import '../app/list_item_work.dart';
 
 part 'control_column_boolean.dart';
 part 'control_column_list.dart';
@@ -23,11 +26,11 @@ part 'layout_header.dart';
 part 'layout_table_body.dart';
 part 'layout_table_header.dart';
 part 'layout_table_row.dart';
-part 'dialog_layout_work_types_filter.dart';
+part 'layout_dialog_work_types_filter.dart';
 part 'control_work_types_filter_header.dart';
 
-class DialogWorkLayout extends StatelessWidget {
-  const DialogWorkLayout({required ControllerDialogWork controller, required WorkTypeList workTypes, super.key})
+class LayoutDialogWork extends StatelessWidget {
+  const LayoutDialogWork({required ControllerDialogWork controller, required WorkTypeList workTypes, super.key})
       : _controller = controller,
         _workTypes = workTypes;
 

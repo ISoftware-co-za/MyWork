@@ -1,9 +1,9 @@
 part of dialog_work;
 
-class DialogWorkLayoutWorkTypesFilter extends StatelessWidget {
-  DialogWorkLayoutWorkTypesFilter(
-      {required TableColumnList column,
-        required List<TableColumnListItemBase> workTypes,
+class LayoutDialogWorkTypesFilter extends StatelessWidget {
+  LayoutDialogWorkTypesFilter(
+      {required ColumnList column,
+        required List<ColumnListItemBase> workTypes,
         super.key})
       : _column = column,
         _workTypes = workTypes;
@@ -32,6 +32,6 @@ class DialogWorkLayoutWorkTypesFilter extends StatelessWidget {
     );
   }
 
-  final TableColumnList _column;
-  late final List<TableColumnListItemBase> _workTypes;
+  final ColumnList _column;
+  late final List<ColumnListItemBase> _workTypes;
 }

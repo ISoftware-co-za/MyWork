@@ -2,8 +2,8 @@ import 'package:get_it/get_it.dart';
 
 import '../service/service_client_base.dart';
 import '../service/work/service_client_work.dart';
+import '../service/work/load_work_details.dart';
 import 'state_task.dart';
-import '../service/work/work_details_response.dart';
 import 'data_conversion_service_to_model.dart';
 import 'properties.dart';
 import 'validator_base.dart';
@@ -69,26 +69,26 @@ class Work extends PropertyOwner {
   }
 
   Future update() async {
-    var updatedProperties = <WorkUpdatedProperty>[];
+    var updatedProperties = <UpdateWorkProperty>[];
     if (name.isChanged) {
       updatedProperties
-          .add(WorkUpdatedProperty(name: 'Name', value: name.value));
+          .add(UpdateWorkProperty(name: 'Name', value: name.value));
     }
     if (type.isChanged) {
       updatedProperties
-          .add(WorkUpdatedProperty(name: 'Type', value: type.value));
+          .add(UpdateWorkProperty(name: 'Type', value: type.value));
     }
     if (reference.isChanged) {
       updatedProperties.add(
-          WorkUpdatedProperty(name: 'Reference', value: reference.value));
+          UpdateWorkProperty(name: 'Reference', value: reference.value));
     }
     if (description.isChanged) {
-      updatedProperties.add(WorkUpdatedProperty(
+      updatedProperties.add(UpdateWorkProperty(
           name: 'Description', value: description.value));
     }
     if (updatedProperties.isNotEmpty) {
       var request =
-      RequestWorkUpdate(id: id, updatedProperties: updatedProperties);
+      RequestUpdateWork(id: id, updatedProperties: updatedProperties);
       var response = await _serviceClient.update(request);
       if (response is ValidationProblemResponse) {
         invalidate(response.errors);

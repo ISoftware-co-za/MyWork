@@ -24,11 +24,11 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
     for (int index = 0; index < _controller.columns.columns.length; index++) {
       var column = _controller.columns.columns[index];
       Widget columnWidget;
-      if (column is TableColumnText) {
+      if (column is ColumnText) {
         columnWidget = _DialogWorkControlColumnText(column: column, labelStyle: _theme.tableHeaderTextStyle);
-      } else if (column is TableColumnList) {
+      } else if (column is ColumnList) {
         columnWidget = _DialogWorkControlColumnList(column: column, labelStyle: _theme.tableHeaderTextStyle);
-      } else if (column is TableColumnBoolean) {
+      } else if (column is ColumnBoolean) {
         columnWidget = _DialogWorkControlColumnBoolean(column: column, labelStyle: _theme.tableHeaderTextStyle);
       } else {
         throw Exception(
