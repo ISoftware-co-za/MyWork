@@ -5,7 +5,7 @@ This section describes how error are handled by the client interface.
 The `ServiceBase` class defined the `processResponse` method. This method is used by all HTTP calls to process and throw Exceptions when a non-successful status code is returned from the service.
 
 **Executor**
-Each event handled by the app, wether as a result of direct user manipulation or not, is wrapped in on of the methods:
+Each event handled by the app, whether as a result of direct user manipulation or not, is wrapped in on of the methods:
 - `Executor.runCommand`
 - `Executor.runCommandAsync`
 These methods handle the exception, report it to the Observability provider and display an appropriate message to the client via the notification classes. This includes exceptions thrown by `ServiceBase.processResponse`
@@ -19,6 +19,7 @@ A sprint is 20 hours a week. The following story point estimation is used:
 | 4           | 0.125            |
 | 8           | 0.25             |
 | 16          | 0.5              |
+| 32          | 1                |
 # Data generator
 The format of the data generator is:
 
