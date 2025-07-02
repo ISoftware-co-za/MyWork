@@ -1,16 +1,17 @@
-import 'package:client_interfaces1/model/work_type_list.dart';
-import 'package:client_interfaces1/tabs/page_details/app/list_item_detail_autocomplete.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../execution/executor.dart';
-import '../../../app/controller_work.dart';
+import '../../../controller/controller_work.dart';
 import '../../../model/work.dart';
+import '../../../model/work_type_list.dart';
 import '../../../ui_toolkit/form/form.dart';
 import '../../../ui_toolkit/hover.dart';
-import '../app/data_source_autocomplete_work_type.dart';
-import '../app/list_item_detail_base.dart';
-import '../app/list_item_detail_parchment.dart';
-import '../app/list_item_detail_text.dart';
+import '../controller/data_source_autocomplete_work_type.dart';
+import '../controller/list_item_detail_autocomplete.dart';
+import '../controller/list_item_detail_base.dart';
+import '../controller/list_item_detail_parchment.dart';
+import '../controller/list_item_detail_text.dart';
 
 class LayoutDetailsForm extends StatefulWidget {
   LayoutDetailsForm(

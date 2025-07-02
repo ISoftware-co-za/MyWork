@@ -1,5 +1,8 @@
+import 'package:client_interfaces1/tabs/page_activities/controller/controller_activity.dart';
+import 'package:client_interfaces1/tabs/page_activities/controller/controller_activity_list.dart';
 import 'package:flutter/foundation.dart';
 
+import '../model/activity.dart';
 import '../model/property_changed_registry.dart';
 import '../model/work_list.dart';
 import '../model/work.dart';
@@ -8,7 +11,6 @@ import 'controller_base.dart';
 enum ControllerWorkState { noWork, newWork, existingWork }
 
 class ControllerWork extends ControllerBase {
-  //#region PROPERTIES
 
   final WorkList workList = WorkList();
   ValueListenable<Work?> get selectedWork => _selectedWork;
@@ -16,17 +18,9 @@ class ControllerWork extends ControllerBase {
   bool get hasExistingWork => hasWork && selectedWork.value!.isNew == false;
   ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
 
-  //#endregion
-
-  //#region CONSTRUCTION
-
   Future initialise() async {
     await workList.obtain();
   }
-
-  //#endregion
-
-  //#region EVENT HANDLERS
 
   Future onNewWork() async {
     if (!hasWork || await onSave()) {
@@ -73,10 +67,6 @@ class ControllerWork extends ControllerBase {
     PropertyChangedRegistry.rejectChanges();
   }
 
-  //#endregion
-
-  //#region PRIVATE METHODS
-
   /*
   Future<bool> _saveExistingWork() async {
     bool mustCreateNewWork = true;
@@ -87,7 +77,16 @@ class ControllerWork extends ControllerBase {
   }
   */
 
-  //#endregion
-
   final _selectedWork = ValueNotifier<Work?>(null);
+}
+
+class ActivityControllers {
+  late final ControllerActivityList controllerActivityList;
+  late final ControllerActivity controllerActivity;
+
+  ActivityControllers(ValueListenable<Work?> selectedWork) {
+    final selectedActivity = ValueNotifier<Activity?>(null);
+    controllerActivityList = ControllerActivityList(selectedWork, selectedActivity);
+    controllerActivity = ControllerActivity(selectedActivity);
+  }
 }

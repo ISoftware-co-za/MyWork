@@ -1,0 +1,12 @@
+namespace ClientService.Activity;
+
+public record class CreateActivityRequest
+{
+    public required string What { get; init; }
+    
+    public string? Why { get; init; }
+    
+    public string? Notes { get; init; }
+    
+    public DateTime? DueDate { get; init; }
+}

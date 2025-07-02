@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace client_service.Users;
+namespace ClientService.Users;
 
 public class DocumentUser
 {

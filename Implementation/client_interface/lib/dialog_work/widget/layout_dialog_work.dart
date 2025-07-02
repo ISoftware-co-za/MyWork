@@ -1,22 +1,22 @@
 library dialog_work;
 
-import 'package:client_interfaces1/dialog_work/widgets/control_column_base.dart';
-import 'package:client_interfaces1/notification/controller_notifications.dart';
-import 'package:client_interfaces1/theme/theme_extension_dialog_work_types_filter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../notification/controller_notifications.dart';
 import '../../theme/custom_theme_data_app_header.dart';
 import '../../execution/executor.dart';
 import '../../model/work_type_list.dart';
 import '../../theme/theme_extension_dialog_work.dart';
+import '../../theme/theme_extension_dialog_work_types_filter.dart';
 import '../../ui_toolkit/control_icon_button_large.dart';
-import '../app/column_boolean.dart';
-import '../app/column_collection.dart';
-import '../app/column_list.dart';
-import '../app/column_text.dart';
-import '../app/controller_dialog_work.dart';
-import '../app/list_item_work.dart';
+import '../controller/column_boolean.dart';
+import '../controller/column_collection.dart';
+import '../controller/column_list.dart';
+import '../controller/column_text.dart';
+import '../controller/controller_dialog_work.dart';
+import '../controller/list_item_work.dart';
+import 'control_column_base.dart';
 
 part 'control_column_boolean.dart';
 part 'control_column_list.dart';

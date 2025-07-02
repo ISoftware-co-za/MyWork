@@ -9,10 +9,8 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 part 'validation_problem_response.dart';
 
 class ServiceClientBase {
-  //#region CONSTRUCTION
 
   ServiceClientBase(String baseUrl) : _baseUrl = baseUrl {
-    // _browserClient = BrowserClient()..withCredentials = true;
     var wrappedClient = BrowserClient()..withCredentials = true;
     _http = SentryHttpClient(client: wrappedClient);
   }
@@ -20,10 +18,6 @@ class ServiceClientBase {
   void dispose() {
     _http.close();
   }
-
-  //#endregion
-
-  //#region METHODS
 
   Uri generateUri(String path) {
     return Uri.parse('$_baseUrl$path');
@@ -75,16 +69,9 @@ class ServiceClientBase {
     }
   }
 
-  //#endregion
-
-  //#region FIELDS
-
   static const int _httpTimeoutInSeconds = 10;
   final String _baseUrl;
   late final SentryHttpClient _http;
-  // late final BrowserClient _browserClient;
-
-  //#endregion
 }
 
 class ServiceClientResponse {}

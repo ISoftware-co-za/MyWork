@@ -1,15 +1,16 @@
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
-using client_service.Execution;
-using client_service.Utilities;
-using client_service.Validation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace client_service.Users;
+using ClientService.Execution;
+using ClientService.Utilities;
+using ClientService.Validation;
+
+namespace ClientService.Users;
 
 public static class HandlersUsers
 {

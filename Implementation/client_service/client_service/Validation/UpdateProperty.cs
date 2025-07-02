@@ -1,3 +1,3 @@
-namespace client_service.Validation;
+namespace ClientService.Validation;
 
 public record UpdateProperty(string Name, object? Value);

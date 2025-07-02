@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-using client_service.Execution;
-using client_service.Utilities;
-using client_service.Validation;
+using ClientService.Execution;
+using ClientService.Utilities;
+using ClientService.Validation;
 
-namespace client_service.Work;
+namespace ClientService.Work;
 
 public static class HandlersWork
 {
@@ -29,16 +29,16 @@ public static class HandlersWork
     {
         List<ValidatedProperty> properties =
         [
-            new ValidatedProperty(nameof(WorkCreateRequest.Name),
+            new ValidatedProperty(nameof(CreateWorkRequest.Name),
                 [new RequiredAttribute(), new StringLengthAttribute(maximumLength: 80)]),
-            new ValidatedProperty(nameof(WorkCreateRequest.Type),
+            new ValidatedProperty(nameof(CreateWorkRequest.Type),
                 [new StringLengthAttribute(maximumLength: 40)]),
-            new ValidatedProperty(nameof(WorkCreateRequest.Reference),
+            new ValidatedProperty(nameof(CreateWorkRequest.Reference),
                 [new StringLengthAttribute(maximumLength: 40)])
         ];
         requestValidation.RegisterValidation(new ValidatedRequest(
-            typeof(WorkCreateRequest), 
-            typeof(WorkUpdateRequest), 
+            typeof(CreateWorkRequest), 
+            typeof(UpdateWorkRequest), 
             new ValidatedPropertyCollection(properties.ToArray())
         ));
     }
@@ -82,7 +82,7 @@ public static class HandlersWork
         });
     }
 
-    private static async Task<IResult> Post([FromBody] WorkCreateRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpRequest httpRequest)
+    private static async Task<IResult> Post([FromBody] CreateWorkRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpRequest httpRequest)
     {
         var validationResults = requestValidation.Validate(request);
         if (validationResults.Length == 0)
@@ -99,13 +99,13 @@ public static class HandlersWork
                     Description = request.Description
                 };
                 await workCollection.InsertOneAsync(workDocument);
-                return Results.Created($"{_urlPrefix}/{workDocument.Id}", new WorkCreateResponse(workDocument.Id.ToString()));
+                return Results.Created($"{_urlPrefix}/{workDocument.Id}", new CreateWorkResponse(workDocument.Id.ToString()));
             });
         }
         return Validation.RequestValidation.GenerateValidationFailedResponse(validationResults);
     }
 
-    private static async Task<IResult> Patch(string id, WorkUpdateRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
+    private static async Task<IResult> Patch(string id, UpdateWorkRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
     {
         var validationResults = requestValidation.Validate(request);
         if (validationResults.Length == 0)

@@ -1,4 +1,4 @@
-namespace client_service.Execution;
+namespace ClientService.Execution;
 
 public class ObservabilityFactorySentry : IObservabilityFactory
 {

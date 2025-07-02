@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
-namespace client_service.Validation;
+namespace ClientService.Validation;
 
 public class RequestValidation
 {

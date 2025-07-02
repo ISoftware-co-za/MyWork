@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace client_service.Utilities;
+namespace ClientService.Utilities;
 
 public static class HttpRequestExtensions
 {

@@ -1,4 +1,4 @@
-namespace client_service.Users;
+namespace ClientService.Users;
 
 public record class LoginRequest
 {

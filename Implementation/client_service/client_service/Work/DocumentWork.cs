@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace client_service.Work;
+namespace ClientService.Work;
 
 public record class DocumentWork
 {

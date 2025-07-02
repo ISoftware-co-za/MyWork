@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace client_service.Validation;
+namespace ClientService.Validation;
 
 public class RequiredNonWhitespaceAttribute : ValidationAttribute
 {

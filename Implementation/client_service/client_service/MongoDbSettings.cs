@@ -1,7 +1,7 @@
-namespace client_service;
+namespace ClientService;
 
 public class MongoDbSettings
 {
-    public string ConnectionString { get; set; } 
-    public string DatabaseName { get; set; }
+    public required string ConnectionString { get; init; } 
+    public required string DatabaseName { get; init; }
 }

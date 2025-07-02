@@ -55,6 +55,4 @@ class ServiceClientWork extends ServiceClientBase {
     final response = await httpDelete(uri, headers);
     return processResponse(response, 204, () => null);
   }
-
-  //#endregion
 }

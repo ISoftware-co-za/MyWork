@@ -60,7 +60,7 @@ class _LayoutActivityState extends State<LayoutActivity> {
   bool _isMouseover = false;
 
   void _onActivityCommandSelected(String id) {
-    debugPrint('Activity command selected: $id');
+    debugPrint('activity command selected: $id');
   }
 }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../app/controller_work.dart';
-import '../app/provider_state_application.dart';
+import '../controller/controller_work.dart';
+import '../controller/provider_state_application.dart';
 import '../ui_toolkit/control_icon_button_large.dart';
 
 class ControlButtonAddWork extends StatelessWidget {

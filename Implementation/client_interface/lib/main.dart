@@ -1,25 +1,29 @@
-import 'package:client_interfaces1/notification/layout_notification_list.dart';
+import 'package:client_interfaces1/tabs/page_activities/controller/controller_activity_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'model/activity.dart';
+import 'notification/layout_notification_list.dart';
+import 'tabs/controller_tab_bar.dart';
+import 'tabs/page_activities/controller/controller_activity.dart';
+import 'tabs/page_activities/widget/layout_page_activities.dart';
 import 'theme/custom_theme_data.dart';
 import 'execution/executor.dart';
 import 'execution/ui_container_context.dart';
 import 'header/layout_header.dart';
 import 'notification/controller_notifications.dart';
-import 'app/controller_user.dart';
-import 'app/controller_work_types.dart';
+import 'controller/controller_user.dart';
+import 'controller/controller_work_types.dart';
 import 'service/service_setup.dart';
-import 'app/coordinator_login.dart';
-import 'app/provider_state_application.dart';
-import 'app/controller_work.dart';
+import 'controller/coordinator_login.dart';
+import 'controller/provider_state_application.dart';
+import 'controller/controller_work.dart';
 import 'model/properties.dart';
 import 'model/state_note.dart';
 import 'model/state_action.dart';
 import 'tabs/layout_tab_bar.dart';
-import 'tabs/page_details/widgets/layout_page_details.dart';
-import 'tabs/page_tasks/page_tasks.dart';
+import 'tabs/page_details/widget/layout_page_details.dart';
 import 'ui_toolkit/hover.dart';
 
 Future<void> main() async {
@@ -99,6 +103,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     _workController = ControllerWork();
     _userController = ControllerUser();
     _workTypesController = ControllerWorkTypes();
+    var selectedActivity = ValueNotifier<Activity?>(null);
+    _activityListController = ControllerActivityList(_workController.selectedWork, selectedActivity);
+    _activityController = ControllerActivity(selectedActivity);
+    _controllerTabBar = ControllerTabBar(_tabController, _workController, _activityListController);
     GetIt.instance.registerSingleton(CoordinatorLogin(_userController, _workTypesController));
   }
 
@@ -128,6 +136,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     stateProvider.registerController(_userController);
     stateProvider.registerController(_workController);
     stateProvider.registerController(_workTypesController);
+    stateProvider.registerController(_activityListController);
+    stateProvider.registerController(_activityController);
+    stateProvider.registerController(_controllerTabBar);
     stateProvider.registerController(ControllerNotifications());
     return stateProvider;
   }
@@ -157,7 +168,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                   controller: _controllerHover,
                   child: TabBarView(
                     controller: _tabController,
-                    children: [LayoutPageDetails(), PageTasks()],
+                    children: [LayoutPageDetails(), LayoutPageActivities()],
                   ),
                 ),
               ),
@@ -187,15 +198,15 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
 /*
   List<Widget> _createActivityWidgets() {
-    var widgets = <Widget>[];
+    var widget = <Widget>[];
     for (var activity in widget.activities) {
       if (activity is StateNote) {
-        widgets.add(LayoutActivity(model: ActivityWidgetConstructorNote(activity: activity)));
+        widget.add(LayoutActivity(model: ActivityWidgetConstructorNote(activity: activity)));
       } else if (activity is StateWork) {
-        widgets.add(LayoutActivity(model: ActivityWidgetConstructorWork(activity: activity)));
+        widget.add(LayoutActivity(model: ActivityWidgetConstructorWork(activity: activity)));
       }
     }
-    return widgets;
+    return widget;
   }
 */
 
@@ -206,6 +217,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   late final ControllerUser _userController;
   late final ControllerWork _workController;
   late final ControllerWorkTypes _workTypesController;
+  late final ControllerActivityList _activityListController;
+  late final ControllerActivity _activityController;
+  late final ControllerTabBar _controllerTabBar;
   late final TabController _tabController;
   final ControllerHover _controllerHover = ControllerHover();
   static bool _isLoggedIn = false;

@@ -6,7 +6,7 @@ import 'package:client_interfaces1/execution/ui_container_context.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 
-import '../app/provider_state_application.dart';
+import '../controller/provider_state_application.dart';
 import '../notification/controller_notifications.dart';
 import '../notification/notifications.dart';
 import 'observability_factory.dart';
