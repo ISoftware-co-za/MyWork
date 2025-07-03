@@ -55,7 +55,7 @@ public static class HandlersActivity
                     UserId = ObjectId.Parse(httpRequest.GetSid()),
                     WorkId = ObjectId.Parse(workID),
                     What = request.What,
-                    State = ActivityState.Idle,
+                    State = Enum.Parse<ActivityState>(request.State, true),
                     Why = request.Why,
                     Notes = request.Notes,
                     DueDate = request.DueDate

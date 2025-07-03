@@ -4,7 +4,7 @@ public enum ActivityState
 {
     Idle,
     Busy,
-    Complete,
+    Done,
     Paused,
     Cancelled
 }
