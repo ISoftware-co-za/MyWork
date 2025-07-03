@@ -40,6 +40,7 @@ class Activity extends PropertyOwner {
   Future save(String workID) async {
     var request = RequestCreateActivity(
         what: what.value,
+        state: state.value.name,
         why: why.value.isEmpty ? null : why.value,
         notes: notes.value.isEmpty ? null : notes.value,
         dueDate: dueDate.value);
