@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace client_service.Execution;
+namespace ClientService.Execution;
 
 public static class Executor
 {

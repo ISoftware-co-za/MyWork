@@ -1,5 +1,5 @@
-using client_service.Validation;
+using ClientService.Validation;
 
-namespace client_service.Users;
+namespace ClientService.Users;
 
 public record AddWorkTypeRequest(string WorkType);

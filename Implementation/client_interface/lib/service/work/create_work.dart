@@ -2,21 +2,21 @@ part of 'service_client_work.dart';
 
 class RequestCreateWork {
   final String name;
-  final String? type;
-  final String? reference;
-  final String? description;
+  final String type;
+  final String reference;
+  final String description;
   RequestCreateWork(
-      {required this.name, this.type, this.reference, this.description});
+      {required this.name, required this.type, required this.reference, required this.description});
 
   Map<String, dynamic> toJson() {
     var json = <String, dynamic>{'name': name};
-    if (type != null) {
+    if (type.isNotEmpty) {
       json['type'] = type;
     }
-    if (reference != null) {
+    if (reference.isEmpty) {
       json['reference'] = reference;
     }
-    if (description != null) {
+    if (description.isNotEmpty) {
       json['description'] = description;
     }
     return json;

@@ -25,7 +25,7 @@ class ControlAutocompleteFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FormTheme theme = Theme.of(context).extension<FormTheme>()!;
+    ThemeExtensionForm theme = Theme.of(context).extension<ThemeExtensionForm>()!;
     return ListenableBuilder(
         listenable: property,
         builder: (context, child) {
@@ -46,7 +46,7 @@ class ControlAutocompleteFormField extends StatelessWidget {
         });
   }
 
-  Autocomplete<Object> _createUpdateField(FormTheme theme, BuildContext context) {
+  Autocomplete<Object> _createUpdateField(ThemeExtensionForm theme, BuildContext context) {
     return Autocomplete<Object>(
         optionsBuilder: (TextEditingValue textEditingValue) {
           if (textEditingValue.text == '') {

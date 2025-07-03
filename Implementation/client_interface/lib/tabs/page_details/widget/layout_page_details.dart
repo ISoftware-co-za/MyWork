@@ -1,12 +1,12 @@
-import 'package:client_interfaces1/tabs/page_details/widgets/layout_details_form.dart';
 import 'package:flutter/material.dart';
 
-import '../../../app/controller_user.dart';
-import '../../../app/controller_work.dart';
-import '../../../app/controller_work_types.dart';
-import '../../../app/provider_state_application.dart';
+import '../../../controller/controller_user.dart';
+import '../../../controller/controller_work.dart';
+import '../../../controller/controller_work_types.dart';
+import '../../../controller/provider_state_application.dart';
 import '../../../model/work.dart';
 import '../../../model/work_type_list.dart';
+import 'layout_details_form.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 

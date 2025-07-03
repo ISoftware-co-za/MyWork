@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../app/provider_state_application.dart';
+import '../controller/provider_state_application.dart';
 import 'controller_notifications.dart';
 import 'notifications.dart';
 

@@ -1,8 +1,8 @@
-import 'package:client_interfaces1/app/controller_work.dart';
+import 'package:client_interfaces1/controller/controller_work.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../app/provider_state_application.dart';
+import '../controller/provider_state_application.dart';
 import '../theme/custom_theme_data_app_header.dart';
 import '../model/work.dart';
 import '../theme/theme_extension_app_header.dart';

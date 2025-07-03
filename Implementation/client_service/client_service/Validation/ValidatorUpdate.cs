@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Text.Json;
 
-namespace client_service.Validation;
+namespace ClientService.Validation;
 
 public class ValidatorUpdate(ValidatedPropertyCollection properties) : IValidator
 {

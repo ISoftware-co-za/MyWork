@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../ui_toolkit/control_icon_button_small.dart';
-import '../app/column_base.dart';
+import '../controller/column_base.dart';
 
 class ControlColumnBase extends StatelessWidget {
    ControlColumnBase({required Widget child, required ColumnBase column, required TextStyle labelStyle, super.key})

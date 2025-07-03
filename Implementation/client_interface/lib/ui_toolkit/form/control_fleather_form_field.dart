@@ -20,7 +20,7 @@ class ControlFleatherFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FormTheme theme = Theme.of(context).extension<FormTheme>()!;
+    ThemeExtensionForm theme = Theme.of(context).extension<ThemeExtensionForm>()!;
     return ListenableBuilder(
         listenable: property,
         builder: (context, child) {

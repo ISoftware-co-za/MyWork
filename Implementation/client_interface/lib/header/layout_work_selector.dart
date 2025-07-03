@@ -1,12 +1,12 @@
-import 'package:client_interfaces1/app/controller_work_types.dart';
+import 'package:client_interfaces1/controller/controller_work_types.dart';
 import 'package:client_interfaces1/notification/controller_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../app/controller_work.dart';
-import '../app/provider_state_application.dart';
-import '../dialog_work/app/controller_dialog_work.dart';
-import '../dialog_work/widgets/layout_dialog_work.dart';
+import '../controller/controller_work.dart';
+import '../controller/provider_state_application.dart';
+import '../dialog_work/controller/controller_dialog_work.dart';
+import '../dialog_work/widget/layout_dialog_work.dart';
 import '../model/work.dart';
 import '../theme/theme_extension_control_work_button.dart';
 import 'control_button_add_work.dart';
@@ -36,11 +36,6 @@ class _LayoutWorkSelectorState extends State<LayoutWorkSelector> {
       GestureDetector(
         onTap: () => _showWorkDialog(context),
         child: MouseRegion(
-            onHover: (event) {
-              if (kDebugMode) {
-                debugPrint('Mouse hovered over work selector');
-              }
-            },
             onEnter: (event) => setState(() {
                   _isMouseOver = true;
                 }),

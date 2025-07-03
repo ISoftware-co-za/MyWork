@@ -5,7 +5,16 @@ import 'validator_base.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class PropertyOwner extends ChangeNotifier {}
+class PropertyOwner extends ChangeNotifier {
+  late final Map<String, StateProperty> properties;
+
+  void invalidate(Map<String, List<String>> errors) {
+    for (var entry in errors.entries) {
+      assert(properties[entry.key] != null);
+      properties[entry.key]?.invalidate(message: entry.value.first);
+    }
+  }
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -21,10 +30,9 @@ class PropertyChangeNotifier extends ChangeNotifier {
 //----------------------------------------------------------------------------------------------------------------------
 
 class StateProperty<T> extends PropertyChangeNotifier {
-  //#region PROPERTIES
 
-  T? get value => _value;
-  set value(T? value) {
+  T get value => _value;
+  set value(T value) {
     if (_value != value) {
       _value = value;
       _setInvalidMessage(_validation.validate(input: _value.toString()));
@@ -33,7 +41,7 @@ class StateProperty<T> extends PropertyChangeNotifier {
     }
   }
 
-  T? _value;
+  T _value;
 
   String? get invalidMessage => _invalidMessage;
   void _setInvalidMessage(String? value) {
@@ -53,18 +61,9 @@ class StateProperty<T> extends PropertyChangeNotifier {
 
   String get valueAsString => (_value != null) ? _value.toString() : '';
 
-  //#endregion
 
-  //#region CONSTRUCTION
-
-  StateProperty({T? value, List<Validator>? validators})
-      : _validation = ValidatorCollection(validators) {
-    _value = value;
-  }
-
-  //#endregion
-
-  //#region METHODS
+  StateProperty({required T value, List<Validator>? validators})
+      :  _value = value, _currentValue = value, _validation = ValidatorCollection(validators);
 
   void setValue(T newValue) {
     _currentValue = _value = newValue;
@@ -91,25 +90,16 @@ class StateProperty<T> extends PropertyChangeNotifier {
     _updatePropertyChanged();
   }
 
-  //#endregion
-
-  //#region PRIVATE METHODS
-
   void _updatePropertyChanged() {
     if (_propertyChanged.setChanged(this, _currentValue != _value)) {
       notifyPropertyChange("isChanged");
     }
   }
 
-  //#endregion
-
-  //#region FIELDS
-
   final ValidatorCollection _validation;
-  T? _currentValue;
+  T _currentValue;
   final _PropertyChanged _propertyChanged = _PropertyChanged();
 
-  //#endregion
 }
 
 //----------------------------------------------------------------------------------------------------------------------

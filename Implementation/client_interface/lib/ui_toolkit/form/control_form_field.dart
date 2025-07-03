@@ -17,12 +17,10 @@ class ControlFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData? themeData = Theme.of(context);
-    FormTheme? theme = themeData.extension<FormTheme>();
+    ThemeExtensionForm? theme = themeData.extension<ThemeExtensionForm>();
     return ListenableBuilder(
         listenable: property,
         builder: (context, child) {
-          debugPrint('ControlFormField: ${property.valueAsString} ${property.isValid} ${property.isChanged}');
-
           var children = <Widget>[Text(label, style: theme!.labelStyle)];
           if (editable ||
               property.isChanged ||
@@ -40,13 +38,13 @@ class ControlFormField extends StatelessWidget {
           }
 
           return Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: children);
         });
   }
 
-  TextField _createUpdateField(FormTheme theme) {
+  TextField _createUpdateField(ThemeExtensionForm theme) {
     return TextField(
         controller: _controller,
         // focusNode: _focusNode,

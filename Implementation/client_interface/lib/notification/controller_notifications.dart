@@ -1,4 +1,4 @@
-import '../app/controller_base.dart';
+import '../controller/controller_base.dart';
 import 'notifications.dart';
 
 class ControllerNotifications extends ControllerBase {

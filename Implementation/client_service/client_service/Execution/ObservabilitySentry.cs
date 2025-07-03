@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace client_service.Execution;
+namespace ClientService.Execution;
 
 public class ObservabilitySentry : IObservability
 {

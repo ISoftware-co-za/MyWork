@@ -1,13 +1,14 @@
-using client_service.Users;
-using client_service.Validation;
 using MongoDB.Driver;
 using NLog.Web;
-using client_service.Work;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Diagnostics;
 using NLog;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;
+
+using ClientService.Users;
+using ClientService.Work;
+using ClientService.Activity;
+using ClientService.Validation;
 
 Logger? logger = null;
 
@@ -82,7 +83,7 @@ try
     var url = app.Configuration["Service:URL"];
     if (url == null)
         throw new Exception("Startup error: The service URL is not defined. Add Service.URL to the configuration.");
-    app.Urls.Add(url!);
+    app.Urls.Add(url);
 
     app.UseHttpsRedirection();
     app.UseHsts();
@@ -107,6 +108,8 @@ try
     validation.AddUserValidation();
     app.MapWorkURLs("/work", corsPolicyName);
     validation.AddWorkValidation();
+    app.MapActivityURLs("/work", corsPolicyName);
+    validation.AddActivityValidation();
 
     logger?.Info("Service is running");
     app.Run();

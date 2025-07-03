@@ -1,4 +1,4 @@
-namespace client_service.Validation;
+namespace ClientService.Validation;
 
 public class ValidatedRequest(Type? create, Type? update, ValidatedPropertyCollection properties)
 {

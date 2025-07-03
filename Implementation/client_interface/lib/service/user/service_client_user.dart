@@ -8,13 +8,8 @@ part 'login.dart';
 part 'add_work_type.dart';
 
 class ServiceClientUser extends ServiceClientBase {
-//#region CONSTRUCTION
 
   ServiceClientUser(super.baseUrl);
-
-//#endregion
-
-//#region METHODS
 
   Future<ResponseLogin> login(RequestLogin request) async {
     Map<String, String> headers = setupCommonHeaders();
@@ -43,6 +38,4 @@ class ServiceClientUser extends ServiceClientBase {
     return processResponse(
         response, HttpStatus.noContent, () => ServiceClientResponse())!;
   }
-
-//#endregion
 }
