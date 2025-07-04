@@ -18,7 +18,7 @@ public static class HandlersWork
     {
         _urlPrefix = urlPrefix;
         RouteGroupBuilder groupBuilder = app.MapGroup(urlPrefix);
-        groupBuilder.MapGet("/", ListWorkSummary).RequireCors(corsPolicyName);
+        groupBuilder.MapGet("/", ListAllWork).RequireCors(corsPolicyName);
         groupBuilder.MapGet("/{id}", GetWorkDetails).RequireCors(corsPolicyName);
         groupBuilder.MapPost("/", Post).RequireCors(corsPolicyName);
         groupBuilder.MapPatch("/{id}", Patch).RequireCors(corsPolicyName);
@@ -47,7 +47,7 @@ public static class HandlersWork
     
     #region HTTP HANDLERS
     
-    private static async Task<IResult> ListWorkSummary([FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpRequest httpRequest)
+    private static async Task<IResult> ListAllWork([FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpRequest httpRequest)
     {
         return await Executor.RunProcessAsync($"{CollectionName}.Find(filter).ToListAsync()", Executor.CategoryMongoDB, "Unable to obtain the list of work.", async () =>
         {

@@ -3,6 +3,7 @@ import 'package:client_interfaces1/notification/controller_notifications.dart';
 import '../../controller/controller_base.dart';
 import '../../controller/controller_work.dart';
 import '../../controller/controller_work_types.dart';
+import '../../model/activity.dart';
 import '../../model/work.dart';
 import 'column_boolean.dart';
 import 'column_collection.dart';
@@ -41,6 +42,7 @@ class ControllerDialogWork extends ControllerBase {
 
   Future onWorkSelected(Work selectedWork) async {
     await _workController.onWorkSelected(selectedWork);
+    await selectedWork.activities.loadAll();
   }
 
   final ControllerWork _workController;

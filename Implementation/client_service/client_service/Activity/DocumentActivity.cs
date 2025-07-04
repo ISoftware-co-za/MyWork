@@ -24,7 +24,9 @@ public record class DocumentActivity
     [BsonElement("why")]
     public string? Why { get; init; }
 
+    [BsonElement("notes")]
     public string? Notes { get; init; }
 
+    [BsonElement("dueDate")]
     public DateTime? DueDate { get; init; }
 }
