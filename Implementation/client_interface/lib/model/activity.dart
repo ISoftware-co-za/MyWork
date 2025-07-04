@@ -6,12 +6,24 @@ import '../service/activity/create_activity.dart';
 import '../service/service_client_base.dart';
 import 'validator_base.dart';
 
-enum ActivityState {
-  idle,
-  busy,
-  done,
-  paused,
-  cancelled
+enum ActivityState { idle, busy, done, paused, cancelled;
+
+  static ActivityState fromString(String state) {
+    switch (state.toLowerCase()) {
+      case 'idle':
+        return ActivityState.idle;
+      case 'busy':
+        return ActivityState.busy;
+      case 'done':
+        return ActivityState.done;
+      case 'paused':
+        return ActivityState.paused;
+      case 'cancelled':
+        return ActivityState.cancelled;
+      default:
+        throw ArgumentError('Unknown activity state: $state');
+    }
+  }
 }
 
 class Activity extends PropertyOwner {
@@ -24,17 +36,24 @@ class Activity extends PropertyOwner {
 
   bool get isNew => id.isEmpty;
 
-  bool validate() {
-    return what.validate() &&
-        state.validate() &&
-        dueDate.validate() &&
-        why.validate() &&
-        notes.validate();
+  Activity(
+    this.id,
+    String what,
+    ActivityState state,
+    String? why,
+    String? notes,
+    DateTime? dueDate,
+  ) {
+    _defineValidation(what, state, why ?? '', notes ?? '', dueDate);
   }
 
   Activity.create() {
     id = '';
     _defineValidation('', ActivityState.idle, '', '', null);
+  }
+
+  bool validate() {
+    return what.validate() && state.validate() && dueDate.validate() && why.validate() && notes.validate();
   }
 
   Future save(String workID) async {
@@ -56,21 +75,16 @@ class Activity extends PropertyOwner {
   void _defineValidation(String what, ActivityState state, String why, String notes, DateTime? dueDate) {
     this.what = StateProperty(value: what, validators: [
       ValidatorRequired(invalidMessageTemplate: 'What is required'),
-      ValidatorMaximumCharacters(
-          maximumCharacters: 80,
-          invalidMessageTemplate: 'What should be 80 characters or less')
+      ValidatorMaximumCharacters(maximumCharacters: 80, invalidMessageTemplate: 'What should be 80 characters or less')
     ]);
     this.state = StateProperty(value: state);
     this.dueDate = StateProperty(value: dueDate);
     this.why = StateProperty(value: why, validators: [
-      ValidatorMaximumCharacters(
-          maximumCharacters: 240,
-          invalidMessageTemplate: 'Why should be 240 characters or less')
+      ValidatorMaximumCharacters(maximumCharacters: 240, invalidMessageTemplate: 'Why should be 240 characters or less')
     ]);
     this.notes = StateProperty(value: notes, validators: [
       ValidatorMaximumCharacters(
-          maximumCharacters: 240,
-          invalidMessageTemplate: 'Notes should be 240 characters or less')
+          maximumCharacters: 240, invalidMessageTemplate: 'Notes should be 240 characters or less')
     ]);
 
     properties = {
@@ -82,4 +96,3 @@ class Activity extends PropertyOwner {
     };
   }
 }
-

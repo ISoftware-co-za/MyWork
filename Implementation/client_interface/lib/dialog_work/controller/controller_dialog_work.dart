@@ -41,6 +41,7 @@ class ControllerDialogWork extends ControllerBase {
 
   Future onWorkSelected(Work selectedWork) async {
     await _workController.onWorkSelected(selectedWork);
+    await selectedWork.activities.loadAll();
   }
 
   final ControllerWork _workController;

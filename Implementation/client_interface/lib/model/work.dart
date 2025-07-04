@@ -62,26 +62,26 @@ class Work extends PropertyOwner {
   }
 
   Future update() async {
-    var updatedProperties = <UpdateWorkProperty>[];
+    var updatedProperties = <EditEntityProperty>[];
     if (name.isChanged) {
       updatedProperties
-          .add(UpdateWorkProperty(name: 'Name', value: name.value));
+          .add(EditEntityProperty(name: 'Name', value: name.value));
     }
     if (type.isChanged) {
       updatedProperties
-          .add(UpdateWorkProperty(name: 'Type', value: type.value));
+          .add(EditEntityProperty(name: 'Type', value: type.value));
     }
     if (reference.isChanged) {
       updatedProperties.add(
-          UpdateWorkProperty(name: 'Reference', value: reference.value));
+          EditEntityProperty(name: 'Reference', value: reference.value));
     }
     if (description.isChanged) {
-      updatedProperties.add(UpdateWorkProperty(
+      updatedProperties.add(EditEntityProperty(
           name: 'Description', value: description.value));
     }
     if (updatedProperties.isNotEmpty) {
       var request =
-      RequestUpdateWork(id: id, updatedProperties: updatedProperties);
+      EditEntityRequest(id: id, updatedProperties: updatedProperties);
       var response = await _serviceClient.update(request);
       if (response is ValidationProblemResponse) {
         invalidate(response.errors);
@@ -114,7 +114,7 @@ class Work extends PropertyOwner {
               maximumCharacters: 40,
               invalidMessageTemplate: 'Type should be 40 characters or less')
         ]);
-    this.activities = ActivityList();
+    this.activities = ActivityList(id);
     properties = {
       'name': this.name,
       'reference': this.reference,

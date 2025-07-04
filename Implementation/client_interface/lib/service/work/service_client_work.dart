@@ -8,7 +8,7 @@ import '../service_client_base.dart';
 
 part 'list_work.dart';
 part 'create_work.dart';
-part 'update_work.dart';
+part '../edit_entity.dart';
 
 class ServiceClientWork extends ServiceClientBase {
 
@@ -41,7 +41,7 @@ class ServiceClientWork extends ServiceClientBase {
         () => ResponseWorkCreate.fromJson(jsonDecode(response.body)))!;
   }
 
-  Future<ServiceClientResponse?> update(RequestUpdateWork request) async {
+  Future<ServiceClientResponse?> update(EditEntityRequest request) async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/work/${request.id}');
     final body = jsonEncode(request.toJson());
