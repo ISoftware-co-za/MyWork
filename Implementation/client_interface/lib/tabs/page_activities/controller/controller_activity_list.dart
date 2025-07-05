@@ -48,10 +48,11 @@ class ControllerActivityList extends ControllerBase {
     if (activity.validate()) {
       isSaving.value = true;
       try {
+        String workId = _selectedWork.value!.id;
         if (activity.isNew) {
-          await activity.save(_selectedWork.value!.id);
+          await activity.save(workId);
         } else {
-          // await activity.update();
+          await activity.update(workId);
         }
         PropertyChangedRegistry.acceptChanges();
       } finally {

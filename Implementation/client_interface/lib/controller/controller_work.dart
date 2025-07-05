@@ -49,7 +49,7 @@ class ControllerWork extends ControllerBase {
       isSaving.value = true;
       try {
         if (selectedWork.value!.isNew) {
-          await selectedWork.value!.define();
+          await selectedWork.value!.save();
           workList.add(selectedWork.value!);
         } else {
           await selectedWork.value!.update();

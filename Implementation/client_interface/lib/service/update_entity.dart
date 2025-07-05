@@ -1,10 +1,8 @@
-part of 'work/service_client_work.dart';
-
-class EditEntityRequest {
+class UpdateEntityRequest {
   final String id;
-  final Iterable<EditEntityProperty> updatedProperties;
+  final Iterable<UpdateEntityProperty> updatedProperties;
 
-  EditEntityRequest({required this.id, required this.updatedProperties});
+  UpdateEntityRequest({required this.id, required this.updatedProperties});
 
   Map<String, dynamic> toJson() {
     return {
@@ -14,10 +12,10 @@ class EditEntityRequest {
   }
 }
 
-class EditEntityProperty {
+class UpdateEntityProperty {
   final String name;
   final dynamic value;
-  EditEntityProperty({required this.name, this.value});
+  UpdateEntityProperty({required this.name, this.value});
 
   Map<String, dynamic> toJson() {
     return {

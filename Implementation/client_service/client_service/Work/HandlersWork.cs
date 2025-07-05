@@ -38,7 +38,7 @@ public static class HandlersWork
         ];
         requestValidation.RegisterValidation(new ValidatedRequest(
             typeof(CreateWorkRequest), 
-            typeof(UpdateWorkRequest), 
+            typeof(UpdateEntityRequest), 
             new ValidatedPropertyCollection(properties.ToArray())
         ));
     }
@@ -105,7 +105,7 @@ public static class HandlersWork
         return Validation.RequestValidation.GenerateValidationFailedResponse(validationResults);
     }
 
-    private static async Task<IResult> Patch(string id, UpdateWorkRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
+    private static async Task<IResult> Patch(string id, UpdateEntityRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
     {
         var validationResults = requestValidation.Validate(request);
         if (validationResults.Length == 0)
@@ -125,7 +125,7 @@ public static class HandlersWork
                                 request.UpdatedProperties[index].Value);
                     }
                     IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
-                    UpdateResult result = await workCollection.UpdateOneAsync(filter, update!);
+                    await workCollection.UpdateOneAsync(filter, update!);
                     // Task.Delay(5000).GetAwaiter().GetResult();
                     return Results.NoContent();
                 });

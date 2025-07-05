@@ -18,6 +18,7 @@ public static class HandlersActivity
         RouteGroupBuilder groupBuilder = app.MapGroup(urlPrefix);
         groupBuilder.MapGet("/{workID}/activities", ListALlWorkActivities).RequireCors(corsPolicyName);
         groupBuilder.MapPost("/{workID}/activities", Post).RequireCors(corsPolicyName);
+        groupBuilder.MapPatch("/{workID}/activities/{id}", Patch).RequireCors(corsPolicyName);
     }
 
     public static void AddActivityValidation(this RequestValidation requestValidation)
@@ -100,6 +101,33 @@ public static class HandlersActivity
                 });
         }
 
+        return Validation.RequestValidation.GenerateValidationFailedResponse(validationResults);
+    }
+    
+    private static async Task<IResult> Patch(string workID, string id, UpdateEntityRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
+    {
+        var validationResults = requestValidation.Validate(request);
+        if (validationResults.Length == 0)
+        {
+            return await Executor.RunProcessAsync($"{CollectionName}.UpdateOneAsync({id})", Executor.CategoryMongoDB, "Unable to save the updated work",
+                async () =>
+                {
+                    var filter = Builders<DocumentActivity>.Filter.Eq("_id", ObjectId.Parse(id));
+                    UpdateDefinition<DocumentActivity>? update = null;
+                    for (int index = 0; index < request.UpdatedProperties.Count; ++index)
+                    {
+                        if (index == 0)
+                            update = Builders<DocumentActivity>.Update.Set(request.UpdatedProperties[index].Name,
+                                request.UpdatedProperties[index].Value);
+                        else
+                            update = update!.Set(request.UpdatedProperties[index].Name,
+                                request.UpdatedProperties[index].Value);
+                    }
+                    IMongoCollection<DocumentActivity> activityCollection = database.GetCollection<DocumentActivity>(CollectionName);
+                    await activityCollection.UpdateOneAsync(filter, update!);
+                    return Results.NoContent();
+                });
+        }
         return Validation.RequestValidation.GenerateValidationFailedResponse(validationResults);
     }
 

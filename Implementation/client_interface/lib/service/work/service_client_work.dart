@@ -5,10 +5,10 @@ import 'dart:convert';
 import 'package:client_interfaces1/service/work/load_work_details.dart';
 
 import '../service_client_base.dart';
+import '../update_entity.dart';
 
 part 'list_work.dart';
 part 'create_work.dart';
-part '../edit_entity.dart';
 
 class ServiceClientWork extends ServiceClientBase {
 
@@ -41,7 +41,7 @@ class ServiceClientWork extends ServiceClientBase {
         () => ResponseWorkCreate.fromJson(jsonDecode(response.body)))!;
   }
 
-  Future<ServiceClientResponse?> update(EditEntityRequest request) async {
+  Future<ServiceClientResponse?> update(UpdateEntityRequest request) async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/work/${request.id}');
     final body = jsonEncode(request.toJson());

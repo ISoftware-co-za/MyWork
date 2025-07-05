@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+import '../service/update_entity.dart';
 import 'property_changed_registry.dart';
 import 'validator_base.dart';
 
@@ -7,6 +8,16 @@ import 'validator_base.dart';
 
 class PropertyOwner extends ChangeNotifier {
   late final Map<String, StateProperty> properties;
+
+  List<UpdateEntityProperty> listUpdatedProperties() {
+    var updatedProperties = <UpdateEntityProperty>[];
+    for (var propertyEntry in properties.entries) {
+      if (propertyEntry.value.isChanged) {
+        updatedProperties.add(UpdateEntityProperty(name: propertyEntry.key, value: propertyEntry.value.value));
+      }
+    }
+    return updatedProperties;
+  }
 
   void invalidate(Map<String, List<String>> errors) {
     for (var entry in errors.entries) {

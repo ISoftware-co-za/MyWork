@@ -2,6 +2,7 @@ import 'package:client_interfaces1/model/activity_list.dart';
 import 'package:get_it/get_it.dart';
 
 import '../service/service_client_base.dart';
+import '../service/update_entity.dart';
 import '../service/work/service_client_work.dart';
 import '../service/work/load_work_details.dart';
 import 'data_conversion_service_to_model.dart';
@@ -21,13 +22,13 @@ class Work extends PropertyOwner {
 
   Work.create() {
     id = '';
-    _defineValidation('', '', false, '');
+    _defineValidation('');
   }
 
   Work({required this.id,
     required String name,
-    required String reference,
-    required String type,
+    required String? reference,
+    required String? type,
     required bool archived}) {
     _defineValidation(name, reference, archived, type);
   }
@@ -39,7 +40,7 @@ class Work extends PropertyOwner {
         type.validate();
   }
 
-  Future define() async {
+  Future save() async {
     var request = RequestCreateWork(
         name: name.value,
         type: type.value,
@@ -62,26 +63,10 @@ class Work extends PropertyOwner {
   }
 
   Future update() async {
-    var updatedProperties = <EditEntityProperty>[];
-    if (name.isChanged) {
-      updatedProperties
-          .add(EditEntityProperty(name: 'Name', value: name.value));
-    }
-    if (type.isChanged) {
-      updatedProperties
-          .add(EditEntityProperty(name: 'Type', value: type.value));
-    }
-    if (reference.isChanged) {
-      updatedProperties.add(
-          EditEntityProperty(name: 'Reference', value: reference.value));
-    }
-    if (description.isChanged) {
-      updatedProperties.add(EditEntityProperty(
-          name: 'Description', value: description.value));
-    }
+    List<UpdateEntityProperty> updatedProperties =listUpdatedProperties();
     if (updatedProperties.isNotEmpty) {
       var request =
-      EditEntityRequest(id: id, updatedProperties: updatedProperties);
+      UpdateEntityRequest(id: id, updatedProperties: updatedProperties);
       var response = await _serviceClient.update(request);
       if (response is ValidationProblemResponse) {
         invalidate(response.errors);
@@ -93,7 +78,13 @@ class Work extends PropertyOwner {
     await _serviceClient.delete(id);
   }
 
-  void _defineValidation(String name, String reference, bool archived, String type) {
+  void _defineValidation(String name, [String? reference, bool? archived = false, String? type]) {
+    if (reference == null) {
+      reference = '';
+    }
+    if (type == null) {
+      type = '';
+    }
     this.name = StateProperty(value: name, validators: [
       ValidatorRequired(invalidMessageTemplate: 'Name is required'),
       ValidatorMaximumCharacters(
@@ -106,7 +97,7 @@ class Work extends PropertyOwner {
           invalidMessageTemplate: 'Reference should be 40 characters or less')
     ]);
     this.description = StateProperty(value: '');
-    this.archived = StateProperty(value: archived);
+    this.archived = StateProperty(value: archived!);
     this.type = StateProperty<String>(
         value: type,
         validators: [
@@ -116,10 +107,10 @@ class Work extends PropertyOwner {
         ]);
     this.activities = ActivityList(id);
     properties = {
-      'name': this.name,
-      'reference': this.reference,
-      'description': this.description,
-      'type': this.type
+      'Name': this.name,
+      'Reference': this.reference,
+      'Description': this.description,
+      'Type': this.type
     };
   }
 

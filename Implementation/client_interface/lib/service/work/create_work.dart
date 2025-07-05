@@ -13,7 +13,7 @@ class RequestCreateWork {
     if (type.isNotEmpty) {
       json['type'] = type;
     }
-    if (reference.isEmpty) {
+    if (reference.isNotEmpty) {
       json['reference'] = reference;
     }
     if (description.isNotEmpty) {

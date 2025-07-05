@@ -53,6 +53,9 @@ class Executor {
 
   static void _processException(Object e, StackTrace stackTrace, Observability observability, BuildContext context,
       [ControllerNotifications? notificationControllerOverride = null]) {
+    debugPrint('Exception occurred: $e');
+    debugPrint(stackTrace.toString());
+
     observability.logException(e, stackTrace);
     String message = e.toString().replaceFirst('Exception: ', '');
     message = _convertToUserFriendlyError(e, message);
