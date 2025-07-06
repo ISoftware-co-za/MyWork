@@ -1,10 +1,12 @@
-import 'package:client_interfaces1/model/properties.dart';
-import 'package:client_interfaces1/service/activity/service_client_activity.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
 import '../service/activity/create_activity.dart';
+import '../service/activity/service_client_activity.dart';
 import '../service/service_client_base.dart';
 import '../service/update_entity.dart';
+import 'properties.dart';
+import 'property_changed_registry.dart';
 import 'validator_base.dart';
 
 enum ActivityState { idle, busy, done, paused, cancelled;
@@ -46,6 +48,11 @@ class Activity extends PropertyOwner {
     DateTime? dueDate,
   ) {
     _defineValidation(what, state, why, notes, dueDate);
+    this.state.addListener(() {
+      if (this.state.isChanged && this.state.notifyingProperty == 'value' && PropertyChangedRegistry.changeCount ==1 ) {
+        debugPrint('Should save the activity ${this.what.value}');
+      }
+    });
   }
 
   Activity.create() {

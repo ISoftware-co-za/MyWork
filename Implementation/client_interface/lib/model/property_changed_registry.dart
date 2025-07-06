@@ -5,6 +5,7 @@ import '../model/properties.dart';
 class PropertyChangedRegistry {
 
   static ValueNotifier<bool> hasChanges = ValueNotifier(false);
+  static int get changeCount => _changedProperties.length;
 
   static void addChangedProperty(StateProperty property) {
     _changedProperties.add(property);
