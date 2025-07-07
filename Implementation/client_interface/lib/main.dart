@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'model/activity.dart';
+import 'controller/coordinator_work_and_activity_selection.dart';
 import 'notification/layout_notification_list.dart';
 import 'tabs/controller_tab_bar.dart';
 import 'tabs/page_activities/controller/controller_activity.dart';
@@ -100,14 +100,15 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     _tabController.addListener(_onTabSelected);
     _setCurrentContainerFromTabIndex();
 
+    Executor.notificationController = _notificationsController;
     _workController = ControllerWork();
     _userController = ControllerUser();
     _workTypesController = ControllerWorkTypes();
-    var selectedActivity = ValueNotifier<Activity?>(null);
-    _activityListController = ControllerActivityList(_workController.selectedWork, selectedActivity);
-    _activityController = ControllerActivity(selectedActivity);
+    _activityListController = ControllerActivityList(_workController.selectedWork);
+    _activityController = ControllerActivity(_activityListController.selectedActivity);
     _controllerTabBar = ControllerTabBar(_tabController, _workController, _activityListController);
     GetIt.instance.registerSingleton(CoordinatorLogin(_userController, _workTypesController));
+    GetIt.instance.registerSingleton(CoordinatorWorkAndActivitySelection(_workController, _activityListController));
   }
 
   @override
@@ -121,7 +122,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     var stateProvider = ProviderStateApplication(
       child: Builder(builder: (context) {
         return FutureBuilder(
-          future: Executor.runCommandAsync('login', null, _initializeAsync, context),
+          future: Executor.runCommandAsync('login', null, _initializeAsync),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return _mainPage();
@@ -139,7 +140,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     stateProvider.registerController(_activityListController);
     stateProvider.registerController(_activityController);
     stateProvider.registerController(_controllerTabBar);
-    stateProvider.registerController(ControllerNotifications());
+    stateProvider.registerController(_notificationsController);
     return stateProvider;
   }
 
@@ -222,6 +223,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   late final ControllerTabBar _controllerTabBar;
   late final TabController _tabController;
   final ControllerHover _controllerHover = ControllerHover();
+  final ControllerNotifications _notificationsController = ControllerNotifications();
   static bool _isLoggedIn = false;
 
   //#endregion

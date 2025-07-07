@@ -29,7 +29,7 @@ class ControlAcceptReject extends StatelessWidget {
                       IconButtonAccept(Icons.check,
                           onPressed: () async => await Executor.runCommandAsync('ControlAcceptReject', null, () async {
                                 await controllerTabBar.onAccept();
-                              }, context))
+                              }))
                     ],
                   );
                 }

@@ -16,6 +16,7 @@ class ActivityList extends ChangeNotifier {
     for (var item in response.items) {
       items.add(Activity(
         item.id,
+        _workID,
         item.what,
         ActivityState.fromString(item.state),
         item.why,

@@ -10,7 +10,6 @@ class _DialogWorkLayoutTableRow extends StatefulWidget {
       : _columns = columns,
         _work = work,
         _onWorkSummarySelectedHandler = onWorkSummarySelectedHandler,
-        _controllerNotifications = notificationsController,
         _theme = theme;
 
   @override
@@ -18,7 +17,6 @@ class _DialogWorkLayoutTableRow extends StatefulWidget {
 
   final ColumnCollection _columns;
   final ListItemWork _work;
-  final ControllerNotifications _controllerNotifications;
   final ThemeExtensionWorkDialog _theme;
   final AsyncValueSetter<ListItemWork> _onWorkSummarySelectedHandler;
 }
@@ -76,7 +74,7 @@ class _DialogWorkLayoutTableRowState extends State<_DialogWorkLayoutTableRow> {
               () async {
             Navigator.pop(context);
             await widget._onWorkSummarySelectedHandler(widget._work);
-          }, context, widget._controllerNotifications);
+          });
         },
         child: Container(
           padding: EdgeInsets.fromLTRB(widget._theme.padding, widget._theme.verticalSpacing/2, widget._theme.padding, widget._theme.verticalSpacing/2),

@@ -42,4 +42,24 @@ class ActivityStatusColors {
       statusColor,
     );
   }
+
+  static Color getHoverColorForState(ActivityState state) {
+    Color statusColor;
+    switch (state) {
+      case ActivityState.idle:
+        statusColor = idle;
+      case ActivityState.busy:
+        statusColor = busy;
+      case ActivityState.done:
+        statusColor = done;
+      case ActivityState.paused:
+        statusColor = paused;
+      case ActivityState.cancelled:
+        statusColor = canceled;
+    }
+    return Color.alphaBlend(
+      Colors.white.withValues(alpha: 0.66),
+      statusColor,
+    );
+  }
 }

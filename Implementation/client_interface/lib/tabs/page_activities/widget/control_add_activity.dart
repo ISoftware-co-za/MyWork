@@ -18,9 +18,7 @@ class ControlAddActivity extends StatelessWidget {
             onPressed: () => Executor.runCommand(
                   'AddActivity',
                   null,
-                  () => _controller.onNewActivity(),
-                  context,
-                )),
+                  () => _controller.onNewActivity())),
       ],
     );
   }

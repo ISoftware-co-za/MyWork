@@ -1,8 +1,6 @@
-import 'package:client_interfaces1/tabs/page_activities/controller/controller_activity.dart';
-import 'package:client_interfaces1/tabs/page_activities/controller/controller_activity_list.dart';
+
 import 'package:flutter/foundation.dart';
 
-import '../model/activity.dart';
 import '../model/property_changed_registry.dart';
 import '../model/work_list.dart';
 import '../model/work.dart';
@@ -28,11 +26,8 @@ class ControllerWork extends ControllerBase {
     }
   }
 
-  Future onWorkSelected(Work work) async {
-    if (!hasWork || await onSave()) {
-      await work.loadDetails();
+  Future SelectWork(Work work) async {
       _selectedWork.value = work;
-    }
   }
 
   Future onWorkDelete() async {
@@ -67,26 +62,5 @@ class ControllerWork extends ControllerBase {
     PropertyChangedRegistry.rejectChanges();
   }
 
-  /*
-  Future<bool> _saveExistingWork() async {
-    bool mustCreateNewWork = true;
-    if (hasWork) {
-      mustCreateNewWork = await onSave();
-    }
-    return mustCreateNewWork;
-  }
-  */
-
   final _selectedWork = ValueNotifier<Work?>(null);
-}
-
-class ActivityControllers {
-  late final ControllerActivityList controllerActivityList;
-  late final ControllerActivity controllerActivity;
-
-  ActivityControllers(ValueListenable<Work?> selectedWork) {
-    final selectedActivity = ValueNotifier<Activity?>(null);
-    controllerActivityList = ControllerActivityList(selectedWork, selectedActivity);
-    controllerActivity = ControllerActivity(selectedActivity);
-  }
 }
