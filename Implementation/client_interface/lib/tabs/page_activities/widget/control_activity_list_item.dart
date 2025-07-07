@@ -2,16 +2,17 @@ import 'package:client_interfaces1/ui_toolkit/activity_status_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../model/activity.dart';
+import '../controller/controller_activity_list.dart';
 
 class ControlActivityListItem extends StatefulWidget {
-  ControlActivityListItem({required Activity activity, required ValueNotifier<Activity?> selectedActivity, super.key}) :
-        _activity = activity, _selectedActivity = selectedActivity;
+  ControlActivityListItem({required Activity activity, required ControllerActivityList activityListController, super.key}) :
+        _activity = activity, _activityListController = activityListController;
 
   @override
   State<ControlActivityListItem> createState() => _ControlActivityListItemState();
 
   final Activity _activity;
-  final ValueNotifier<Activity?> _selectedActivity;
+  final ControllerActivityList _activityListController;
 }
 
 class _ControlActivityListItemState extends State<ControlActivityListItem> {
@@ -20,7 +21,7 @@ class _ControlActivityListItemState extends State<ControlActivityListItem> {
   void initState() {
     super.initState();
     _isSelected = _calculateSelectionState();
-    widget._selectedActivity.addListener(() {
+    widget._activityListController.selectedActivity.addListener(() {
       if (_calculateSelectionState()) {
         setState(() {
           _isSelected = true;
@@ -36,40 +37,42 @@ class _ControlActivityListItemState extends State<ControlActivityListItem> {
   }
 
   bool _calculateSelectionState() {
-    return widget._selectedActivity.value == widget._activity;
+    return widget._activityListController.selectedActivity.value == widget._activity;
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        widget._selectedActivity.value = widget._activity;
+        widget._activityListController.selectActivity(widget._activity);
       },
       child: ListenableBuilder(
           listenable: widget._activity.state,
           builder: (context, child) {
-            debugPrint('${widget._activity.what.value} = $_isSelected');
-            return CustomPaint(
-              // color: _isSelected ? Colors.white : ActivityStatusColors.getLightColorForState(widget._activity.state.value),
-              painter: _ActivityListItemPainter(_isSelected, widget._activity.state.value),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(children: [
-                  Icon(Icons.play_arrow, color: ActivityStatusColors.getColorForState(widget._activity.state.value)),
-                  SizedBox(width: 8.0),
-                  Expanded(
-                    child: ListenableBuilder(
-                        listenable: widget._activity.what,
-                        builder: (context, child) {
-                          return Text(
-                            widget._activity.what.value,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                          );
-                        }),
-                  ),
-                ]),
+            return MouseRegion(
+              onEnter: (event) {setState(() { _isMouseover = true; });},
+              onExit: (event) {setState(() {_isMouseover = false; });},
+              child: CustomPaint(
+                painter: _ActivityListItemPainter(_isSelected, _isMouseover, widget._activity.state.value),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(children: [
+                    Icon(Icons.play_arrow, color: ActivityStatusColors.getColorForState(widget._activity.state.value)),
+                    SizedBox(width: 8.0),
+                    Expanded(
+                      child: ListenableBuilder(
+                          listenable: widget._activity.what,
+                          builder: (context, child) {
+                            return Text(
+                              widget._activity.what.value,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                            );
+                          }),
+                    ),
+                  ]),
+                ),
               ),
             );
           }),
@@ -77,18 +80,20 @@ class _ControlActivityListItemState extends State<ControlActivityListItem> {
   }
 
   bool _isSelected = false;
+  bool _isMouseover = false;
 }
 
 class _ActivityListItemPainter extends CustomPainter {
-  _ActivityListItemPainter(this.isSelected, this.state);
+  _ActivityListItemPainter(this.isSelected, this.isMouseover, this.state);
 
   final bool isSelected;
+  final bool isMouseover;
   final ActivityState state;
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = ActivityStatusColors.getLightColorForState(state)
+      ..color = (isMouseover) ? ActivityStatusColors.getHoverColorForState(state) : ActivityStatusColors.getLightColorForState(state)
       ..style = PaintingStyle.fill;
     if (isSelected) {
       final path = Path();

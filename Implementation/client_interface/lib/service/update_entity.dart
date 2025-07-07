@@ -1,3 +1,5 @@
+import '../model/activity.dart';
+
 class UpdateEntityRequest {
   final String id;
   final Iterable<UpdateEntityProperty> updatedProperties;
@@ -18,9 +20,14 @@ class UpdateEntityProperty {
   UpdateEntityProperty({required this.name, this.value});
 
   Map<String, dynamic> toJson() {
+    dynamic jsonValue = value;
+    if (value != null && value.runtimeType.toString() == 'ActivityState') {
+      var activityState = value as ActivityState;
+      jsonValue = activityState.name;
+    }
     return {
       'name': name,
-      'value': value,
+      'value': jsonValue,
     };
   }
 }

@@ -22,7 +22,7 @@ class ControlActivityStateAndWhat extends StatelessWidget {
             initialSelection: _activity.state.value,
             onSelected: (value) {
               if (value != null) {
-                Executor.runCommand('ControlActivityStateAndWhat', 'PageActivities', () => _activity.state.value = value, context);
+                Executor.runCommand('ControlActivityStateAndWhat', 'PageActivities', () => _activity.state.value = value);
               }
             },
             width: 160,

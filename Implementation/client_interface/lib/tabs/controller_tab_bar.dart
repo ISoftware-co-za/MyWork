@@ -1,7 +1,11 @@
+import 'package:client_interfaces1/execution/executor.dart';
+import 'package:client_interfaces1/model/properties.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/controller_base.dart';
 import '../controller/controller_work.dart';
+import '../model/activity.dart';
+import '../model/property_changed_registry.dart';
 import 'page_activities/controller/controller_activity_list.dart';
 
 class ControllerTabBar extends ControllerBase {
@@ -11,7 +15,9 @@ class ControllerTabBar extends ControllerBase {
 
   ControllerTabBar(this.tabController, ControllerWork workController, ControllerActivityList activityListController)
       : _workController = workController,
-        _activityListController = activityListController;
+        _activityListController = activityListController {
+    _activityListController.selectedActivity.addListener(onActivitySelected);
+  }
 
   Future onAccept() async {
     isSaving.value = true;
@@ -34,6 +40,34 @@ class ControllerTabBar extends ControllerBase {
     }
   }
 
+  void onActivitySelected() {
+    if (_currentlySelectedActivity != null) {
+      _currentlySelectedActivity!.state.removeListener(
+          onActivityStateChanged);
+    }
+    _currentlySelectedActivity =
+        _activityListController.selectedActivity.value;
+    if (_currentlySelectedActivity != null) {
+      _currentlySelectedActivity!.state.addListener(onActivityStateChanged);
+    }
+  }
+
+  void onActivityStateChanged() async {
+    Executor.runCommandAsync('ControllerTabBar', null, () async {
+      StateProperty<ActivityState> state = _currentlySelectedActivity!.state;
+      if (state.isChanged && state.notifyingProperty == 'value' && PropertyChangedRegistry.changeCount ==1 ) {
+        isSaving.value = true;
+        try {
+          await _currentlySelectedActivity!.update();
+        }
+        finally {
+          PropertyChangedRegistry.acceptChanges();
+          isSaving.value = false;
+        }
+    }});
+  }
+
   final ControllerWork _workController;
   final ControllerActivityList _activityListController;
+  Activity? _currentlySelectedActivity;
 }

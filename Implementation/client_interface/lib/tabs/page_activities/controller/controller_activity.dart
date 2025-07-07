@@ -7,11 +7,7 @@ import '../../../model/activity.dart';
 class ControllerActivity extends ControllerBase {
   final ValueListenable<Activity?> selectedActivity;
 
-  ControllerActivity(this.selectedActivity) {
-    selectedActivity.addListener(() {
-      debugPrint('Selected work changed: ${selectedActivity.value?.what.value}');
-    });
-  }
+  ControllerActivity(this.selectedActivity);
 
   static List<DropdownMenuEntry<ActivityState>> getActivityStateDropdownItems() {
     return ActivityState.values.map((state) {

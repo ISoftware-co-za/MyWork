@@ -55,7 +55,7 @@ class ControlAutocompleteFormField extends StatelessWidget {
       return dataSource.listItems(textEditingValue.text);
         }, onSelected: (Object selection) {
       Executor.runCommand('Autocomplete.onSelected', null,
-              () => dataSource.onItemSelected(selection), context);
+              () => dataSource.onItemSelected(selection));
       property.setValue(selection);
     }, fieldViewBuilder: (BuildContext context,
         TextEditingController fieldTextEditingController,
@@ -68,8 +68,7 @@ class ControlAutocompleteFormField extends StatelessWidget {
           onSubmitted: (String text) => Executor.runCommand(
               'Autocomplete.onSubmitted',
               null,
-                  () => dataSource.onTextEntered(text),
-              context),
+                  () => dataSource.onTextEntered(text)),
           style: (property.isValid)
               ? theme.valueStyle
               : theme.valueStyleError,

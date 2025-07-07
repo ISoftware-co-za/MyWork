@@ -1,8 +1,8 @@
 import 'package:client_interfaces1/notification/controller_notifications.dart';
 
 import '../../controller/controller_base.dart';
-import '../../controller/controller_work.dart';
 import '../../controller/controller_work_types.dart';
+import '../../controller/coordinator_work_and_activity_selection.dart';
 import '../../model/work.dart';
 import 'column_boolean.dart';
 import 'column_collection.dart';
@@ -17,8 +17,8 @@ class ControllerDialogWork extends ControllerBase {
   final ControllerNotifications notificationsController;
 
   ControllerDialogWork(
-      ControllerWorkTypes workTypesController, ControllerWork workController, this.notificationsController)
-      : _workController = workController {
+      ControllerWorkTypes workTypesController, CoordinatorWorkAndActivitySelection workAndActivitySelectionCoordinator, this.notificationsController)
+      : _workAndActivitySelectionCoordinator = workAndActivitySelectionCoordinator {
     columns = ColumnCollection([
       ColumnList(
           'Type',
@@ -35,14 +35,13 @@ class ControllerDialogWork extends ControllerBase {
   }
 
   void showWorkList() {
-    final wrappedWorkList = _workController.workList.workItems.map((work) => ListItemWork(work)).toList();
+    final wrappedWorkList = _workAndActivitySelectionCoordinator.workController.workList.workItems.map((work) => ListItemWork(work)).toList();
     filter.showWorkList(wrappedWorkList);
   }
 
   Future onWorkSelected(Work selectedWork) async {
-    await _workController.onWorkSelected(selectedWork);
-    await selectedWork.activities.loadAll();
+    await _workAndActivitySelectionCoordinator.onWorkSelected(selectedWork);
   }
 
-  final ControllerWork _workController;
+  final CoordinatorWorkAndActivitySelection _workAndActivitySelectionCoordinator;
 }

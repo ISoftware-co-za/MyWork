@@ -8,11 +8,12 @@ import '../../../model/work.dart';
 
 class ControllerActivityList extends ControllerBase {
   late final ValueNotifier<ActivityList?> activities;
-  final ValueNotifier<Activity?> selectedActivity;
+  late final ValueListenable<Activity?> selectedActivity;
   ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
 
-  ControllerActivityList(ValueListenable<Work?> selectedWork, this.selectedActivity) {
+  ControllerActivityList(ValueListenable<Work?> selectedWork) {
     _selectedWork = selectedWork;
+    selectedActivity = _selectedActivity;
     activities = ValueNotifier(selectedWork.value?.activities);
 
     _selectedWork.addListener(() {
@@ -21,14 +22,34 @@ class ControllerActivityList extends ControllerBase {
       } else {
         activities.value = null;
       }
-      selectedActivity.value = null;
+      _selectedActivity.value = null;
     });
   }
 
-  Future onNewActivity() async {
-    assert(_selectedWork.value != null, 'There is no work selected to add an activity.');
+  Future selectActivity(Activity? activity) async {
+    if (await saveActivityIfRequired()) {
+      _selectedActivity.value = activity;
+    }
+  }
 
-    if (selectedActivity.value != null && selectedActivity.value!.isNew && PropertyChangedRegistry.hasChanges.value == false) {
+  Future<bool> saveActivityIfRequired() async {
+    if (PropertyChangedRegistry.hasChanges.value) {
+      if (await onSave() == false) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  Future onNewActivity() async {
+    assert(
+      _selectedWork.value != null,
+      'There is no work selected to add an activity.',
+    );
+
+    if (selectedActivity.value != null &&
+        selectedActivity.value!.isNew &&
+        PropertyChangedRegistry.hasChanges.value == false) {
       return;
     }
     if (PropertyChangedRegistry.hasChanges.value) {
@@ -36,8 +57,8 @@ class ControllerActivityList extends ControllerBase {
         return;
       }
     }
-    final newActivity = Activity.create();
-    selectedActivity.value = newActivity;
+    final newActivity = Activity.create(_selectedWork.value!.id);
+    _selectedActivity.value = newActivity;
     _selectedWork.value!.activities.add(newActivity);
   }
 
@@ -48,11 +69,10 @@ class ControllerActivityList extends ControllerBase {
     if (activity.validate()) {
       isSaving.value = true;
       try {
-        String workId = _selectedWork.value!.id;
         if (activity.isNew) {
-          await activity.save(workId);
+          await activity.save();
         } else {
-          await activity.update(workId);
+          await activity.update();
         }
         PropertyChangedRegistry.acceptChanges();
       } finally {
@@ -68,4 +88,7 @@ class ControllerActivityList extends ControllerBase {
   }
 
   late final ValueListenable<Work?> _selectedWork;
+  final ValueNotifier<Activity?> _selectedActivity = ValueNotifier<Activity?>(
+    null,
+  );
 }

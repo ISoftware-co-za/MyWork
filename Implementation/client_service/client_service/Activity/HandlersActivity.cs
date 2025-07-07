@@ -116,12 +116,12 @@ public static class HandlersActivity
                     UpdateDefinition<DocumentActivity>? update = null;
                     for (int index = 0; index < request.UpdatedProperties.Count; ++index)
                     {
+                        UpdateProperty updateProperty = request.UpdatedProperties[index];
+                        object? value = DeserializeUpdateValue(updateProperty.Name, updateProperty.Value);
                         if (index == 0)
-                            update = Builders<DocumentActivity>.Update.Set(request.UpdatedProperties[index].Name,
-                                request.UpdatedProperties[index].Value);
+                            update = Builders<DocumentActivity>.Update.Set(updateProperty.Name, value);
                         else
-                            update = update!.Set(request.UpdatedProperties[index].Name,
-                                request.UpdatedProperties[index].Value);
+                            update = update!.Set(updateProperty.Name, value);
                     }
                     IMongoCollection<DocumentActivity> activityCollection = database.GetCollection<DocumentActivity>(CollectionName);
                     await activityCollection.UpdateOneAsync(filter, update!);
@@ -129,6 +129,15 @@ public static class HandlersActivity
                 });
         }
         return Validation.RequestValidation.GenerateValidationFailedResponse(validationResults);
+    }
+
+    private static object? DeserializeUpdateValue(string name, object? value)
+    {
+        if (value == null)
+            return value;
+        if (name == nameof(DocumentActivity.State))
+            return Enum.Parse(typeof(ActivityState), value.ToString()!, true);
+        return value;
     }
 
     #endregion

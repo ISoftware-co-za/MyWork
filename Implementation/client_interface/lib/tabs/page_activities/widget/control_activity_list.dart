@@ -8,18 +8,19 @@ class ControlActivityList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (_controller.activities.value == null) {
+      return const Center(child: Text('No work is selected. Select work to list and manage its activities.'));
+    }
     return ListenableBuilder(
         listenable: _controller.activities.value!,
         builder: (context, child) {
-          if (_controller.activities.value == null) {
-            return const Center(child: Text('No work is selected. Select work to list and manage its activities.'));
-          }
+
           return ListView.builder(
             itemCount: _controller.activities.value!.items.length,
             itemBuilder: (context, index) {
               return ControlActivityListItem(
                 activity: _controller.activities.value!.items[index],
-                selectedActivity: _controller.selectedActivity,
+                activityListController: _controller,
               );
             },
           );

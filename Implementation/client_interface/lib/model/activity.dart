@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
 import '../service/activity/create_activity.dart';
@@ -6,7 +5,6 @@ import '../service/activity/service_client_activity.dart';
 import '../service/service_client_base.dart';
 import '../service/update_entity.dart';
 import 'properties.dart';
-import 'property_changed_registry.dart';
 import 'validator_base.dart';
 
 enum ActivityState { idle, busy, done, paused, cancelled;
@@ -31,6 +29,7 @@ enum ActivityState { idle, busy, done, paused, cancelled;
 
 class Activity extends PropertyOwner {
   late String id;
+  late String workId;
   late final StateProperty<String> what;
   late final StateProperty<ActivityState> state;
   late final StateProperty<DateTime?> dueDate;
@@ -41,6 +40,7 @@ class Activity extends PropertyOwner {
 
   Activity(
     this.id,
+    this.workId,
     String what,
     ActivityState state,
     String? why,
@@ -48,15 +48,11 @@ class Activity extends PropertyOwner {
     DateTime? dueDate,
   ) {
     _defineValidation(what, state, why, notes, dueDate);
-    this.state.addListener(() {
-      if (this.state.isChanged && this.state.notifyingProperty == 'value' && PropertyChangedRegistry.changeCount ==1 ) {
-        debugPrint('Should save the activity ${this.what.value}');
-      }
-    });
   }
 
-  Activity.create() {
+  Activity.create(String workId) {
     id = '';
+    this.workId = workId;
     _defineValidation('', ActivityState.idle);
   }
 
@@ -64,7 +60,7 @@ class Activity extends PropertyOwner {
     return what.validate() && state.validate() && dueDate.validate() && why.validate() && notes.validate();
   }
 
-  Future save(String workID) async {
+  Future save() async {
     var request = RequestCreateActivity(
         what: what.value,
         state: state.value.name,
@@ -72,7 +68,7 @@ class Activity extends PropertyOwner {
         notes: notes.value.isEmpty ? null : notes.value,
         dueDate: dueDate.value);
 
-    var response = await _serviceClient.create(workID, request);
+    var response = await _serviceClient.create(workId, request);
     if (response is ResponseCreateActivity) {
       id = response.id;
     } else if (response is ValidationProblemResponse) {
@@ -80,12 +76,12 @@ class Activity extends PropertyOwner {
     }
   }
 
-  Future update(String workID) async {
+  Future update() async {
     List<UpdateEntityProperty> updatedProperties =listUpdatedProperties();
     if (updatedProperties.isNotEmpty) {
       var request =
       UpdateEntityRequest(id: id, updatedProperties: updatedProperties);
-      var response = await _serviceClient.update(workID, request);
+      var response = await _serviceClient.update(workId, request);
       if (response is ValidationProblemResponse) {
         invalidate(response.errors);
       }
