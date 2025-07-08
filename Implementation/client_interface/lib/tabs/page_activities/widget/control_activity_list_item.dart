@@ -36,6 +36,12 @@ class _ControlActivityListItemState extends State<ControlActivityListItem> {
     });
   }
 
+  @override
+  void dispose() {
+    widget._activityListController.selectedActivity.removeListener(() {});
+    super.dispose();
+  }
+
   bool _calculateSelectionState() {
     return widget._activityListController.selectedActivity.value == widget._activity;
   }
@@ -55,9 +61,9 @@ class _ControlActivityListItemState extends State<ControlActivityListItem> {
               child: CustomPaint(
                 painter: _ActivityListItemPainter(_isSelected, _isMouseover, widget._activity.state.value),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   child: Row(children: [
-                    Icon(Icons.play_arrow, color: ActivityStatusColors.getColorForState(widget._activity.state.value)),
+                    Icon(ActivityStatusColors.getIconForState(widget._activity.state.value), color: ActivityStatusColors.getColorForState(widget._activity.state.value), size: 38),
                     SizedBox(width: 8.0),
                     Expanded(
                       child: ListenableBuilder(

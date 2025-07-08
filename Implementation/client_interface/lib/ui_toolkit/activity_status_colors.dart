@@ -6,21 +6,41 @@ class ActivityStatusColors {
   static const Color busy = Color(0xFF0000FF);
   static const Color done = Color(0xFF00FF00);
   static const Color paused = Color(0xFFF5B64D);
-  static const Color canceled = Color(0xFF00FFFF);
+  static const Color canceled = Color(0xFFFF0000);
 
-  static Color getColorForState(ActivityState state) {
+  static IconData getIconForState(ActivityState state) {
     switch (state) {
       case ActivityState.idle:
-        return idle;
+        return Icons.stop;
       case ActivityState.busy:
-        return busy;
+        return Icons.play_arrow;
       case ActivityState.done:
-        return done;
+        return Icons.check;
       case ActivityState.paused:
-        return paused;
+        return Icons.pause;
       case ActivityState.cancelled:
-        return canceled;
+        return Icons.close;
     }
+  }
+
+  static Color getColorForState(ActivityState state) {
+    Color statusColor;
+    switch (state) {
+      case ActivityState.idle:
+        statusColor = idle;
+      case ActivityState.busy:
+        statusColor = busy;
+      case ActivityState.done:
+        statusColor = done;
+      case ActivityState.paused:
+        statusColor = paused;
+      case ActivityState.cancelled:
+        statusColor = canceled;
+    }
+    return Color.alphaBlend(
+      Colors.white.withValues(alpha: 0.45),
+      statusColor,
+    );
   }
 
   static Color getLightColorForState(ActivityState state) {

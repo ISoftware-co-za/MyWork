@@ -1,5 +1,6 @@
 import 'package:client_interfaces1/theme/theme_constants.dart';
 import 'package:flutter/material.dart';
+import '../ui_toolkit/control_custom_icon_buttons.dart';
 import 'theme_extension_icon_button_size.dart';
 import 'theme_extension_app_header.dart';
 import 'theme_extension_control_work_button.dart';
@@ -11,8 +12,8 @@ class CustomThemeDataAppHeader {
   static ThemeData getTheme() {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple).copyWith(
-        primary: Colors.red,
-        secondary: Colors.black,
+        primary: Color.fromARGB(255, 70, 130, 180),
+        secondary: Color.fromARGB(255, 128, 128, 128),
       ),
       useMaterial3: true,
       checkboxTheme: CheckboxThemeData(
@@ -23,6 +24,18 @@ class CustomThemeDataAppHeader {
       extensions: <ThemeExtension<dynamic>>[
         ThemeExtensionIconButtonSize(smallIconSize: 8.0, largeIconSize: 24.0, smallPadding: 2.0, largePadding: 4.0),
         const ThemeExtensionAppHeader(backgroundColor: Colors.black, height: 64),
+        IconButtonAcceptTheme(
+            style: ButtonStyle(
+                iconSize: WidgetStateProperty.all(24.0),
+                padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)),
+                foregroundColor: WidgetStateProperty.all(Colors.green),
+                backgroundColor: WidgetStateProperty.all(Colors.transparent))),
+        IconButtonRejectTheme(
+            style: ButtonStyle(
+                iconSize: WidgetStateProperty.all(24.0),
+                padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)),
+                foregroundColor: WidgetStateProperty.all(Colors.red),
+                backgroundColor: WidgetStateProperty.all(Colors.transparent))),
         ThemeExtensionControlWorkButton(
             padding: 8,
             hoverColor: Colors.white.withValues(alpha: 0.3),

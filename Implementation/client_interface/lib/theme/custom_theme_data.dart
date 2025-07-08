@@ -8,22 +8,12 @@ class CustomThemeData {
   static ThemeData getTheme() {
     return ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple).copyWith(
-          primary: Colors.red,
+          primary: Color.fromARGB(255, 70, 130, 180),
           secondary: Colors.black,
         ),
         useMaterial3: true,
         extensions: <ThemeExtension<dynamic>>[
           ThemeExtensionIconButtonSize(smallIconSize: 8.0, largeIconSize: 24.0, smallPadding: 2.0, largePadding: 4.0),
-          IconButtonAcceptTheme(
-              style: ButtonStyle(
-                  iconSize: WidgetStateProperty.all(24.0),
-                  padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)),
-                  foregroundColor: WidgetStateProperty.all(Colors.green))),
-          IconButtonRejectTheme(
-              style: ButtonStyle(
-                  iconSize: WidgetStateProperty.all(24.0),
-                  padding: WidgetStateProperty.all(const EdgeInsets.all(2.0)),
-                  foregroundColor: WidgetStateProperty.all(Colors.red))),
           IconButtonActionTheme(
               style: ButtonStyle(
                   iconSize: WidgetStateProperty.all(24.0),

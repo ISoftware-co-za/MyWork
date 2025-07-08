@@ -21,25 +21,28 @@ class _LayoutActivityFormState extends State<LayoutActivityForm> {
         if (widget._controller.selectedActivity.value == null) {
           return const Center(child: Text('No activity selected'));
         }
-        return MouseRegion(
-          onEnter: (event) {
-            setState(() {
-              _isMouseover = true;
-            });
-          },
-          onExit: (event) {
-            setState(() {
-              _isMouseover = false;
-            });
-          },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ControlActivityStateAndWhat(
-                activity: widget._controller.selectedActivity.value!,
-                isMouseover: _isMouseover,
-              ),
-            ],
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: MouseRegion(
+            onEnter: (event) {
+              setState(() {
+                _isMouseover = true;
+              });
+            },
+            onExit: (event) {
+              setState(() {
+                _isMouseover = false;
+              });
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ControlActivityStateAndWhat(
+                  activity: widget._controller.selectedActivity.value!,
+                  isMouseover: _isMouseover,
+                ),
+              ],
+            ),
           ),
         );
       },

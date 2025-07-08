@@ -22,7 +22,6 @@ class LayoutPageActivities extends StatelessWidget {
           return const Center(child: Text('No work is selected. Select work to list and manage its activities.'));
         }
         return Row(
-          spacing: 16,
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
