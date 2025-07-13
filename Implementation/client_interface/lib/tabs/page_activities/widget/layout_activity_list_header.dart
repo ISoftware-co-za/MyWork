@@ -9,7 +9,7 @@ class LayoutActivityListHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Color.fromARGB(255, 100, 100, 100),
       child: Padding(padding: EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

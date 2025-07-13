@@ -28,5 +28,5 @@ public record class DocumentActivity
     public string? Notes { get; init; }
 
     [BsonElement("dueDate")]
-    public DateTime? DueDate { get; init; }
+    public string? DueDate { get; init; }
 }
