@@ -21,24 +21,12 @@ class _ControlActivityListItemState extends State<ControlActivityListItem> {
   void initState() {
     super.initState();
     _isSelected = _calculateSelectionState();
-    widget._activityListController.selectedActivity.addListener(() {
-      if (_calculateSelectionState()) {
-        setState(() {
-          _isSelected = true;
-        });
-      } else {
-        if (_isSelected) {
-          setState(() {
-            _isSelected = false;
-          });
-        }
-      }
-    });
+    widget._activityListController.selectedActivity.addListener(onActivitySelected);
   }
 
   @override
   void dispose() {
-    widget._activityListController.selectedActivity.removeListener(() {});
+    widget._activityListController.selectedActivity.removeListener(onActivitySelected);
     super.dispose();
   }
 
@@ -61,9 +49,9 @@ class _ControlActivityListItemState extends State<ControlActivityListItem> {
               child: CustomPaint(
                 painter: _ActivityListItemPainter(_isSelected, _isMouseover, widget._activity.state.value),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   child: Row(children: [
-                    Icon(ActivityStatusColors.getIconForState(widget._activity.state.value), color: ActivityStatusColors.getColorForState(widget._activity.state.value), size: 38),
+                    Icon(ActivityStatusColors.getIconForState(widget._activity.state.value), color: ActivityStatusColors.getColorForState(widget._activity.state.value), size: 30),
                     SizedBox(width: 8.0),
                     Expanded(
                       child: ListenableBuilder(
@@ -73,7 +61,7 @@ class _ControlActivityListItemState extends State<ControlActivityListItem> {
                               widget._activity.what.value,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16.0),
                             );
                           }),
                     ),
@@ -83,6 +71,20 @@ class _ControlActivityListItemState extends State<ControlActivityListItem> {
             );
           }),
     );
+  }
+
+  void onActivitySelected() {
+    if (_calculateSelectionState()) {
+      setState(() {
+        _isSelected = true;
+      });
+    } else {
+      if (_isSelected) {
+        setState(() {
+          _isSelected = false;
+        });
+      }
+    }
   }
 
   bool _isSelected = false;
@@ -98,20 +100,22 @@ class _ActivityListItemPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = (isMouseover) ? ActivityStatusColors.getHoverColorForState(state) : ActivityStatusColors.getLightColorForState(state)
-      ..style = PaintingStyle.fill;
+    if (isMouseover) {
+      final paint = Paint()
+        ..color = Color.fromARGB(255, 240, 240, 240)
+        ..style = PaintingStyle.fill;
+      canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
+    }
     if (isSelected) {
+      final paint = Paint()
+        ..color = Color.fromARGB(255, 254, 247, 255)
+        ..style = PaintingStyle.fill;
       final path = Path();
-      path.moveTo(0, 0);
-      path.lineTo(size.width, 0);
-      path.lineTo(size.width - size.height/2, size.height/2);
+      path.moveTo(size.width, 0);
       path.lineTo(size.width, size.height);
-      path.lineTo(0, size.height);
+      path.lineTo(size.width - size.height / 2, size.height / 2);
       path.close();
       canvas.drawPath(path, paint);
-    } else {
-      canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
     }
   }
 

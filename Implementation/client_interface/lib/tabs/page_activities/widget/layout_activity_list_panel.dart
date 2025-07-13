@@ -18,7 +18,9 @@ class LayoutActivityListPanel extends StatelessWidget {
         children: [
           LayoutActivityListHeader(controller: _controller),
           Expanded(
-            child: ControlActivityList(controller: _controller)
+            child: Container(
+              color: Color.fromARGB(255, 220, 220, 220),
+                child: ControlActivityList(controller: _controller))
             )
         ]),
     );

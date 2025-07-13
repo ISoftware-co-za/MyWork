@@ -24,6 +24,8 @@ class UpdateEntityProperty {
     if (value != null && value.runtimeType.toString() == 'ActivityState') {
       var activityState = value as ActivityState;
       jsonValue = activityState.name;
+    } else if (jsonValue is DateTime) {
+      jsonValue = jsonValue.toIso8601String().split('T').first;
     }
     return {
       'name': name,

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class ActivityStatusColors {
   static const Color idle = Color(0xFF808080);
-  static const Color busy = Color(0xFF0000FF);
-  static const Color done = Color(0xFF00FF00);
-  static const Color paused = Color(0xFFF5B64D);
+  static const Color busy = Color(0xFF5050FF);
+  static const Color done = Color(0xFF00A000);
+  static const Color paused = Color(0xFF96B400);
   static const Color canceled = Color(0xFFFF0000);
 
   static IconData getIconForState(ActivityState state) {
@@ -37,10 +37,14 @@ class ActivityStatusColors {
       case ActivityState.cancelled:
         statusColor = canceled;
     }
+    return statusColor;
+
+    /*
     return Color.alphaBlend(
       Colors.white.withValues(alpha: 0.45),
       statusColor,
     );
+    */
   }
 
   static Color getLightColorForState(ActivityState state) {

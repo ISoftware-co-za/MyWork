@@ -1,3 +1,4 @@
+import 'package:client_interfaces1/model/text_value_for_date.dart';
 import 'package:flutter/foundation.dart';
 
 import '../service/update_entity.dart';
@@ -13,7 +14,12 @@ class PropertyOwner extends ChangeNotifier {
     var updatedProperties = <UpdateEntityProperty>[];
     for (var propertyEntry in properties.entries) {
       if (propertyEntry.value.isChanged) {
-        updatedProperties.add(UpdateEntityProperty(name: propertyEntry.key, value: propertyEntry.value.value));
+        updatedProperties.add(
+          UpdateEntityProperty(
+            name: propertyEntry.key,
+            value: propertyEntry.value.value,
+          ),
+        );
       }
     }
     return updatedProperties;
@@ -22,7 +28,7 @@ class PropertyOwner extends ChangeNotifier {
   void invalidate(Map<String, List<String>> errors) {
     for (var entry in errors.entries) {
       assert(properties[entry.key] != null);
-      properties[entry.key]?.invalidate(message: entry.value.first);
+      properties[entry.key]?.invalidate(entry.value.first);
     }
   }
 }
@@ -41,21 +47,17 @@ class PropertyChangeNotifier extends ChangeNotifier {
 //----------------------------------------------------------------------------------------------------------------------
 
 class StateProperty<T> extends PropertyChangeNotifier {
-
   T get value => _value;
   set value(T value) {
-    if (_value != value) {
-      _value = value;
-      _setInvalidMessage(_validation.validate(input: _value.toString()));
-      _updatePropertyChanged();
-      notifyPropertyChange("value");
+    if (onValueSet(value) && _textValueBase != null) {
+      _textValueBase.onValueSet(value);
     }
   }
 
   T _value;
 
   String? get invalidMessage => _invalidMessage;
-  void _setInvalidMessage(String? value) {
+  void setInvalidMessage(String? value) {
     if (_invalidMessage != value) {
       _invalidMessage = value;
       notifyPropertyChange("invalidMessage");
@@ -72,22 +74,40 @@ class StateProperty<T> extends PropertyChangeNotifier {
 
   String get valueAsString => (_value != null) ? _value.toString() : '';
 
-
-  StateProperty({required T value, List<Validator>? validators})
-      :  _value = value, _currentValue = value, _validation = ValidatorCollection(validators);
+  StateProperty({
+    required T value,
+    List<Validator>? validators,
+    TextValueBase<T>? textValueBase,
+  }) : _value = value,
+       _currentValue = value,
+       _validation = ValidatorCollection(validators),
+       _textValueBase = textValueBase;
 
   void setValue(T newValue) {
     _currentValue = _value = newValue;
     _updatePropertyChanged();
   }
 
+  bool onValueSet(T newValue) {
+    if (_value != newValue) {
+      _value = newValue;
+      setInvalidMessage(_validation.validate(input: _value.toString()));
+      _updatePropertyChanged();
+      notifyPropertyChange("value");
+      return true;
+    }
+    return false;
+  }
+
   bool validate() {
-    _setInvalidMessage(_validation.validate(input: _value, forceErrors: true));
+    if (_textValueBase == null || _textValueBase.validateValue()) {
+      setInvalidMessage(_validation.validate(input: _value, forceErrors: true));
+    }
     return isValid;
   }
 
-  void invalidate({required String message}) {
-    _setInvalidMessage(message);
+  void invalidate(String message) {
+    setInvalidMessage(message);
   }
 
   void acceptChanged() {
@@ -110,7 +130,7 @@ class StateProperty<T> extends PropertyChangeNotifier {
   final ValidatorCollection _validation;
   T _currentValue;
   final _PropertyChanged _propertyChanged = _PropertyChanged();
-
+  final TextValueBase<T>? _textValueBase;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

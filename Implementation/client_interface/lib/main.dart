@@ -1,7 +1,9 @@
 import 'package:client_interfaces1/tabs/page_activities/controller/controller_activity_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'controller/coordinator_work_and_activity_selection.dart';
 import 'notification/layout_notification_list.dart';
@@ -39,6 +41,9 @@ Future<void> main() async {
       options.enableUserInteractionBreadcrumbs = true;
     },
     appRunner: () {
+      Intl.defaultLocale = 'en_ZA';
+      initializeDateFormatting(Intl.defaultLocale, null);
+
       setupFacades();
       runApp(SentryWidget(child: MyApp()));
     },

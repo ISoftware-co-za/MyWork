@@ -4,11 +4,13 @@ class ControlFormField extends StatelessWidget {
   final String label;
   final StateProperty property;
   final bool editable;
+  final int maximumLines;
 
   ControlFormField({
     required this.label,
     required this.property,
     required this.editable,
+    this.maximumLines = 1,
     super.key,
   }) {
     _controller = TextEditingController(text: property.value);
@@ -28,7 +30,7 @@ class ControlFormField extends StatelessWidget {
             children.add(_createUpdateField(theme));
           } else {
             children.add(Padding(
-              padding: const EdgeInsets.symmetric(vertical: 0.5, horizontal: 0),
+              padding: const EdgeInsets.fromLTRB(2, 0.5, 0, 0.5),
               child: Text(property.valueAsString, style: theme.valueStyle),
             ));
           }
@@ -47,7 +49,8 @@ class ControlFormField extends StatelessWidget {
   TextField _createUpdateField(ThemeExtensionForm theme) {
     return TextField(
         controller: _controller,
-        // focusNode: _focusNode,
+        minLines: 1,
+        maxLines: maximumLines,
         onChanged: (value) {
           property.value = value;
         },
