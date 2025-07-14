@@ -34,5 +34,10 @@ class ServiceClientActivity extends ServiceClientBase {
     return processResponse(response, 204, () => null);
   }
 
-
+  Future<void> delete(String workId, String id) async {
+    Map<String, String> headers = setupCommonHeaders();
+    var uri = generateUri('/work/$workId/activities/$id');
+    final response = await httpDelete(uri, headers);
+    processResponse(response, 204, () => null);
+  }
 }

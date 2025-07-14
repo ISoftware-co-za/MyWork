@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../execution/executor.dart';
 import '../../../controller/controller_work.dart';
 import '../../../model/work.dart';
 import '../../../model/work_type_list.dart';
 import '../../../ui_toolkit/form/form.dart';
 import '../../../ui_toolkit/hover.dart';
+import '../../../ui_toolkit/control_delete.dart';
 import '../controller/data_source_autocomplete_work_type.dart';
 import '../controller/list_item_detail_autocomplete.dart';
 import '../controller/list_item_detail_base.dart';
@@ -102,20 +102,8 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
     if (widget._controller.hasExistingWork && _isMouseover) {
       children.add(
         Center(
-          child: TextButton.icon(
-            icon: const Icon(Icons.delete),
-            label: const Text('Delete'),
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-            ),
-            onPressed: () {
-              Executor.runCommandAsync("Delete", null, () async {
-                await widget._controller.onWorkDelete();
-              });
-            },
-          ),
-        ),
+          child: ControlDelete(pageName: 'LayoutDetailsForm', onDelete: widget._controller.onWorkDelete)
+        )
       );
     }
 

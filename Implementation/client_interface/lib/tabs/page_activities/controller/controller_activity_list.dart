@@ -62,6 +62,13 @@ class ControllerActivityList extends ControllerBase {
     _selectedWork.value!.activities.add(newActivity);
   }
 
+  Future<void> onDeleteActivity() async {
+    assert(_selectedActivity.value != null, 'No activity selected to delete.');
+    await _selectedActivity.value!.delete();
+    activities.value!.remove(_selectedActivity.value!);
+    _selectedActivity.value = null;
+  }
+
   Future<bool> onSave() async {
     assert(selectedActivity.value != null);
     var activity = selectedActivity.value!;
