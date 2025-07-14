@@ -19,6 +19,7 @@ public static class HandlersActivity
         groupBuilder.MapGet("/{workID}/activities", ListALlWorkActivities).RequireCors(corsPolicyName);
         groupBuilder.MapPost("/{workID}/activities", Post).RequireCors(corsPolicyName);
         groupBuilder.MapPatch("/{workID}/activities/{id}", Patch).RequireCors(corsPolicyName);
+        groupBuilder.MapDelete("/{workID}/activities/{id}", Delete).RequireCors(corsPolicyName);
     }
 
     public static void AddActivityValidation(this RequestValidation requestValidation)
@@ -37,6 +38,20 @@ public static class HandlersActivity
             typeof(UpdateActivityRequest),
             new ValidatedPropertyCollection(properties.ToArray())
         ));
+    }
+    
+    public static async Task DeleteWorkActivities(string workID, IMongoDatabase database)
+    {
+        await Executor.RunProcessAsync($"{CollectionName}.DeleteManyAsync({workID})", Executor.CategoryMongoDB,
+            "Unable to delete activities for work with id ${workID}",
+            async () =>
+            {
+                var filter = Builders<DocumentActivity>.Filter.Eq("work_id", ObjectId.Parse(workID));
+                var activityCollection =
+                    database.GetCollection<DocumentActivity>(CollectionName);
+                await activityCollection.DeleteManyAsync(filter);
+                return Results.NoContent();
+            });
     }
 
     #endregion
@@ -136,6 +151,21 @@ public static class HandlersActivity
         return RequestValidation.GenerateValidationFailedResponse(validationResults);
     }
 
+    private static async Task<IResult> Delete(string workID, string id, IMongoDatabase database,
+        [FromServices] ILogger<Program> logger)
+    {
+        return await Executor.RunProcessAsync($"{CollectionName}.DeleteOneAsync({id})", Executor.CategoryMongoDB,
+            "Unable to save the updated work",
+            async () =>
+            {
+                var filter = Builders<DocumentActivity>.Filter.Eq("_id", ObjectId.Parse(id));
+                var activityCollection =
+                    database.GetCollection<DocumentActivity>(CollectionName);
+                await activityCollection.DeleteOneAsync(filter);
+                return Results.NoContent();
+            });
+    }
+    
     private static object? DeserializeUpdateValue(string name, object? value)
     {
         if (value == null)

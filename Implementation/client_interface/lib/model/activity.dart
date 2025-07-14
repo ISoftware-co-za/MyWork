@@ -7,7 +7,12 @@ import '../service/update_entity.dart';
 import 'properties.dart';
 import 'validator_base.dart';
 
-enum ActivityState { idle, busy, done, paused, cancelled;
+enum ActivityState {
+  idle,
+  busy,
+  done,
+  paused,
+  cancelled;
 
   static ActivityState fromString(String state) {
     switch (state.toLowerCase()) {
@@ -57,16 +62,21 @@ class Activity extends PropertyOwner {
   }
 
   bool validate() {
-    return what.validate() && state.validate() && dueDate.validate() && why.validate() && notes.validate();
+    return what.validate() &&
+        state.validate() &&
+        dueDate.validate() &&
+        why.validate() &&
+        notes.validate();
   }
 
   Future save() async {
     var request = RequestCreateActivity(
-        what: what.value,
-        state: state.value.name,
-        why: why.value.isEmpty ? null : why.value,
-        notes: notes.value.isEmpty ? null : notes.value,
-        dueDate: dueDate.value);
+      what: what.value,
+      state: state.value.name,
+      why: why.value.isEmpty ? null : why.value,
+      notes: notes.value.isEmpty ? null : notes.value,
+      dueDate: dueDate.value,
+    );
 
     var response = await _serviceClient.create(workId, request);
     if (response is ResponseCreateActivity) {
@@ -77,10 +87,12 @@ class Activity extends PropertyOwner {
   }
 
   Future update() async {
-    List<UpdateEntityProperty> updatedProperties =listUpdatedProperties();
+    List<UpdateEntityProperty> updatedProperties = listUpdatedProperties();
     if (updatedProperties.isNotEmpty) {
-      var request =
-      UpdateEntityRequest(id: id, updatedProperties: updatedProperties);
+      var request = UpdateEntityRequest(
+        id: id,
+        updatedProperties: updatedProperties,
+      );
       var response = await _serviceClient.update(workId, request);
       if (response is ValidationProblemResponse) {
         invalidate(response.errors);
@@ -88,26 +100,53 @@ class Activity extends PropertyOwner {
     }
   }
 
-  void _defineValidation(String what, ActivityState state, [String? why, String? notes, DateTime? dueDate]) {
+  Future delete() async {
+    await _serviceClient.delete(workId, id);
+  }
+
+  void _defineValidation(
+    String what,
+    ActivityState state, [
+    String? why,
+    String? notes,
+    DateTime? dueDate,
+  ]) {
     if (why == null) {
       why = '';
     }
     if (notes == null) {
       notes = '';
     }
-    this.what = StateProperty(value: what, validators: [
-      ValidatorRequired(invalidMessageTemplate: 'What is required'),
-      ValidatorMaximumCharacters(maximumCharacters: 80, invalidMessageTemplate: 'What should be 80 characters or less')
-    ]);
+    this.what = StateProperty(
+      value: what,
+      validators: [
+        ValidatorRequired(invalidMessageTemplate: 'What is required'),
+        ValidatorMaximumCharacters(
+          maximumCharacters: 80,
+          invalidMessageTemplate: 'What should be 80 characters or less',
+        ),
+      ],
+    );
     this.state = StateProperty(value: state);
     this.dueDate = StateProperty(value: dueDate);
-    this.why = StateProperty(value: why, validators: [
-      ValidatorMaximumCharacters(maximumCharacters: 240, invalidMessageTemplate: 'Why should be 240 characters or less')
-    ]);
-    this.notes = StateProperty(value: notes, validators: [
-      ValidatorMaximumCharacters(
-          maximumCharacters: 240, invalidMessageTemplate: 'Notes should be 240 characters or less')
-    ]);
+    this.why = StateProperty(
+      value: why,
+      validators: [
+        ValidatorMaximumCharacters(
+          maximumCharacters: 240,
+          invalidMessageTemplate: 'Why should be 240 characters or less',
+        ),
+      ],
+    );
+    this.notes = StateProperty(
+      value: notes,
+      validators: [
+        ValidatorMaximumCharacters(
+          maximumCharacters: 240,
+          invalidMessageTemplate: 'Notes should be 240 characters or less',
+        ),
+      ],
+    );
 
     properties = {
       'What': this.what,
@@ -118,5 +157,6 @@ class Activity extends PropertyOwner {
     };
   }
 
-  ServiceClientActivity _serviceClient = GetIt.instance<ServiceClientActivity>();
+  ServiceClientActivity _serviceClient =
+      GetIt.instance<ServiceClientActivity>();
 }
