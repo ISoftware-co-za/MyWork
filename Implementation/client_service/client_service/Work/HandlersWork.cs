@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ClientService.Activity;
 using Microsoft.AspNetCore.Mvc;
 
 using MongoDB.Bson;
@@ -138,6 +139,7 @@ public static class HandlersWork
         return await Executor.RunProcessAsync($"{CollectionName}.DeleteOneAsync({id})", Executor.CategoryMongoDB, "Unable to delete the work",
             async () =>
             {
+                await HandlersActivity.DeleteWorkActivities(id, database);
                 IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
                 var filter = Builders<DocumentWork>.Filter.Eq("_id", ObjectId.Parse(id));
                 await workCollection.DeleteOneAsync(filter);

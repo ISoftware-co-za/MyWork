@@ -53,18 +53,22 @@ class ControllerTabBar extends ControllerBase {
   }
 
   void onActivityStateChanged() async {
-    Executor.runCommandAsync('ControllerTabBar', null, () async {
-      StateProperty<ActivityState> state = _currentlySelectedActivity!.state;
-      if (state.isChanged && state.notifyingProperty == 'value' && PropertyChangedRegistry.changeCount ==1 ) {
-        isSaving.value = true;
-        try {
-          await _currentlySelectedActivity!.update();
+    if (!_currentlySelectedActivity!.isNew) {
+      Executor.runCommandAsync('ControllerTabBar', null, () async {
+        StateProperty<ActivityState> state = _currentlySelectedActivity!.state;
+        if (state.isChanged && state.notifyingProperty == 'value' &&
+            PropertyChangedRegistry.changeCount == 1) {
+          isSaving.value = true;
+          try {
+            await _currentlySelectedActivity!.update();
+          }
+          finally {
+            PropertyChangedRegistry.acceptChanges();
+            isSaving.value = false;
+          }
         }
-        finally {
-          PropertyChangedRegistry.acceptChanges();
-          isSaving.value = false;
-        }
-    }});
+      });
+    }
   }
 
   final ControllerWork _workController;
