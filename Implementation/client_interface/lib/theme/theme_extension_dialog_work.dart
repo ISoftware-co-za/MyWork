@@ -2,68 +2,34 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class ThemeExtensionWorkDialog extends ThemeExtension<ThemeExtensionWorkDialog> {
+import 'theme_extension_dialog_base.dart';
+
+class ThemeExtensionDialogWork extends ThemeExtension<ThemeExtensionDialogWork> {
   final double width;
   final double height;
-  final double padding;
-  final double horizontalSpacing;
-  final double verticalSpacing;
+  final ThemeExtensionDialogBase dialogBaseTheme;
 
-  final Color backgroundColor;
-  final Color dialogHeaderColor;
-  final TextStyle dialogHeaderTextStyle;
-  final Color tableHeaderColor;
-  final TextStyle tableHeaderTextStyle;
-  final TextStyle normalCellTextStyle;
-  final TextStyle emphasisedCellTextStyle;
-
-  const ThemeExtensionWorkDialog(
+  const ThemeExtensionDialogWork(
       {required this.width,
       required this.height,
-      required this.padding,
-      required this.horizontalSpacing,
-      required this.verticalSpacing,
-      required this.backgroundColor,
-      required this.dialogHeaderColor,
-      required this.dialogHeaderTextStyle,
-      required this.tableHeaderTextStyle,
-      required this.normalCellTextStyle,
-      required this.emphasisedCellTextStyle,
-      required this.tableHeaderColor});
+      required this.dialogBaseTheme});
 
   @override
-  ThemeExtension<ThemeExtensionWorkDialog> copyWith() {
-    return ThemeExtensionWorkDialog(
+  ThemeExtension<ThemeExtensionDialogWork> copyWith() {
+    return ThemeExtensionDialogWork(
         width: width,
         height: height,
-        padding: padding,
-        verticalSpacing: verticalSpacing,
-        horizontalSpacing: horizontalSpacing,
-        backgroundColor: backgroundColor,
-        dialogHeaderColor: dialogHeaderColor,
-        dialogHeaderTextStyle: dialogHeaderTextStyle,
-        tableHeaderColor: tableHeaderColor,
-        tableHeaderTextStyle: tableHeaderTextStyle,
-        normalCellTextStyle: normalCellTextStyle,
-        emphasisedCellTextStyle: emphasisedCellTextStyle);
+      dialogBaseTheme: dialogBaseTheme,
+    );
   }
 
   @override
-  ThemeExtension<ThemeExtensionWorkDialog> lerp(covariant ThemeExtensionWorkDialog? other, double t) {
+  ThemeExtension<ThemeExtensionDialogWork> lerp(covariant ThemeExtensionDialogWork? other, double t) {
     if (other == null) return this;
-    return ThemeExtensionWorkDialog(
+
+    return ThemeExtensionDialogWork(
       width: lerpDouble(width, other.width, t)!,
       height: lerpDouble(height, other.height, t)!,
-      padding: lerpDouble(padding, other.padding, t)!,
-      verticalSpacing: lerpDouble(verticalSpacing, other.verticalSpacing, t)!,
-      horizontalSpacing: lerpDouble(horizontalSpacing, other.horizontalSpacing, t)!,
-      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      dialogHeaderColor: Color.lerp(dialogHeaderColor, other.dialogHeaderColor, t)!,
-      dialogHeaderTextStyle: TextStyle.lerp(dialogHeaderTextStyle, other.dialogHeaderTextStyle, t)!,
-      tableHeaderColor: Color.lerp(tableHeaderColor, other.tableHeaderColor, t)!,
-      tableHeaderTextStyle: TextStyle.lerp(tableHeaderTextStyle, other.tableHeaderTextStyle, t)!,
-      normalCellTextStyle: TextStyle.lerp(normalCellTextStyle, other.normalCellTextStyle, t)!,
-      emphasisedCellTextStyle: TextStyle.lerp(emphasisedCellTextStyle, other.emphasisedCellTextStyle, t)!,
-    );
+      dialogBaseTheme: dialogBaseTheme.lerp(other.dialogBaseTheme, t));
   }
 }

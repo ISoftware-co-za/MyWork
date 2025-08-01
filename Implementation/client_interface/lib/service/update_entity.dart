@@ -1,4 +1,5 @@
 import '../model/activity.dart';
+import '../model/data_conversion.dart';
 
 class UpdateEntityRequest {
   final String id;
@@ -25,7 +26,7 @@ class UpdateEntityProperty {
       var activityState = value as ActivityState;
       jsonValue = activityState.name;
     } else if (jsonValue is DateTime) {
-      jsonValue = jsonValue.toIso8601String().split('T').first;
+      jsonValue = DataConversionModelToService.dateTimeToDateString(jsonValue);
     }
     return {
       'name': name,

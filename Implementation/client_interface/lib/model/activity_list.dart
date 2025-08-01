@@ -1,3 +1,4 @@
+import 'package:client_interfaces1/model/model_property_context.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
@@ -6,17 +7,19 @@ import '../service/activity/service_client_activity.dart';
 import 'activity.dart';
 
 class ActivityList extends ChangeNotifier {
+  final String workId;
   final List<Activity> items = [];
 
-  ActivityList(String workID) : _workID = workID;
+  ActivityList(ModelPropertyContext modelPropertyContext, this.workId) : _modelPropertyContext = modelPropertyContext;
 
   Future loadAll() async {
-    WorkActivityListResponse response = await _serviceClient.listAll(_workID);
+    WorkActivityListResponse response = await _serviceClient.listAll(workId);
     items.clear();
     for (var item in response.items) {
       items.add(Activity(
+        _modelPropertyContext,
         item.id,
-        _workID,
+        workId,
         item.what,
         ActivityState.fromString(item.state),
         item.why,
@@ -37,6 +40,6 @@ class ActivityList extends ChangeNotifier {
     notifyListeners();
   }
 
+  late final ModelPropertyContext _modelPropertyContext;
   final ServiceClientActivity _serviceClient = GetIt.instance<ServiceClientActivity>();
-  String _workID;
 }

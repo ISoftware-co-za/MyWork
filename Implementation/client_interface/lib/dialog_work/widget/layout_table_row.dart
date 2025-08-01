@@ -5,8 +5,7 @@ class _DialogWorkLayoutTableRow extends StatefulWidget {
       {required ColumnCollection columns,
       required ListItemWork work,
       required AsyncValueSetter<ListItemWork> onWorkSummarySelectedHandler,
-      required ControllerNotifications notificationsController,
-      required ThemeExtensionWorkDialog theme})
+      required ThemeExtensionDialogWork theme})
       : _columns = columns,
         _work = work,
         _onWorkSummarySelectedHandler = onWorkSummarySelectedHandler,
@@ -17,7 +16,7 @@ class _DialogWorkLayoutTableRow extends StatefulWidget {
 
   final ColumnCollection _columns;
   final ListItemWork _work;
-  final ThemeExtensionWorkDialog _theme;
+  final ThemeExtensionDialogWork _theme;
   final AsyncValueSetter<ListItemWork> _onWorkSummarySelectedHandler;
 }
 
@@ -39,14 +38,14 @@ class _DialogWorkLayoutTableRowState extends State<_DialogWorkLayoutTableRow> {
       } else if (cellValue is String) {
         cellWidget = Text(cellValue,
             overflow: TextOverflow.ellipsis,
-            style: column.isEmphasised ? widget._theme.emphasisedCellTextStyle : widget._theme.normalCellTextStyle);
+            style: column.isEmphasised ? widget._theme.dialogBaseTheme.emphasisedCellTextStyle : widget._theme.dialogBaseTheme.normalCellTextStyle);
       } else {
         throw Exception(
             'TableRow is not able to display a ${cellValue.runtimeType} type. Please add support for this type in TableRow.');
       }
 
       if (index > 0) {
-        widgets.add(SizedBox(width: widget._theme.horizontalSpacing));
+        widgets.add(SizedBox(width: widget._theme.dialogBaseTheme.horizontalSpacing));
       }
       if (column.relativeWidth) {
         widgets.add(Expanded(
@@ -77,7 +76,7 @@ class _DialogWorkLayoutTableRowState extends State<_DialogWorkLayoutTableRow> {
           });
         },
         child: Container(
-          padding: EdgeInsets.fromLTRB(widget._theme.padding, widget._theme.verticalSpacing/2, widget._theme.padding, widget._theme.verticalSpacing/2),
+          padding: EdgeInsets.fromLTRB(widget._theme.dialogBaseTheme.padding, widget._theme.dialogBaseTheme.verticalSpacing/2, widget._theme.dialogBaseTheme.padding, widget._theme.dialogBaseTheme.verticalSpacing/2),
           color: (_isMouseOver) ? Colors.grey[300] : Colors.white,
           child: Row(children: widgets),
         ),

@@ -1,4 +1,4 @@
-import 'package:client_interfaces1/model/properties.dart';
+import 'package:client_interfaces1/model/model_property.dart';
 import 'package:intl/intl.dart';
 
 abstract class TextValueBase<T> {
@@ -63,6 +63,6 @@ class TextValueForDate extends PropertyChangeNotifier
     }
   }
 
-  final StateProperty _dateProperty;
+  final ModelProperty _dateProperty;
   bool _hasBeenValid = false;
 }

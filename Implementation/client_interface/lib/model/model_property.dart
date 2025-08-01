@@ -2,13 +2,16 @@ import 'package:client_interfaces1/model/text_value_for_date.dart';
 import 'package:flutter/foundation.dart';
 
 import '../service/update_entity.dart';
-import 'property_changed_registry.dart';
+import 'model_property_context.dart';
 import 'validator_base.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 
 class PropertyOwner extends ChangeNotifier {
-  late final Map<String, StateProperty> properties;
+  final ModelPropertyContext context;
+  late final Map<String, ModelProperty> properties;
+
+  PropertyOwner(ModelPropertyContext context) : context = context;
 
   List<UpdateEntityProperty> listUpdatedProperties() {
     var updatedProperties = <UpdateEntityProperty>[];
@@ -46,7 +49,10 @@ class PropertyChangeNotifier extends ChangeNotifier {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class StateProperty<T> extends PropertyChangeNotifier {
+class ModelProperty<T> extends PropertyChangeNotifier {
+
+  final ModelPropertyContext context;
+
   T get value => _value;
   set value(T value) {
     if (onValueSet(value) && _textValueBase != null) {
@@ -74,11 +80,13 @@ class StateProperty<T> extends PropertyChangeNotifier {
 
   String get valueAsString => (_value != null) ? _value.toString() : '';
 
-  StateProperty({
+  ModelProperty({
+    required ModelPropertyContext context,
     required T value,
     List<Validator>? validators,
     TextValueBase<T>? textValueBase,
-  }) : _value = value,
+  }) : context = context,
+        _value = value,
        _currentValue = value,
        _validation = ValidatorCollection(validators),
        _textValueBase = textValueBase;
@@ -127,8 +135,8 @@ class StateProperty<T> extends PropertyChangeNotifier {
     }
   }
 
-  final ValidatorCollection _validation;
   T _currentValue;
+  final ValidatorCollection _validation;
   final _PropertyChanged _propertyChanged = _PropertyChanged();
   final TextValueBase<T>? _textValueBase;
 }
@@ -139,14 +147,14 @@ class _PropertyChanged {
   bool isChanged = false;
   bool result = false;
 
-  bool setChanged(StateProperty property, bool changed) {
+  bool setChanged(ModelProperty property, bool changed) {
     isChanged = changed;
     if (isChanged && _changedPropertyRegistered == false) {
-      PropertyChangedRegistry.addChangedProperty(property);
+      property.context.addChangedProperty(property);
       _changedPropertyRegistered = true;
       result = true;
     } else if (isChanged == false && _changedPropertyRegistered) {
-      PropertyChangedRegistry.removeChangedProperty(property);
+      property.context.removeChangedProperty(property);
       _changedPropertyRegistered = false;
       result = true;
     }

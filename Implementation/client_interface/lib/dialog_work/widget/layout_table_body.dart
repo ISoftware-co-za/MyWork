@@ -3,7 +3,7 @@ part of dialog_work;
 class _DialogWorkLayoutTableBody extends StatelessWidget {
   const _DialogWorkLayoutTableBody(
       {required ControllerDialogWork controller,
-        required ThemeExtensionWorkDialog theme})
+        required ThemeExtensionDialogWork theme})
       : _controller = controller,
         _theme = theme;
 
@@ -20,7 +20,6 @@ class _DialogWorkLayoutTableBody extends StatelessWidget {
                     columns: _controller.columns,
                     work: row,
                     onWorkSummarySelectedHandler: workSelectedHandler,
-                    notificationsController: _controller.notificationsController,
                     theme: _theme);
               })),
     );
@@ -31,5 +30,5 @@ class _DialogWorkLayoutTableBody extends StatelessWidget {
   }
 
   final ControllerDialogWork _controller;
-  final ThemeExtensionWorkDialog _theme;
+  final ThemeExtensionDialogWork _theme;
 }

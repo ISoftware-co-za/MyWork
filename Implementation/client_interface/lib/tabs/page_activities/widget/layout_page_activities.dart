@@ -1,5 +1,5 @@
 import 'package:client_interfaces1/controller/controller_work.dart';
-import 'package:client_interfaces1/tabs/page_activities/widget/layout_activity_form.dart';
+import 'package:client_interfaces1/tabs/page_activities/widget/layout_form_activity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../controller/provider_state_application.dart';
@@ -26,7 +26,7 @@ class LayoutPageActivities extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(width: 400, child: LayoutActivityListPanel(controller: stateProvider.getController<ControllerActivityList>()!)),
-            Expanded(child: LayoutActivityForm(controllerActivityList: stateProvider.getController<ControllerActivityList>()!, controllerActivity: stateProvider.getController<ControllerActivity>()!))
+            Expanded(child: LayoutFormActivity(controllerActivityList: stateProvider.getController<ControllerActivityList>()!, controllerActivity: stateProvider.getController<ControllerActivity>()!))
           ],
         );
       }

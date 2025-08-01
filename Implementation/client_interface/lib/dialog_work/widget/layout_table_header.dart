@@ -4,7 +4,7 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
   _DialogWorkLayoutTableHeader(
       {required ControllerDialogWork controller,
       required WorkTypeList workTypes,
-      required ThemeExtensionWorkDialog theme})
+      required ThemeExtensionDialogWork theme})
       : _controller = controller,
         _theme = theme {
   }
@@ -13,8 +13,8 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> columns = _createColumns();
     return Container(
-      color: _theme.tableHeaderColor,
-      padding: EdgeInsets.symmetric(horizontal: _theme.padding, vertical: _theme.verticalSpacing),
+      color: _theme.dialogBaseTheme.tableHeaderColor,
+      padding: EdgeInsets.symmetric(horizontal: _theme.dialogBaseTheme.padding, vertical: _theme.dialogBaseTheme.verticalSpacing),
       child: Row(children: columns),
     );
   }
@@ -25,18 +25,18 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
       var column = _controller.columns.columns[index];
       Widget columnWidget;
       if (column is ColumnText) {
-        columnWidget = _DialogWorkControlColumnText(column: column, labelStyle: _theme.tableHeaderTextStyle);
+        columnWidget = _DialogWorkControlColumnText(column: column, labelStyle: _theme.dialogBaseTheme.tableHeaderTextStyle);
       } else if (column is ColumnList) {
-        columnWidget = _DialogWorkControlColumnList(column: column, labelStyle: _theme.tableHeaderTextStyle);
+        columnWidget = _DialogWorkControlColumnList(column: column, labelStyle: _theme.dialogBaseTheme.tableHeaderTextStyle);
       } else if (column is ColumnBoolean) {
-        columnWidget = _DialogWorkControlColumnBoolean(column: column, labelStyle: _theme.tableHeaderTextStyle);
+        columnWidget = _DialogWorkControlColumnBoolean(column: column, labelStyle: _theme.dialogBaseTheme.tableHeaderTextStyle);
       } else {
         throw Exception(
             'There is no Widget defined for the column ${column.runtimeType}. Please define how a this type of column should be handled in LayoutTableHeader._createColumns.');
       }
 
       if (index > 0) {
-        columns.add(SizedBox(width: _theme.horizontalSpacing));
+        columns.add(SizedBox(width: _theme.dialogBaseTheme.horizontalSpacing));
       }
       if (column.relativeWidth) {
         columns.add(Expanded(
@@ -51,5 +51,5 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
   }
 
   final ControllerDialogWork _controller;
-  final ThemeExtensionWorkDialog _theme;
+  final ThemeExtensionDialogWork _theme;
 }

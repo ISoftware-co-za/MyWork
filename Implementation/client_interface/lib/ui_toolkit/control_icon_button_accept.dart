@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../theme/theme_extension_icon_button_accept.dart';
 import 'utilities_icon_button.dart';
 
-class IconButtonAccept extends StatelessWidget with SizedIconButton {
+class ControlIconButtonAccept extends StatelessWidget with SizedIconButton {
   final IconData icon;
   final VoidCallback onPressed;
-  const IconButtonAccept(this.icon, {required this.onPressed, super.key});
+  const ControlIconButtonAccept(this.icon, {required this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context) {

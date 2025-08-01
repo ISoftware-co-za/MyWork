@@ -1,14 +1,16 @@
-import 'properties.dart';
+import 'package:client_interfaces1/model/model_property_context.dart';
+
+import 'model_property.dart';
 import 'state_activity_base.dart';
 
 class StateNote extends StateActivityBase {
 
-  late final StateProperty text;
+  late final ModelProperty text;
 
   bool get isChanged => _currentText != text.value;
 
-  StateNote({String? initialText, required super.timestamp}) {
-    text = StateProperty(value: initialText);
+  StateNote({required ModelPropertyContext context, String? initialText, required super.timestamp}) : super(context: context) {
+    text = ModelProperty(context: context, value: initialText);
   }
 
   void saveCurrentText() {

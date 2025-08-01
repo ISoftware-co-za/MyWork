@@ -6,6 +6,7 @@ class ThemeExtensionForm extends ThemeExtension<ThemeExtensionForm> {
   final TextStyle valueStyleEmphasised;
   final TextStyle valueStyleError;
   final TextStyle valueStyleErrorEmphasised;
+  final TextStyle invalidMessageStyle;
   final InputDecoration textFieldDecoration;
   final InputDecoration textFieldDecorationChanged;
   final InputDecoration textFieldDecorationError;
@@ -17,6 +18,7 @@ class ThemeExtensionForm extends ThemeExtension<ThemeExtensionForm> {
     required this.valueStyleEmphasised,
     required this.valueStyleError,
     required this.valueStyleErrorEmphasised,
+    required this.invalidMessageStyle,
     required this.textFieldDecoration,
     required this.textFieldDecorationChanged,
     required this.textFieldDecorationError,
@@ -31,6 +33,7 @@ class ThemeExtensionForm extends ThemeExtension<ThemeExtensionForm> {
       valueStyleEmphasised: valueStyleEmphasised,
       valueStyleError: valueStyleError,
       valueStyleErrorEmphasised: valueStyleErrorEmphasised,
+      invalidMessageStyle: invalidMessageStyle,
       textFieldDecoration: textFieldDecoration,
       textFieldDecorationChanged: textFieldDecorationChanged,
       textFieldDecorationError: textFieldDecorationError,
@@ -48,6 +51,7 @@ class ThemeExtensionForm extends ThemeExtension<ThemeExtensionForm> {
       valueStyleError:
       TextStyle.lerp(valueStyleError, other.valueStyleError, t)!,
       valueStyleErrorEmphasised: TextStyle.lerp(valueStyleErrorEmphasised, other.valueStyleErrorEmphasised, t)!,
+      invalidMessageStyle: TextStyle.lerp(invalidMessageStyle, other.invalidMessageStyle, t)!,
       textFieldDecoration: other.textFieldDecoration,
       textFieldDecorationChanged: other.textFieldDecorationChanged,
       textFieldDecorationError: other.textFieldDecorationError,

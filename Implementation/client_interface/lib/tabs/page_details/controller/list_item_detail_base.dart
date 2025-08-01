@@ -1,8 +1,8 @@
-import '../../../model/properties.dart';
+import '../../../model/model_property.dart';
 
 class ListItemDetailBase {
   final String label;
-  final StateProperty property;
+  final ModelProperty property;
 
   ListItemDetailBase(
       {required this.label, required this.property});

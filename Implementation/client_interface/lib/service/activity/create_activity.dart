@@ -5,7 +5,7 @@ class RequestCreateActivity {
   final String state;
   final String? why;
   final String? notes;
-  final DateTime? dueDate;
+  final String? dueDate;
 
   RequestCreateActivity(
       {required this.what, required this.state, this.why, this.notes, this.dueDate});
@@ -19,7 +19,7 @@ class RequestCreateActivity {
       json['notes'] = notes;
     }
     if (dueDate != null) {
-      json['due_date'] = dueDate!.toIso8601String().substring(0, 10);
+      json['dueDate'] =  dueDate;
     }
     return json;
   }

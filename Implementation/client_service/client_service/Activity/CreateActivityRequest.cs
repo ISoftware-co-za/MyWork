@@ -10,5 +10,5 @@ public record class CreateActivityRequest
     
     public string? Notes { get; init; }
     
-    public DateTime? DueDate { get; init; }
+    public String? DueDate { get; init; }
 }

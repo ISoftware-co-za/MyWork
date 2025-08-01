@@ -1,23 +1,25 @@
-import 'package:client_interfaces1/execution/executor.dart';
-import 'package:client_interfaces1/model/properties.dart';
+import 'package:client_interfaces1/controller/coordinator_work_and_activity_change.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/controller_base.dart';
 import '../controller/controller_work.dart';
-import '../model/activity.dart';
-import '../model/property_changed_registry.dart';
 import 'page_activities/controller/controller_activity_list.dart';
 
 class ControllerTabBar extends ControllerBase {
-
+  final CoordinatorWorkAndActivityChange coordinatorWorkAndActivityChange;
   ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
   final TabController tabController;
 
-  ControllerTabBar(this.tabController, ControllerWork workController, ControllerActivityList activityListController)
-      : _workController = workController,
-        _activityListController = activityListController {
-    _activityListController.selectedActivity.addListener(onActivitySelected);
-  }
+  ControllerTabBar(
+    this.tabController,
+    ControllerWork workController,
+    ControllerActivityList activityListController,
+  ) : _workController = workController,
+      _activityListController = activityListController,
+      coordinatorWorkAndActivityChange = CoordinatorWorkAndActivityChange(
+        workController.modelPropertyContext,
+        activityListController.modelPropertyContext,
+      ) {}
 
   Future onAccept() async {
     isSaving.value = true;
@@ -40,6 +42,7 @@ class ControllerTabBar extends ControllerBase {
     }
   }
 
+  /*
   void onActivitySelected() {
     if (_currentlySelectedActivity != null) {
       _currentlySelectedActivity!.state.removeListener(
@@ -55,23 +58,25 @@ class ControllerTabBar extends ControllerBase {
   void onActivityStateChanged() async {
     if (!_currentlySelectedActivity!.isNew) {
       Executor.runCommandAsync('ControllerTabBar', null, () async {
-        StateProperty<ActivityState> state = _currentlySelectedActivity!.state;
+        ModelProperty<ActivityState> state = _currentlySelectedActivity!.state;
         if (state.isChanged && state.notifyingProperty == 'value' &&
-            PropertyChangedRegistry.changeCount == 1) {
+            _modelPropertyContext.changeCount == 1) {
           isSaving.value = true;
           try {
             await _currentlySelectedActivity!.update();
           }
           finally {
-            PropertyChangedRegistry.acceptChanges();
+            _modelPropertyContext.acceptChanges();
             isSaving.value = false;
           }
         }
       });
     }
   }
+  */
 
+  // final ModelPropertyContext _modelPropertyContext;
   final ControllerWork _workController;
   final ControllerActivityList _activityListController;
-  Activity? _currentlySelectedActivity;
+  // Activity? _currentlySelectedActivity;
 }

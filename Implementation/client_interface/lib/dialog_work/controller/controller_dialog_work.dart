@@ -2,7 +2,7 @@ import 'package:client_interfaces1/notification/controller_notifications.dart';
 
 import '../../controller/controller_base.dart';
 import '../../controller/controller_work_types.dart';
-import '../../controller/coordinator_work_and_activity_selection.dart';
+import '../../controller/coordinator_work_and_activity_list_loader.dart';
 import '../../model/work.dart';
 import 'column_boolean.dart';
 import 'column_collection.dart';
@@ -17,8 +17,8 @@ class ControllerDialogWork extends ControllerBase {
   final ControllerNotifications notificationsController;
 
   ControllerDialogWork(
-      ControllerWorkTypes workTypesController, CoordinatorWorkAndActivitySelection workAndActivitySelectionCoordinator, this.notificationsController)
-      : _workAndActivitySelectionCoordinator = workAndActivitySelectionCoordinator {
+      ControllerWorkTypes workTypesController, CoordinatorWorkActivityListLoader workAndActivityListLoaderCoordinator, this.notificationsController)
+      : _workAndActivitySelectionCoordinator = workAndActivityListLoaderCoordinator {
     columns = ColumnCollection([
       ColumnList(
           'Type',
@@ -43,5 +43,5 @@ class ControllerDialogWork extends ControllerBase {
     await _workAndActivitySelectionCoordinator.onWorkSelected(selectedWork);
   }
 
-  final CoordinatorWorkAndActivitySelection _workAndActivitySelectionCoordinator;
+  final CoordinatorWorkActivityListLoader _workAndActivitySelectionCoordinator;
 }

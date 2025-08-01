@@ -1,3 +1,4 @@
+import 'package:client_interfaces1/execution/executor.dart';
 import 'package:client_interfaces1/ui_toolkit/activity_status_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,7 @@ class _ControlActivityListItemState extends State<ControlActivityListItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        widget._activityListController.selectActivity(widget._activity);
+        Executor.runCommand("ControlActivityList", "LayoutPageActivities", () => widget._activityListController.onSelectActivity(widget._activity));
       },
       child: ListenableBuilder(
           listenable: widget._activity.state,

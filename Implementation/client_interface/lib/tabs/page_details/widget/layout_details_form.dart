@@ -1,6 +1,8 @@
+import 'package:client_interfaces1/execution/executor.dart';
 import 'package:flutter/material.dart';
 
 import '../../../controller/controller_work.dart';
+import '../../../controller/coordinator_work_and_activity_list_loader.dart';
 import '../../../model/work.dart';
 import '../../../model/work_type_list.dart';
 import '../../../ui_toolkit/form/form.dart';
@@ -17,10 +19,12 @@ class LayoutDetailsForm extends StatefulWidget {
     required String userID,
     required WorkTypeList workTypes,
     required ControllerWork controller,
+    required CoordinatorWorkActivityListLoader coordinator,
     super.key,
   }) : _userID = userID,
        _workTypes = workTypes,
-       _controller = controller {
+       _controller = controller,
+        _coordinator = coordinator {
     _fields = _createFormFields(controller);
   }
 
@@ -48,6 +52,7 @@ class LayoutDetailsForm extends StatefulWidget {
   final String _userID;
   final WorkTypeList _workTypes;
   final ControllerWork _controller;
+  final CoordinatorWorkActivityListLoader _coordinator;
   late final List<ListItemDetailBase> _fields;
 }
 
@@ -102,7 +107,11 @@ class _LayoutDetailsFormState extends State<LayoutDetailsForm> {
     if (widget._controller.hasExistingWork && _isMouseover) {
       children.add(
         Center(
-          child: ControlDelete(pageName: 'LayoutDetailsForm', onDelete: widget._controller.onWorkDelete)
+          child: ControlDelete(pageName: 'LayoutDetailsForm', onDelete: () async {
+            Executor.runCommandAsync('ControlDelete', "DetailsForm", () async {
+              await widget._coordinator.onDeleteWork();
+            });
+          }),
         )
       );
     }

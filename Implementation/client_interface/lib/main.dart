@@ -1,11 +1,10 @@
 import 'package:client_interfaces1/tabs/page_activities/controller/controller_activity_list.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'controller/coordinator_work_and_activity_selection.dart';
+import 'controller/coordinator_work_and_activity_list_loader.dart';
 import 'notification/layout_notification_list.dart';
 import 'tabs/controller_tab_bar.dart';
 import 'tabs/page_activities/controller/controller_activity.dart';
@@ -21,9 +20,7 @@ import 'service/service_setup.dart';
 import 'controller/coordinator_login.dart';
 import 'controller/provider_state_application.dart';
 import 'controller/controller_work.dart';
-import 'model/properties.dart';
-import 'model/state_note.dart';
-import 'model/state_action.dart';
+import 'model/model_property.dart';
 import 'tabs/layout_tab_bar.dart';
 import 'tabs/page_details/widget/layout_page_details.dart';
 import 'ui_toolkit/hover.dart';
@@ -62,6 +59,8 @@ class MyApp extends StatelessWidget {
       theme: theme,
       home: MainPage(
         title: 'Flutter Demo Home Page',
+          activities:[]
+        /*
         activities: [
           StateNote(initialText: '', timestamp: DateTime.now()),
           StateAction(
@@ -83,6 +82,7 @@ class MyApp extends StatelessWidget {
               ]),
           StateNote(initialText: 'This is the second note for this task.', timestamp: DateTime.now()),
         ],
+         */
       ),
     );
   }
@@ -103,17 +103,16 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_onTabSelected);
-    _setCurrentContainerFromTabIndex();
 
     Executor.notificationController = _notificationsController;
     _workController = ControllerWork();
     _userController = ControllerUser();
     _workTypesController = ControllerWorkTypes();
-    _activityListController = ControllerActivityList(_workController.selectedWork);
+    _activityListController = ControllerActivityList();
     _activityController = ControllerActivity(_activityListController.selectedActivity);
     _controllerTabBar = ControllerTabBar(_tabController, _workController, _activityListController);
-    GetIt.instance.registerSingleton(CoordinatorLogin(_userController, _workTypesController));
-    GetIt.instance.registerSingleton(CoordinatorWorkAndActivitySelection(_workController, _activityListController));
+    _coordinatorLogin = CoordinatorLogin(_userController, _workTypesController);
+    _setCurrentContainerFromTabIndex();
   }
 
   @override
@@ -146,6 +145,9 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     stateProvider.registerController(_activityController);
     stateProvider.registerController(_controllerTabBar);
     stateProvider.registerController(_notificationsController);
+    stateProvider.registerCoordinator(CoordinatorLogin(_userController, _workTypesController));
+    stateProvider.registerCoordinator(CoordinatorWorkActivityListLoader(_workController, _activityListController));
+
     return stateProvider;
   }
 
@@ -153,7 +155,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   Future<dynamic> _initializeAsync() async {
     if (_isLoggedIn == false) {
-      await GetIt.instance<CoordinatorLogin>().login();
+      await _coordinatorLogin.login();
       await _workController.initialise();
       _isLoggedIn = true;
     }
@@ -168,7 +170,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         children: [
           Column(
             children: [
-              LayoutTabBar(controller: _tabController),
+              LayoutTabBar(coordinatorWorkAndActivityChange: _controllerTabBar.coordinatorWorkAndActivityChange, controller: _tabController),
               Expanded(
                 child: ProviderHover(
                   controller: _controllerHover,
@@ -192,7 +194,15 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     }
   }
 
-  void _setCurrentContainerFromTabIndex() {
+  void _setCurrentContainerFromTabIndex() async {
+    if (_tabController.index == 0 && await _activityListController.saveActivityIfRequired() == false) {
+      _tabController.index = 1;
+      return;
+    }
+    if (_tabController.index == 1 && await _workController.saveActivityIfRequired() == false) {
+      _tabController.index = 0;
+      return;
+    }
     if (_tabController.index == 0) {
       Executor.uiContext.setCurrentContainer(UIContainer.tabWorkDetails);
       _controllerHover.setVisibility(name: ControllerHover.workDetails, isVisible: true);
@@ -226,6 +236,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   late final ControllerActivityList _activityListController;
   late final ControllerActivity _activityController;
   late final ControllerTabBar _controllerTabBar;
+  late final CoordinatorLogin _coordinatorLogin;
   late final TabController _tabController;
   final ControllerHover _controllerHover = ControllerHover();
   final ControllerNotifications _notificationsController = ControllerNotifications();

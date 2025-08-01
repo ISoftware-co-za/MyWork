@@ -2,9 +2,8 @@ import 'package:client_interfaces1/controller/controller_work_types.dart';
 import 'package:client_interfaces1/notification/controller_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
-import '../controller/coordinator_work_and_activity_selection.dart';
+import '../controller/coordinator_work_and_activity_list_loader.dart';
 import '../controller/provider_state_application.dart';
 import '../dialog_work/controller/controller_dialog_work.dart';
 import '../dialog_work/widget/layout_dialog_work.dart';
@@ -53,9 +52,10 @@ class _LayoutWorkSelectorState extends State<LayoutWorkSelector> {
     ProviderStateApplication stateProvider = ProviderStateApplication.of(context)!;
 
     ControllerDialogWork? controller = stateProvider.getController<ControllerDialogWork>();
+    CoordinatorWorkActivityListLoader coordinator = stateProvider.getCoordinator<CoordinatorWorkActivityListLoader>()!;
     if (controller == null) {
       controller = ControllerDialogWork(
-          stateProvider.getController<ControllerWorkTypes>()!, GetIt.instance<CoordinatorWorkAndActivitySelection>(), stateProvider.getController<ControllerNotifications>()!);
+          stateProvider.getController<ControllerWorkTypes>()!, coordinator, stateProvider.getController<ControllerNotifications>()!);
     }
     controller.showWorkList();
     showDialog(

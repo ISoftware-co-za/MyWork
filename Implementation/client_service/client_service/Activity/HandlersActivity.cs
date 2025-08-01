@@ -112,7 +112,7 @@ public static class HandlersActivity
                         State = Enum.Parse<ActivityState>(request.State, true),
                         Why = request.Why,
                         Notes = request.Notes,
-                        DueDate = request.DueDate?.ToString("0")
+                        DueDate = request.DueDate
                     };
                     await activityCollection.InsertOneAsync(activityDocument);
                     return Results.Created($"{_urlPrefix}/{activityDocument.Id}",
@@ -133,19 +133,16 @@ public static class HandlersActivity
                 async () =>
                 {
                     var filter = Builders<DocumentActivity>.Filter.Eq("_id", ObjectId.Parse(id));
-                    UpdateDefinition<DocumentActivity>? update = null;
-                    for (var index = 0; index < request.UpdatedProperties.Count; ++index)
+                    List<UpdateDefinition<DocumentActivity>> updates = [];
+                    foreach (var updateProperty in request.UpdatedProperties)
                     {
-                        var updateProperty = request.UpdatedProperties[index];
-                        var value = DeserializeUpdateValue(updateProperty.Name, updateProperty.Value);
-                        if (index == 0)
-                            update = Builders<DocumentActivity>.Update.Set(updateProperty.Name, value);
-                        else
-                            update = update!.Set(updateProperty.Name, value);
+                        var value = DeserializeUpdateValue(updateProperty.NameInPascalCase(), updateProperty.Value);
+                        updates.Add(Builders<DocumentActivity>.Update.Set(updateProperty.NameInPascalCase(), value));
                     }
-
                     var activityCollection = database.GetCollection<DocumentActivity>(CollectionName);
-                    await activityCollection.UpdateOneAsync(filter, update!);
+                    UpdateDefinition<DocumentActivity> combinedUpdates =
+                        Builders<DocumentActivity>.Update.Combine(updates);
+                    await activityCollection.UpdateOneAsync(filter, combinedUpdates);
                     return Results.NoContent();
                 });
         return RequestValidation.GenerateValidationFailedResponse(validationResults);
@@ -172,8 +169,6 @@ public static class HandlersActivity
             return value;
         if (name == nameof(DocumentActivity.State))
             return Enum.Parse(typeof(ActivityState), value.ToString()!, true);
-        if (name == nameof(DocumentActivity.DueDate))
-            return DateTime.Parse(value.ToString()!);
         return value;
     }
 

@@ -9,7 +9,7 @@ abstract class AutocompleteDataSource {
 
 class ControlAutocompleteFormField extends StatelessWidget {
   final String label;
-  final StateProperty property;
+  final ModelProperty property;
   final bool editable;
   final double? width;
   final AutocompleteDataSource dataSource;
@@ -34,7 +34,7 @@ class ControlAutocompleteFormField extends StatelessWidget {
             children.add(_createUpdateField(theme, context));
           } else {
             children.add(Padding(
-              padding: const EdgeInsets.symmetric(vertical: 0.5, horizontal: 0),
+              padding: const EdgeInsets.fromLTRB(4, 0.5, 0.5, 0),
               child:
               Text(property.valueAsString, style: theme.valueStyle),
             ));

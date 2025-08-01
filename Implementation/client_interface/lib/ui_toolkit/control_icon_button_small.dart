@@ -6,7 +6,6 @@ class ControlIconButtonSmall extends StatelessWidget {
   final Icon icon;
   final VoidCallback? onPressed;
   final String? tooltip;
-  final Color? color;
   final EdgeInsetsGeometry? padding;
 
   const ControlIconButtonSmall({
@@ -14,7 +13,6 @@ class ControlIconButtonSmall extends StatelessWidget {
     required this.icon,
     this.onPressed,
     this.tooltip,
-    this.color,
     this.padding,
   }) : super(key: key);
 
@@ -30,7 +28,6 @@ class ControlIconButtonSmall extends StatelessWidget {
       constraints: BoxConstraints(minWidth: buttonSize, minHeight: buttonSize),
       onPressed: onPressed,
       tooltip: tooltip,
-      color: color,
       padding: padding ?? const EdgeInsets.all(4.0),
     );
   }

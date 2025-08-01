@@ -3,7 +3,6 @@ library dialog_work;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../notification/controller_notifications.dart';
 import '../../theme/custom_theme_data_app_header.dart';
 import '../../execution/executor.dart';
 import '../../model/work_type_list.dart';
@@ -36,7 +35,7 @@ class LayoutDialogWork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeExtensionWorkDialog theme = Theme.of(context).extension<ThemeExtensionWorkDialog>()!;
+    ThemeExtensionDialogWork theme = Theme.of(context).extension<ThemeExtensionDialogWork>()!;
     return Theme(
       data: CustomThemeDataAppHeader.getTheme(),
       child: Dialog(
@@ -45,7 +44,7 @@ class LayoutDialogWork extends StatelessWidget {
               width: theme.width,
               height: theme.height,
               decoration: BoxDecoration(
-                  color: theme.backgroundColor,
+                  color: theme.dialogBaseTheme.backgroundColor,
                   border: Border.all(
                     color: Color.fromARGB(255, 50, 50, 50),
                     width: 4.0,

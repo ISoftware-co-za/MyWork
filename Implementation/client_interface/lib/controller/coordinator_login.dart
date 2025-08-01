@@ -2,8 +2,9 @@ import 'package:client_interfaces1/model/work_type_list.dart';
 
 import 'controller_user.dart';
 import 'controller_work_types.dart';
+import 'coordinator_base.dart';
 
-class CoordinatorLogin {
+class CoordinatorLogin extends CoordinatorBase {
   CoordinatorLogin(
       ControllerUser controllerUser, ControllerWorkTypes controllerWorkTypes)
       : _controllerUser = controllerUser,

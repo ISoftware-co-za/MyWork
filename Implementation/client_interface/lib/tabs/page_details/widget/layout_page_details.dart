@@ -1,3 +1,4 @@
+import 'package:client_interfaces1/controller/coordinator_work_and_activity_list_loader.dart';
 import 'package:flutter/material.dart';
 
 import '../../../controller/controller_user.dart';
@@ -15,33 +16,57 @@ class LayoutPageDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ControllerWork controllerWork =
-        ProviderStateApplication.of(context)!.getController<ControllerWork>()!;
-    ControllerUser controllerUser =
-        ProviderStateApplication.of(context)!.getController<ControllerUser>()!;
-    ControllerWorkTypes controllerWorkTypes =
-        ProviderStateApplication.of(context)!.getController<ControllerWorkTypes>()!;
+    ProviderStateApplication providerStateApplication =
+        ProviderStateApplication.of(context)!;
+    ControllerWork controllerWork = providerStateApplication
+        .getController<ControllerWork>()!;
+    ControllerUser controllerUser = providerStateApplication
+        .getController<ControllerUser>()!;
+    ControllerWorkTypes controllerWorkTypes = providerStateApplication
+        .getController<ControllerWorkTypes>()!;
+    CoordinatorWorkActivityListLoader coordinatorWorkActivityListLoader =
+        providerStateApplication
+            .getCoordinator<CoordinatorWorkActivityListLoader>()!;
 
-    assert(controllerUser.user.userID != null, "Cannot display work details without a logged in user");
+    assert(
+      controllerUser.user.userID != null,
+      "Cannot display work details without a logged in user",
+    );
 
     return ValueListenableBuilder(
-        valueListenable: controllerWork.selectedWork,
-        builder: (BuildContext context, Work? work, Widget? child) {
-          if (controllerWork.hasWork) {
-            return _generateWorkForm(controllerUser.user.userID!, controllerWorkTypes.workTypes!, controllerWork);
-          } else {
-            return _displayNoWork();
-          }
-        });
+      valueListenable: controllerWork.selectedWork,
+      builder: (BuildContext context, Work? work, Widget? child) {
+        if (controllerWork.hasWork) {
+          return _generateWorkForm(
+            controllerUser.user.userID!,
+            controllerWorkTypes.workTypes!,
+            controllerWork,
+            coordinatorWorkActivityListLoader,
+          );
+        } else {
+          return _displayNoWork();
+        }
+      },
+    );
   }
 
-  Widget _generateWorkForm(String userID, WorkTypeList workTypes, ControllerWork controller, ) {
+  Widget _generateWorkForm(
+    String userID,
+    WorkTypeList workTypes,
+    ControllerWork controller,
+    CoordinatorWorkActivityListLoader coordinator,
+  ) {
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
         margin: const EdgeInsets.all(16),
         constraints: const BoxConstraints(minWidth: 400, maxWidth: 700),
-        child: LayoutDetailsForm(userID: userID, workTypes: workTypes, controller: controller),
+        child: LayoutDetailsForm(
+          userID: userID,
+          workTypes: workTypes,
+          controller: controller,
+          coordinator: coordinator,
+        ),
       ),
     );
   }

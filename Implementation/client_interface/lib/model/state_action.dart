@@ -1,19 +1,23 @@
-import 'properties.dart';
+import 'package:client_interfaces1/model/model_property_context.dart';
+
+import 'model_property.dart';
 import 'state_activity_base.dart';
 
 class StateAction extends StateActivityBase {
-  late final StateProperty title;
-  late final StateProperty description;
-  late final StateProperty requester;
+  late final ModelProperty title;
+  late final ModelProperty description;
+  late final ModelProperty requester;
 
-  late final StateProperty initialEstimateInMinutes;
-  late final StateProperty currentDurationInMinutes;
-  late final StateProperty currentEstimateInMinutes;
+  late final ModelProperty initialEstimateInMinutes;
+  late final ModelProperty currentDurationInMinutes;
+  late final ModelProperty currentEstimateInMinutes;
 
   late final List<StateWorkEntry> workLog;
   late final StateWorkClose? close;
 
-  StateAction({required super.timestamp,
+  StateAction({
+    required ModelPropertyContext context,
+    required super.timestamp,
     String? title,
     String? description,
     String? requester,
@@ -21,13 +25,13 @@ class StateAction extends StateActivityBase {
     int? currentDurationInMinutes,
     int? currentEstimateInMinutes,
     List<StateWorkEntry>? workLog,
-    this.close}) {
-    this.title = StateProperty(value: title);
-    this.description = StateProperty(value: description);
-    this.requester = StateProperty(value: requester);
-    this.initialEstimateInMinutes = StateProperty(value: initialEstimateInMinutes);
-    this.currentDurationInMinutes = StateProperty(value: currentDurationInMinutes);
-    this.currentEstimateInMinutes = StateProperty(value: currentEstimateInMinutes);
+    this.close}) : super(context: context) {
+    this.title = ModelProperty(context: context, value: title);
+    this.description = ModelProperty(context: context, value: description);
+    this.requester = ModelProperty(context: context, value: requester);
+    this.initialEstimateInMinutes = ModelProperty(context: context, value: initialEstimateInMinutes);
+    this.currentDurationInMinutes = ModelProperty(context: context, value: currentDurationInMinutes);
+    this.currentEstimateInMinutes = ModelProperty(context: context, value: currentEstimateInMinutes);
 
     if (workLog == null) {
       this.workLog = [];
@@ -39,21 +43,21 @@ class StateAction extends StateActivityBase {
 
 class StateWorkEntry {
   late final DateTime start;
-  late final StateProperty durationInMinutes;
-  late final StateProperty currentEstimateInMinutes;
-  late final StateProperty notes;
+  late final ModelProperty durationInMinutes;
+  late final ModelProperty currentEstimateInMinutes;
+  late final ModelProperty notes;
 
-  StateWorkEntry({required this.start, int? durationInMinutes, int? currentEstimateInMinutes, String? notes}) {
-    this.durationInMinutes = StateProperty(value: durationInMinutes);
-    this.currentEstimateInMinutes = StateProperty(value: currentEstimateInMinutes);
-    this.notes = StateProperty(value: notes);
+  StateWorkEntry({required ModelPropertyContext context, required this.start, int? durationInMinutes, int? currentEstimateInMinutes, String? notes}) {
+    this.durationInMinutes = ModelProperty(context: context, value: durationInMinutes);
+    this.currentEstimateInMinutes = ModelProperty(context: context, value: currentEstimateInMinutes);
+    this.notes = ModelProperty(context: context, value: notes);
   }
 }
 
 class StateWorkClose {
-  late final StateProperty notes;
+  late final ModelProperty notes;
 
-  StateWorkClose({String? notes}) {
-    this.notes = StateProperty(value: notes);
+  StateWorkClose({required ModelPropertyContext context, String? notes}) {
+    this.notes = ModelProperty(context: context, value: notes);
   }
 }
