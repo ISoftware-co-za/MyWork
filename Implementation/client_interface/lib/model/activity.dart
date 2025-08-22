@@ -1,4 +1,5 @@
 import 'package:client_interfaces1/model/data_conversion.dart';
+import 'package:client_interfaces1/model/person.dart';
 import 'package:get_it/get_it.dart';
 
 import '../service/activity/create_activity.dart';
@@ -40,6 +41,7 @@ class Activity extends PropertyOwner {
   late final ModelProperty<String> what;
   late final ModelProperty<ActivityState> state;
   late final ModelProperty<DateTime?> dueDate;
+  late final ModelProperty<Person?> recipient;
   late final ModelProperty<String> why;
   late final ModelProperty<String> notes;
 
@@ -54,9 +56,10 @@ class Activity extends PropertyOwner {
     String? why,
     String? notes,
     DateTime? dueDate,
+    Person? recipient
   ) : super(context) {
     _context = context;
-    _initialiseInstance(what, state, why, notes, dueDate);
+    _initialiseInstance(what, state, why, notes, dueDate, recipient);
   }
 
   Activity.create(ModelPropertyContext context, String workId) : super(context) {
@@ -115,6 +118,7 @@ class Activity extends PropertyOwner {
     String? why,
     String? notes,
     DateTime? dueDate,
+        Person? person,
   ]) {
     if (why == null) {
       why = '';
@@ -135,6 +139,7 @@ class Activity extends PropertyOwner {
     );
     this.state = ModelProperty(context: _context, value: state);
     this.dueDate = ModelProperty(context: _context, value: dueDate);
+    this.recipient = ModelProperty(context: context, value: person);
     this.why = ModelProperty(
       context: _context,
       value: why,
@@ -160,6 +165,7 @@ class Activity extends PropertyOwner {
       'what': this.what,
       'state': this.state,
       'dueDate': this.dueDate,
+      'recipient': this.recipient,
       'why': this.why,
       'notes': this.notes,
     };

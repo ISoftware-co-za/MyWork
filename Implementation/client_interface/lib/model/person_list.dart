@@ -7,10 +7,10 @@ import 'model_property_context.dart';
 class PersonList extends ChangeNotifier {
   List<Person> get peopleAdded => UnmodifiableListView(_peopleAdded);
   List<Person> get people => UnmodifiableListView(_people);
+  ModelPropertyContext modelPropertyContext = ModelPropertyContext(name: 'PersonList');
   int removeCount = 0;
 
-  PersonList(ModelPropertyContext modelPropertyContext)
-    : _modelPropertyContext = modelPropertyContext {
+  PersonList() {
     _people.addAll([
       Person(modelPropertyContext, '1', 'First name 1', 'Last name 1'),
       Person(modelPropertyContext, '2', 'First name 2', 'Last name 2'),
@@ -28,10 +28,10 @@ class PersonList extends ChangeNotifier {
   void remove(Person person) {
     if (person.isNew) {
       if (person.firstName.isChanged) {
-        _modelPropertyContext.removeChangedProperty(person.firstName);
+        modelPropertyContext.removeChangedProperty(person.firstName);
       }
       if (person.lastName.isChanged) {
-        _modelPropertyContext.removeChangedProperty(person.lastName);
+        modelPropertyContext.removeChangedProperty(person.lastName);
       }
       _peopleAdded.remove(person);
     } else {
@@ -59,7 +59,6 @@ class PersonList extends ChangeNotifier {
 
   void rejectChanges() {}
 
-  final ModelPropertyContext _modelPropertyContext;
   final List<Person> _peopleAdded = [];
   final List<Person> _peopleRemoved = [];
   final List<Person> _people = [];

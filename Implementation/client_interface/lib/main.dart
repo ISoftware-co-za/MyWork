@@ -206,8 +206,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     if (_tabController.index == 0) {
       Executor.uiContext.setCurrentContainer(UIContainer.tabWorkDetails);
       _controllerHover.setVisibility(name: ControllerHover.workDetails, isVisible: true);
+      _controllerHover.setVisibility(name: ControllerHover.layoutDetailsForm, isVisible: false);
     } else {
       Executor.uiContext.setCurrentContainer(UIContainer.tabTasks);
+      _controllerHover.setVisibility(name: ControllerHover.layoutDetailsForm, isVisible: true);
       _controllerHover.setVisibility(name: ControllerHover.workDetails, isVisible: false);
     }
   }

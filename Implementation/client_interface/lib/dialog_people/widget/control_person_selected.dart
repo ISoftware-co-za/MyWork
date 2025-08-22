@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../execution/executor.dart';
 import '../controller/controller_dialog_people.dart';
 import '../controller/list_item_person_base.dart';
 
@@ -31,7 +32,7 @@ class _ControlPersonSelectedState extends State<ControlPersonSelected> {
             groupValue: widget._controller.selectedPerson.value,
             onChanged: (value) {
               setState(() {
-                widget._controller.selectedPerson.value = widget._person;
+                Executor.runCommand('_ControlPersonSelectedState', 'LayoutDialogPeople', () => widget._controller.selectedPerson.value = widget._person);
               });
             }),
         );

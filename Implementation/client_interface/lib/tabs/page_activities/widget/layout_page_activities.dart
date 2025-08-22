@@ -23,7 +23,7 @@ class LayoutPageActivities extends StatelessWidget {
         }
         return Row(
           mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(width: 400, child: LayoutActivityListPanel(controller: stateProvider.getController<ControllerActivityList>()!)),
             Expanded(child: LayoutFormActivity(controllerActivityList: stateProvider.getController<ControllerActivityList>()!, controllerActivity: stateProvider.getController<ControllerActivity>()!))

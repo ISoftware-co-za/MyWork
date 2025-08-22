@@ -22,7 +22,7 @@ class ControlList extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(_dialogTheme.dialogBaseTheme.padding),
       child: ValueListenableBuilder(
-          valueListenable: _controller.list, builder:  (BuildContext context, List<dynamic> value, Widget? child) {
+          valueListenable: _controller.items, builder:  (BuildContext context, List<dynamic> value, Widget? child) {
            return ListView.builder(
              itemCount: 2 * value.length,
                itemBuilder: (BuildContext context, int index) {

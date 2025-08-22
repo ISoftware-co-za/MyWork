@@ -25,6 +25,11 @@ class Person extends PropertyOwner {
     return firstName.validate() && lastName.validate();
   }
 
+  @override
+  String toString() {
+    return '${firstName.value} ${lastName.value}';
+  }
+
   void _initialiseInstance(String firstName, String lastName) {
     this.firstName = ModelProperty<String>(context: context, value: firstName, validators: [
       ValidatorRequired(invalidMessageTemplate: 'First name is required'),

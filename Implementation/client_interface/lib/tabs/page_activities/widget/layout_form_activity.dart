@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../dialog_people/widget/layout_dialog_people.dart';
 import '../../../model/activity.dart';
 import '../../../ui_toolkit/control_delete.dart';
-import '../../../ui_toolkit/control_icon_button.dart';
+import '../../../ui_toolkit/hover.dart';
 import '../controller/controller_activity.dart';
 import '../controller/controller_activity_list.dart';
 import 'control_activity_state_and_what.dart';
@@ -27,6 +27,23 @@ class LayoutFormActivity extends StatefulWidget {
 }
 
 class _LayoutFormActivityState extends State<LayoutFormActivity> {
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final controllerHover = ProviderHover.of(context).controller;
+    controllerHover.registerHoverableWidget(
+      name: ControllerHover.workDetails,
+      widgetKey: _formKey,
+      isVisible: true,
+      onHover: (isHovered) {
+        setState(() {
+          _isMouseover = isHovered;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
@@ -38,21 +55,21 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
 
         final Activity activity =
             widget._controllerActivity.selectedActivity.value!;
+        final AutocompleteTrailingAction trailingAction = AutocompleteTrailingAction(
+          Icons.person, () => Executor.runCommand(
+          'person',
+          'LayoutActivityForm',
+              () {
+            _showPeopleDialog(context);
+          },
+        ));
         return Padding(
           padding: const EdgeInsets.all(16.0),
-          child: MouseRegion(
-            onEnter: (event) {
-              setState(() {
-                _isMouseover = true;
-              });
-            },
-            onExit: (event) {
-              setState(() {
-                _isMouseover = false;
-              });
-            },
+          child: Container(
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 ControlActivityStateAndWhat(
                   activity: activity,
@@ -61,6 +78,7 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
                 const SizedBox(height: 16),
                 Row(
                   mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: ControlDateFormField(
@@ -70,19 +88,14 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
                       ),
                     ),
                     Expanded(
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: ControlIconButton(
-                          Icons.person,
-                          onPressed: () => Executor.runCommand(
-                            'person',
-                            'LayoutActivityForm',
-                            () {
-                              _showPeopleDialog(context);
-                            },
-                          ),
-                        ),
-                      ),
+                      child: ControlAutocompleteFormField(
+                        label: 'Recipient',
+                        property: activity.recipient,
+                        editable: _isMouseover,
+                        dataSource:
+                            widget._controllerActivity.peopleDataSource,
+                        width: 300,
+                        trailingAction: trailingAction),
                     ),
                   ],
                 ),
@@ -119,15 +132,17 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
   }
 
   void _showPeopleDialog(BuildContext context) {
+    var controller = ControllerDialogPeople((person) {
+      widget._controllerActivity.onRecipientSelected(person);
+    }, context);
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return LayoutDialogPeople(
-          controller: ControllerDialogPeople(context)
-        );
+        return LayoutDialogPeople(controller: controller);
       },
     );
   }
 
+  final GlobalKey _formKey = GlobalKey();
   bool _isMouseover = false;
 }

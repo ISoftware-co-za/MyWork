@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../controller/controller_base.dart';
-import '../../model/model_property_context.dart';
 import '../../model/person.dart';
 import '../../model/person_list.dart';
 import 'list_item_person_base.dart';
@@ -11,27 +10,24 @@ import 'list_item_new_person.dart';
 import 'list_item_add_person.dart';
 
 typedef ActionDialogPeople =
-    void Function(Person? person, PersonList? personList);
+    void Function(Person selectedPerson);
 
 class ControllerDialogPeople extends ControllerBase {
   final ValueNotifier<ListItemPersonBase?> selectedPerson = ValueNotifier(null);
-  final ValueNotifier<List<dynamic>> list = ValueNotifier([]);
+  final ValueNotifier<List<Object>> items = ValueNotifier([]);
   final ValueNotifier<String> filterCriteria = ValueNotifier('');
   ValueListenable<bool> get hasChanges => _hasChanges;
-  final ModelPropertyContext modelPropertyContext = ModelPropertyContext(
-    name: 'ControllerDialogPeople',
-  );
 
-  ControllerDialogPeople(BuildContext buildContext) : _buildContext = buildContext {
-    _personList = new PersonList(modelPropertyContext);
+  ControllerDialogPeople(ActionDialogPeople dialogAction, BuildContext buildContext) : _dialogAction = dialogAction, _buildContext = buildContext {
+    _personList = new PersonList();
     selectedPerson.addListener(onPersonSelected);
     filterCriteria.addListener(_onFilterCriteriaChanged);
     _constructList();
-    modelPropertyContext.hasChanges.addListener(_onHasChanges);
+    _personList.modelPropertyContext.hasChanges.addListener(_onHasChanges);
   }
 
   void onAddPerson() {
-    _personList.add(Person.create(modelPropertyContext));
+    _personList.add(Person.create(_personList.modelPropertyContext));
     _constructList();
   }
 
@@ -47,18 +43,19 @@ class ControllerDialogPeople extends ControllerBase {
   }
 
   void onPersonSelected() {
-    if (modelPropertyContext.hasChanges.value == false) {
-      debugPrint('Person selected ${selectedPerson.value!.person.firstName.value} ${selectedPerson.value!.person.lastName.value}');
+    assert(selectedPerson.value != null, 'No person is selected');
+    if (_personList.modelPropertyContext.hasChanges.value == false) {
+      _dialogAction(selectedPerson.value!.person);
       onClose();
     }
   }
 
   void onAcceptUpdates() {
-    if (modelPropertyContext.hasChanges.value) {
+    if (_personList.modelPropertyContext.hasChanges.value) {
       debugPrint('Save changes');
     }
     if (selectedPerson.value != null) {
-      debugPrint('Person selected ${selectedPerson.value!.person.firstName.value} ${selectedPerson.value!.person.lastName.value}');
+      _dialogAction(selectedPerson.value!.person);
     }
     onClose();
   }
@@ -68,7 +65,7 @@ class ControllerDialogPeople extends ControllerBase {
   }
 
   void _onHasChanges() {
-    _hasChanges.value = modelPropertyContext.hasChanges.value || _personList.removeCount > 0;
+    _hasChanges.value = _personList.modelPropertyContext.hasChanges.value || _personList.removeCount > 0;
   }
 
   void _onFilterCriteriaChanged() {
@@ -77,7 +74,7 @@ class ControllerDialogPeople extends ControllerBase {
   }
 
   void _constructList() {
-    final List<dynamic> people = [];
+    final List<Object> people = [];
 
     _personList.peopleAdded.forEach((person) {
       people.add(ListItemNewPerson(person));
@@ -85,7 +82,7 @@ class ControllerDialogPeople extends ControllerBase {
     people.add(ListItemAddPerson());
     _addFilteredExistingPeople(people);
 
-    list.value = people;
+    items.value = people;
   }
 
   void _addFilteredExistingPeople(List<dynamic> people) {
@@ -98,6 +95,7 @@ class ControllerDialogPeople extends ControllerBase {
   }
 
   final BuildContext _buildContext;
+  final ActionDialogPeople _dialogAction;
   final _hasChanges = ValueNotifier<bool>(false);
   late final PersonList _personList;
   String lowercaseFilterCriteria = '';
