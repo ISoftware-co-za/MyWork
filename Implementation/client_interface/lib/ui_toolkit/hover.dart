@@ -32,6 +32,7 @@ class ControllerHover {
   //#region CONSTANTS
   
   static const String workDetails = 'WorkDetails';
+  static const String layoutDetailsForm = 'LayoutDetailsForm';
   
   //#endregion
   

@@ -1,32 +1,34 @@
+import 'package:client_interfaces1/controller/coordinator_work_and_activity_change.dart';
+import 'package:client_interfaces1/controller/state_application.dart';
 import 'package:client_interfaces1/tabs/controller_tab_bar.dart';
 import 'package:flutter/material.dart';
 import '../execution/executor.dart';
-import '../model/property_changed_registry.dart';
 import '../controller/provider_state_application.dart';
-import '../ui_toolkit/control_custom_icon_buttons.dart';
+import '../ui_toolkit/control_icon_button_accept.dart';
+import '../ui_toolkit/control_icon_button_reject.dart';
 
 class ControlAcceptReject extends StatelessWidget {
-  const ControlAcceptReject({super.key = const Key('ControlAcceptReject')});
+  const ControlAcceptReject({required CoordinatorWorkAndActivityChange coordinatorWorkAndActivityChange, super.key = const Key('ControlAcceptReject')}) : _coordinatorWorkAndActivityChange = coordinatorWorkAndActivityChange;
 
   @override
   Widget build(BuildContext context) {
-    ProviderStateApplication state = ProviderStateApplication.of(context)!;
+    StateApplication state = ProviderStateApplication.of(context)!.state;
     ControllerTabBar controllerTabBar = state.getController<ControllerTabBar>()!;
 
     return ListenableBuilder(
-        listenable: PropertyChangedRegistry.hasChanges,
+        listenable: _coordinatorWorkAndActivityChange.isChanged,
         builder: (context, child) {
           return ListenableBuilder(
               listenable: controllerTabBar.isSaving,
               builder: (context, child) {
                 if (controllerTabBar.isSaving.value) {
                   return const SizedBox(width: 56, height: 28, child: Center(child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator())));
-                } else if (PropertyChangedRegistry.hasChanges.value) {
+                } else if (_coordinatorWorkAndActivityChange.isChanged.value) {
                   return Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      IconButtonReject(Icons.close, onPressed: () => controllerTabBar.onReject()),
-                      IconButtonAccept(Icons.check,
+                      ControlIconButtonReject(Icons.close, onPressed: () => controllerTabBar.onReject()),
+                      ControlIconButtonAccept(Icons.check,
                           onPressed: () async => await Executor.runCommandAsync('ControlAcceptReject', null, () async {
                                 await controllerTabBar.onAccept();
                               }))
@@ -37,4 +39,6 @@ class ControlAcceptReject extends StatelessWidget {
               });
         });
   }
+
+  final CoordinatorWorkAndActivityChange _coordinatorWorkAndActivityChange;
 }

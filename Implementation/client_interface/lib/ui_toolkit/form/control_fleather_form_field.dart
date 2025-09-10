@@ -2,7 +2,7 @@ part of form;
 
 class ControlFleatherFormField extends StatelessWidget {
   final String label;
-  final StateProperty property;
+  final ModelProperty property;
   final bool editable;
 
   ControlFleatherFormField({required this.label, required this.property, required this.editable, super.key}) {

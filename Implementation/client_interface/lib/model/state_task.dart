@@ -1,4 +1,5 @@
-import 'properties.dart';
+import 'model_property.dart';
+import 'model_property_context.dart';
 import 'state_activity_base.dart';
 
 enum TaskState {
@@ -10,20 +11,21 @@ enum TaskState {
 }
 
 class StateTask {
-  late final StateProperty what;
-  late final StateProperty why;
-  late final StateProperty notes;
-  late final StateProperty state;
+  late final ModelProperty what;
+  late final ModelProperty why;
+  late final ModelProperty notes;
+  late final ModelProperty state;
   final List<StateActivityBase> activities = [];
 
   StateTask({
+    required ModelPropertyContext context,
     String? what,
     String? why,
     String? notes,
     TaskState state = TaskState.idle}) {
-    this.what = StateProperty(value: what);
-    this.why = StateProperty(value: why);
-    this.notes = StateProperty(value: notes);
-    this.state = StateProperty(value: state);
+    this.what = ModelProperty(context: context, value: what);
+    this.why = ModelProperty(context: context, value: why);
+    this.notes = ModelProperty(context: context, value: notes);
+    this.state = ModelProperty(context: context, value: state);
   }
 }

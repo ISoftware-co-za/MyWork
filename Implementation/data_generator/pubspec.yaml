@@ -8,7 +8,7 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  mongo_dart: ^0.10.3
+  mongo_dart: ^0.10.5
   faker: ^2.2.0
   # path: ^1.8.0
 

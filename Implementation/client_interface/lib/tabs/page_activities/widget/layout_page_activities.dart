@@ -1,8 +1,9 @@
 import 'package:client_interfaces1/controller/controller_work.dart';
-import 'package:client_interfaces1/tabs/page_activities/widget/layout_activity_form.dart';
+import 'package:client_interfaces1/tabs/page_activities/widget/layout_form_activity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../controller/provider_state_application.dart';
+import '../../../controller/state_application.dart';
 import '../controller/controller_activity.dart';
 import '../controller/controller_activity_list.dart';
 import 'layout_activity_list_panel.dart';
@@ -12,7 +13,7 @@ class LayoutPageActivities extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProviderStateApplication stateProvider = ProviderStateApplication.of(context)!;
+    StateApplication stateProvider = ProviderStateApplication.of(context)!.state;
     ControllerWork workController = stateProvider.getController<ControllerWork>()!;
 
     return ValueListenableBuilder(
@@ -23,10 +24,10 @@ class LayoutPageActivities extends StatelessWidget {
         }
         return Row(
           mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(width: 400, child: LayoutActivityListPanel(controller: stateProvider.getController<ControllerActivityList>()!)),
-            Expanded(child: LayoutActivityForm(controllerActivityList: stateProvider.getController<ControllerActivityList>()!, controllerActivity: stateProvider.getController<ControllerActivity>()!))
+            Expanded(child: LayoutFormActivity(controllerActivityList: stateProvider.getController<ControllerActivityList>()!, controllerActivity: stateProvider.getController<ControllerActivity>()!))
           ],
         );
       }

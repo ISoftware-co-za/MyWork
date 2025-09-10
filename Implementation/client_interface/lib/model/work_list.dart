@@ -1,6 +1,7 @@
+import 'package:client_interfaces1/model/model_property_context.dart';
 import 'package:get_it/get_it.dart';
 import '../service/work/service_client_work.dart';
-import 'data_conversion_service_to_model.dart';
+import 'data_conversion.dart';
 import 'work.dart';
 
 class WorkList {
@@ -8,10 +9,13 @@ class WorkList {
   List<Work> workItems = [];
   bool isObtained = false;
 
+  WorkList(ModelPropertyContext context) : _context = context;
+
   Future obtain() async {
     var response = await _serviceClient.listAll();
     workItems = response.items
         .map((e) => Work(
+            context: _context,
             id: e.id,
             name: e.name,
             reference: DataConversionServiceToModel.nullToEmptyString(e.reference),
@@ -30,5 +34,6 @@ class WorkList {
     workItems.remove(item);
   }
 
+  final ModelPropertyContext _context;
   final ServiceClientWork _serviceClient = GetIt.instance<ServiceClientWork>();
 }

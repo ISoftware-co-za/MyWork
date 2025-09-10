@@ -2,7 +2,7 @@ part of 'form.dart';
 
 class ControlFormFieldEmphasised extends StatelessWidget {
   final String label;
-  final StateProperty property;
+  final ModelProperty property;
   final bool editable;
 
   ControlFormFieldEmphasised({
@@ -34,7 +34,7 @@ class ControlFormFieldEmphasised extends StatelessWidget {
           }
           if (!property.isValid) {
             children.add(Text(property.invalidMessage!,
-                style: theme.valueStyle.copyWith(color: Colors.red)));
+                style: theme.invalidMessageStyle));
           }
 
           return Column(

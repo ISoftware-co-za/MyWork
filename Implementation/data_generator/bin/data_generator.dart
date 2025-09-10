@@ -1,7 +1,8 @@
 import 'dart:io';
-import 'package:collection/collection.dart';
+import 'package:data_generator/generator_activity.dart';
 
 import 'package:data_generator/generator_base.dart';
+import 'package:data_generator/generator_person.dart';
 import 'package:data_generator/generator_user.dart';
 import 'package:data_generator/generator_work.dart';
 import 'package:mongo_dart/mongo_dart.dart';
@@ -28,8 +29,9 @@ Future main(List<String> arguments) async {
     } else {
       print(message);
     }
-  } catch (e) {
-    print('Error: $e');
+  } catch (e, stackTrace) {
+    stdout.writeln('Error: $e');
+    stdout.writeln(stackTrace);
   }
 }
 
@@ -48,11 +50,13 @@ void _writeUsage() {
 }
 
 GeneratorBase _getGenerator(String collectionName) {
-  GeneratorBase? locatedGenerator = _generators.firstWhereOrNull((element) => element.collectionName == collectionName);
-  if (locatedGenerator == null) {
-    throw Exception('Unknown collection name: $collectionName');
+  GeneratorBase? locatedGenerator;
+    try {
+      locatedGenerator = _generators.firstWhere((element) => element.collectionName == collectionName);
+  } catch(e) {
+      throw Exception('Unknown collection name: $collectionName');
   }
   return locatedGenerator;
 }
 
-List<GeneratorBase> _generators = [GeneratorUser(), GeneratorWork()];
+List<GeneratorBase> _generators = [GeneratorUser(), GeneratorPerson(), GeneratorWork(), GeneratorActivity()];

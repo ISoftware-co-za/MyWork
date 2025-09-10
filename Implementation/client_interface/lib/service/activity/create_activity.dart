@@ -3,23 +3,27 @@ import '../service_client_base.dart';
 class RequestCreateActivity {
   final String what;
   final String state;
+  final String? dueDate;
+  final String? recipientId;
   final String? why;
   final String? notes;
-  final DateTime? dueDate;
 
   RequestCreateActivity(
-      {required this.what, required this.state, this.why, this.notes, this.dueDate});
+      {required this.what, required this.state, this.dueDate, this.recipientId, this.why, this.notes});
 
   Map<String, dynamic> toJson() {
     var json = <String, dynamic>{'what': what, 'state': state};
+    if (dueDate != null) {
+      json['dueDate'] =  dueDate;
+    }
+    if (recipientId != null) {
+      json['recipientId'] =  recipientId;
+    }
     if (why != null) {
       json['why'] = why;
     }
     if (notes != null) {
       json['notes'] = notes;
-    }
-    if (dueDate != null) {
-      json['due_date'] = dueDate!.toIso8601String().substring(0, 10);
     }
     return json;
   }

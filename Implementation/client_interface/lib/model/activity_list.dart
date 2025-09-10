@@ -1,28 +1,41 @@
+import 'package:client_interfaces1/model/model_property_context.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
 import '../service/activity/list_work_activity_response.dart';
 import '../service/activity/service_client_activity.dart';
 import 'activity.dart';
+import 'person_list.dart';
+import 'person.dart';
 
 class ActivityList extends ChangeNotifier {
+  final String workId;
   final List<Activity> items = [];
 
-  ActivityList(String workID) : _workID = workID;
+  ActivityList(ModelPropertyContext modelPropertyContext, this.workId)
+    : _modelPropertyContext = modelPropertyContext;
 
-  Future loadAll() async {
-    WorkActivityListResponse response = await _serviceClient.listAll(_workID);
+  Future loadAll(PersonList people) async {
+    WorkActivityListResponse response = await _serviceClient.listAll(workId);
     items.clear();
     for (var item in response.items) {
-      items.add(Activity(
-        item.id,
-        _workID,
-        item.what,
-        ActivityState.fromString(item.state),
-        item.why,
-        item.notes,
-        item.dueDate,
-      ));
+      Person? recipient;
+      if (item.recipientId != null) {
+        recipient = people.find(item.recipientId!);
+      }
+      items.add(
+        Activity(
+          _modelPropertyContext,
+          item.id,
+          workId,
+          item.what,
+          ActivityState.fromString(item.state),
+          item.dueDate,
+          recipient,
+          item.why,
+          item.notes
+        ),
+      );
     }
     notifyListeners();
   }
@@ -37,6 +50,15 @@ class ActivityList extends ChangeNotifier {
     notifyListeners();
   }
 
-  final ServiceClientActivity _serviceClient = GetIt.instance<ServiceClientActivity>();
-  String _workID;
+  void unlinkDeletedPeople(List<String> ids) {
+    for(final Activity activity in items) {
+      if (activity.recipient.value != null && ids.contains(activity.recipient.value!.id)) {
+          activity.recipient.setValueWithNotification(null, ignorePropertyChanged: true);
+      }
+    }
+  }
+
+  late final ModelPropertyContext _modelPropertyContext;
+  final ServiceClientActivity _serviceClient =
+      GetIt.instance<ServiceClientActivity>();
 }

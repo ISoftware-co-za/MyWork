@@ -2,7 +2,7 @@ part of 'form.dart';
 
 class ControlDateFormField extends StatefulWidget {
   final String label;
-  final StateProperty property;
+  final ModelProperty property;
   final bool editable;
   final int maximumLines;
 
@@ -79,7 +79,7 @@ class _ControlDateFormFieldState extends State<ControlDateFormField> {
           children.add(
             Text(
               widget.property.invalidMessage!,
-              style: theme.valueStyle.copyWith(color: Colors.red),
+              style: theme.invalidMessageStyle,
             ),
           );
         }
@@ -123,14 +123,8 @@ class _ControlDateFormFieldState extends State<ControlDateFormField> {
           ),
         ),
         SizedBox(width: 4),
-        IconButton(
-          icon: Icon(Icons.date_range),
-          iconSize: 20,
-          constraints: BoxConstraints(
-            minWidth: 20,
-            minHeight: 20,
-          ),
-          padding: EdgeInsets.zero,
+        ControlIconButton(
+          Icons.date_range,
           onPressed: () {
             showDatePicker(
               context: context,

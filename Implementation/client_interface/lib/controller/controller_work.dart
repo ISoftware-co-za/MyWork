@@ -1,7 +1,7 @@
 
 import 'package:flutter/foundation.dart';
 
-import '../model/property_changed_registry.dart';
+import '../model/model_property_context.dart';
 import '../model/work_list.dart';
 import '../model/work.dart';
 import 'controller_base.dart';
@@ -10,27 +10,46 @@ enum ControllerWorkState { noWork, newWork, existingWork }
 
 class ControllerWork extends ControllerBase {
 
-  final WorkList workList = WorkList();
+  final ModelPropertyContext modelPropertyContext = ModelPropertyContext(name: 'Work');
+  late final WorkList workList;
   ValueListenable<Work?> get selectedWork => _selectedWork;
   bool get hasWork => selectedWork.value != null;
   bool get hasExistingWork => hasWork && selectedWork.value!.isNew == false;
   ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
 
+  ControllerWork() {
+    workList = WorkList(modelPropertyContext);
+  }
+
   Future initialise() async {
     await workList.obtain();
   }
 
-  Future onNewWork() async {
-    if (!hasWork || await onSave()) {
-      _selectedWork.value = new Work.create();
+  bool canNavigateFrom() {
+    if (hasWork && modelPropertyContext.hasChanges.value) {
+      return selectedWork.value!.validate();
     }
+    return true;
   }
 
-  Future SelectWork(Work work) async {
+  Future<bool> saveActivityIfRequired() async {
+    if (modelPropertyContext.hasChanges.value) {
+      if (await onSave() == false) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  void newWork() {
+      _selectedWork.value = new Work.create(modelPropertyContext);
+  }
+
+  void selectWork(Work work) {
       _selectedWork.value = work;
   }
 
-  Future onWorkDelete() async {
+  Future deleteWork() async {
     assert(hasWork, 'There is no work selected to delete.');
     await selectedWork.value!.delete();
     workList.delete(selectedWork.value!);
@@ -49,7 +68,7 @@ class ControllerWork extends ControllerBase {
         } else {
           await selectedWork.value!.update();
         }
-        PropertyChangedRegistry.acceptChanges();
+        modelPropertyContext.acceptChanges();
       } finally {
         isSaving.value = false;
       }
@@ -59,7 +78,7 @@ class ControllerWork extends ControllerBase {
   }
 
   void onCancel() {
-    PropertyChangedRegistry.rejectChanges();
+    modelPropertyContext.rejectChanges();
   }
 
   final _selectedWork = ValueNotifier<Work?>(null);

@@ -2,9 +2,10 @@ import 'package:client_interfaces1/service/work/service_client_work.dart';
 import 'package:get_it/get_it.dart';
 
 import 'activity/service_client_activity.dart';
+import 'people/service_client_people.dart';
 import 'user/service_client_user.dart';
 
-void setupFacades() {
+void setupServiceClients() {
   final url = 'https://localhost:5000';
 
   var serviceClientWork = ServiceClientWork(url);
@@ -15,6 +16,9 @@ void setupFacades() {
 
   var serviceClientActivity = ServiceClientActivity(url);
   GetIt.instance.registerSingleton<ServiceClientActivity>(serviceClientActivity);
+
+  var serviceClientPeople = ServiceClientPeople(url);
+  GetIt.instance.registerSingleton<ServiceClientPeople>(serviceClientPeople);
 }
 
 class FacadeBase {

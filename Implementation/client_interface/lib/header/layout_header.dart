@@ -20,7 +20,7 @@ class LayoutHeader extends StatelessWidget {
     ThemeData theme = CustomThemeDataAppHeader.getTheme();
     ThemeExtensionAppHeader appHeaderThemeExtension = theme.extension<ThemeExtensionAppHeader>()!;
     ThemeExtensionControlWorkButton workButtonTheme = theme.extension<ThemeExtensionControlWorkButton>()!;
-    ValueListenable<Work?> selectedWork = ProviderStateApplication.of(context)!.getController<ControllerWork>()!.selectedWork;
+    ValueListenable<Work?> selectedWork = ProviderStateApplication.of(context)!.state.getController<ControllerWork>()!.selectedWork;
 
     return Theme(
       data: theme,

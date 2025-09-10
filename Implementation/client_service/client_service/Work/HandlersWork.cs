@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using ClientService.Activity;
+using ClientService.Activities;
 using Microsoft.AspNetCore.Mvc;
 
 using MongoDB.Bson;
@@ -115,18 +115,13 @@ public static class HandlersWork
                 async () =>
                 {
                     var filter = Builders<DocumentWork>.Filter.Eq("_id", ObjectId.Parse(id));
-                    UpdateDefinition<DocumentWork>? update = null;
-                    for (int index = 0; index < request.UpdatedProperties.Count; ++index)
-                    {
-                        if (index == 0)
-                            update = Builders<DocumentWork>.Update.Set(request.UpdatedProperties[index].Name,
-                                request.UpdatedProperties[index].Value);
-                        else
-                            update = update!.Set(request.UpdatedProperties[index].Name,
-                                request.UpdatedProperties[index].Value);
-                    }
-                    IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName);
-                    await workCollection.UpdateOneAsync(filter, update!);
+                    List<UpdateDefinition<DocumentWork>> updates = [];
+                    foreach (var updateProperty in request.UpdatedProperties)
+                        updates.Add(Builders<DocumentWork>.Update.Set(updateProperty.NameInPascalCase(), updateProperty.Value));
+                    IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName); 
+                    UpdateDefinition<DocumentWork> combinedUpdates =
+                        Builders<DocumentWork>.Update.Combine(updates);
+                    await workCollection.UpdateOneAsync(filter, combinedUpdates);
                     // Task.Delay(5000).GetAwaiter().GetResult();
                     return Results.NoContent();
                 });

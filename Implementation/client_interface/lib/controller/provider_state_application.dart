@@ -1,7 +1,7 @@
-import 'package:client_interfaces1/controller/controller_base.dart';
 import 'package:flutter/widgets.dart';
 
 import '../dialog_work/controller/controller_dialog_work.dart';
+import 'state_application.dart';
 
 class ProviderStateApplicationLazyLoadedController {
   ControllerDialogWork? workDialogController;
@@ -9,7 +9,10 @@ class ProviderStateApplicationLazyLoadedController {
 
 class ProviderStateApplication extends InheritedWidget {
 
+  final StateApplication state;
+
   ProviderStateApplication({
+    required this.state,
     required super.child,
     super.key,
   });
@@ -19,16 +22,9 @@ class ProviderStateApplication extends InheritedWidget {
         .dependOnInheritedWidgetOfExactType<ProviderStateApplication>();
   }
 
-  void registerController<T extends ControllerBase>(T controller) {
-    _controllerMap[T] = controller;
-  }
-
-  T? getController<T extends ControllerBase>() {
-    return _controllerMap[T] as T?;
-  }
 
   @override
   bool updateShouldNotify(ProviderStateApplication oldWidget) => false;
 
-  final Map<Type, ControllerBase> _controllerMap = {};
 }
+
