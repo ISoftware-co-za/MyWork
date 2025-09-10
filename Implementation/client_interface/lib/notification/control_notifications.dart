@@ -29,7 +29,7 @@ class _ControlNotificationErrorState extends State<ControlNotificationError> {
             icon: const Icon(Icons.close),
             onPressed: () {
               setState(() {
-                ControllerNotifications controller = ProviderStateApplication.of(context)!.getController<ControllerNotifications>()!;
+                ControllerNotifications controller = ProviderStateApplication.of(context)!.state.getController<ControllerNotifications>()!;
                 controller.remove(widget.notification);
               });
             },

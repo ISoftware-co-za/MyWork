@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using ClientService.Activity;
+using ClientService.Activities;
 using Microsoft.AspNetCore.Mvc;
 
 using MongoDB.Bson;

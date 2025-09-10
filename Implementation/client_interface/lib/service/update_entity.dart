@@ -1,4 +1,3 @@
-import '../model/activity.dart';
 import '../model/data_conversion.dart';
 
 class UpdateEntityRequest {
@@ -22,15 +21,20 @@ class UpdateEntityProperty {
 
   Map<String, dynamic> toJson() {
     dynamic jsonValue = value;
-    if (value != null && value.runtimeType.toString() == 'ActivityState') {
-      var activityState = value as ActivityState;
-      jsonValue = activityState.name;
+    if (value != null && value is Enum /* value.runtimeType.toString() == 'ActivityState'*/) {
+      jsonValue = (value as Enum).name;
     } else if (jsonValue is DateTime) {
       jsonValue = DataConversionModelToService.dateTimeToDateString(jsonValue);
+    } else if (jsonValue is UpdateEntityPropertyProvider) {
+      jsonValue = jsonValue.providedProperty;
     }
     return {
       'name': name,
       'value': jsonValue,
     };
   }
+}
+
+abstract class UpdateEntityPropertyProvider {
+  dynamic get providedProperty;
 }

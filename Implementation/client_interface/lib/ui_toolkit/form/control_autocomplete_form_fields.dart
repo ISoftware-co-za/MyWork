@@ -56,16 +56,21 @@ class ControlAutocompleteFormField extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: rowChildren));
         } else {
-          rowChildren.add(
+          String value = property.valueAsString;
+          columnChildren.add(
             Padding(
               padding: const EdgeInsets.fromLTRB(4, 0.5, 0.5, 0),
-              child: Text(property.valueAsString, style: theme.valueStyle),
+              child: Text(value, style: theme.valueStyle),
             ),
           );
         }
+        if (!property.isValid) {
+          columnChildren.add(Text(property.invalidMessage!,
+              style: theme.invalidMessageStyle));
+        }
         return Column(
           mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: columnChildren,
         );
       },

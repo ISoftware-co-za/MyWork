@@ -1,10 +1,12 @@
 import 'package:client_interfaces1/dialog_people/controller/controller_dialog_people.dart';
 import 'package:client_interfaces1/execution/executor.dart';
+import 'package:client_interfaces1/model/person_list.dart';
 import 'package:client_interfaces1/ui_toolkit/form/form.dart';
 import 'package:flutter/material.dart';
 
 import '../../../dialog_people/widget/layout_dialog_people.dart';
 import '../../../model/activity.dart';
+import '../../../model/provider_state_model.dart';
 import '../../../ui_toolkit/control_delete.dart';
 import '../../../ui_toolkit/hover.dart';
 import '../controller/controller_activity.dart';
@@ -27,7 +29,6 @@ class LayoutFormActivity extends StatefulWidget {
 }
 
 class _LayoutFormActivityState extends State<LayoutFormActivity> {
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -55,14 +56,13 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
 
         final Activity activity =
             widget._controllerActivity.selectedActivity.value!;
-        final AutocompleteTrailingAction trailingAction = AutocompleteTrailingAction(
-          Icons.person, () => Executor.runCommand(
-          'person',
-          'LayoutActivityForm',
-              () {
-            _showPeopleDialog(context);
-          },
-        ));
+        final AutocompleteTrailingAction trailingAction =
+            AutocompleteTrailingAction(
+              Icons.person,
+              () => Executor.runCommand('person', 'LayoutActivityForm', () {
+                _showPeopleDialog(context);
+              }),
+            );
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: Container(
@@ -92,10 +92,10 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
                         label: 'Recipient',
                         property: activity.recipient,
                         editable: _isMouseover,
-                        dataSource:
-                            widget._controllerActivity.peopleDataSource,
+                        dataSource: widget._controllerActivity.peopleDataSource,
                         width: 300,
-                        trailingAction: trailingAction),
+                        trailingAction: trailingAction,
+                      ),
                     ),
                   ],
                 ),
@@ -132,9 +132,15 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
   }
 
   void _showPeopleDialog(BuildContext context) {
-    var controller = ControllerDialogPeople((person) {
-      widget._controllerActivity.onRecipientSelected(person);
-    }, context);
+    ProviderStateModel providerStateModel = ProviderStateModel.of(context)!;
+    var controller = ControllerDialogPeople(
+      providerStateModel.state.getInstance<PersonList>()!,
+      widget._controllerActivityList.activityList.value!,
+      (person) {
+        widget._controllerActivity.onRecipientSelected(person);
+      },
+      context,
+    );
     showDialog(
       context: context,
       builder: (BuildContext context) {

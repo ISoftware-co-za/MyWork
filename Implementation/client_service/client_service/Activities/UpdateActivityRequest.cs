@@ -1,5 +1,5 @@
 using ClientService.Validation;
 
-namespace ClientService.Activity;
+namespace ClientService.Activities;
 
 public record UpdateActivityRequest(List<UpdateProperty> UpdatedProperties) : IUpdateRequest;

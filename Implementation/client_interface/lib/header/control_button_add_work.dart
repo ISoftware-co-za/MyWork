@@ -12,7 +12,7 @@ class ControlButtonAddWork extends StatelessWidget {
     return ControlIconButtonLarge(
         icon: Icon(Icons.add),
         onPressed: () async {
-            CoordinatorWorkActivityListLoader coordinatorWorkActivityListLoader = ProviderStateApplication.of(context)!.getCoordinator<CoordinatorWorkActivityListLoader>()!;
+            CoordinatorWorkActivityListLoader coordinatorWorkActivityListLoader = ProviderStateApplication.of(context)!.state.getCoordinator<CoordinatorWorkActivityListLoader>()!;
             await coordinatorWorkActivityListLoader.onNewWork();
         });
   }

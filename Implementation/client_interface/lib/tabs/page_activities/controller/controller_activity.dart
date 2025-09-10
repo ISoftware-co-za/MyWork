@@ -9,18 +9,26 @@ import '../../../model/person_list.dart';
 import '../../../model/person.dart';
 
 class ControllerActivity extends ControllerBase {
-  final PersonList people = PersonList();
+  final PersonList people;
 
   late final DataSourceAutocompletePerson peopleDataSource;
   final ValueListenable<Activity?> selectedActivity;
 
-  ControllerActivity(this.selectedActivity) {
-    peopleDataSource = DataSourceAutocompletePerson(people: people, onPersonSelected: onRecipientSelectedFromDataSource, onPersonEntered: onRecipientEntered);
+  ControllerActivity(this.people, this.selectedActivity) {
+    peopleDataSource = DataSourceAutocompletePerson(
+      people: people,
+      onPersonSelected: onRecipientSelectedFromDataSource,
+      onPersonEntered: onRecipientEntered,
+    );
   }
 
-  static List<DropdownMenuEntry<ActivityState>> getActivityStateDropdownItems() {
+  static List<DropdownMenuEntry<ActivityState>>
+  getActivityStateDropdownItems() {
     return ActivityState.values.map((state) {
-      return DropdownMenuEntry<ActivityState>(value: state, label: state.toString().split('.').last);
+      return DropdownMenuEntry<ActivityState>(
+        value: state,
+        label: state.toString().split('.').last,
+      );
     }).toList();
   }
 
@@ -29,12 +37,23 @@ class ControllerActivity extends ControllerBase {
   }
 
   void onRecipientSelected(Person selectedPerson) {
-    assert(selectedActivity.value != null, 'An activity is required when setting the recipient.');
+    assert(
+      selectedActivity.value != null,
+      'An activity is required when setting the recipient.',
+    );
     selectedActivity.value!.recipient.value = selectedPerson;
-    debugPrint('Recipient selected "${selectedPerson.toString()}"');
   }
 
-  void onRecipientEntered(String text) {
-    debugPrint('Recipient entered "$text"');
+  void onRecipientEntered(String text) async {
+    assert(
+      selectedActivity.value != null,
+      'An activity is required when setting the recipient.',
+    );
+    final newPerson = Person.createWithFullName(people.modelPropertyContext, text);
+    selectedActivity.value!.recipient.value = newPerson;
+    if (selectedActivity.value!.recipient.validate()) {
+      people.add(newPerson);
+      await people.acceptChanges();
+    }
   }
 }

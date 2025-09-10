@@ -1,3 +1,4 @@
+import 'package:client_interfaces1/model/activity_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
@@ -18,8 +19,7 @@ class ControllerDialogPeople extends ControllerBase {
   final ValueNotifier<String> filterCriteria = ValueNotifier('');
   ValueListenable<bool> get hasChanges => _hasChanges;
 
-  ControllerDialogPeople(ActionDialogPeople dialogAction, BuildContext buildContext) : _dialogAction = dialogAction, _buildContext = buildContext {
-    _personList = new PersonList();
+  ControllerDialogPeople(PersonList personList, ActivityList activityList, ActionDialogPeople dialogAction, BuildContext buildContext) : _personList = personList, _activityList = activityList, _dialogAction = dialogAction, _buildContext = buildContext {
     selectedPerson.addListener(onPersonSelected);
     filterCriteria.addListener(_onFilterCriteriaChanged);
     _constructList();
@@ -44,15 +44,19 @@ class ControllerDialogPeople extends ControllerBase {
 
   void onPersonSelected() {
     assert(selectedPerson.value != null, 'No person is selected');
-    if (_personList.modelPropertyContext.hasChanges.value == false) {
+    if (_hasChanges.value == false) {
       _dialogAction(selectedPerson.value!.person);
       onClose();
     }
   }
 
-  void onAcceptUpdates() {
-    if (_personList.modelPropertyContext.hasChanges.value) {
-      debugPrint('Save changes');
+  Future onAcceptUpdates() async {
+    if (_hasChanges.value) {
+      List<String> peopleRemoved = _personList.getPeopleRemovedIds();
+      await _personList.acceptChanges();
+      if (peopleRemoved.isNotEmpty) {
+        _activityList.unlinkDeletedPeople(peopleRemoved);
+      }
     }
     if (selectedPerson.value != null) {
       _dialogAction(selectedPerson.value!.person);
@@ -98,5 +102,6 @@ class ControllerDialogPeople extends ControllerBase {
   final ActionDialogPeople _dialogAction;
   final _hasChanges = ValueNotifier<bool>(false);
   late final PersonList _personList;
+  late final ActivityList _activityList;
   String lowercaseFilterCriteria = '';
 }

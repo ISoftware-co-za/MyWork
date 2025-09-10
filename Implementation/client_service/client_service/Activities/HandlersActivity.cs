@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace ClientService.Activity;
+namespace ClientService.Activities;
 
 public static class HandlersActivity
 {
@@ -67,8 +67,9 @@ public static class HandlersActivity
                 var activityItems = new List<Activity>();
                 var activityCollection =
                     database.GetCollection<DocumentActivity>(CollectionName);
+                var userId = httpRequest.GetSid();
                 var filter = Builders<DocumentActivity>.Filter.And(
-                    Builders<DocumentActivity>.Filter.Eq(p => p.UserId, ObjectId.Parse(httpRequest.GetSid())),
+                    Builders<DocumentActivity>.Filter.Eq(p => p.UserId, ObjectId.Parse(userId)),
                     Builders<DocumentActivity>.Filter.Eq(p => p.WorkId, ObjectId.Parse(workID))
                 );
                 var activityDocuments = await activityCollection.Find(filter).ToListAsync();
@@ -83,13 +84,13 @@ public static class HandlersActivity
                         document.Id.ToString(),
                         document.What,
                         document.State.ToString(),
+                        dueDate,
+                        document.RecipientId?.ToString(),
                         document.Why,
-                        document.Notes,
-                        dueDate);
+                        document.Notes);
                     activityItems.Add(activity);
                 }
-
-                return Results.Ok(new WorkActivityListResponse(activityItems));
+                return Results.Ok(new GetWorkActivityListResponse(activityItems));
             });
     }
 
@@ -110,9 +111,12 @@ public static class HandlersActivity
                         WorkId = ObjectId.Parse(workID),
                         What = request.What,
                         State = Enum.Parse<ActivityState>(request.State, true),
+                        DueDate = request.DueDate,
+                        RecipientId = string.IsNullOrWhiteSpace(request.RecipientId)
+                            ? null
+                            : ObjectId.Parse(request.RecipientId!),
                         Why = request.Why,
                         Notes = request.Notes,
-                        DueDate = request.DueDate
                     };
                     await activityCollection.InsertOneAsync(activityDocument);
                     return Results.Created($"{_urlPrefix}/{activityDocument.Id}",
@@ -129,7 +133,7 @@ public static class HandlersActivity
         var validationResults = requestValidation.Validate(request);
         if (validationResults.Length == 0)
             return await Executor.RunProcessAsync($"{CollectionName}.UpdateOneAsync({id})", Executor.CategoryMongoDB,
-                "Unable to save the updated work",
+                "Unable to save the updated activity",
                 async () =>
                 {
                     var filter = Builders<DocumentActivity>.Filter.Eq("_id", ObjectId.Parse(id));
@@ -142,7 +146,17 @@ public static class HandlersActivity
                     var activityCollection = database.GetCollection<DocumentActivity>(CollectionName);
                     UpdateDefinition<DocumentActivity> combinedUpdates =
                         Builders<DocumentActivity>.Update.Combine(updates);
-                    await activityCollection.UpdateOneAsync(filter, combinedUpdates);
+                    UpdateResult result = await activityCollection.UpdateOneAsync(filter, combinedUpdates);
+                    if (result.IsAcknowledged == false || result.MatchedCount != 1)
+                    {
+                        ProblemDetails details = new ProblemDetails
+                        {
+                            Title = "Activity not found",
+                            Status = 404,
+                            Detail = $"Activity with id {id} could not be updated as it was not found."
+                        };
+                        return Results.NotFound(details);
+                    }
                     return Results.NoContent();
                 });
         return RequestValidation.GenerateValidationFailedResponse(validationResults);
@@ -169,6 +183,8 @@ public static class HandlersActivity
             return value;
         if (name == nameof(DocumentActivity.State))
             return Enum.Parse(typeof(ActivityState), value.ToString()!, true);
+        if (name == nameof(DocumentActivity.RecipientId))
+            return ObjectId.Parse(value.ToString()!);
         return value;
     }
 
@@ -176,7 +192,7 @@ public static class HandlersActivity
 
     #region FIELDS
 
-    private const string CollectionName = "activity";
+    private const string CollectionName = "activities";
     private static string? _urlPrefix;
 
     #endregion

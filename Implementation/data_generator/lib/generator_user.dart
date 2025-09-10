@@ -33,7 +33,7 @@ class GeneratorUser extends GeneratorBase {
 
       var user = {'email': Faker().internet.email(), 'password': Faker().internet.password(), 'workTypes': workTypes};
 
-      var result = await db.collection('users').insertOne(user);
+      var result = await db.collection(collectionName).insertOne(user);
       if (!result.isSuccess) {
         throw Exception('Failed to insert user document: $user');
       }
@@ -45,7 +45,7 @@ class GeneratorUser extends GeneratorBase {
 
   @override
   void writeCommandDescription() {
-    stdout.writeln('$collectionName - Adds new user documents to the user collection.');
+    stdout.writeln('$collectionName - Adds new user documents to the users collection.');
   }
 
   @override

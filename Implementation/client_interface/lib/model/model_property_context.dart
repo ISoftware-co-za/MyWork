@@ -32,5 +32,5 @@ class ModelPropertyContext {
     }
   }
 
-  static final Set<ModelProperty> _changedProperties = {};
+  final Set<ModelProperty> _changedProperties = {};
 }

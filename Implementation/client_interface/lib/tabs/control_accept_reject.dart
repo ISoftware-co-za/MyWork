@@ -1,4 +1,5 @@
 import 'package:client_interfaces1/controller/coordinator_work_and_activity_change.dart';
+import 'package:client_interfaces1/controller/state_application.dart';
 import 'package:client_interfaces1/tabs/controller_tab_bar.dart';
 import 'package:flutter/material.dart';
 import '../execution/executor.dart';
@@ -11,7 +12,7 @@ class ControlAcceptReject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProviderStateApplication state = ProviderStateApplication.of(context)!;
+    StateApplication state = ProviderStateApplication.of(context)!.state;
     ControllerTabBar controllerTabBar = state.getController<ControllerTabBar>()!;
 
     return ListenableBuilder(

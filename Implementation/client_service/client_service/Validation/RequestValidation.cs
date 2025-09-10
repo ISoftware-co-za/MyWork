@@ -34,11 +34,7 @@ public class RequestValidation
         return Results.ValidationProblem(consolidatedError);
     }
     
-    #endregion
-    
-    #region PRIVATE METHODS
-
-    private IValidator GetValidatorForRequest(Type type)
+    public IValidator GetValidatorForRequest(Type type)
     {
         var requestValidation = _validationRequests.FirstOrDefault(x => x.Create == type || x.Update == type);
         Debug.Assert(requestValidation != null, $"IValidator for request with type {type.Name} is not found.");
@@ -50,7 +46,7 @@ public class RequestValidation
     }
     
     #endregion
-    
+   
     #region FIELDS
 
     private readonly List<ValidatedRequest> _validationRequests = new();

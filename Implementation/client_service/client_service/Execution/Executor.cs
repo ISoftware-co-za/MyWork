@@ -6,6 +6,7 @@ public static class Executor
 {
     #region CONSTANTS
     
+    public const string CategoryEndpoint = "Endpoint";
     public const string CategoryMongoDB = "MongoDB";
     
     #endregion

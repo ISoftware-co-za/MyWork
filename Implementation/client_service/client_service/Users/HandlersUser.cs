@@ -12,7 +12,7 @@ using ClientService.Validation;
 
 namespace ClientService.Users;
 
-public static class HandlersUsers
+public static class HandlersUser
 {
     #region METHODS
     

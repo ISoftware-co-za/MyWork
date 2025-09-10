@@ -19,14 +19,14 @@ class LayoutPageDetails extends StatelessWidget {
     ProviderStateApplication providerStateApplication =
         ProviderStateApplication.of(context)!;
     ControllerWork controllerWork = providerStateApplication
-        .getController<ControllerWork>()!;
+        .state.getController<ControllerWork>()!;
     ControllerUser controllerUser = providerStateApplication
-        .getController<ControllerUser>()!;
+        .state.getController<ControllerUser>()!;
     ControllerWorkTypes controllerWorkTypes = providerStateApplication
-        .getController<ControllerWorkTypes>()!;
+        .state.getController<ControllerWorkTypes>()!;
     CoordinatorWorkActivityListLoader coordinatorWorkActivityListLoader =
         providerStateApplication
-            .getCoordinator<CoordinatorWorkActivityListLoader>()!;
+            .state.getCoordinator<CoordinatorWorkActivityListLoader>()!;
 
     assert(
       controllerUser.user.userID != null,

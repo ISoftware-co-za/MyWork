@@ -1,3 +1,3 @@
-namespace ClientService.Activity;
+namespace ClientService.Activities;
 
 public record CreateActivityResponse(string Id);

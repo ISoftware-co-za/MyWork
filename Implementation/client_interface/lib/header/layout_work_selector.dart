@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../controller/coordinator_work_and_activity_list_loader.dart';
 import '../controller/provider_state_application.dart';
+import '../controller/state_application.dart';
 import '../dialog_work/controller/controller_dialog_work.dart';
 import '../dialog_work/widget/layout_dialog_work.dart';
 import '../model/work.dart';
@@ -49,7 +50,7 @@ class _LayoutWorkSelectorState extends State<LayoutWorkSelector> {
   }
 
   void _showWorkDialog(BuildContext context) {
-    ProviderStateApplication stateProvider = ProviderStateApplication.of(context)!;
+    StateApplication stateProvider = ProviderStateApplication.of(context)!.state;
 
     ControllerDialogWork? controller = stateProvider.getController<ControllerDialogWork>();
     CoordinatorWorkActivityListLoader coordinator = stateProvider.getCoordinator<CoordinatorWorkActivityListLoader>()!;

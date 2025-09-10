@@ -1,3 +1,5 @@
+using ClientService.Activities;
+using ClientService.People;
 using MongoDB.Driver;
 using NLog.Web;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -7,7 +9,6 @@ using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 using ClientService.Users;
 using ClientService.Work;
-using ClientService.Activity;
 using ClientService.Validation;
 
 Logger? logger = null;
@@ -110,6 +111,8 @@ try
     validation.AddWorkValidation();
     app.MapActivityURLs("/work", corsPolicyName);
     validation.AddActivityValidation();
+    app.MapPersonURLs("/people", corsPolicyName);
+    validation.AddPersonValidation();
 
     logger?.Info("Service is running");
     app.Run();

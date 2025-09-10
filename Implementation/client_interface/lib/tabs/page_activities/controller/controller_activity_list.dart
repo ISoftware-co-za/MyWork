@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import '../../../controller/controller_base.dart';
 import '../../../model/activity.dart';
 import '../../../model/model_property_context.dart';
+import '../../../model/person_list.dart';
 import '../../../model/work.dart';
 
 class ControllerActivityList extends ControllerBase {
@@ -15,7 +16,7 @@ class ControllerActivityList extends ControllerBase {
   late final ValueListenable<Activity?> selectedActivity;
   ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
 
-  ControllerActivityList() {
+  ControllerActivityList(PersonList people) : _people = people {
     selectedActivity = _selectedActivity;
   }
 
@@ -25,6 +26,10 @@ class ControllerActivityList extends ControllerBase {
       return selectedActivity.value!.validate();
     }
     return true;
+  }
+
+  void selectWork(Work? selectedWork) {
+    _selectedWork = selectedWork;
   }
 
   void emptyActivityList() {
@@ -103,21 +108,24 @@ class ControllerActivityList extends ControllerBase {
     modelPropertyContext.rejectChanges();
   }
 
-  Future loadActivitiesIfRequired(Work? selectedWork) async {
-    _selectedWork = selectedWork;
-    if (selectedWork == null) {
-      activityList.value = null;
-      return;
-    }
+  Future loadActivitiesIfRequired() async {
+    assert(
+      _selectedWork != null,
+      'Work must be selected to load its activities',
+    );
     if (activityList.value == null ||
-        selectedWork.id != activityList.value!.workId) {
-      activityList.value = ActivityList(modelPropertyContext, selectedWork.id);
-      await activityList.value!.loadAll();
+        _selectedWork!.id != activityList.value!.workId) {
+      activityList.value = ActivityList(
+        modelPropertyContext,
+        _selectedWork!.id,
+      );
+      await activityList.value!.loadAll(_people);
     }
   }
 
   final ValueNotifier<Activity?> _selectedActivity = ValueNotifier<Activity?>(
     null,
   );
+  final PersonList _people;
   Work? _selectedWork;
 }

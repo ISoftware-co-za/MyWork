@@ -17,11 +17,11 @@ class _LayoutNotificationsState extends State<LayoutNotifications> {
   Widget build(BuildContext context) {
     return ListenableBuilder(
         listenable:
-            ProviderStateApplication.of(context)!.getController<ControllerNotifications>()!,
+            ProviderStateApplication.of(context)!.state.getController<ControllerNotifications>()!,
         builder: (BuildContext context, Widget? child) {
           List<Widget> notifications = _listNotifications(
               ProviderStateApplication.of(context)!
-                  .getController<ControllerNotifications>()!
+                  .state.getController<ControllerNotifications>()!
                   .notifications);
           return Column(
             children: notifications,

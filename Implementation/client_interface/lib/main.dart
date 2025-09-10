@@ -1,3 +1,6 @@
+import 'package:client_interfaces1/controller/state_application.dart';
+import 'package:client_interfaces1/model/person_list.dart';
+import 'package:client_interfaces1/model/provider_state_model.dart';
 import 'package:client_interfaces1/tabs/page_activities/controller/controller_activity_list.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -5,6 +8,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'controller/coordinator_work_and_activity_list_loader.dart';
+import 'model/state_model.dart';
 import 'notification/layout_notification_list.dart';
 import 'tabs/controller_tab_bar.dart';
 import 'tabs/page_activities/controller/controller_activity.dart';
@@ -20,7 +24,6 @@ import 'service/service_setup.dart';
 import 'controller/coordinator_login.dart';
 import 'controller/provider_state_application.dart';
 import 'controller/controller_work.dart';
-import 'model/model_property.dart';
 import 'tabs/layout_tab_bar.dart';
 import 'tabs/page_details/widget/layout_page_details.dart';
 import 'ui_toolkit/hover.dart';
@@ -30,7 +33,8 @@ Future<void> main() async {
   // debugPaintSizeEnabled = true;
   await SentryFlutter.init(
     (options) {
-      options.dsn = 'https://df440e5981662d9f3951e28cf7f3f041@o4506012740026368.ingest.us.sentry.io/4508544378863616';
+      options.dsn =
+          'https://df440e5981662d9f3951e28cf7f3f041@o4506012740026368.ingest.us.sentry.io/4508544378863616';
       options.sendDefaultPii = true;
       options.tracesSampleRate = 1.0;
       options.profilesSampleRate = 1.0;
@@ -41,7 +45,7 @@ Future<void> main() async {
       Intl.defaultLocale = 'en_ZA';
       initializeDateFormatting(Intl.defaultLocale, null);
 
-      setupFacades();
+      setupServiceClients();
       runApp(SentryWidget(child: MyApp()));
     },
   );
@@ -57,62 +61,28 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: theme,
-      home: MainPage(
-        title: 'Flutter Demo Home Page',
-          activities:[]
-        /*
-        activities: [
-          StateNote(initialText: '', timestamp: DateTime.now()),
-          StateAction(
-              title: "Design error handling mechanism",
-              description:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis ultrices interdum. Mauris tempus sollicitudin eros id maximus. Praesent scelerisque nulla eget volutpat malesuada. Nullam tincidunt, ligula in congue pharetra, urna nisi ornare elit, accumsan tempus libero nisl sit amet nisi. Sed varius lacinia ipsum. Nullam dictum hendrerit tincidunt. Nunc pharetra sollicitudin blandit.",
-              timestamp: DateTime.now(),
-              workLog: [
-                StateWorkEntry(
-                    start: DateTime.now(),
-                    durationInMinutes: 60,
-                    currentEstimateInMinutes: 60,
-                    notes: 'This is the first work entry for this task.'),
-                StateWorkEntry(
-                    start: DateTime.now(),
-                    durationInMinutes: 45,
-                    currentEstimateInMinutes: 90,
-                    notes: 'This is the second work entry for this task.'),
-              ]),
-          StateNote(initialText: 'This is the second note for this task.', timestamp: DateTime.now()),
-        ],
-         */
-      ),
+      home: MainPage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MainPage extends StatefulWidget {
   final String title;
-  final List<PropertyOwner> activities;
-  const MainPage({required this.title, required this.activities, super.key});
+  const MainPage({required this.title, super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
+class _MainPageState extends State<MainPage>
+    with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_onTabSelected);
-
-    Executor.notificationController = _notificationsController;
-    _workController = ControllerWork();
-    _userController = ControllerUser();
-    _workTypesController = ControllerWorkTypes();
-    _activityListController = ControllerActivityList();
-    _activityController = ControllerActivity(_activityListController.selectedActivity);
-    _controllerTabBar = ControllerTabBar(_tabController, _workController, _activityListController);
-    _coordinatorLogin = CoordinatorLogin(_userController, _workTypesController);
-    _setCurrentContainerFromTabIndex();
+    _initialise(_stateApplication);
+    _initialiseData = _obtainerDataFromService(_modelState, _stateApplication);
   }
 
   @override
@@ -124,68 +94,145 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     var stateProvider = ProviderStateApplication(
-      child: Builder(builder: (context) {
-        return FutureBuilder(
-          future: Executor.runCommandAsync('login', null, _initializeAsync),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return _mainPage();
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        );
-      }),
+      state: _stateApplication,
+      child: Builder(
+        builder: (context) {
+          return FutureBuilder(
+            future: _initialiseData,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (!snapshot.hasError) {
+                  debugPrint('Returning _mainPage');
+                  return _mainPage();
+                } else {
+                  debugPrint(snapshot.error.toString());
+                  return const Placeholder();
+                }
+              } else {
+                debugPrint('Waiting for _obtainerDataFromService');
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          );
+        }
+      )
     );
-
-    stateProvider.registerController(_userController);
-    stateProvider.registerController(_workController);
-    stateProvider.registerController(_workTypesController);
-    stateProvider.registerController(_activityListController);
-    stateProvider.registerController(_activityController);
-    stateProvider.registerController(_controllerTabBar);
-    stateProvider.registerController(_notificationsController);
-    stateProvider.registerCoordinator(CoordinatorLogin(_userController, _workTypesController));
-    stateProvider.registerCoordinator(CoordinatorWorkActivityListLoader(_workController, _activityListController));
-
-    return stateProvider;
+    return ProviderStateModel(state: _modelState, child: stateProvider);
   }
 
   //#region PRIVATE METHODS
 
-  Future<dynamic> _initializeAsync() async {
+  void _initialise(StateApplication state) {
+    final notificationsController = ControllerNotifications();
+    final userController = ControllerUser();
+    final workTypesController = ControllerWorkTypes();
+    Executor.notificationController = notificationsController;
+    state.registerController(notificationsController);
+    state.registerController(userController);
+    state.registerController(workTypesController);
+    state.registerCoordinator(
+      CoordinatorLogin(userController, workTypesController),
+    );
+  }
+
+  Future _obtainerDataFromService(
+    StateModel stateModel,
+    StateApplication stateApplication,
+  ) async {
+    await _login(stateApplication);
+    await _initialiseState(stateModel, stateApplication);
+    _setCurrentContainerFromTabIndex();
+  }
+
+  Future _login(StateApplication state) async {
     if (_isLoggedIn == false) {
-      await _coordinatorLogin.login();
-      await _workController.initialise();
+      debugPrint('Perform _login - START');
+      try
+      {
+        await state.getCoordinator<CoordinatorLogin>()!.login();
+      } catch(e) {
+        debugPrint(e.toString());
+      }
+
+      debugPrint('Perform _login - END');
       _isLoggedIn = true;
     }
   }
 
+  Future _initialiseState(
+    StateModel stateModel,
+    StateApplication stateApplication,
+  ) async {
+    if (_isStateInitialised == false) {
+      debugPrint('Perform _initialiseState - START');
+
+      final people = PersonList();
+      _workController = ControllerWork();
+      _activityListController = ControllerActivityList(people);
+      _controllerTabBar = ControllerTabBar(
+        _tabController,
+        _workController,
+        _activityListController,
+      );
+
+      await people.loadAll();
+      stateModel.registerInstance(people);
+      await _workController.initialise();
+
+      stateApplication.registerController(_workController);
+      stateApplication.registerController(_activityListController);
+      stateApplication.registerController(
+        ControllerActivity(people, _activityListController.selectedActivity),
+      );
+      stateApplication.registerController(_controllerTabBar);
+      stateApplication.registerCoordinator(
+        CoordinatorWorkActivityListLoader(
+          stateApplication.getController<ControllerWork>()!,
+          _activityListController,
+        ),
+      );
+      debugPrint('Perform _initialiseState - END');
+      _isStateInitialised = true;
+    }
+  }
+
   Widget _mainPage() {
-    return Column(mainAxisSize: MainAxisSize.max, children: [
-      LayoutHeader(),
-      Expanded(
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        LayoutHeader(),
+        Expanded(
           child: Scaffold(
-              body: Stack(
-        children: [
-          Column(
-            children: [
-              LayoutTabBar(coordinatorWorkAndActivityChange: _controllerTabBar.coordinatorWorkAndActivityChange, controller: _tabController),
-              Expanded(
-                child: ProviderHover(
-                  controller: _controllerHover,
-                  child: TabBarView(
-                    controller: _tabController,
-                    children: [LayoutPageDetails(), LayoutPageActivities()],
-                  ),
+            body: Stack(
+              children: [
+                Column(
+                  children: [
+                    LayoutTabBar(
+                      coordinatorWorkAndActivityChange:
+                          _controllerTabBar.coordinatorWorkAndActivityChange,
+                      controller: _tabController,
+                    ),
+                    Expanded(
+                      child: ProviderHover(
+                        controller: _controllerHover,
+                        child: TabBarView(
+                          controller: _tabController,
+                          children: [
+                            LayoutPageDetails(),
+                            LayoutPageActivities(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                LayoutNotifications(),
+              ],
+            ),
           ),
-          LayoutNotifications(),
-        ],
-      )))
-    ]);
+        ),
+      ],
+    );
   }
 
   void _onTabSelected() {
@@ -195,55 +242,53 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   }
 
   void _setCurrentContainerFromTabIndex() async {
-    if (_tabController.index == 0 && await _activityListController.saveActivityIfRequired() == false) {
+    if (_tabController.index == 0 &&
+        await _activityListController.saveActivityIfRequired() == false) {
       _tabController.index = 1;
       return;
     }
-    if (_tabController.index == 1 && await _workController.saveActivityIfRequired() == false) {
+    if (_tabController.index == 1 &&
+        await _workController.saveActivityIfRequired() == false) {
       _tabController.index = 0;
       return;
     }
     if (_tabController.index == 0) {
       Executor.uiContext.setCurrentContainer(UIContainer.tabWorkDetails);
-      _controllerHover.setVisibility(name: ControllerHover.workDetails, isVisible: true);
-      _controllerHover.setVisibility(name: ControllerHover.layoutDetailsForm, isVisible: false);
+      _controllerHover.setVisibility(
+        name: ControllerHover.workDetails,
+        isVisible: true,
+      );
+      _controllerHover.setVisibility(
+        name: ControllerHover.layoutDetailsForm,
+        isVisible: false,
+      );
     } else {
       Executor.uiContext.setCurrentContainer(UIContainer.tabTasks);
-      _controllerHover.setVisibility(name: ControllerHover.layoutDetailsForm, isVisible: true);
-      _controllerHover.setVisibility(name: ControllerHover.workDetails, isVisible: false);
+      _controllerHover.setVisibility(
+        name: ControllerHover.layoutDetailsForm,
+        isVisible: true,
+      );
+      _controllerHover.setVisibility(
+        name: ControllerHover.workDetails,
+        isVisible: false,
+      );
     }
   }
-
-/*
-  List<Widget> _createActivityWidgets() {
-    var widget = <Widget>[];
-    for (var activity in widget.activities) {
-      if (activity is StateNote) {
-        widget.add(LayoutActivity(model: ActivityWidgetConstructorNote(activity: activity)));
-      } else if (activity is StateWork) {
-        widget.add(LayoutActivity(model: ActivityWidgetConstructorWork(activity: activity)));
-      }
-    }
-    return widget;
-  }
-*/
 
   //#endregion
 
   //#region FIELDS
 
-  late final ControllerUser _userController;
-  late final ControllerWork _workController;
-  late final ControllerWorkTypes _workTypesController;
-  late final ControllerActivityList _activityListController;
-  late final ControllerActivity _activityController;
-  late final ControllerTabBar _controllerTabBar;
-  late final CoordinatorLogin _coordinatorLogin;
   late final TabController _tabController;
+  late final ControllerTabBar _controllerTabBar;
   final ControllerHover _controllerHover = ControllerHover();
-  final ControllerNotifications _notificationsController = ControllerNotifications();
-  static bool _isLoggedIn = false;
+  late final Future _initialiseData;
+  bool _isLoggedIn = false;
+  bool _isStateInitialised = false;
+  final _modelState = StateModel();
+  final _stateApplication = StateApplication();
+  late final ControllerWork _workController;
+  late final ControllerActivityList _activityListController;
 
   //#endregion
 }
-

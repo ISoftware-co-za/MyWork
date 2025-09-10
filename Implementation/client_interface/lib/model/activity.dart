@@ -9,6 +9,7 @@ import '../service/update_entity.dart';
 import 'model_property.dart';
 import 'model_property_context.dart';
 import 'validator_base.dart';
+import 'validator_first_last_name.dart';
 
 enum ActivityState {
   idle,
@@ -53,16 +54,17 @@ class Activity extends PropertyOwner {
     this.workId,
     String what,
     ActivityState state,
+    DateTime? dueDate,
+    Person? recipient,
     String? why,
     String? notes,
-    DateTime? dueDate,
-    Person? recipient
   ) : super(context) {
     _context = context;
-    _initialiseInstance(what, state, why, notes, dueDate, recipient);
+    _initialiseInstance(what, state, dueDate, recipient, why, notes);
   }
 
-  Activity.create(ModelPropertyContext context, String workId) : super(context) {
+  Activity.create(ModelPropertyContext context, String workId)
+    : super(context) {
     _context = context;
     id = '';
     this.workId = workId;
@@ -73,6 +75,7 @@ class Activity extends PropertyOwner {
     return what.validate() &&
         state.validate() &&
         dueDate.validate() &&
+        recipient.validate() &&
         why.validate() &&
         notes.validate();
   }
@@ -81,9 +84,10 @@ class Activity extends PropertyOwner {
     var request = RequestCreateActivity(
       what: what.value,
       state: state.value.name,
+      dueDate: DataConversionModelToService.dateTimeToDateString(dueDate.value),
+      recipientId: recipient.value == null ? null : recipient.value!.id,
       why: why.value.isEmpty ? null : why.value,
       notes: notes.value.isEmpty ? null : notes.value,
-      dueDate: DataConversionModelToService.dateTimeToDateString(dueDate.value),
     );
 
     var response = await _serviceClient.create(workId, request);
@@ -112,13 +116,18 @@ class Activity extends PropertyOwner {
     await _serviceClient.delete(workId, id);
   }
 
+  @override
+  String mapPropertyToUpdateRequestProperty(String name) {
+    return (name == 'recipient') ? 'recipientId' : name;
+  }
+
   void _initialiseInstance(
     String what,
     ActivityState state, [
+    DateTime? dueDate,
+    Person? recipient,
     String? why,
     String? notes,
-    DateTime? dueDate,
-        Person? person,
   ]) {
     if (why == null) {
       why = '';
@@ -139,7 +148,7 @@ class Activity extends PropertyOwner {
     );
     this.state = ModelProperty(context: _context, value: state);
     this.dueDate = ModelProperty(context: _context, value: dueDate);
-    this.recipient = ModelProperty(context: context, value: person);
+    this.recipient = ModelProperty(context: context, value: recipient, validators: [ValidatorFirstLastName()]);
     this.why = ModelProperty(
       context: _context,
       value: why,

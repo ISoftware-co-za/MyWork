@@ -36,14 +36,26 @@ class ControlHeader extends StatelessWidget {
                   valueListenable: _controller.hasChanges,
                   builder: (context, value, child) {
                     if (_controller.hasChanges.value) {
-                      return LayoutAcceptReject(onAccept: () => _controller.onAcceptUpdates(), onReject: () => _controller.onClose());
+                      return LayoutAcceptReject(
+                        onAccept: () => Executor.runCommandAsync(
+                          'LayoutAcceptReject.onAccept',
+                          'LayoutDialogPeople',
+                          () => _controller.onAcceptUpdates(),
+                        ),
+
+                        onReject: () => Executor.runCommand(
+                          'LayoutAcceptReject.onReject',
+                          'LayoutDialogPeople',
+                          () => _controller.onClose(),
+                        ),
+                      );
                     } else {
                       return ControlIconButtonLarge(
                         icon: Icon(Icons.close),
                         onPressed: () => Executor.runCommand(
                           'close',
                           'LayoutDialogPeople',
-                            () => _controller.onClose(),
+                          () => _controller.onClose(),
                         ),
                       );
                     }

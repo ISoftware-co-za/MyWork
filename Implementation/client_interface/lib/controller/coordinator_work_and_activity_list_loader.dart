@@ -17,6 +17,7 @@ class CoordinatorWorkActivityListLoader extends CoordinatorBase {
       return;
     }
     workController.newWork();
+    activityController.selectWork(workController.selectedWork.value);
     activityController.emptyActivityList();
   }
 
@@ -26,7 +27,8 @@ class CoordinatorWorkActivityListLoader extends CoordinatorBase {
     }
     await work.loadDetails();
     workController.selectWork(work);
-    await activityController.loadActivitiesIfRequired(work);
+    activityController.selectWork(work);
+    await activityController.loadActivitiesIfRequired();
   }
 
   Future onDeleteWork() async {

@@ -19,7 +19,7 @@ class PropertyOwner extends ChangeNotifier {
       if (propertyEntry.value.isChanged) {
         updatedProperties.add(
           UpdateEntityProperty(
-            name: propertyEntry.key,
+            name: mapPropertyToUpdateRequestProperty(propertyEntry.key),
             value: propertyEntry.value.value,
           ),
         );
@@ -31,8 +31,12 @@ class PropertyOwner extends ChangeNotifier {
   void invalidate(Map<String, List<String>> errors) {
     for (var entry in errors.entries) {
       assert(properties[entry.key] != null);
-      properties[entry.key]?.invalidate(entry.value.first);
+      properties[entry.key]?.setInvalidMessage(entry.value.first);
     }
+  }
+
+  String mapPropertyToUpdateRequestProperty(String name) {
+    return name;
   }
 }
 
@@ -55,7 +59,7 @@ class ModelProperty<T> extends PropertyChangeNotifier {
 
   T get value => _value;
   set value(T value) {
-    if (onValueSet(value) && _textValueBase != null) {
+    if (setValueWithNotification(value) && _textValueBase != null) {
       _textValueBase.onValueSet(value);
     }
   }
@@ -67,6 +71,7 @@ class ModelProperty<T> extends PropertyChangeNotifier {
     if (_invalidMessage != value) {
       _invalidMessage = value;
       notifyPropertyChange("invalidMessage");
+      debugPrint("_invalidMessage = $_invalidMessage");
     }
   }
 
@@ -96,11 +101,13 @@ class ModelProperty<T> extends PropertyChangeNotifier {
     _updatePropertyChanged();
   }
 
-  bool onValueSet(T newValue) {
+  bool setValueWithNotification(T newValue, {bool ignorePropertyChanged = false}) {
     if (_value != newValue) {
       _value = newValue;
-      setInvalidMessage(_validation.validate(input: _value.toString()));
-      _updatePropertyChanged();
+      validate();
+      if (ignorePropertyChanged == false) {
+        _updatePropertyChanged();
+      }
       notifyPropertyChange("value");
       return true;
     }
@@ -112,10 +119,6 @@ class ModelProperty<T> extends PropertyChangeNotifier {
       setInvalidMessage(_validation.validate(input: _value, forceErrors: true));
     }
     return isValid;
-  }
-
-  void invalidate(String message) {
-    setInvalidMessage(message);
   }
 
   void acceptChanged() {

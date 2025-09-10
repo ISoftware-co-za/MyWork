@@ -1,4 +1,4 @@
-namespace ClientService.Activity;
+namespace ClientService.Activities;
 
 public enum ActivityState
 {

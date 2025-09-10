@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace ClientService.Activity;
+namespace ClientService.Activities;
 
 public record class DocumentActivity
 {
@@ -13,6 +13,9 @@ public record class DocumentActivity
 
     [BsonElement("work_id")]
     public ObjectId WorkId { get; init; }
+    
+    [BsonElement("recipient_id")]
+    public ObjectId? RecipientId { get; init; }
 
     [BsonElement("what")]
     public required string What { get; init; }
