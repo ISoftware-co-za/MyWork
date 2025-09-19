@@ -4,7 +4,6 @@ import 'package:client_interfaces1/model/provider_state_model.dart';
 import 'package:client_interfaces1/tabs/page_activities/controller/controller_activity_list.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'controller/coordinator_work_and_activity_list_loader.dart';
@@ -28,9 +27,14 @@ import 'tabs/layout_tab_bar.dart';
 import 'tabs/page_details/widget/layout_page_details.dart';
 import 'ui_toolkit/hover.dart';
 
-Future<void> main() async {
+void main() {
   // TODO: Remove this line before production
   // debugPaintSizeEnabled = true;
+  Intl.defaultLocale = 'en_ZA';
+  initializeDateFormatting(Intl.defaultLocale, null);
+  setupServiceClients();
+  runApp(const MyApp());
+  /*
   await SentryFlutter.init(
     (options) {
       options.dsn =
@@ -49,6 +53,7 @@ Future<void> main() async {
       runApp(SentryWidget(child: MyApp()));
     },
   );
+  */
 }
 
 class MyApp extends StatelessWidget {

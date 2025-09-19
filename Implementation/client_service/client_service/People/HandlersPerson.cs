@@ -25,9 +25,9 @@ public static class HandlersPerson
         List<ValidatedProperty> properties =
         [
             new ValidatedProperty(nameof(PersonDetails.FirstName),
-                [new RequiredAttribute(), new StringLengthAttribute(maximumLength: 80)]),
+                [new RequiredAttribute(), new StringLengthAttribute(maximumLength: 30)]),
             new ValidatedProperty(nameof(PersonDetails.LastName),
-                [new RequiredAttribute(), new StringLengthAttribute(maximumLength: 80)])
+                [new RequiredAttribute(), new StringLengthAttribute(maximumLength: 30)])
         ];
         requestValidation.RegisterValidation(new ValidatedRequest(
             typeof(PersonDetails), 
@@ -45,11 +45,12 @@ public static class HandlersPerson
     {
         return await Executor.RunProcessAsync($"{CollectionName}.Find(filter).ToListAsync()", Executor.CategoryMongoDB, "Unable to obtain the list of people.", async () =>
         {
-            var people = new List<Person>(); 
             IMongoCollection<DocumentPerson> personCollection = database.GetCollection<DocumentPerson>(CollectionName);
             ObjectId userId = ObjectId.Parse(httpRequest.GetSid());
             var filter = Builders<DocumentPerson>.Filter.Eq(p => p.UserId, userId); 
-            var personDocuments = await personCollection.Find(filter).ToListAsync(); 
+            var personDocuments = await personCollection.Find(filter).ToListAsync();
+            
+            var people = new List<Person>(); 
             foreach (var document in personDocuments)
             {
                 var personDetailsItem = new Person
@@ -76,7 +77,6 @@ public static class HandlersPerson
             {
                 ModifyPeopleResponse response = CreateEmptyRequest(request);
                 bool hasErrors = ValidateModifyPeopleRequest(request, requestValidation, response);
-
                 if (hasErrors)
                     return Results.Ok(response);
 
@@ -221,7 +221,7 @@ public static class HandlersPerson
         {
             var filter = Builders<DocumentPerson>.Filter.Eq(p => p.Id, ObjectId.Parse(person.Id));
             var updateDefs = new List<UpdateDefinition<DocumentPerson>>();
-            foreach (var prop in person.UpdatedProperties) // PropertiesToUpdate: array of { Name, Value }
+            foreach (var prop in person.UpdatedProperties)
                 updateDefs.Add(Builders<DocumentPerson>.Update.Set(prop.NameInPascalCase(), prop.Value));
             var update = Builders<DocumentPerson>.Update.Combine(updateDefs);
             updates.Add(new UpdateOneModel<DocumentPerson>(filter, update));
@@ -251,11 +251,10 @@ public static class HandlersPerson
         var removedRecipientsFilter = Builders<DocumentActivity>.Filter.Or(filters);
         var removedRecipientsUpdate = Builders<DocumentActivity>.Update.Set(p => p.RecipientId, null);
         IMongoCollection<DocumentActivity> activityCollection = database.GetCollection<DocumentActivity>("activities");
-        UpdateResult unlinkedRecipientResults = await activityCollection.UpdateManyAsync(removedRecipientsFilter, removedRecipientsUpdate);
-        Console.WriteLine($"Unlinked {unlinkedRecipientResults.ModifiedCount} activities from deleted people.");
+        await activityCollection.UpdateManyAsync(removedRecipientsFilter, removedRecipientsUpdate);
         
         var deletes = new List<WriteModel<DocumentPerson>>();
-        foreach (var id in deletePeopleIds) // idsToDelete: array of string IDs
+        foreach (var id in deletePeopleIds) 
         {
             var filter = Builders<DocumentPerson>.Filter.Eq(p => p.Id, ObjectId.Parse(id));
             deletes.Add(new DeleteOneModel<DocumentPerson>(filter));

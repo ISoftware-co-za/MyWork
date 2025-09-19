@@ -3,14 +3,14 @@ import 'package:flutter/foundation.dart';
 
 import '../../../controller/controller_base.dart';
 import '../../../model/activity.dart';
-import '../../../model/model_property_context.dart';
+import '../../../model/model_property_change_context.dart';
 import '../../../model/person_list.dart';
 import '../../../model/work.dart';
 
 class ControllerActivityList extends ControllerBase {
   final ValueNotifier<ActivityList?> activityList =
       ValueNotifier<ActivityList?>(null);
-  final ModelPropertyContext modelPropertyContext = ModelPropertyContext(
+  final ModelPropertyChangeContext modelPropertyContext = ModelPropertyChangeContext(
     name: 'ActivityList',
   );
   late final ValueListenable<Activity?> selectedActivity;

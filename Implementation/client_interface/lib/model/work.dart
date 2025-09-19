@@ -1,4 +1,4 @@
-import 'package:client_interfaces1/model/model_property_context.dart';
+import 'package:client_interfaces1/model/model_property_change_context.dart';
 import 'package:get_it/get_it.dart';
 
 import '../service/service_client_base.dart';
@@ -19,12 +19,12 @@ class Work extends PropertyOwner {
 
   bool get isNew => id.isEmpty;
 
-  Work.create(ModelPropertyContext context) : super(context) {
+  Work.create(ModelPropertyChangeContext context) : super(context) {
     id = '';
     _initialiseInstance('', null, false, null);
   }
 
-  Work({ required ModelPropertyContext context,
+  Work({ required ModelPropertyChangeContext context,
     required this.id,
     required String name,
     required String? reference,
@@ -69,7 +69,7 @@ class Work extends PropertyOwner {
   Future loadDetails() async {
     if (!_isLoaded) {
       WorkDetailsResponse response = await _serviceClient.loadDetails(id);
-      description.setValue(DataConversionServiceToModel.nullToEmptyString(response.details.description));
+      description.setValueWithNotification(DataConversionServiceToModel.nullToEmptyString(response.details.description), ignoreNotification: true);
       _isLoaded = true;
     }
   }

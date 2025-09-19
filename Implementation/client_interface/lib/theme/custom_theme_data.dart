@@ -24,6 +24,7 @@ class CustomThemeData with CustomThemeCommon {
           ThemeExtensionDialogPeople(
               width: 800,
               height: 500,
+              selectionColumnWidth: 40,
               commandColumnWidth: 56,
               dialogBaseTheme: CustomThemeCommon.dialogBaseTheme),
           CustomThemeCommon.formTheme,

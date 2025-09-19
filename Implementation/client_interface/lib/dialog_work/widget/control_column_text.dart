@@ -1,15 +1,15 @@
 part of dialog_work;
 
 class _DialogWorkControlColumnText extends StatefulWidget {
-  _DialogWorkControlColumnText({required ColumnText column, required TextStyle labelStyle})
+  _DialogWorkControlColumnText({required ColumnText column, required ThemeExtensionDialogBase theme})
       : _column = column,
-        _labelStyle = labelStyle;
+        _theme = theme;
 
   @override
   State<_DialogWorkControlColumnText> createState() => _DialogWorkControlColumnTextState();
 
   final ColumnText _column;
-  final TextStyle _labelStyle;
+  final ThemeExtensionDialogBase _theme;
 }
 
 class _DialogWorkControlColumnTextState extends State<_DialogWorkControlColumnText> {
@@ -42,23 +42,10 @@ class _DialogWorkControlColumnTextState extends State<_DialogWorkControlColumnTe
 
           return ControlColumnBase(
               column: widget._column,
-              labelStyle: widget._labelStyle,
+              labelStyle: widget._theme.tableHeaderTextStyle,
               child: TextField(
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(8),
-                  filled: true,
-                  fillColor: Colors.white,
-                  constraints: BoxConstraints(maxHeight: 28),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black, width: 2), borderRadius: BorderRadius.zero),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.grey,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.zero),
-                ),
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                decoration: widget._theme.filterInputDecoration,
+                style:  widget._theme.filterTextStyle,
                 controller: _controller,
                 onChanged: (text) {
                   widget._column.filterValue.value = text;

@@ -1,4 +1,5 @@
 import 'package:client_interfaces1/dialog_people/widget/control_person_selected.dart';
+import 'package:client_interfaces1/execution/executor.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/theme_extension_dialog_people.dart';
@@ -6,10 +7,9 @@ import '../../theme/theme_extension_text_field.dart';
 import '../../ui_toolkit/control_icon_button_reject.dart';
 import '../../ui_toolkit/control_text_field.dart';
 import '../controller/controller_dialog_people.dart';
-import '../controller/list_item_new_person.dart';
 
-class ControlNewPerson extends StatelessWidget {
-  ControlNewPerson({
+class LayoutAddedPerson extends StatelessWidget {
+  LayoutAddedPerson({
     required ControllerDialogPeople controller,
     required ListItemNewPerson listItem,
     required ThemeExtensionDialogPeople dialogTheme,
@@ -26,7 +26,7 @@ class ControlNewPerson extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ControlPersonSelected(controller: _controller, person: _person),
+        ControlPersonSelected(controller: _controller, person: _person.person, dialogTheme: _dialogTheme),
         SizedBox(width: _dialogTheme.dialogBaseTheme.horizontalSpacing),
         Expanded(
           child: ControlTextField(
@@ -49,7 +49,7 @@ class ControlNewPerson extends StatelessWidget {
             child: ControlIconButtonReject(
               Icons.close,
               onPressed: () {
-                _controller.onRemoveNewPerson(_person);
+                Executor.runCommand('LayoutAddedPerson.onPressed', 'LayoutDialogPeople', () => _person.onDelete);
               },
             ),
           ),

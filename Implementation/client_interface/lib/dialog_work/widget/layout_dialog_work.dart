@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../theme/custom_theme_data_app_header.dart';
 import '../../execution/executor.dart';
 import '../../model/work_type_list.dart';
+import '../../theme/theme_extension_dialog_base.dart';
 import '../../theme/theme_extension_dialog_work.dart';
 import '../../theme/theme_extension_dialog_work_types_filter.dart';
 import '../../ui_toolkit/control_icon_button_large.dart';
@@ -46,10 +47,10 @@ class LayoutDialogWork extends StatelessWidget {
               decoration: BoxDecoration(
                   color: theme.dialogBaseTheme.backgroundColor,
                   border: Border.all(
-                    color: Color.fromARGB(255, 50, 50, 50),
-                    width: 4.0,
+                    color: theme.dialogBaseTheme.borderColor,
+                    width: theme.dialogBaseTheme.borderWidth,
                   ),
-                  boxShadow: [BoxShadow(color: Color.fromARGB(255, 60, 60, 60), blurRadius: 6.0, offset: Offset(6, 6))]),
+                  boxShadow: [theme.dialogBaseTheme.dialogShadow]),
               child: Column(children: [
                 _DialogWorkLayoutHeader(theme: theme),
                 _DialogWorkLayoutTableHeader(controller: _controller, workTypes: _workTypes, theme: theme),

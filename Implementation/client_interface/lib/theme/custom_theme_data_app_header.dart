@@ -68,7 +68,6 @@ class CustomThemeDataAppHeader with CustomThemeCommon {
         ThemeExtensionDialogWorkTypesFilter(
           width: 300,
           height: 360,
-          padding: CustomThemeCommon.paddingNarrow,
           backgroundColor: Colors.black,
           headerTextStyle: const TextStyle(
             fontSize: 20,

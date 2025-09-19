@@ -1,4 +1,4 @@
-import 'package:client_interfaces1/model/model_property_context.dart';
+import 'package:client_interfaces1/model/model_property_change_context.dart';
 import 'package:flutter/foundation.dart';
 
 import 'coordinator_base.dart';
@@ -7,7 +7,7 @@ class CoordinatorWorkAndActivityChange extends CoordinatorBase {
 
   late final ValueListenable<bool> isChanged;
 
-  CoordinatorWorkAndActivityChange(ModelPropertyContext workPropertyContext, ModelPropertyContext activityPropertyContext)
+  CoordinatorWorkAndActivityChange(ModelPropertyChangeContext workPropertyContext, ModelPropertyChangeContext activityPropertyContext)
       : _workPropertyContext = workPropertyContext,
         _activityPropertyContext = activityPropertyContext {
     isChanged = _isChanged;
@@ -21,7 +21,7 @@ class CoordinatorWorkAndActivityChange extends CoordinatorBase {
         _activityPropertyContext.hasChanges.value;
   }
 
-  final ModelPropertyContext _workPropertyContext;
-  final ModelPropertyContext _activityPropertyContext;
+  final ModelPropertyChangeContext _workPropertyContext;
+  final ModelPropertyChangeContext _activityPropertyContext;
   final ValueNotifier<bool> _isChanged = ValueNotifier<bool>(false);
 }

@@ -1,3 +1,4 @@
+import 'package:client_interfaces1/execution/executor.dart';
 import 'package:flutter/material.dart';
 
 import '../../ui_toolkit/control_icon_button_large.dart';
@@ -11,7 +12,8 @@ class ControlAddPerson extends StatelessWidget {
     return Center(
       child: ControlIconButtonLarge(icon: Icon(Icons.add),
         onPressed: () {
-          _controller.onAddPerson();
+          Executor.runCommand('ControlAddPerson.onPressed', 'LayoutDialogPeople', _controller.onAddPerson);
+          ;
         }
     ));
   }

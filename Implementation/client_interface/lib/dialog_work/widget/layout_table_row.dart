@@ -76,7 +76,7 @@ class _DialogWorkLayoutTableRowState extends State<_DialogWorkLayoutTableRow> {
           });
         },
         child: Container(
-          padding: EdgeInsets.fromLTRB(widget._theme.dialogBaseTheme.padding, widget._theme.dialogBaseTheme.verticalSpacing/2, widget._theme.dialogBaseTheme.padding, widget._theme.dialogBaseTheme.verticalSpacing/2),
+          padding: EdgeInsets.symmetric(vertical: widget._theme.dialogBaseTheme.verticalSpacing/2, horizontal: widget._theme.dialogBaseTheme.paddingWide),
           color: (_isMouseOver) ? Colors.grey[300] : Colors.white,
           child: Row(children: widgets),
         ),

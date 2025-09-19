@@ -9,7 +9,7 @@ class _DialogWorkLayoutHeader extends StatelessWidget {
     return Container(
       color: _theme.dialogBaseTheme.dialogHeaderColor,
       child: Padding(
-        padding: EdgeInsets.all(_theme.dialogBaseTheme.padding),
+        padding: _theme.dialogBaseTheme.edgeInsetsWide,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

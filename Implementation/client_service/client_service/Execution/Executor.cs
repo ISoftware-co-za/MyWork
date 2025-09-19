@@ -13,7 +13,7 @@ public static class Executor
     
     #region PROPERTIES
 
-    public static IObservabilityFactory ObservabilityFactory { get; set; } = new ObservabilityFactorySentry();
+    private static IObservabilityFactory ObservabilityFactory { get; set; } = new ObservabilityFactoryDebug();
     
     #endregion
     
