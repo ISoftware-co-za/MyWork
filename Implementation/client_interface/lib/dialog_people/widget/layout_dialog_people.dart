@@ -33,16 +33,10 @@ class LayoutDialogPeople extends StatelessWidget {
           decoration: BoxDecoration(
             color: themeDialogPeople.dialogBaseTheme.backgroundColor,
             border: Border.all(
-              color: Color.fromARGB(255, 50, 50, 50),
-              width: 4.0,
+              color: themeDialogPeople.dialogBaseTheme.borderColor,
+              width: themeDialogPeople.dialogBaseTheme.borderWidth,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromARGB(255, 60, 60, 60),
-                blurRadius: 6.0,
-                offset: Offset(6, 6),
-              ),
-            ],
+            boxShadow: [themeDialogPeople.dialogBaseTheme.dialogShadow],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

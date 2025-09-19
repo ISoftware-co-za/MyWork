@@ -1,9 +1,8 @@
-import 'package:client_interfaces1/dialog_people/controller/controller_dialog_people.dart';
-import 'package:client_interfaces1/ui_toolkit/form/form.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/theme_extension_dialog_people.dart';
-import '../controller/list_item_person.dart';
+import '../../ui_toolkit/form/form.dart';
+import '../controller/controller_dialog_people.dart';
 import 'control_person_command.dart';
 import 'control_person_selected.dart';
 
@@ -45,7 +44,7 @@ class _LayoutPersonState extends State<LayoutPerson> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ControlPersonSelected(controller: widget._controller, person: widget._person),
+          ControlPersonSelected(controller: widget._controller, person: widget._person.person, dialogTheme: widget._dialogTheme),
           SizedBox(
             width: widget._dialogTheme.dialogBaseTheme.horizontalSpacing,
           ),
@@ -69,7 +68,6 @@ class _LayoutPersonState extends State<LayoutPerson> {
             ),
           ),
           ControlPersonCommand(
-            controller: widget._controller,
             person: widget._person,
             commandColumnWidth: widget._controlColumnWidth,
             isHot: _isHot,

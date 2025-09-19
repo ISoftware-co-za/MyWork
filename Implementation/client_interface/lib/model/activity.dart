@@ -7,7 +7,7 @@ import '../service/activity/service_client_activity.dart';
 import '../service/service_client_base.dart';
 import '../service/update_entity.dart';
 import 'model_property.dart';
-import 'model_property_context.dart';
+import 'model_property_change_context.dart';
 import 'validator_base.dart';
 import 'validator_first_last_name.dart';
 
@@ -49,7 +49,7 @@ class Activity extends PropertyOwner {
   bool get isNew => id.isEmpty;
 
   Activity(
-    ModelPropertyContext context,
+    ModelPropertyChangeContext context,
     this.id,
     this.workId,
     String what,
@@ -63,7 +63,7 @@ class Activity extends PropertyOwner {
     _initialiseInstance(what, state, dueDate, recipient, why, notes);
   }
 
-  Activity.create(ModelPropertyContext context, String workId)
+  Activity.create(ModelPropertyChangeContext context, String workId)
     : super(context) {
     _context = context;
     id = '';
@@ -180,7 +180,7 @@ class Activity extends PropertyOwner {
     };
   }
 
-  late final ModelPropertyContext _context;
+  late final ModelPropertyChangeContext _context;
   ServiceClientActivity _serviceClient =
       GetIt.instance<ServiceClientActivity>();
 }

@@ -2,13 +2,23 @@ import 'package:flutter/foundation.dart';
 
 import '../model/model_property.dart';
 
-class ModelPropertyContext {
+class ModelPropertyChangeContext {
+
+  //#region PROPERTIES
 
   final String name;
   ValueNotifier<bool> hasChanges = ValueNotifier(false);
   int get changeCount => _changedProperties.length;
 
-  ModelPropertyContext({required this.name});
+  //#endregion
+
+  //#region CONSTRUCTION
+
+  ModelPropertyChangeContext({required this.name});
+
+  //#endregion
+
+  //#region METHODS
 
   void addChangedProperty(ModelProperty property) {
     _changedProperties.add(property);
@@ -32,5 +42,11 @@ class ModelPropertyContext {
     }
   }
 
+  //#endregion
+
+  //#region FIELDS
+
   final Set<ModelProperty> _changedProperties = {};
+
+  //#endregion
 }

@@ -14,7 +14,7 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
     List<Widget> columns = _createColumns();
     return Container(
       color: _theme.dialogBaseTheme.tableHeaderColor,
-      padding: EdgeInsets.symmetric(horizontal: _theme.dialogBaseTheme.padding, vertical: _theme.dialogBaseTheme.verticalSpacing),
+      padding: EdgeInsets.symmetric(horizontal: _theme.dialogBaseTheme.paddingWide, vertical: _theme.dialogBaseTheme.verticalSpacing),
       child: Row(children: columns),
     );
   }
@@ -25,7 +25,7 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
       var column = _controller.columns.columns[index];
       Widget columnWidget;
       if (column is ColumnText) {
-        columnWidget = _DialogWorkControlColumnText(column: column, labelStyle: _theme.dialogBaseTheme.tableHeaderTextStyle);
+        columnWidget = _DialogWorkControlColumnText(column: column, theme: _theme.dialogBaseTheme);
       } else if (column is ColumnList) {
         columnWidget = _DialogWorkControlColumnList(column: column, labelStyle: _theme.dialogBaseTheme.tableHeaderTextStyle);
       } else if (column is ColumnBoolean) {

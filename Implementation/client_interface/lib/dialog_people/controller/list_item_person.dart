@@ -1,12 +1,9 @@
-import 'package:client_interfaces1/dialog_people/controller/controller_dialog_people.dart';
-import 'package:flutter/cupertino.dart';
-
-import 'list_item_person_base.dart';
+part of people_dialog_controller;
 
 class ListItemPerson extends ListItemPersonBase {
   final ValueNotifier<bool> isChanged = ValueNotifier<bool>(false);
 
-  ListItemPerson(ControllerDialogPeople controller, super.person) : _controller = controller{
+  ListItemPerson(super.person, super.controller) {
     person.firstName.addListener(onPropertyChanged);
     person.lastName.addListener(onPropertyChanged);
     _setIsChanged();
@@ -28,6 +25,4 @@ class ListItemPerson extends ListItemPersonBase {
   void _setIsChanged() {
     isChanged.value = person.firstName.isChanged || person.lastName.isChanged;
   }
-
-  final ControllerDialogPeople _controller;
 }

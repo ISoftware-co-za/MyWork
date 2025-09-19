@@ -67,7 +67,7 @@ class ControllerHover {
   }
 
   void _determineIfPointerOverWidget(_HoverableWidget widget, Offset lastPosition) {
-    if (widget.isVisible) {
+    if (widget.isVisible && widget.key.currentContext != null) {
       var renderBox = widget.key.currentContext!.findRenderObject() as RenderBox?;
       if (renderBox != null) {
         var position = renderBox.globalToLocal(lastPosition);

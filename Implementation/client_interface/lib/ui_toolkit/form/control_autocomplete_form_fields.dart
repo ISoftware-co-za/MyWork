@@ -92,7 +92,7 @@ class ControlAutocompleteFormField extends StatelessWidget {
             null,
             () => dataSource.onItemSelected(selection),
           );
-          property.setValue(selection);
+          property.setValueWithNotification(selection, ignoreNotification: true);
         },
         fieldViewBuilder:
             (

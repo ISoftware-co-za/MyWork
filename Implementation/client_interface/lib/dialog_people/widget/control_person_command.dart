@@ -1,19 +1,17 @@
-import 'package:client_interfaces1/dialog_people/controller/controller_dialog_people.dart';
-import 'package:client_interfaces1/dialog_people/controller/list_item_person.dart';
+import 'package:client_interfaces1/execution/executor.dart';
 import 'package:flutter/material.dart';
 
 import '../../ui_toolkit/control_icon_button.dart';
 import '../../ui_toolkit/control_icon_button_reject.dart';
+import '../controller/controller_dialog_people.dart';
 
 class ControlPersonCommand extends StatelessWidget {
   const ControlPersonCommand({
-    required ControllerDialogPeople controller,
     required ListItemPerson person,
     required double commandColumnWidth,
     required bool isHot,
     super.key,
-  }) : _controller = controller,
-       _person = person,
+  }) : _person = person,
        _commandColumnWidth = commandColumnWidth,
        _isHot = isHot;
 
@@ -26,14 +24,12 @@ class ControlPersonCommand extends StatelessWidget {
         if (_person.isChanged.value) {
           child = ControlIconButtonReject(
             Icons.close,
-            onPressed: _person.onRejectChanges,
+            onPressed: () => Executor.runCommand('ControlIconButtonReject.close.onPressed', 'LayoutDialogPeople', _person.onRejectChanges)
           );
         } else if (_isHot) {
           child = ControlIconButton(
             Icons.delete,
-            onPressed: () {
-              _controller.onDeletePerson(_person);
-            },
+            onPressed: () => Executor.runCommand('ControlPersonCommand.delete.onPressed', 'LayoutDialogPeople', _person.onDelete)
           );
         } else {
           child = SizedBox.shrink();
@@ -46,7 +42,6 @@ class ControlPersonCommand extends StatelessWidget {
     );
   }
 
-  final ControllerDialogPeople _controller;
   final ListItemPerson _person;
   final double _commandColumnWidth;
   final bool _isHot;

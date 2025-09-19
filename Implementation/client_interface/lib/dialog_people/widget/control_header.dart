@@ -19,7 +19,7 @@ class ControlHeader extends StatelessWidget {
     return Container(
       color: _theme.dialogBaseTheme.dialogHeaderColor,
       child: Padding(
-        padding: EdgeInsets.all(_theme.dialogBaseTheme.padding),
+        padding: _theme.dialogBaseTheme.edgeInsetsWide,
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -53,7 +53,7 @@ class ControlHeader extends StatelessWidget {
                       return ControlIconButtonLarge(
                         icon: Icon(Icons.close),
                         onPressed: () => Executor.runCommand(
-                          'close',
+                          'ControlIconButtonLarge.close.onPressed',
                           'LayoutDialogPeople',
                           () => _controller.onClose(),
                         ),

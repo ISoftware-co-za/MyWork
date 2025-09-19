@@ -1,5 +1,5 @@
 import 'model_property.dart';
-import 'model_property_context.dart';
+import 'model_property_change_context.dart';
 import 'state_activity_base.dart';
 
 enum TaskState {
@@ -18,7 +18,7 @@ class StateTask {
   final List<StateActivityBase> activities = [];
 
   StateTask({
-    required ModelPropertyContext context,
+    required ModelPropertyChangeContext context,
     String? what,
     String? why,
     String? notes,

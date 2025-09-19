@@ -1,5 +1,9 @@
-import 'list_item_person_base.dart';
+part of people_dialog_controller;
 
 class ListItemNewPerson extends ListItemPersonBase {
-  ListItemNewPerson(super.person);
+  ListItemNewPerson(super.person, super.controller);
+
+  void onDelete() {
+    _controller.onRemoveAddedPerson(this);
+  }
 }

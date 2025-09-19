@@ -6,22 +6,40 @@ import 'theme_extension_control_icon_button.dart';
 import 'theme_extension_dialog_base.dart';
 
 mixin CustomThemeCommon {
-  static const double paddingNarrow = 8.0;
   static const double paddingWide = 16.0;
+  static const double paddingNarrow = 8.0;
   static Color stealBlue = Color.fromARGB(255, 70, 130, 180);
 
   static final ThemeExtensionDialogBase dialogBaseTheme =
       ThemeExtensionDialogBase(
-        padding: paddingWide,
+        paddingWide: paddingWide,
+        paddingNarrow: paddingNarrow,
+        edgeInsetsWide: EdgeInsets.all(paddingWide),
+        edgeInsetsNarrow: EdgeInsets.all(paddingNarrow),
         horizontalSpacing: 8,
         verticalSpacing: 8,
         backgroundColor: Colors.white,
+        borderColor: Color.fromARGB(255, 50, 50, 50),
+        borderWidth: 4,
+        dialogShadow: BoxShadow(color: Color.fromARGB(255, 60, 60, 60), blurRadius: 6.0, offset: Offset(6, 6)),
         dialogHeaderColor: Color.fromARGB(255, 200, 200, 200),
         dialogHeaderTextStyle: TextStyle(
           fontSize: 28,
           decoration: TextDecoration.none,
           color: Colors.black,
         ),
+        filterInputDecoration: InputDecoration(
+          contentPadding: EdgeInsets.all(8),
+          filled: true,
+          fillColor: Colors.white,
+          constraints: BoxConstraints(maxHeight: 28),
+          border: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black, width: 2), borderRadius: BorderRadius.zero),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey, width: 2),
+              borderRadius: BorderRadius.zero),
+        ),
+        filterTextStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
         tableHeaderColor: Colors.black,
         tableHeaderTextStyle: TextStyle(fontSize: 16, color: Colors.white),
         normalCellTextStyle: TextStyle(fontSize: 16, color: Colors.black),

@@ -1,4 +1,4 @@
-import 'package:client_interfaces1/model/model_property_context.dart';
+import 'package:client_interfaces1/model/model_property_change_context.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
@@ -12,7 +12,7 @@ class ActivityList extends ChangeNotifier {
   final String workId;
   final List<Activity> items = [];
 
-  ActivityList(ModelPropertyContext modelPropertyContext, this.workId)
+  ActivityList(ModelPropertyChangeContext modelPropertyContext, this.workId)
     : _modelPropertyContext = modelPropertyContext;
 
   Future loadAll(PersonList people) async {
@@ -50,7 +50,7 @@ class ActivityList extends ChangeNotifier {
     notifyListeners();
   }
 
-  void unlinkDeletedPeople(List<String> ids) {
+  void unlinkDeletedRecipients(List<String> ids) {
     for(final Activity activity in items) {
       if (activity.recipient.value != null && ids.contains(activity.recipient.value!.id)) {
           activity.recipient.setValueWithNotification(null, ignorePropertyChanged: true);
@@ -58,7 +58,7 @@ class ActivityList extends ChangeNotifier {
     }
   }
 
-  late final ModelPropertyContext _modelPropertyContext;
+  late final ModelPropertyChangeContext _modelPropertyContext;
   final ServiceClientActivity _serviceClient =
       GetIt.instance<ServiceClientActivity>();
 }

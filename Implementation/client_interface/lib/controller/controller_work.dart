@@ -1,7 +1,7 @@
 
 import 'package:flutter/foundation.dart';
 
-import '../model/model_property_context.dart';
+import '../model/model_property_change_context.dart';
 import '../model/work_list.dart';
 import '../model/work.dart';
 import 'controller_base.dart';
@@ -10,7 +10,7 @@ enum ControllerWorkState { noWork, newWork, existingWork }
 
 class ControllerWork extends ControllerBase {
 
-  final ModelPropertyContext modelPropertyContext = ModelPropertyContext(name: 'Work');
+  final ModelPropertyChangeContext modelPropertyContext = ModelPropertyChangeContext(name: 'Work');
   late final WorkList workList;
   ValueListenable<Work?> get selectedWork => _selectedWork;
   bool get hasWork => selectedWork.value != null;

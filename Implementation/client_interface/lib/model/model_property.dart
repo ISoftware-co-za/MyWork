@@ -2,16 +2,16 @@ import 'package:client_interfaces1/model/text_value_for_date.dart';
 import 'package:flutter/foundation.dart';
 
 import '../service/update_entity.dart';
-import 'model_property_context.dart';
+import 'model_property_change_context.dart';
 import 'validator_base.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 
 class PropertyOwner extends ChangeNotifier {
-  final ModelPropertyContext context;
+  final ModelPropertyChangeContext context;
   late final Map<String, ModelProperty> properties;
 
-  PropertyOwner(ModelPropertyContext context) : context = context;
+  PropertyOwner(ModelPropertyChangeContext context) : context = context;
 
   List<UpdateEntityProperty> listUpdatedProperties() {
     var updatedProperties = <UpdateEntityProperty>[];
@@ -54,8 +54,7 @@ class PropertyChangeNotifier extends ChangeNotifier {
 //----------------------------------------------------------------------------------------------------------------------
 
 class ModelProperty<T> extends PropertyChangeNotifier {
-
-  final ModelPropertyContext context;
+  final ModelPropertyChangeContext context;
 
   T get value => _value;
   set value(T value) {
@@ -76,39 +75,37 @@ class ModelProperty<T> extends PropertyChangeNotifier {
   }
 
   String? _invalidMessage;
-
   bool get isChanged => _propertyChanged.isChanged;
-
   bool get hasValue => _value != null;
-
   bool get isValid => _invalidMessage == null;
-
   String get valueAsString => (_value != null) ? _value.toString() : '';
 
   ModelProperty({
-    required ModelPropertyContext context,
+    required ModelPropertyChangeContext context,
     required T value,
     List<Validator>? validators,
     TextValueBase<T>? textValueBase,
   }) : context = context,
-        _value = value,
+       _value = value,
        _currentValue = value,
        _validation = ValidatorCollection(validators),
        _textValueBase = textValueBase;
 
-  void setValue(T newValue) {
-    _currentValue = _value = newValue;
-    _updatePropertyChanged();
-  }
+  bool setValueWithNotification(
+    T newValue, {
+    bool ignorePropertyChanged = false,
+        bool ignoreNotification = false
 
-  bool setValueWithNotification(T newValue, {bool ignorePropertyChanged = false}) {
+  }) {
     if (_value != newValue) {
       _value = newValue;
       validate();
       if (ignorePropertyChanged == false) {
         _updatePropertyChanged();
       }
-      notifyPropertyChange("value");
+      if (ignoreNotification == false) {
+        notifyPropertyChange("value");
+      }
       return true;
     }
     return false;

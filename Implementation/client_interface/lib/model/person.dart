@@ -1,10 +1,13 @@
-import 'package:client_interfaces1/model/model_property_context.dart';
+import 'package:client_interfaces1/model/model_property_change_context.dart';
 import 'package:client_interfaces1/model/validator_base.dart';
 import 'package:client_interfaces1/service/update_entity.dart';
 
 import 'model_property.dart';
 
 class Person extends PropertyOwner implements UpdateEntityPropertyProvider, Comparable<Person> {
+
+  //#region PROPERTIES
+
   late String id;
   late final ModelProperty<String> firstName;
   late final ModelProperty<String> lastName;
@@ -13,17 +16,21 @@ class Person extends PropertyOwner implements UpdateEntityPropertyProvider, Comp
   bool get isNew => id.isEmpty;
   bool get isUpdated => firstName.isChanged || lastName.isChanged;
 
-  Person(ModelPropertyContext context, String id, String firstName, String lastName) : super(context) {
+  //#endregion
+
+  //#region CONSTRUCTION
+
+  Person(ModelPropertyChangeContext context, String id, String firstName, String lastName) : super(context) {
     this.id = id;
     _initialiseInstance(firstName, lastName);
   }
 
-  Person.create(ModelPropertyContext context) : super(context) {
+  Person.create(ModelPropertyChangeContext context) : super(context) {
     id = '';
     _initialiseInstance('', '');
   }
 
-  Person.createWithFullName(ModelPropertyContext context, String fullName) : super(context) {
+  Person.createWithFullName(ModelPropertyChangeContext context, String fullName) : super(context) {
     id = '';
     final List<String> words = fullName.split(' ');
     final String firstName = words.isNotEmpty ? words.first : '';
@@ -31,9 +38,17 @@ class Person extends PropertyOwner implements UpdateEntityPropertyProvider, Comp
     _initialiseInstance(firstName, lastName);
   }
 
+  //#endregion
+
+  //#region METHODS
+
   bool validate() {
     return firstName.validate() && lastName.validate();
   }
+
+  //#endregion
+
+  //#region OVERRIDES
 
   @override
   String toString() {
@@ -44,6 +59,10 @@ class Person extends PropertyOwner implements UpdateEntityPropertyProvider, Comp
   int compareTo(Person other) {
     return Comparable.compare(lastName.value, other.lastName.value);
   }
+
+  //#endregion
+
+  //#endregion PRIVATE METHODS
 
   void _initialiseInstance(String firstName, String lastName) {
     this.firstName = ModelProperty<String>(context: context, value: firstName, validators: [
@@ -61,4 +80,6 @@ class Person extends PropertyOwner implements UpdateEntityPropertyProvider, Comp
       'lastName': this.lastName,
     };
   }
+
+  //#endregion
 }

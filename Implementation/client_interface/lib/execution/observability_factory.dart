@@ -1,8 +1,8 @@
 import 'observability.dart';
-import 'observability_sentry.dart';
+import 'observability_debug.dart';
 
 class ObservabilityFactory {
   Observability createObservability() {
-    return ObservabilitySentry();
+    return ObservabilityDebug();
   }
 }
