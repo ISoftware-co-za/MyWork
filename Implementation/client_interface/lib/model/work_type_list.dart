@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 
-import '../service/user/service_client_user.dart';
+import '../service/users/service_client_user.dart';
 import 'work_type.dart';
 
 class WorkTypeList {
@@ -24,10 +24,10 @@ class WorkTypeList {
     return workTypes.where((element) => element.matchesFilter(lowerCaseFilter)).toList();
   }
 
-  Future add(String userID, WorkType workType) async {
-    ServiceClientUser serviceClient = GetIt.instance<ServiceClientUser>();
+  Future add(WorkType workType) async {
+    ServiceClientUsers serviceClient = GetIt.instance<ServiceClientUsers>();
     final request = RequestAddWorkType(workType.name);
-    await serviceClient.addWorkType(userID, request);
+    await serviceClient.addWorkType(request);
     workTypes.add(workType);
     workTypes.sort((a, b) => a.name.compareTo(b.name));
   }

@@ -41,13 +41,13 @@ class Work extends PropertyOwner {
   }
 
   Future save() async {
-    var request = RequestCreateWork(
+    var request = CreateWorkRequest(
         name: name.value,
         type: type.value,
         reference: reference.value,
         description: description.value);
     var response = await GetIt.instance<ServiceClientWork>().create(request);
-    if (response is ResponseWorkCreate) {
+    if (response is CreateWorkResponse) {
       id = response.id;
     } else if (response is ValidationProblemResponse) {
       invalidate(response.errors);
@@ -68,7 +68,7 @@ class Work extends PropertyOwner {
 
   Future loadDetails() async {
     if (!_isLoaded) {
-      WorkDetailsResponse response = await _serviceClient.loadDetails(id);
+      LoadWorkDetailsResponse response = await _serviceClient.loadDetails(id);
       description.setValueWithNotification(DataConversionServiceToModel.nullToEmptyString(response.details.description), ignoreNotification: true);
       _isLoaded = true;
     }

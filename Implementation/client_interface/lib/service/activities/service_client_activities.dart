@@ -3,27 +3,27 @@ import 'dart:convert';
 import '../service_client_base.dart';
 import '../update_entity.dart';
 import 'create_activity.dart';
-import 'list_work_activity_response.dart';
+import 'list_work_activities_response.dart';
 
-class ServiceClientActivity extends ServiceClientBase {
-  ServiceClientActivity(super.baseUrl);
+class ServiceClientActivities extends ServiceClientBase {
+  ServiceClientActivities(super.baseUrl);
 
-  Future<WorkActivityListResponse> listAll(String workID) async {
+  Future<ListWorkActivitiesResponse> listWorkActivities(String workID) async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/work/$workID/activities');
     final response = await httpGet(uri, headers);
     return processResponse(response, 200,
-            () => WorkActivityListResponse.fromJson(jsonDecode(response.body)))!
-        as WorkActivityListResponse;
+            () => ListWorkActivitiesResponse.fromJson(jsonDecode(response.body)))!
+        as ListWorkActivitiesResponse;
   }
 
-  Future<ServiceClientResponse?> create(String workID, RequestCreateActivity request) async {
+  Future<ServiceClientResponse?> create(String workID, CreateActivityRequest request) async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/work/$workID/activities');
     final body = jsonEncode(request.toJson());
     final response = await httpPost(uri, headers, body);
     return processResponse(response, 201,
-            () => ResponseCreateActivity.fromJson(jsonDecode(response.body)))!;
+            () => CreateActivityResponse.fromJson(jsonDecode(response.body)))!;
   }
 
   Future<ServiceClientResponse?> update(String workID, UpdateEntityRequest request) async {

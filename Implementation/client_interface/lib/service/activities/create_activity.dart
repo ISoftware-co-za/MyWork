@@ -1,6 +1,6 @@
 import '../service_client_base.dart';
 
-class RequestCreateActivity {
+class CreateActivityRequest {
   final String what;
   final String state;
   final String? dueDate;
@@ -8,7 +8,7 @@ class RequestCreateActivity {
   final String? why;
   final String? notes;
 
-  RequestCreateActivity(
+  CreateActivityRequest(
       {required this.what, required this.state, this.dueDate, this.recipientId, this.why, this.notes});
 
   Map<String, dynamic> toJson() {
@@ -29,12 +29,12 @@ class RequestCreateActivity {
   }
 }
 
-class ResponseCreateActivity extends ServiceClientResponse {
+class CreateActivityResponse extends ServiceClientResponse {
   final String id;
-  ResponseCreateActivity({required this.id});
+  CreateActivityResponse({required this.id});
 
-  factory ResponseCreateActivity.fromJson(Map<String, dynamic> json) {
-    return ResponseCreateActivity(
+  factory CreateActivityResponse.fromJson(Map<String, dynamic> json) {
+    return CreateActivityResponse(
       id: json['id'],
     );
   }

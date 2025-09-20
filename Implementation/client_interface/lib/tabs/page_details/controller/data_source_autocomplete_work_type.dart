@@ -7,7 +7,7 @@ import '../../../model/model_property.dart';
 class DataSourceAutocompleteWorkType extends AutocompleteDataSource {
 
   DataSourceAutocompleteWorkType(String userID, WorkTypeList workTypes, ModelProperty<String>? property)
-      : _userID = userID,_workTypes = workTypes, _property = property;
+      : _workTypes = workTypes, _property = property;
 
   @override
   Iterable<Object> emptyList() {
@@ -38,10 +38,9 @@ class DataSourceAutocompleteWorkType extends AutocompleteDataSource {
       return;
     }
     _property?.value = workType.name;
-    _workTypes.add(_userID, workType);
+    _workTypes.add(workType);
   }
 
-  final String _userID;
   final List<WorkType> _emptyList = [];
   final WorkTypeList _workTypes;
   final ModelProperty<String>? _property;

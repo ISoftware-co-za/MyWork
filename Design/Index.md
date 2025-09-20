@@ -48,7 +48,6 @@ To achieve this the following implementation strategy will be followed:
 	- Delete
 - Updates are batched allowing the user to access or reject the batch of updates. 
 - When the selected Task changes, the changes in the batched updates are accepted by default if there is not validation error. A validation error will prevent the task switch.
-
 ### Services Entities
 The entities will be structured as follows.
 

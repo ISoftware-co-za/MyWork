@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:get_it/get_it.dart';
 
-import '../service/user/service_client_user.dart';
+import '../service/users/service_client_user.dart';
 import 'work_type.dart';
 
 class User {
@@ -12,7 +12,7 @@ class User {
 
   Future<ResultLogin> login(String email, String password) async {
     var response = await _serviceClient
-        .login(RequestLogin(email: email, password: password));
+        .login(LoginRequest(email: email, password: password));
     userID = response.userId;
     return ResultLogin(
         userId: response.userId,
@@ -20,11 +20,11 @@ class User {
   }
 
   Future<bool> logout() async {
-    await _serviceClient.logout() as ResponseLogin;
+    await _serviceClient.logout() as LoginResponse;
     return true;
   }
 
-  final ServiceClientUser _serviceClient = GetIt.instance<ServiceClientUser>();
+  final ServiceClientUsers _serviceClient = GetIt.instance<ServiceClientUsers>();
 }
 
 //----------------------------------------------------------------------------------------------------------------------
