@@ -23,22 +23,22 @@ class ServiceClientWork extends ServiceClientBase {
         as ListWorkResponse;
   }
 
-  Future<WorkDetailsResponse> loadDetails(String id) async {
+  Future<LoadWorkDetailsResponse> loadDetails(String id) async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/work/$id');
     final response = await httpGet(uri, headers);
     return processResponse(response, 200,
-            () => WorkDetailsResponse.fromJson(jsonDecode(response.body)))!
-    as WorkDetailsResponse;
+            () => LoadWorkDetailsResponse.fromJson(jsonDecode(response.body)))!
+    as LoadWorkDetailsResponse;
   }
 
-  Future<ServiceClientResponse?> create(RequestCreateWork request) async {
+  Future<ServiceClientResponse?> create(CreateWorkRequest request) async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/work');
     final body = jsonEncode(request.toJson());
     final response = await httpPost(uri, headers, body);
     return processResponse(response, 201,
-        () => ResponseWorkCreate.fromJson(jsonDecode(response.body)))!;
+        () => CreateWorkResponse.fromJson(jsonDecode(response.body)))!;
   }
 
   Future<ServiceClientResponse?> update(UpdateEntityRequest request) async {

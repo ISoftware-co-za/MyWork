@@ -2,8 +2,8 @@ import 'package:client_interfaces1/model/data_conversion.dart';
 import 'package:client_interfaces1/model/person.dart';
 import 'package:get_it/get_it.dart';
 
-import '../service/activity/create_activity.dart';
-import '../service/activity/service_client_activity.dart';
+import '../service/activities/create_activity.dart';
+import '../service/activities/service_client_activities.dart';
 import '../service/service_client_base.dart';
 import '../service/update_entity.dart';
 import 'model_property.dart';
@@ -81,7 +81,7 @@ class Activity extends PropertyOwner {
   }
 
   Future save() async {
-    var request = RequestCreateActivity(
+    var request = CreateActivityRequest(
       what: what.value,
       state: state.value.name,
       dueDate: DataConversionModelToService.dateTimeToDateString(dueDate.value),
@@ -91,7 +91,7 @@ class Activity extends PropertyOwner {
     );
 
     var response = await _serviceClient.create(workId, request);
-    if (response is ResponseCreateActivity) {
+    if (response is CreateActivityResponse) {
       id = response.id;
     } else if (response is ValidationProblemResponse) {
       invalidate(response.errors);
@@ -181,6 +181,6 @@ class Activity extends PropertyOwner {
   }
 
   late final ModelPropertyChangeContext _context;
-  ServiceClientActivity _serviceClient =
-      GetIt.instance<ServiceClientActivity>();
+  ServiceClientActivities _serviceClient =
+      GetIt.instance<ServiceClientActivities>();
 }

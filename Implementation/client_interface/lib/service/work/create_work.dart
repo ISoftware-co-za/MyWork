@@ -1,11 +1,11 @@
 part of 'service_client_work.dart';
 
-class RequestCreateWork {
+class CreateWorkRequest {
   final String name;
   final String type;
   final String reference;
   final String description;
-  RequestCreateWork(
+  CreateWorkRequest(
       {required this.name, required this.type, required this.reference, required this.description});
 
   Map<String, dynamic> toJson() {
@@ -23,12 +23,12 @@ class RequestCreateWork {
   }
 }
 
-class ResponseWorkCreate extends ServiceClientResponse {
+class CreateWorkResponse extends ServiceClientResponse {
   final String id;
-  ResponseWorkCreate({required this.id});
+  CreateWorkResponse({required this.id});
 
-  factory ResponseWorkCreate.fromJson(Map<String, dynamic> json) {
-    return ResponseWorkCreate(
+  factory CreateWorkResponse.fromJson(Map<String, dynamic> json) {
+    return CreateWorkResponse(
       id: json['id'],
     );
   }

@@ -7,18 +7,20 @@ import '../service_client_base.dart';
 part 'login.dart';
 part 'add_work_type.dart';
 
-class ServiceClientUser extends ServiceClientBase {
+class ServiceClientUsers extends ServiceClientBase {
+  ServiceClientUsers(super.baseUrl);
 
-  ServiceClientUser(super.baseUrl);
-
-  Future<ResponseLogin> login(RequestLogin request) async {
+  Future<LoginResponse> login(LoginRequest request) async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/users/login');
     final body = jsonEncode(request.toJson());
     final response = await httpPost(uri, headers, body);
-    return processResponse(response, HttpStatus.ok,
-            () => ResponseLogin.fromJson(jsonDecode(response.body)))!
-        as ResponseLogin;
+    return processResponse(
+          response,
+          HttpStatus.ok,
+          () => LoginResponse.fromJson(jsonDecode(response.body)),
+        )!
+        as LoginResponse;
   }
 
   Future<ServiceClientResponse> logout() async {
@@ -26,16 +28,21 @@ class ServiceClientUser extends ServiceClientBase {
     final uri = generateUri('/users/logout');
     final response = await httpPost(uri, headers, '');
     return processResponse(
-        response, HttpStatus.ok, () => ServiceClientResponse())!;
+      response,
+      HttpStatus.ok,
+      () => ServiceClientResponse(),
+    )!;
   }
 
-  Future<ServiceClientResponse> addWorkType(
-      String userId, RequestAddWorkType request) async {
+  Future<ServiceClientResponse> addWorkType(RequestAddWorkType request) async {
     Map<String, String> headers = setupCommonHeaders();
     final uri = generateUri('/users/workTypes');
     final body = jsonEncode(request.toJson());
     final response = await httpPost(uri, headers, body);
     return processResponse(
-        response, HttpStatus.noContent, () => ServiceClientResponse())!;
+      response,
+      HttpStatus.noContent,
+      () => ServiceClientResponse(),
+    )!;
   }
 }

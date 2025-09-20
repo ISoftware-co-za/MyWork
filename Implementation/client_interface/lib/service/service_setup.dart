@@ -1,9 +1,9 @@
 import 'package:client_interfaces1/service/work/service_client_work.dart';
 import 'package:get_it/get_it.dart';
 
-import 'activity/service_client_activity.dart';
+import 'activities/service_client_activities.dart';
 import 'people/service_client_people.dart';
-import 'user/service_client_user.dart';
+import 'users/service_client_user.dart';
 
 void setupServiceClients() {
   final url = 'https://localhost:5000';
@@ -11,11 +11,11 @@ void setupServiceClients() {
   var serviceClientWork = ServiceClientWork(url);
   GetIt.instance.registerSingleton<ServiceClientWork>(serviceClientWork);
 
-  var serviceClientUser = ServiceClientUser(url);
-  GetIt.instance.registerSingleton<ServiceClientUser>(serviceClientUser);
+  var serviceClientUser = ServiceClientUsers(url);
+  GetIt.instance.registerSingleton<ServiceClientUsers>(serviceClientUser);
 
-  var serviceClientActivity = ServiceClientActivity(url);
-  GetIt.instance.registerSingleton<ServiceClientActivity>(serviceClientActivity);
+  var serviceClientActivity = ServiceClientActivities(url);
+  GetIt.instance.registerSingleton<ServiceClientActivities>(serviceClientActivity);
 
   var serviceClientPeople = ServiceClientPeople(url);
   GetIt.instance.registerSingleton<ServiceClientPeople>(serviceClientPeople);

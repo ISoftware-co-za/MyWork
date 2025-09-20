@@ -1,10 +1,10 @@
 part of 'service_client_user.dart';
 
-class RequestLogin {
+class LoginRequest {
   final String email;
   final String password;
 
-  RequestLogin({required this.email, required this.password});
+  LoginRequest({required this.email, required this.password});
 
   Map<String, dynamic> toJson() {
     return {
@@ -14,14 +14,14 @@ class RequestLogin {
   }
 }
 
-class ResponseLogin extends ServiceClientResponse {
+class LoginResponse extends ServiceClientResponse {
   final String userId;
   final List<String> workTypes;
 
-  ResponseLogin({required this.userId, required this.workTypes});
+  LoginResponse({required this.userId, required this.workTypes});
 
-  factory ResponseLogin.fromJson(Map<String, dynamic> json) {
-    return ResponseLogin(
+  factory LoginResponse.fromJson(Map<String, dynamic> json) {
+    return LoginResponse(
       userId: json['userId'],
       workTypes: List<String>.from(json['workTypes']),
     );

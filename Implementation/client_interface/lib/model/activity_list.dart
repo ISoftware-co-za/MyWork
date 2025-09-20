@@ -2,8 +2,8 @@ import 'package:client_interfaces1/model/model_property_change_context.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
-import '../service/activity/list_work_activity_response.dart';
-import '../service/activity/service_client_activity.dart';
+import '../service/activities/list_work_activities_response.dart';
+import '../service/activities/service_client_activities.dart';
 import 'activity.dart';
 import 'person_list.dart';
 import 'person.dart';
@@ -16,7 +16,7 @@ class ActivityList extends ChangeNotifier {
     : _modelPropertyContext = modelPropertyContext;
 
   Future loadAll(PersonList people) async {
-    WorkActivityListResponse response = await _serviceClient.listAll(workId);
+    ListWorkActivitiesResponse response = await _serviceClient.listWorkActivities(workId);
     items.clear();
     for (var item in response.items) {
       Person? recipient;
@@ -59,6 +59,6 @@ class ActivityList extends ChangeNotifier {
   }
 
   late final ModelPropertyChangeContext _modelPropertyContext;
-  final ServiceClientActivity _serviceClient =
-      GetIt.instance<ServiceClientActivity>();
+  final ServiceClientActivities _serviceClient =
+      GetIt.instance<ServiceClientActivities>();
 }

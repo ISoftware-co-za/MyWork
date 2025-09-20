@@ -6,14 +6,14 @@ class LoadWorkDetails {
   LoadWorkDetails({this.description});
 }
 
-class WorkDetailsResponse extends ServiceClientResponse {
+class LoadWorkDetailsResponse extends ServiceClientResponse {
   LoadWorkDetails details;
 
-  WorkDetailsResponse({required this.details});
+  LoadWorkDetailsResponse({required this.details});
 
-  factory WorkDetailsResponse.fromJson(Map<String, dynamic> json) {
+  factory LoadWorkDetailsResponse.fromJson(Map<String, dynamic> json) {
     var details = json['details'] as Map<String, dynamic>?;
-    return WorkDetailsResponse(
+    return LoadWorkDetailsResponse(
       details: LoadWorkDetails(
           description: details!['description']
       ),

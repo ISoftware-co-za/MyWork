@@ -1,14 +1,14 @@
 import '../service_client_base.dart';
 
-class WorkActivityListResponse implements ServiceClientResponse {
+class ListWorkActivitiesResponse implements ServiceClientResponse {
   final List<ActivityItem> items;
 
-  WorkActivityListResponse({required this.items});
+  ListWorkActivitiesResponse({required this.items});
 
-  factory WorkActivityListResponse.fromJson(Map<String, dynamic> json) {
+  factory ListWorkActivitiesResponse.fromJson(Map<String, dynamic> json) {
     var itemsJson = json['items'] as List;
     List<ActivityItem> itemsList = itemsJson.map((item) => ActivityItem.fromJson(item)).toList();
-    return WorkActivityListResponse(items: itemsList);
+    return ListWorkActivitiesResponse(items: itemsList);
   }
 }
 
