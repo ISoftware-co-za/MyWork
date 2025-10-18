@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../theme/theme_extension_dialog_people.dart';
+import '../../theme/theme_extension_spacing.dart';
 import '../../ui_toolkit/form/form.dart';
 import '../controller/controller_dialog_people.dart';
 import 'control_person_command.dart';
@@ -10,11 +11,13 @@ class LayoutPerson extends StatefulWidget {
   const LayoutPerson({
     required ControllerDialogPeople controller,
     required ListItemPerson person,
+    required ThemeExtensionSpacing spacingTheme,
     required ThemeExtensionDialogPeople dialogTheme,
     required double controlColumnWidth,
     super.key,
   }) : _controller = controller,
        _person = person,
+       _spacingTheme = spacingTheme,
        _dialogTheme = dialogTheme,
        _controlColumnWidth = controlColumnWidth;
 
@@ -23,6 +26,7 @@ class LayoutPerson extends StatefulWidget {
 
   final ControllerDialogPeople _controller;
   final ListItemPerson _person;
+  final ThemeExtensionSpacing _spacingTheme;
   final ThemeExtensionDialogPeople _dialogTheme;
   final double _controlColumnWidth;
 }
@@ -44,10 +48,12 @@ class _LayoutPersonState extends State<LayoutPerson> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ControlPersonSelected(controller: widget._controller, person: widget._person.person, dialogTheme: widget._dialogTheme),
-          SizedBox(
-            width: widget._dialogTheme.dialogBaseTheme.horizontalSpacing,
+          ControlPersonSelected(
+            controller: widget._controller,
+            person: widget._person.person,
+            dialogTheme: widget._dialogTheme,
           ),
+          SizedBox(width: widget._spacingTheme.horizontalSpacing),
           Expanded(
             child: ControlFormField(
               label: 'firstName',
@@ -56,9 +62,7 @@ class _LayoutPersonState extends State<LayoutPerson> {
               noLabel: true,
             ),
           ),
-          SizedBox(
-            width: widget._dialogTheme.dialogBaseTheme.horizontalSpacing,
-          ),
+          SizedBox(width: widget._spacingTheme.horizontalSpacing),
           Expanded(
             child: ControlFormField(
               label: 'lastName',

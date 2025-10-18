@@ -1,4 +1,4 @@
-import 'package:client_interfaces1/controller/coordinator_work_and_activity_list_loader.dart';
+import 'package:client_interfaces1/controller/coordinator_work_and_activity_list.dart';
 import 'package:flutter/material.dart';
 
 import '../../../controller/controller_user.dart';
@@ -24,9 +24,9 @@ class LayoutPageDetails extends StatelessWidget {
         .state.getController<ControllerUser>()!;
     ControllerWorkTypes controllerWorkTypes = providerStateApplication
         .state.getController<ControllerWorkTypes>()!;
-    CoordinatorWorkActivityListLoader coordinatorWorkActivityListLoader =
+    CoordinatorWorkActivityList coordinatorWorkActivityListLoader =
         providerStateApplication
-            .state.getCoordinator<CoordinatorWorkActivityListLoader>()!;
+            .state.getCoordinator<CoordinatorWorkActivityList>()!;
 
     assert(
       controllerUser.user.userID != null,
@@ -54,7 +54,7 @@ class LayoutPageDetails extends StatelessWidget {
     String userID,
     WorkTypeList workTypes,
     ControllerWork controller,
-    CoordinatorWorkActivityListLoader coordinator,
+    CoordinatorWorkActivityList coordinator,
   ) {
     return Align(
       alignment: Alignment.topLeft,

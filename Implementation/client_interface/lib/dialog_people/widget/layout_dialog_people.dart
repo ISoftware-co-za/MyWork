@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:client_interfaces1/dialog_people/widget/control_list.dart';
+import 'package:client_interfaces1/theme/theme_extension_spacing.dart';
 import 'package:client_interfaces1/theme/theme_extension_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -11,22 +14,28 @@ import 'control_filter.dart';
 
 class LayoutDialogPeople extends StatelessWidget {
   const LayoutDialogPeople({
+    required Offset topLeft,
     required ControllerDialogPeople controller,
     super.key,
-  }) : _controller = controller;
+  }) : _topLeft = topLeft,
+       _controller = controller;
   @override
   Widget build(BuildContext context) {
-    ThemeExtensionDialogPeople themeDialogPeople = Theme.of(
-      context,
-    ).extension<ThemeExtensionDialogPeople>()!;
-    ThemeExtensionTextField themeTextField = Theme.of(
-      context,
-    ).extension<ThemeExtensionTextField>()!;
+    ThemeData themeData = Theme.of(context);
+    ThemeExtensionSpacing themeSpacing = themeData
+        .extension<ThemeExtensionSpacing>()!;
+    ThemeExtensionDialogPeople themeDialogPeople = themeData
+        .extension<ThemeExtensionDialogPeople>()!;
+    ThemeExtensionTextField themeTextField = themeData
+        .extension<ThemeExtensionTextField>()!;
+
+    final double dialogLeft = max(0, _topLeft.dx - themeDialogPeople.width);
 
     return Theme(
       data: CustomThemeDataAppHeader.getTheme(),
       child: Dialog(
         alignment: Alignment.topLeft,
+        insetPadding: EdgeInsets.fromLTRB(dialogLeft, _topLeft.dy, 0, 0),
         child: Container(
           width: themeDialogPeople.width,
           height: themeDialogPeople.height,
@@ -42,14 +51,20 @@ class LayoutDialogPeople extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.max,
             children: [
-              ControlHeader(controller: _controller, theme: themeDialogPeople),
+              ControlHeader(
+                controller: _controller,
+                themeSpacing: themeSpacing,
+                theme: themeDialogPeople,
+              ),
               ControlFilter(
                 filterValue: _controller.filterCriteria,
-                theme: themeDialogPeople,
+                themeSpacing: themeSpacing,
+                themeDialog: themeDialogPeople,
               ),
               Expanded(
                 child: ControlList(
                   controller: _controller,
+                  spacingTheme: themeSpacing,
                   dialogTheme: themeDialogPeople,
                   textFieldTheme: themeTextField,
                 ),
@@ -61,5 +76,6 @@ class LayoutDialogPeople extends StatelessWidget {
     );
   }
 
+  final Offset _topLeft;
   final ControllerDialogPeople _controller;
 }

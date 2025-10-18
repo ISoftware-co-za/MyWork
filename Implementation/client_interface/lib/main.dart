@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'controller/coordinator_work_and_activity_list_loader.dart';
+import 'controller/coordinator_work_and_activity_list.dart';
 import 'model/state_model.dart';
 import 'notification/layout_notification_list.dart';
 import 'tabs/controller_tab_bar.dart';
@@ -107,20 +107,17 @@ class _MainPageState extends State<MainPage>
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 if (!snapshot.hasError) {
-                  debugPrint('Returning _mainPage');
                   return _mainPage();
                 } else {
-                  debugPrint(snapshot.error.toString());
                   return const Placeholder();
                 }
               } else {
-                debugPrint('Waiting for _obtainerDataFromService');
                 return const Center(child: CircularProgressIndicator());
               }
             },
           );
-        }
-      )
+        },
+      ),
     );
     return ProviderStateModel(state: _modelState, child: stateProvider);
   }
@@ -144,22 +141,20 @@ class _MainPageState extends State<MainPage>
     StateModel stateModel,
     StateApplication stateApplication,
   ) async {
-    await _login(stateApplication);
-    await _initialiseState(stateModel, stateApplication);
-    _setCurrentContainerFromTabIndex();
+    await Executor.runCommandAsync('_obtainerDataFromService', '_MainPageState', () async {
+      await _login(stateApplication);
+      await _initialiseState(stateModel, stateApplication);
+      _setCurrentContainerFromTabIndex();
+    });
   }
 
   Future _login(StateApplication state) async {
     if (_isLoggedIn == false) {
-      debugPrint('Perform _login - START');
-      try
-      {
+      try {
         await state.getCoordinator<CoordinatorLogin>()!.login();
-      } catch(e) {
+      } catch (e) {
         debugPrint(e.toString());
       }
-
-      debugPrint('Perform _login - END');
       _isLoggedIn = true;
     }
   }
@@ -169,8 +164,6 @@ class _MainPageState extends State<MainPage>
     StateApplication stateApplication,
   ) async {
     if (_isStateInitialised == false) {
-      debugPrint('Perform _initialiseState - START');
-
       final people = PersonList();
       _workController = ControllerWork();
       _activityListController = ControllerActivityList(people);
@@ -183,6 +176,7 @@ class _MainPageState extends State<MainPage>
       await people.loadAll();
       stateModel.registerInstance(people);
       await _workController.initialise();
+      Executor.observabilityFactory.createObservability().setTransactionData('WorkList.workItems.length', _workController.workList.workItems.length);
 
       stateApplication.registerController(_workController);
       stateApplication.registerController(_activityListController);
@@ -191,12 +185,12 @@ class _MainPageState extends State<MainPage>
       );
       stateApplication.registerController(_controllerTabBar);
       stateApplication.registerCoordinator(
-        CoordinatorWorkActivityListLoader(
+        CoordinatorWorkActivityList(
           stateApplication.getController<ControllerWork>()!,
           _activityListController,
+          _tabController
         ),
       );
-      debugPrint('Perform _initialiseState - END');
       _isStateInitialised = true;
     }
   }

@@ -57,7 +57,7 @@ class GeneratorUser extends GeneratorBase {
     List<String> workTypes = [];
 
     if (Faker().randomGenerator.integer(10, min: 0) >= 5) {
-      var typeCount = Faker().randomGenerator.integer(10, min: 1);
+      var typeCount = Faker().randomGenerator.integer(100, min: 1);
       for (int i = 0; i < typeCount; i++) {
         workTypes.add(Faker().lorem.word());
       }

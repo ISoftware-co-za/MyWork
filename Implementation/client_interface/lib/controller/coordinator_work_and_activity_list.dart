@@ -1,21 +1,26 @@
+import 'package:flutter/material.dart';
+
 import '../model/work.dart';
 import '../tabs/page_activities/controller/controller_activity_list.dart';
 import 'controller_work.dart';
 import 'coordinator_base.dart';
 
-class CoordinatorWorkActivityListLoader extends CoordinatorBase {
+class CoordinatorWorkActivityList extends CoordinatorBase {
   final ControllerWork workController;
   final ControllerActivityList activityController;
+  final TabController tabController;
 
-  CoordinatorWorkActivityListLoader(
+  CoordinatorWorkActivityList(
     this.workController,
     this.activityController,
+    this.tabController
   );
 
   Future onNewWork() async {
     if (await _saveUnsavedEdits() == false) {
       return;
     }
+    tabController.index = 0;
     workController.newWork();
     activityController.selectWork(workController.selectedWork.value);
     activityController.emptyActivityList();

@@ -1,4 +1,5 @@
 import 'package:client_interfaces1/execution/executor.dart';
+import 'package:client_interfaces1/theme/theme_extension_spacing.dart';
 import 'package:client_interfaces1/ui_toolkit/activity_status_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -6,71 +7,117 @@ import '../../../model/activity.dart';
 import '../controller/controller_activity_list.dart';
 
 class ControlActivityListItem extends StatefulWidget {
-  ControlActivityListItem({required Activity activity, required ControllerActivityList activityListController, super.key}) :
-        _activity = activity, _activityListController = activityListController;
+  ControlActivityListItem({
+    required Activity activity,
+    required ControllerActivityList activityListController,
+    required ThemeExtensionSpacing spacingTheme,
+    super.key,
+  }) : _activity = activity,
+       _activityListController = activityListController,
+       _spacingTheme = spacingTheme;
 
   @override
-  State<ControlActivityListItem> createState() => _ControlActivityListItemState();
+  State<ControlActivityListItem> createState() =>
+      _ControlActivityListItemState();
 
   final Activity _activity;
   final ControllerActivityList _activityListController;
+  final ThemeExtensionSpacing _spacingTheme;
 }
 
 class _ControlActivityListItemState extends State<ControlActivityListItem> {
-
   @override
   void initState() {
     super.initState();
     _isSelected = _calculateSelectionState();
-    widget._activityListController.selectedActivity.addListener(onActivitySelected);
+    widget._activityListController.selectedActivity.addListener(
+      onActivitySelected,
+    );
   }
 
   @override
   void dispose() {
-    widget._activityListController.selectedActivity.removeListener(onActivitySelected);
+    widget._activityListController.selectedActivity.removeListener(
+      onActivitySelected,
+    );
     super.dispose();
   }
 
   bool _calculateSelectionState() {
-    return widget._activityListController.selectedActivity.value == widget._activity;
+    return widget._activityListController.selectedActivity.value ==
+        widget._activity;
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Executor.runCommand("ControlActivityList", "LayoutPageActivities", () => widget._activityListController.onSelectActivity(widget._activity));
+        Executor.runCommand(
+          "ControlActivityList",
+          "LayoutPageActivities",
+          () =>
+              widget._activityListController.onSelectActivity(widget._activity),
+        );
       },
       child: ListenableBuilder(
-          listenable: widget._activity.state,
-          builder: (context, child) {
-            return MouseRegion(
-              onEnter: (event) {setState(() { _isMouseover = true; });},
-              onExit: (event) {setState(() {_isMouseover = false; });},
-              child: CustomPaint(
-                painter: _ActivityListItemPainter(_isSelected, _isMouseover, widget._activity.state.value),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                  child: Row(children: [
-                    Icon(ActivityStatusColors.getIconForState(widget._activity.state.value), color: ActivityStatusColors.getColorForState(widget._activity.state.value), size: 30),
+        listenable: widget._activity.state,
+        builder: (context, child) {
+          return MouseRegion(
+            onEnter: (event) {
+              setState(() {
+                _isMouseover = true;
+              });
+            },
+            onExit: (event) {
+              setState(() {
+                _isMouseover = false;
+              });
+            },
+            child: CustomPaint(
+              painter: _ActivityListItemPainter(
+                _isSelected,
+                _isMouseover,
+                widget._activity.state.value,
+              ),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                  widget._spacingTheme.paddingNarrow,
+                  widget._spacingTheme.paddingNarrow,
+                  widget._spacingTheme.paddingWide,
+                  widget._spacingTheme.paddingNarrow,
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      ActivityStatusColors.getIconForState(
+                        widget._activity.state.value,
+                      ),
+                      color: ActivityStatusColors.getColorForState(
+                        widget._activity.state.value,
+                      ),
+                      size: 30,
+                    ),
                     SizedBox(width: 8.0),
                     Expanded(
                       child: ListenableBuilder(
-                          listenable: widget._activity.what,
-                          builder: (context, child) {
-                            return Text(
-                              widget._activity.what.value,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: 16.0),
-                            );
-                          }),
+                        listenable: widget._activity.what,
+                        builder: (context, child) {
+                          return Text(
+                            widget._activity.what.value,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 16.0),
+                          );
+                        },
+                      ),
                     ),
-                  ]),
+                  ],
                 ),
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -114,7 +161,7 @@ class _ActivityListItemPainter extends CustomPainter {
       final path = Path();
       path.moveTo(size.width, 0);
       path.lineTo(size.width, size.height);
-      path.lineTo(size.width - size.height / 2, size.height / 2);
+      path.lineTo(size.width - size.height / 3, size.height / 2);
       path.close();
       canvas.drawPath(path, paint);
     }

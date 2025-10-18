@@ -3,20 +3,24 @@ import 'package:flutter/material.dart';
 
 import '../../execution/executor.dart';
 import '../../theme/theme_extension_dialog_people.dart';
+import '../../theme/theme_extension_spacing.dart';
 
 class ControlFilter extends StatefulWidget {
 
   const ControlFilter({
     required ValueNotifier<String> filterValue,
-    required ThemeExtensionDialogPeople theme,
+    required ThemeExtensionSpacing themeSpacing,
+    required ThemeExtensionDialogPeople themeDialog,
     super.key,
   }) : _filterValue = filterValue,
-       _theme = theme;
+        _themeSpacing = themeSpacing,
+       _themeDialog = themeDialog;
 
   @override
   State<ControlFilter> createState() => _ControlFilterState();
 
-  final ThemeExtensionDialogPeople _theme;
+  final ThemeExtensionSpacing _themeSpacing;
+  final ThemeExtensionDialogPeople _themeDialog;
   final ValueNotifier<String> _filterValue;
 }
 
@@ -37,15 +41,15 @@ class _ControlFilterState extends State<ControlFilter> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: widget._theme.dialogBaseTheme.edgeInsetsWide,
-      color: widget._theme.dialogBaseTheme.tableHeaderColor,
+      padding: widget._themeSpacing.edgeInsetsWide,
+      color: widget._themeDialog.dialogBaseTheme.tableHeaderColor,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
           Expanded(
             child: TextField(
-              decoration: widget._theme.dialogBaseTheme.filterInputDecoration.copyWith(hintText: 'Filter text'),
-              style: widget._theme.dialogBaseTheme.filterTextStyle,
+              decoration: widget._themeDialog.dialogBaseTheme.filterInputDecoration.copyWith(hintText: 'Filter text'),
+              style: widget._themeDialog.dialogBaseTheme.filterTextStyle,
               controller: _controller,
               onChanged: (text) {
                 Executor.runCommand(
@@ -57,7 +61,7 @@ class _ControlFilterState extends State<ControlFilter> {
             ),
           ),
           SizedBox(
-            width: widget._theme.commandColumnWidth,
+            width: widget._themeDialog.commandColumnWidth,
             child: Center(
               child: ControlIconButtonSmall(
                 icon: Icon(Icons.close),

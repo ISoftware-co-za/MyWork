@@ -3,6 +3,7 @@ import 'package:client_interfaces1/execution/executor.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/theme_extension_dialog_people.dart';
+import '../../theme/theme_extension_spacing.dart';
 import '../../theme/theme_extension_text_field.dart';
 import '../../ui_toolkit/control_icon_button_reject.dart';
 import '../../ui_toolkit/control_text_field.dart';
@@ -12,11 +13,13 @@ class LayoutAddedPerson extends StatelessWidget {
   LayoutAddedPerson({
     required ControllerDialogPeople controller,
     required ListItemNewPerson listItem,
+    required ThemeExtensionSpacing themeSpacing,
     required ThemeExtensionDialogPeople dialogTheme,
     required ThemeExtensionTextField textFieldTheme,
     super.key,
   }) : _controller = controller,
        _person = listItem,
+       _themeSpacing = themeSpacing,
        _dialogTheme = dialogTheme,
        _textThemeField = textFieldTheme;
 
@@ -26,8 +29,12 @@ class LayoutAddedPerson extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ControlPersonSelected(controller: _controller, person: _person.person, dialogTheme: _dialogTheme),
-        SizedBox(width: _dialogTheme.dialogBaseTheme.horizontalSpacing),
+        ControlPersonSelected(
+          controller: _controller,
+          person: _person.person,
+          dialogTheme: _dialogTheme,
+        ),
+        SizedBox(width: _themeSpacing.horizontalSpacing),
         Expanded(
           child: ControlTextField(
             hint: "First name",
@@ -35,7 +42,7 @@ class LayoutAddedPerson extends StatelessWidget {
             textFieldTheme: _textThemeField,
           ),
         ),
-        SizedBox(width: _dialogTheme.dialogBaseTheme.horizontalSpacing),
+        SizedBox(width: _themeSpacing.horizontalSpacing),
         Expanded(
           child: ControlTextField(
             hint: "Last name",
@@ -49,7 +56,11 @@ class LayoutAddedPerson extends StatelessWidget {
             child: ControlIconButtonReject(
               Icons.close,
               onPressed: () {
-                Executor.runCommand('LayoutAddedPerson.onPressed', 'LayoutDialogPeople', () => _person.onDelete);
+                Executor.runCommand(
+                  'LayoutAddedPerson.onPressed',
+                  'LayoutDialogPeople',
+                  () => _person.onDelete,
+                );
               },
             ),
           ),
@@ -60,6 +71,7 @@ class LayoutAddedPerson extends StatelessWidget {
 
   final ControllerDialogPeople _controller;
   final ListItemNewPerson _person;
+  final ThemeExtensionSpacing _themeSpacing;
   final ThemeExtensionDialogPeople _dialogTheme;
   final ThemeExtensionTextField _textThemeField;
 }

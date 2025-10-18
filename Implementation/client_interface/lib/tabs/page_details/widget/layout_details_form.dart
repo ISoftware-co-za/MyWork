@@ -2,7 +2,7 @@ import 'package:client_interfaces1/execution/executor.dart';
 import 'package:flutter/material.dart';
 
 import '../../../controller/controller_work.dart';
-import '../../../controller/coordinator_work_and_activity_list_loader.dart';
+import '../../../controller/coordinator_work_and_activity_list.dart';
 import '../../../model/work.dart';
 import '../../../model/work_type_list.dart';
 import '../../../ui_toolkit/form/form.dart';
@@ -19,7 +19,7 @@ class LayoutDetailsForm extends StatefulWidget {
     required String userID,
     required WorkTypeList workTypes,
     required ControllerWork controller,
-    required CoordinatorWorkActivityListLoader coordinator,
+    required CoordinatorWorkActivityList coordinator,
     super.key,
   }) : _userID = userID,
        _workTypes = workTypes,
@@ -52,7 +52,7 @@ class LayoutDetailsForm extends StatefulWidget {
   final String _userID;
   final WorkTypeList _workTypes;
   final ControllerWork _controller;
-  final CoordinatorWorkActivityListLoader _coordinator;
+  final CoordinatorWorkActivityList _coordinator;
   late final List<ListItemDetailBase> _fields;
 }
 

@@ -48,7 +48,23 @@ class ControllerActivityList extends ControllerBase {
 
   Future onSelectActivity(Activity? activity) async {
     if (await saveActivityIfRequired()) {
+      if (_selectedActivity.value != null) {
+        _selectedActivity.value!.state.removeListener(onCurrentActivityStateChanged);
+      }
       _selectedActivity.value = activity;
+      if (_selectedActivity.value != null) {
+        _selectedActivity.value!.state.addListener(onCurrentActivityStateChanged);
+      }
+    }
+  }
+
+  Future onCurrentActivityStateChanged() async {
+    if (_selectedActivity.value != null && _selectedActivity.value!.state.notifyingProperty == "value") {
+      final bool hasSingleChanges = modelPropertyContext.hasChanges.value && modelPropertyContext.changeCount == 1;
+      final bool isNotNew = _selectedActivity.value!.isNew == false;
+      if (hasSingleChanges && isNotNew) {
+        await onSave();
+      }
     }
   }
 

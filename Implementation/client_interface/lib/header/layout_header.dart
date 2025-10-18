@@ -27,7 +27,7 @@ class LayoutHeader extends StatelessWidget {
       child: Container(
         color: appHeaderThemeExtension.backgroundColor,
         height: appHeaderThemeExtension.height,
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.fromLTRB(appHeaderThemeExtension.padding, appHeaderThemeExtension.padding, appHeaderThemeExtension.padding, 0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,

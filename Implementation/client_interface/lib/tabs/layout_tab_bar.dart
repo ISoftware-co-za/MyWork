@@ -22,20 +22,17 @@ class LayoutTabBar extends StatelessWidget {
 
     return Theme(
       data: theme,
-      child: PreferredSize(
-        preferredSize: Size.fromHeight(48.0),
-        child: Container(
-          color: appHeaderThemeExtension.backgroundColor,
-          child: Row(
-            children: [
-              SizedBox(
-                width: 100,
-                child: ControlTabBar(controller: _controller),
-              ),
-              Spacer(),
-              ControlAcceptReject(coordinatorWorkAndActivityChange: _coordinatorWorkAndActivityChange),
-            ],
-          ),
+      child: Container(
+        color: appHeaderThemeExtension.backgroundColor,
+        child: Row(
+          children: [
+            SizedBox(
+              width: 100,
+              child: ControlTabBar(controller: _controller),
+            ),
+            Spacer(),
+            ControlAcceptReject(coordinatorWorkAndActivityChange: _coordinatorWorkAndActivityChange),
+          ],
         ),
       ),
     );

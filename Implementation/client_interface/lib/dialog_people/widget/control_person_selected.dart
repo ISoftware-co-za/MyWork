@@ -13,7 +13,6 @@ class ControlPersonSelected extends StatelessWidget {
   }) : _controller = controller,
        _person = person,
         _dialogTheme = dialogTheme {
-    debugPrint('ControlPersonSelected ${_person.firstName.value} ${_person.lastName.value}');
   }
 
   @override
@@ -21,7 +20,6 @@ class ControlPersonSelected extends StatelessWidget {
     return ValueListenableBuilder(
         valueListenable: _controller.selectedPerson,
         builder: (context, value, child) {
-          debugPrint('_ControlPersonSelectedState.build ${_person.firstName.value} ${_person.lastName.value}. Checked = ${_controller.selectedPerson.value == _person}');
           return SizedBox(
               width: _dialogTheme.selectionColumnWidth,
               child: Radio<Person>(value: _person, groupRegistry: _controller.selectedPersonRegistry)
