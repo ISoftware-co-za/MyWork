@@ -1,36 +1,39 @@
 import 'package:client_interfaces1/dialog_people/controller/controller_dialog_people.dart';
+import 'package:client_interfaces1/theme/theme_extension_spacing.dart';
 import 'package:client_interfaces1/ui_toolkit/layout_accept_reject.dart';
 import 'package:flutter/material.dart';
 
 import '../../execution/executor.dart';
 import '../../theme/theme_extension_dialog_people.dart';
-import '../../ui_toolkit/control_icon_button_large.dart';
+import '../../ui_toolkit/control_icon_button_normal.dart';
 
 class ControlHeader extends StatelessWidget {
   const ControlHeader({
     required ControllerDialogPeople controller,
+    required ThemeExtensionSpacing themeSpacing,
     required ThemeExtensionDialogPeople theme,
     super.key,
   }) : _controller = controller,
-       _theme = theme;
+       _themeSpacing = themeSpacing,
+       _themeDialog = theme;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: _theme.dialogBaseTheme.dialogHeaderColor,
+      color: _themeDialog.dialogBaseTheme.dialogHeaderColor,
       child: Padding(
-        padding: _theme.dialogBaseTheme.edgeInsetsWide,
+        padding: _themeSpacing.edgeInsetsNarrow,
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(
               child: Text(
                 'People',
-                style: _theme.dialogBaseTheme.dialogHeaderTextStyle,
+                style: _themeDialog.dialogBaseTheme.dialogHeaderTextStyle,
               ),
             ),
             SizedBox(
-              width: _theme.commandColumnWidth,
+              width: _themeDialog.commandColumnWidth,
               child: Center(
                 child: ValueListenableBuilder(
                   valueListenable: _controller.hasChanges,
@@ -50,7 +53,7 @@ class ControlHeader extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return ControlIconButtonLarge(
+                      return ControlIconButtonNormal(
                         icon: Icon(Icons.close),
                         onPressed: () => Executor.runCommand(
                           'ControlIconButtonLarge.close.onPressed',
@@ -70,5 +73,6 @@ class ControlHeader extends StatelessWidget {
   }
 
   final ControllerDialogPeople _controller;
-  final ThemeExtensionDialogPeople _theme;
+  final ThemeExtensionSpacing _themeSpacing;
+  final ThemeExtensionDialogPeople _themeDialog;
 }

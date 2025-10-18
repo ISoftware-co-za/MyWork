@@ -1,30 +1,48 @@
 part of dialog_work;
 
 class _DialogWorkLayoutHeader extends StatelessWidget {
-  const _DialogWorkLayoutHeader({required ThemeExtensionDialogWork theme})
-      : _theme = theme;
+  const _DialogWorkLayoutHeader({
+    required ThemeExtensionSpacing spacingTheme,
+    required ThemeExtensionDialogWork dialogTheme,
+    required VoidCallback onAddPressed,
+  }) : _spacingTheme = spacingTheme,
+       _dialogTheme = dialogTheme,
+       _onAddPressed = onAddPressed;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: _theme.dialogBaseTheme.dialogHeaderColor,
+      color: _dialogTheme.dialogBaseTheme.dialogHeaderColor,
       child: Padding(
-        padding: _theme.dialogBaseTheme.edgeInsetsWide,
+        padding: _spacingTheme.edgeInsetsNarrow,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Work', style: _theme.dialogBaseTheme.dialogHeaderTextStyle),
-            SizedBox(width: _theme.dialogBaseTheme.horizontalSpacing),
-            ControlIconButtonLarge(icon: Icon(Icons.add),
-                onPressed: () => debugPrint('Add work pressed')),
+            Text(
+              'Work',
+              style: _dialogTheme.dialogBaseTheme.dialogHeaderTextStyle,
+            ),
+            SizedBox(width: _spacingTheme.horizontalSpacing),
+            ControlIconButtonLarge(
+              icon: Icon(Icons.add),
+              onPressed: _onAddPressed,
+            ),
             const Spacer(),
-            ControlIconButtonLarge(icon: Icon(Icons.close), onPressed: () =>
-             Executor.runCommand('close', 'dialog_work', () => Navigator.pop(context)))
+            ControlIconButtonNormal(
+              icon: Icon(Icons.close),
+              onPressed: () => Executor.runCommand(
+                'close',
+                'dialog_work',
+                () => Navigator.pop(context),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  final ThemeExtensionDialogWork _theme;
+  final ThemeExtensionSpacing _spacingTheme;
+  final ThemeExtensionDialogWork _dialogTheme;
+  final VoidCallback _onAddPressed;
 }

@@ -1,22 +1,26 @@
 part of dialog_work;
 
 class _DialogWorkLayoutTableRow extends StatefulWidget {
-  const _DialogWorkLayoutTableRow(
-      {required ColumnCollection columns,
-      required ListItemWork work,
-      required AsyncValueSetter<ListItemWork> onWorkSummarySelectedHandler,
-      required ThemeExtensionDialogWork theme})
-      : _columns = columns,
-        _work = work,
-        _onWorkSummarySelectedHandler = onWorkSummarySelectedHandler,
-        _theme = theme;
+  const _DialogWorkLayoutTableRow({
+    required ColumnCollection columns,
+    required ListItemWork work,
+    required AsyncValueSetter<ListItemWork> onWorkSummarySelectedHandler,
+    required ThemeExtensionSpacing spacingTheme,
+    required ThemeExtensionDialogWork dialogTheme,
+  }) : _columns = columns,
+       _work = work,
+       _onWorkSummarySelectedHandler = onWorkSummarySelectedHandler,
+       _spacingTheme = spacingTheme,
+       _dialogTheme = dialogTheme;
 
   @override
-  State<_DialogWorkLayoutTableRow> createState() => _DialogWorkLayoutTableRowState();
+  State<_DialogWorkLayoutTableRow> createState() =>
+      _DialogWorkLayoutTableRowState();
 
   final ColumnCollection _columns;
   final ListItemWork _work;
-  final ThemeExtensionDialogWork _theme;
+  final ThemeExtensionSpacing _spacingTheme;
+  final ThemeExtensionDialogWork _dialogTheme;
   final AsyncValueSetter<ListItemWork> _onWorkSummarySelectedHandler;
 }
 
@@ -36,47 +40,61 @@ class _DialogWorkLayoutTableRowState extends State<_DialogWorkLayoutTableRow> {
           cellWidget = SizedBox(width: 20, height: 20);
         }
       } else if (cellValue is String) {
-        cellWidget = Text(cellValue,
-            overflow: TextOverflow.ellipsis,
-            style: column.isEmphasised ? widget._theme.dialogBaseTheme.emphasisedCellTextStyle : widget._theme.dialogBaseTheme.normalCellTextStyle);
+        cellWidget = Text(
+          cellValue,
+          overflow: TextOverflow.ellipsis,
+          style: column.isEmphasised
+              ? widget._dialogTheme.dialogBaseTheme.emphasisedCellTextStyle
+              : widget._dialogTheme.dialogBaseTheme.normalCellTextStyle,
+        );
       } else {
         throw Exception(
-            'TableRow is not able to display a ${cellValue.runtimeType} type. Please add support for this type in TableRow.');
+          'TableRow is not able to display a ${cellValue.runtimeType} type. Please add support for this type in TableRow.',
+        );
       }
 
       if (index > 0) {
-        widgets.add(SizedBox(width: widget._theme.dialogBaseTheme.horizontalSpacing));
+        widgets.add(
+          SizedBox(
+            width: widget._spacingTheme.horizontalSpacing,
+          ),
+        );
       }
       if (column.relativeWidth) {
-        widgets.add(Expanded(
-          flex: column.width,
-          child: cellWidget,
-        ));
+        widgets.add(Expanded(flex: column.width, child: cellWidget));
       } else {
-        widgets.add(SizedBox(width: column.width.toDouble(), child: cellWidget));
+        widgets.add(
+          SizedBox(width: column.width.toDouble(), child: cellWidget),
+        );
       }
     }
     return MouseRegion(
       onEnter: (event) => {
         setState(() {
           _isMouseOver = true;
-        })
+        }),
       },
       onExit: (event) => {
         setState(() {
           _isMouseOver = false;
-        })
+        }),
       },
       child: GestureDetector(
         onTap: () async {
-          await Executor.runCommandAsync('_DialogWorkLayoutTableRowState.GestureDetector.onTap:', 'DialogWork',
-              () async {
-            Navigator.pop(context);
-            await widget._onWorkSummarySelectedHandler(widget._work);
-          });
+          await Executor.runCommandAsync(
+            '_DialogWorkLayoutTableRowState.GestureDetector.onTap:',
+            'DialogWork',
+            () async {
+              Navigator.pop(context);
+              await widget._onWorkSummarySelectedHandler(widget._work);
+            },
+          );
         },
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: widget._theme.dialogBaseTheme.verticalSpacing/2, horizontal: widget._theme.dialogBaseTheme.paddingWide),
+          padding: EdgeInsets.symmetric(
+            vertical: widget._spacingTheme.verticalSpacing / 2,
+            horizontal: widget._spacingTheme.paddingWide,
+          ),
           color: (_isMouseOver) ? Colors.grey[300] : Colors.white,
           child: Row(children: widgets),
         ),

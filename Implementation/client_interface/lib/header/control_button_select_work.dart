@@ -61,7 +61,7 @@ Text CreateTextWidget(String label) {
 }
 
 
-      final ValueListenable<Work?> _selectedWork;
+  final ValueListenable<Work?> _selectedWork;
   final ThemeExtensionControlWorkButton _workButtonTheme;
   final bool _isMouseOver;
 }

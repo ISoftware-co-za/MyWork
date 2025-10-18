@@ -1,4 +1,4 @@
-import 'package:client_interfaces1/controller/coordinator_work_and_activity_list_loader.dart';
+import 'package:client_interfaces1/controller/coordinator_work_and_activity_list.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/provider_state_application.dart';
@@ -12,7 +12,7 @@ class ControlButtonAddWork extends StatelessWidget {
     return ControlIconButtonLarge(
         icon: Icon(Icons.add),
         onPressed: () async {
-            CoordinatorWorkActivityListLoader coordinatorWorkActivityListLoader = ProviderStateApplication.of(context)!.state.getCoordinator<CoordinatorWorkActivityListLoader>()!;
+            CoordinatorWorkActivityList coordinatorWorkActivityListLoader = ProviderStateApplication.of(context)!.state.getCoordinator<CoordinatorWorkActivityList>()!;
             await coordinatorWorkActivityListLoader.onNewWork();
         });
   }

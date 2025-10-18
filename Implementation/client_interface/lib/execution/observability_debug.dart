@@ -10,6 +10,11 @@ class ObservabilityDebug implements Observability {
   }
 
   @override
+  void setTransactionData(String name, dynamic value) {
+    debugPrint('| DATA $name = $value');
+  }
+
+  @override
   void startServiceCall(Map<String, String> headers) {
     debugPrint('ServiceCall');
   }

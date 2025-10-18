@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import '../../../dialog_people/widget/layout_dialog_people.dart';
 import '../../../model/activity.dart';
 import '../../../model/provider_state_model.dart';
+import '../../../theme/theme_extension_control_activity_state_and_what.dart';
+import '../../../theme/theme_extension_spacing.dart';
 import '../../../ui_toolkit/control_delete.dart';
 import '../../../ui_toolkit/hover.dart';
 import '../controller/controller_activity.dart';
@@ -17,15 +19,23 @@ class LayoutFormActivity extends StatefulWidget {
   const LayoutFormActivity({
     required ControllerActivityList controllerActivityList,
     required ControllerActivity controllerActivity,
+    required ThemeExtensionSpacing spacingTheme,
+    required ThemeExtensionControlActivityStateAndWhat
+    controlActivityStateAndWhatTheme,
     super.key,
   }) : _controllerActivityList = controllerActivityList,
-       _controllerActivity = controllerActivity;
+       _controllerActivity = controllerActivity,
+       _spacingTheme = spacingTheme,
+       _controlActivityStateAndWhatTheme = controlActivityStateAndWhatTheme;
 
   @override
   State<LayoutFormActivity> createState() => _LayoutFormActivityState();
 
   final ControllerActivityList _controllerActivityList;
   final ControllerActivity _controllerActivity;
+  final ThemeExtensionSpacing _spacingTheme;
+  final ThemeExtensionControlActivityStateAndWhat
+  _controlActivityStateAndWhatTheme;
 }
 
 class _LayoutFormActivityState extends State<LayoutFormActivity> {
@@ -59,9 +69,10 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
         final AutocompleteTrailingAction trailingAction =
             AutocompleteTrailingAction(
               Icons.person,
-              () => Executor.runCommand('person', 'LayoutActivityForm', () {
-                _showPeopleDialog(context);
-              }),
+              (Offset offset, Size size) =>
+                  Executor.runCommand('person', 'LayoutActivityForm', () {
+                    _showPeopleDialog(context, offset, size);
+                  }),
             );
         return Padding(
           padding: const EdgeInsets.all(16.0),
@@ -74,6 +85,9 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
                 ControlActivityStateAndWhat(
                   activity: activity,
                   isMouseover: _isMouseover,
+                  spacingTheme: widget._spacingTheme,
+                  controlActivityStateAndWhatTheme:
+                      widget._controlActivityStateAndWhatTheme,
                 ),
                 const SizedBox(height: 16),
                 Row(
@@ -131,7 +145,7 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
     );
   }
 
-  void _showPeopleDialog(BuildContext context) {
+  void _showPeopleDialog(BuildContext context, Offset offset, Size size) {
     ProviderStateModel providerStateModel = ProviderStateModel.of(context)!;
     var controller = ControllerDialogPeople(
       providerStateModel.state.getInstance<PersonList>()!,
@@ -144,7 +158,10 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return LayoutDialogPeople(controller: controller);
+        return LayoutDialogPeople(
+          topLeft: Offset(offset.dx + size.width, offset.dy),
+          controller: controller,
+        );
       },
     );
   }

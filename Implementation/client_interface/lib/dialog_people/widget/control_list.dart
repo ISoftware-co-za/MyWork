@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../theme/theme_extension_dialog_people.dart';
+import '../../theme/theme_extension_spacing.dart';
 import '../../theme/theme_extension_text_field.dart';
 import '../controller/controller_dialog_people.dart';
 import 'control_add_person.dart';
@@ -11,17 +12,19 @@ import 'layout_person.dart';
 class ControlList extends StatelessWidget {
   const ControlList({
     required ControllerDialogPeople controller,
+    required ThemeExtensionSpacing spacingTheme,
     required ThemeExtensionDialogPeople dialogTheme,
     required ThemeExtensionTextField textFieldTheme,
     super.key,
   }) : _controller = controller,
+       _spacingTheme = spacingTheme,
        _dialogTheme = dialogTheme,
        _textFieldTheme = textFieldTheme;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: _dialogTheme.dialogBaseTheme.edgeInsetsWide,
+      padding: _spacingTheme.edgeInsetsWide,
       child: ValueListenableBuilder(
         valueListenable: _controller.items,
         builder: (BuildContext context, List<dynamic> value, Widget? child) {
@@ -29,9 +32,7 @@ class ControlList extends StatelessWidget {
             itemCount: 2 * value.length,
             itemBuilder: (BuildContext context, int index) {
               if (index % 2 == 1)
-                return SizedBox(
-                  height: _dialogTheme.dialogBaseTheme.verticalSpacing,
-                );
+                return SizedBox(height: _spacingTheme.verticalSpacing);
               int itemIndex = (index / 2).toInt();
               dynamic item = value[itemIndex];
               if (item is ListItemAddPerson) {
@@ -40,6 +41,7 @@ class ControlList extends StatelessWidget {
                 return LayoutAddedPerson(
                   controller: _controller,
                   listItem: item,
+                  themeSpacing: _spacingTheme,
                   dialogTheme: _dialogTheme,
                   textFieldTheme: _textFieldTheme,
                 );
@@ -47,6 +49,7 @@ class ControlList extends StatelessWidget {
                 return LayoutPerson(
                   controller: _controller,
                   person: item,
+                  spacingTheme: _spacingTheme,
                   dialogTheme: _dialogTheme,
                   controlColumnWidth: _dialogTheme.commandColumnWidth,
                 );
@@ -63,6 +66,7 @@ class ControlList extends StatelessWidget {
   }
 
   final ControllerDialogPeople _controller;
+  final ThemeExtensionSpacing _spacingTheme;
   final ThemeExtensionDialogPeople _dialogTheme;
   final ThemeExtensionTextField _textFieldTheme;
 }

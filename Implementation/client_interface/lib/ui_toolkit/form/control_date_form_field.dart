@@ -65,7 +65,7 @@ class _ControlDateFormFieldState extends State<ControlDateFormField> {
         } else {
           children.add(
             Padding(
-              padding: const EdgeInsets.fromLTRB(2, 0.5, 0, 0.5),
+              padding: const EdgeInsets.fromLTRB(7, 0.5, 0, 0.5),
               child: Text(
                 widget.property.value != null
                     ? DateFormat.yMd().format(widget.property.value)
@@ -123,8 +123,8 @@ class _ControlDateFormFieldState extends State<ControlDateFormField> {
           ),
         ),
         SizedBox(width: 4),
-        ControlIconButton(
-          Icons.date_range,
+        ControlIconButtonNormal(
+          icon: Icon(Icons.date_range),
           onPressed: () {
             showDatePicker(
               context: context,

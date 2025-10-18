@@ -12,6 +12,12 @@ class ObservabilitySentry implements Observability {
   }
 
   @override
+  void setTransactionData(String name, dynamic value) {
+    assert(_currentTransaction != null, 'No transaction started. Please call ObservabilitySentry.startTransaction before calling ObservabilitySentry.setTransactionData');
+    _currentTransaction!.setData(name, value);
+  }
+
+  @override
   void logException(Object error, StackTrace stackTrace) {
     Sentry.captureException(error, stackTrace: stackTrace);
   }

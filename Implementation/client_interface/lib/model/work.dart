@@ -24,12 +24,14 @@ class Work extends PropertyOwner {
     _initialiseInstance('', null, false, null);
   }
 
-  Work({ required ModelPropertyChangeContext context,
+  Work({
+    required ModelPropertyChangeContext context,
     required this.id,
     required String name,
     required String? reference,
     required String? type,
-    required bool archived}) : super(context) {
+    required bool archived,
+  }) : super(context) {
     _initialiseInstance(name, reference, archived, type);
   }
 
@@ -42,10 +44,11 @@ class Work extends PropertyOwner {
 
   Future save() async {
     var request = CreateWorkRequest(
-        name: name.value,
-        type: type.value,
-        reference: reference.value,
-        description: description.value);
+      name: name.value,
+      type: type.value,
+      reference: reference.value,
+      description: description.value,
+    );
     var response = await GetIt.instance<ServiceClientWork>().create(request);
     if (response is CreateWorkResponse) {
       id = response.id;
@@ -55,10 +58,12 @@ class Work extends PropertyOwner {
   }
 
   Future update() async {
-    List<UpdateEntityProperty> updatedProperties =listUpdatedProperties();
+    List<UpdateEntityProperty> updatedProperties = listUpdatedProperties();
     if (updatedProperties.isNotEmpty) {
-      var request =
-      UpdateEntityRequest(id: id, updatedProperties: updatedProperties);
+      var request = UpdateEntityRequest(
+        id: id,
+        updatedProperties: updatedProperties,
+      );
       var response = await _serviceClient.update(request);
       if (response is ValidationProblemResponse) {
         invalidate(response.errors);
@@ -69,7 +74,13 @@ class Work extends PropertyOwner {
   Future loadDetails() async {
     if (!_isLoaded) {
       LoadWorkDetailsResponse response = await _serviceClient.loadDetails(id);
-      description.setValueWithNotification(DataConversionServiceToModel.nullToEmptyString(response.details.description), ignoreNotification: true);
+      description.setValueWithNotification(
+        DataConversionServiceToModel.nullToEmptyString(
+          response.details.description,
+        ),
+        ignorePropertyChanged: true,
+        ignoreNotification: true,
+      );
       _isLoaded = true;
     }
   }
@@ -78,39 +89,56 @@ class Work extends PropertyOwner {
     await _serviceClient.delete(id);
   }
 
-  void _initialiseInstance(String name, [String? reference, bool? archived = false, String? type]) {
+  void _initialiseInstance(
+    String name, [
+    String? reference,
+    bool? archived = false,
+    String? type,
+  ]) {
     if (reference == null) {
       reference = '';
     }
     if (type == null) {
       type = '';
     }
-    this.name = ModelProperty(context: context, value: name, validators: [
-      ValidatorRequired(invalidMessageTemplate: 'Name is required'),
-      ValidatorMaximumCharacters(
+    this.name = ModelProperty(
+      context: context,
+      value: name,
+      validators: [
+        ValidatorRequired(invalidMessageTemplate: 'Name is required'),
+        ValidatorMaximumCharacters(
           maximumCharacters: 80,
-          invalidMessageTemplate: 'Name should be 80 characters or less')
-    ]);
-    this.reference = ModelProperty(context: context, value: reference, validators: [
-      ValidatorMaximumCharacters(
+          invalidMessageTemplate: 'Name should be 80 characters or less',
+        ),
+      ],
+    );
+    this.reference = ModelProperty(
+      context: context,
+      value: reference,
+      validators: [
+        ValidatorMaximumCharacters(
           maximumCharacters: 40,
-          invalidMessageTemplate: 'Reference should be 40 characters or less')
-    ]);
+          invalidMessageTemplate: 'Reference should be 40 characters or less',
+        ),
+      ],
+    );
     this.description = ModelProperty(context: context, value: '');
     this.archived = ModelProperty(context: context, value: archived!);
     this.type = ModelProperty<String>(
-        context: context,
-        value: type,
-        validators: [
-          ValidatorMaximumCharacters(
-              maximumCharacters: 40,
-              invalidMessageTemplate: 'Type should be 40 characters or less')
-        ]);
+      context: context,
+      value: type,
+      validators: [
+        ValidatorMaximumCharacters(
+          maximumCharacters: 40,
+          invalidMessageTemplate: 'Type should be 40 characters or less',
+        ),
+      ],
+    );
     properties = {
       'name': this.name,
       'reference': this.reference,
       'description': this.description,
-      'type': this.type
+      'type': this.type,
     };
   }
 

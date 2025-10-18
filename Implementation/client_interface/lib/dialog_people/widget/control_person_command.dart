@@ -1,7 +1,7 @@
 import 'package:client_interfaces1/execution/executor.dart';
+import 'package:client_interfaces1/ui_toolkit/control_icon_button_normal.dart';
 import 'package:flutter/material.dart';
 
-import '../../ui_toolkit/control_icon_button.dart';
 import '../../ui_toolkit/control_icon_button_reject.dart';
 import '../controller/controller_dialog_people.dart';
 
@@ -27,8 +27,8 @@ class ControlPersonCommand extends StatelessWidget {
             onPressed: () => Executor.runCommand('ControlIconButtonReject.close.onPressed', 'LayoutDialogPeople', _person.onRejectChanges)
           );
         } else if (_isHot) {
-          child = ControlIconButton(
-            Icons.delete,
+          child = ControlIconButtonNormal(
+            icon: Icon(Icons.delete),
             onPressed: () => Executor.runCommand('ControlPersonCommand.delete.onPressed', 'LayoutDialogPeople', _person.onDelete)
           );
         } else {

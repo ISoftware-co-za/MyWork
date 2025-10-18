@@ -35,7 +35,7 @@ class ControlFormField extends StatelessWidget {
             children.add(_createUpdateField(theme));
           } else {
             children.add(Padding(
-              padding: const EdgeInsets.fromLTRB(4, 0.5, 0.5, 0),
+              padding: const EdgeInsets.fromLTRB(7, 0.5, 0.5, 0),
               child: Text(property.valueAsString, style: theme.valueStyle),
             ));
           }

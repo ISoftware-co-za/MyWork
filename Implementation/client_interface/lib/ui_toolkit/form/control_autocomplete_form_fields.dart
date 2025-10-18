@@ -7,9 +7,11 @@ abstract class AutocompleteDataSource {
   void onTextEntered(String text);
 }
 
+typedef LayoutCallback = void Function(Offset offset, Size size);
+
 class AutocompleteTrailingAction {
   final IconData icon;
-  final VoidCallback onSelected;
+  final LayoutCallback onSelected;
   AutocompleteTrailingAction(this.icon, this.onSelected);
 }
 
@@ -46,10 +48,15 @@ class ControlAutocompleteFormField extends StatelessWidget {
           if (trailingAction != null) {
             rowChildren.add(SizedBox(width: 4));
             rowChildren.add(
-              ControlIconButton(
-                trailingAction!.icon,
-                onPressed: trailingAction!.onSelected,
-              ),
+              ControlIconButtonNormal(
+                key: _trailingActionKey,
+                icon: Icon(trailingAction!.icon),
+                onPressed: () {
+                  RenderBox? renderObject = _trailingActionKey.currentContext!.findRenderObject() as RenderBox;
+                  Offset position = renderObject.localToGlobal(Offset.zero);
+                  trailingAction!.onSelected(position, renderObject.size);
+                }
+              )
             );
           }
           columnChildren.add(Row(
@@ -59,7 +66,7 @@ class ControlAutocompleteFormField extends StatelessWidget {
           String value = property.valueAsString;
           columnChildren.add(
             Padding(
-              padding: const EdgeInsets.fromLTRB(4, 0.5, 0.5, 0),
+              padding: const EdgeInsets.fromLTRB(7, 0.5, 0.5, 0),
               child: Text(value, style: theme.valueStyle),
             ),
           );
@@ -150,4 +157,5 @@ class ControlAutocompleteFormField extends StatelessWidget {
       ),
     );
   }
+  final GlobalKey _trailingActionKey = GlobalKey();
 }

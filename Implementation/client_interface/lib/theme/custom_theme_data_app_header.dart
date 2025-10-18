@@ -25,13 +25,16 @@ class CustomThemeDataAppHeader with CustomThemeCommon {
       extensions: <ThemeExtension<dynamic>>[
         ThemeExtensionIconButtonSize(
           smallIconSize: 8.0,
+          normalIconSize: 16.0,
           largeIconSize: 24.0,
           smallPadding: 2.0,
+          normalPadding: 2.0,
           largePadding: 4.0,
         ),
         const ThemeExtensionAppHeader(
           backgroundColor: Colors.black,
           height: 64,
+          padding: 8
         ),
         ThemeExtensionIconButtonAccept(
           style: ButtonStyle(
@@ -81,9 +84,10 @@ class CustomThemeDataAppHeader with CustomThemeCommon {
             decoration: TextDecoration.none,
           ),
         ),
+        CustomThemeCommon.spacing,
         CustomThemeCommon.formTheme,
         CustomThemeCommon.textFieldTheme,
-        CustomThemeCommon.iconButtonTheme
+        // CustomThemeCommon.iconButtonTheme
       ],
       iconButtonTheme: IconButtonThemeData(
         style: ButtonStyle(

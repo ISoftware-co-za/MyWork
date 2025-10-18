@@ -1,20 +1,24 @@
 part of dialog_work;
 
 class _DialogWorkLayoutTableHeader extends StatelessWidget {
-  _DialogWorkLayoutTableHeader(
-      {required ControllerDialogWork controller,
-      required WorkTypeList workTypes,
-      required ThemeExtensionDialogWork theme})
-      : _controller = controller,
-        _theme = theme {
-  }
+  _DialogWorkLayoutTableHeader({
+    required ControllerDialogWork controller,
+    required WorkTypeList workTypes,
+    required ThemeExtensionSpacing spacingTheme,
+    required ThemeExtensionDialogWork dialogTheme,
+  }) : _controller = controller,
+       _spacingTheme = spacingTheme,
+       _dialogTheme = dialogTheme {}
 
   @override
   Widget build(BuildContext context) {
     List<Widget> columns = _createColumns();
     return Container(
-      color: _theme.dialogBaseTheme.tableHeaderColor,
-      padding: EdgeInsets.symmetric(horizontal: _theme.dialogBaseTheme.paddingWide, vertical: _theme.dialogBaseTheme.verticalSpacing),
+      color: _dialogTheme.dialogBaseTheme.tableHeaderColor,
+      padding: EdgeInsets.symmetric(
+        horizontal: _spacingTheme.paddingWide,
+        vertical: _spacingTheme.verticalSpacing,
+      ),
       child: Row(children: columns),
     );
   }
@@ -25,31 +29,43 @@ class _DialogWorkLayoutTableHeader extends StatelessWidget {
       var column = _controller.columns.columns[index];
       Widget columnWidget;
       if (column is ColumnText) {
-        columnWidget = _DialogWorkControlColumnText(column: column, theme: _theme.dialogBaseTheme);
+        columnWidget = _DialogWorkControlColumnText(
+          column: column,
+          theme: _dialogTheme.dialogBaseTheme,
+        );
       } else if (column is ColumnList) {
-        columnWidget = _DialogWorkControlColumnList(column: column, labelStyle: _theme.dialogBaseTheme.tableHeaderTextStyle);
+        columnWidget = _DialogWorkControlColumnList(
+          column: column,
+          labelStyle: _dialogTheme.dialogBaseTheme.tableHeaderTextStyle,
+        );
       } else if (column is ColumnBoolean) {
-        columnWidget = _DialogWorkControlColumnBoolean(column: column, labelStyle: _theme.dialogBaseTheme.tableHeaderTextStyle);
+        columnWidget = _DialogWorkControlColumnBoolean(
+          column: column,
+          labelStyle: _dialogTheme.dialogBaseTheme.tableHeaderTextStyle,
+        );
       } else {
         throw Exception(
-            'There is no Widget defined for the column ${column.runtimeType}. Please define how a this type of column should be handled in LayoutTableHeader._createColumns.');
+          'There is no Widget defined for the column ${column.runtimeType}. Please define how a this type of column should be handled in LayoutTableHeader._createColumns.',
+        );
       }
 
       if (index > 0) {
-        columns.add(SizedBox(width: _theme.dialogBaseTheme.horizontalSpacing));
+        columns.add(
+          SizedBox(width: _spacingTheme.horizontalSpacing),
+        );
       }
       if (column.relativeWidth) {
-        columns.add(Expanded(
-          flex: column.width,
-          child: columnWidget,
-        ));
+        columns.add(Expanded(flex: column.width, child: columnWidget));
       } else {
-        columns.add(SizedBox(width: column.width.toDouble(), child: columnWidget));
+        columns.add(
+          SizedBox(width: column.width.toDouble(), child: columnWidget),
+        );
       }
     }
     return columns;
   }
 
   final ControllerDialogWork _controller;
-  final ThemeExtensionDialogWork _theme;
+  final ThemeExtensionSpacing _spacingTheme;
+  final ThemeExtensionDialogWork _dialogTheme;
 }

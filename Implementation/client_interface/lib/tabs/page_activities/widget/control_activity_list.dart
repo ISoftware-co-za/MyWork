@@ -1,10 +1,11 @@
 import 'package:client_interfaces1/tabs/page_activities/controller/controller_activity_list.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../../theme/theme_extension_spacing.dart';
 import 'control_activity_list_item.dart';
 
 class ControlActivityList extends StatelessWidget {
-  const ControlActivityList({required ControllerActivityList controller, super.key}) : _controller = controller;
+  const ControlActivityList({required ControllerActivityList controller, required ThemeExtensionSpacing spacingTheme, super.key}) : _controller = controller, _spacingTheme = spacingTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class ControlActivityList extends StatelessWidget {
               return ControlActivityListItem(
                 activity: _controller.activityList.value!.items[index],
                 activityListController: _controller,
+                spacingTheme: _spacingTheme
               );
             },
           );
@@ -28,4 +30,5 @@ class ControlActivityList extends StatelessWidget {
   }
 
   final ControllerActivityList _controller;
+  final ThemeExtensionSpacing _spacingTheme;
 }

@@ -70,7 +70,6 @@ class ModelProperty<T> extends PropertyChangeNotifier {
     if (_invalidMessage != value) {
       _invalidMessage = value;
       notifyPropertyChange("invalidMessage");
-      debugPrint("_invalidMessage = $_invalidMessage");
     }
   }
 

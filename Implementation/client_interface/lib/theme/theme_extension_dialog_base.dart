@@ -3,13 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class ThemeExtensionDialogBase {
-  final double paddingWide;
-  final double paddingNarrow;
-  final EdgeInsets edgeInsetsWide;
-  final EdgeInsets edgeInsetsNarrow;
-  final double horizontalSpacing;
-  final double verticalSpacing;
-
   final Color backgroundColor;
   final Color borderColor;
   final double borderWidth;
@@ -27,12 +20,6 @@ class ThemeExtensionDialogBase {
   final TextStyle emphasisedCellTextStyle;
 
   const ThemeExtensionDialogBase({
-    required this.paddingWide,
-    required this.paddingNarrow,
-    required this.edgeInsetsWide,
-    required this.edgeInsetsNarrow,
-    required this.horizontalSpacing,
-    required this.verticalSpacing,
     required this.backgroundColor,
     required this.borderColor,
     required this.borderWidth,
@@ -49,12 +36,6 @@ class ThemeExtensionDialogBase {
 
   ThemeExtensionDialogBase copyWith() {
     return ThemeExtensionDialogBase(
-      paddingWide: paddingWide,
-      paddingNarrow: paddingNarrow,
-      edgeInsetsWide: edgeInsetsWide,
-      edgeInsetsNarrow: edgeInsetsNarrow,
-      verticalSpacing: verticalSpacing,
-      horizontalSpacing: horizontalSpacing,
       backgroundColor: backgroundColor,
       borderColor: borderColor,
       borderWidth: borderWidth,
@@ -76,16 +57,6 @@ class ThemeExtensionDialogBase {
   ) {
     if (other == null) return this;
     return ThemeExtensionDialogBase(
-      paddingWide: lerpDouble(paddingWide, other.paddingWide, t)!,
-      paddingNarrow: lerpDouble(paddingNarrow, other.paddingNarrow, t)!,
-      edgeInsetsWide: EdgeInsets.lerp(edgeInsetsWide, other.edgeInsetsWide, t)!,
-      edgeInsetsNarrow: EdgeInsets.lerp(edgeInsetsNarrow, other.edgeInsetsNarrow, t)!,
-      verticalSpacing: lerpDouble(verticalSpacing, other.verticalSpacing, t)!,
-      horizontalSpacing: lerpDouble(
-        horizontalSpacing,
-        other.horizontalSpacing,
-        t,
-      )!,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       borderWidth: lerpDouble(borderWidth, other.borderWidth, t)!,
       borderColor: Color.lerp(borderColor, other.borderColor, t)!,
