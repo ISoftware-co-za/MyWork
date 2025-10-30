@@ -33,7 +33,7 @@ class ActivityList extends ChangeNotifier {
           item.dueDate,
           recipient,
           item.why,
-          item.notes
+          item.how
         ),
       );
     }

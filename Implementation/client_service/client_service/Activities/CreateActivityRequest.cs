@@ -12,5 +12,5 @@ public record class CreateActivityRequest
     
     public string? Why { get; init; }
     
-    public string? Notes { get; init; }
+    public string? How { get; init; }
 }

@@ -122,8 +122,8 @@ class _LayoutFormActivityState extends State<LayoutFormActivity> {
                 ),
                 const SizedBox(height: 16),
                 ControlFormField(
-                  label: 'Notes',
-                  property: activity.notes,
+                  label: 'How',
+                  property: activity.how,
                   editable: _isMouseover,
                   maximumLines: 3,
                 ),

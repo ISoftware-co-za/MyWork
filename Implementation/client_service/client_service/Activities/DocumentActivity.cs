@@ -27,8 +27,8 @@ public record class DocumentActivity
     [BsonElement("why")]
     public string? Why { get; init; }
 
-    [BsonElement("notes")]
-    public string? Notes { get; init; }
+    [BsonElement("how")]
+    public string? How { get; init; }
 
     [BsonElement("dueDate")]
     public string? DueDate { get; init; }

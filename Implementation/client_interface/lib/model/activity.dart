@@ -44,7 +44,7 @@ class Activity extends PropertyOwner {
   late final ModelProperty<DateTime?> dueDate;
   late final ModelProperty<Person?> recipient;
   late final ModelProperty<String> why;
-  late final ModelProperty<String> notes;
+  late final ModelProperty<String> how;
 
   bool get isNew => id.isEmpty;
 
@@ -57,10 +57,10 @@ class Activity extends PropertyOwner {
     DateTime? dueDate,
     Person? recipient,
     String? why,
-    String? notes,
+    String? how,
   ) : super(context) {
     _context = context;
-    _initialiseInstance(what, state, dueDate, recipient, why, notes);
+    _initialiseInstance(what, state, dueDate, recipient, why, how);
   }
 
   Activity.create(ModelPropertyChangeContext context, String workId)
@@ -77,7 +77,7 @@ class Activity extends PropertyOwner {
         dueDate.validate() &&
         recipient.validate() &&
         why.validate() &&
-        notes.validate();
+        how.validate();
   }
 
   Future save() async {
@@ -87,7 +87,7 @@ class Activity extends PropertyOwner {
       dueDate: DataConversionModelToService.dateTimeToDateString(dueDate.value),
       recipientId: recipient.value == null ? null : recipient.value!.id,
       why: why.value.isEmpty ? null : why.value,
-      notes: notes.value.isEmpty ? null : notes.value,
+      how: how.value.isEmpty ? null : how.value,
     );
 
     var response = await _serviceClient.create(workId, request);
@@ -127,13 +127,13 @@ class Activity extends PropertyOwner {
     DateTime? dueDate,
     Person? recipient,
     String? why,
-    String? notes,
+    String? how,
   ]) {
     if (why == null) {
       why = '';
     }
-    if (notes == null) {
-      notes = '';
+    if (how == null) {
+      how = '';
     }
     this.what = ModelProperty(
       context: _context,
@@ -159,9 +159,9 @@ class Activity extends PropertyOwner {
         ),
       ],
     );
-    this.notes = ModelProperty(
+    this.how = ModelProperty(
       context: _context,
-      value: notes,
+      value: how,
       validators: [
         ValidatorMaximumCharacters(
           maximumCharacters: 240,
@@ -176,7 +176,7 @@ class Activity extends PropertyOwner {
       'dueDate': this.dueDate,
       'recipient': this.recipient,
       'why': this.why,
-      'notes': this.notes,
+      'how': this.how,
     };
   }
 

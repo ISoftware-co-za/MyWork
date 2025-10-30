@@ -35,8 +35,7 @@ class GeneratorActivity extends GeneratorBase {
     Map<String, dynamic> user = await SharedMethods.getUserFromId(_userId, db);
 
     var work = await db.collection(DocumentCollections.work).find({WorkProperties.userId: user['_id']}).toList();
-    var people =
-        await db.collection(DocumentCollections.people).find().toList();
+    var people = await db.collection(DocumentCollections.people).find().toList();
     var activityStates = ['Idle', 'Busy', 'Done', 'Paused', 'Cancelled'];
 
     stdout.writeln('');
@@ -62,7 +61,7 @@ class GeneratorActivity extends GeneratorBase {
       }
 
       if (faker.randomGenerator.integer(10) >= 7) {
-        activity[ActivitiesProperties.notes] = _generateSentence(240);
+        activity[ActivitiesProperties.how] = _generateSentence(240);
       }
 
       int dueDateIndicator = faker.randomGenerator.integer(10);

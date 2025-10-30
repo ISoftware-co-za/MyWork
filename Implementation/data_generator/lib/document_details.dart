@@ -19,11 +19,11 @@ class PeopleProperties {
 
 class WorkProperties {
   static const String userId = 'user_id';
-  static const String workId = 'work_id';
+  static const String name = 'name';
+  static const String type = 'type';
   static const String what = 'what';
-  static const String state = 'state';
-  static const String why = 'why';
-  static const String notes = 'notes';
+  static const String reference = 'reference';
+  static const String archived = 'archived';
 }
 
 class ActivitiesProperties {
@@ -32,7 +32,7 @@ class ActivitiesProperties {
   static const String what = 'what';
   static const String state = 'state';
   static const String why = 'why';
-  static const String notes = 'notes';
+  static const String how = 'how';
   static const String dueDate = 'dueDate';
 }
 
