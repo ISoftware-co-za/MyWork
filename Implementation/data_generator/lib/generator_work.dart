@@ -48,14 +48,14 @@ class GeneratorWork extends GeneratorBase {
         : Faker().randomGenerator.integer(1000000, min: 0);
     for (int count = 1; count <= workCount; ++count) {
       var work = {
-        'user_id': user['_id'],
-        'name': Faker().lorem.sentence(),
-        'type':
+        WorkProperties.userId: user['_id'],
+        WorkProperties.name: Faker().lorem.sentence(),
+        WorkProperties.type:
             Faker().randomGenerator.integer(10, min: 0) >= 5 ? workType : null,
-        'reference': Faker().randomGenerator.integer(10, min: 0) >= 8
+        WorkProperties.reference: Faker().randomGenerator.integer(10, min: 0) >= 8
             ? Faker().vehicle.vin()
             : null,
-        'archived':
+        WorkProperties.archived:
             Faker().randomGenerator.integer(10, min: 0) >= 8 ? true : false,
       };
       var result = await db.collection('work').insertOne(work);

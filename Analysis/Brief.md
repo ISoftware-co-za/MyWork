@@ -42,6 +42,13 @@ Attributes:
 - Status (Idle, Busy, Complete, Paused, Cancelled)
 - Due Date
 - Owner
+
+- **Who** 👤: The people involved (**perpetrators, participants, audience**).
+- **What** 🎯: The **action, subject, or result** of the activity.
+- **Why** 💡: The **purpose, objective, or cause** of the activity.
+- **How** 🛠️: The **method, process, or steps** used to perform the activity.
+-  **When** ⏰: The **time, date, or duration** of the activity.
+- **Where** 🗺️: The **location, setting, or place** of the activity.
 ## Tasks
 These are the **individual steps** you need to take to **complete an activity**.  Activities are the most **detailed level** and describe the **specific actions** involved. An activity can be:
 

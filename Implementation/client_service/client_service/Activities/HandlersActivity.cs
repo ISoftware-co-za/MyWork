@@ -30,7 +30,7 @@ public static class HandlersActivity
                 [new RequiredAttribute(), new StringLengthAttribute(80)]),
             new(nameof(CreateActivityRequest.Why),
                 [new StringLengthAttribute(240)]),
-            new(nameof(CreateActivityRequest.Notes),
+            new(nameof(CreateActivityRequest.How),
                 [new StringLengthAttribute(240)])
         ];
         requestValidation.RegisterValidation(new ValidatedRequest(
@@ -87,7 +87,7 @@ public static class HandlersActivity
                         dueDate,
                         document.RecipientId?.ToString(),
                         document.Why,
-                        document.Notes);
+                        document.How);
                     activityItems.Add(activity);
                 }
                 return Results.Ok(new GetWorkActivityListResponse(activityItems));
@@ -116,7 +116,7 @@ public static class HandlersActivity
                             ? null
                             : ObjectId.Parse(request.RecipientId!),
                         Why = request.Why,
-                        Notes = request.Notes,
+                        How = request.How,
                     };
                     await activityCollection.InsertOneAsync(activityDocument);
                     return Results.Created($"{_urlPrefix}/{activityDocument.Id}",

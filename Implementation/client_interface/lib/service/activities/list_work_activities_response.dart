@@ -19,7 +19,7 @@ class ActivityItem {
   final DateTime? dueDate;
   final String? recipientId;
   final String? why;
-  final String? notes;
+  final String? how;
 
   ActivityItem({
     required this.id,
@@ -28,7 +28,7 @@ class ActivityItem {
     this.dueDate,
     this.recipientId,
     this.why,
-    this.notes,
+    this.how,
   });
 
   factory ActivityItem.fromJson(Map<String, dynamic> json) {
@@ -39,7 +39,7 @@ class ActivityItem {
       dueDate: json['dueDate'] != null ? DateTime.parse(json['dueDate']) : null,
       recipientId: json['recipientId'],
       why: json['why'],
-      notes: json['notes']
+      how: json['how']
     );
   }
 }

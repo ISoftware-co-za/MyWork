@@ -6,10 +6,10 @@ class CreateActivityRequest {
   final String? dueDate;
   final String? recipientId;
   final String? why;
-  final String? notes;
+  final String? how;
 
   CreateActivityRequest(
-      {required this.what, required this.state, this.dueDate, this.recipientId, this.why, this.notes});
+      {required this.what, required this.state, this.dueDate, this.recipientId, this.why, this.how});
 
   Map<String, dynamic> toJson() {
     var json = <String, dynamic>{'what': what, 'state': state};
@@ -22,8 +22,8 @@ class CreateActivityRequest {
     if (why != null) {
       json['why'] = why;
     }
-    if (notes != null) {
-      json['notes'] = notes;
+    if (how != null) {
+      json['how'] = how;
     }
     return json;
   }
