@@ -42,7 +42,7 @@ class ControllerDialogPeople extends ControllerBase {
     selectedPerson.addListener(_onPersonSelected);
     filterCriteria.addListener(_onFilterCriteriaChanged);
     _constructList();
-    _personList.modelPropertyContext.hasChanges.addListener(_setHasChanges);
+    _personList.context.hasChanges.addListener(_setHasChanges);
     selectedPersonRegistry = SelectedPersonRegistry(_personList, selectedPerson);
   }
 
@@ -51,7 +51,7 @@ class ControllerDialogPeople extends ControllerBase {
   //#region EVENT HANDLERS
 
   void onAddPerson() {
-    _personList.add(Person.create(_personList.modelPropertyContext));
+    _personList.add(Person.create(_personList.context));
     _constructList();
   }
 
@@ -119,7 +119,7 @@ class ControllerDialogPeople extends ControllerBase {
 
   void _setHasChanges() {
     _hasChanges.value =
-        _personList.modelPropertyContext.hasChanges.value ||
+        _personList.context.hasChanges.value ||
         _personList.removeCount > 0;
   }
 
@@ -131,7 +131,7 @@ class ControllerDialogPeople extends ControllerBase {
       currentlySelectedPerson = selectedPerson.value!;
     }
 
-    _personList.peopleAdded.forEach((person) {
+    _personList.addedPeople.forEach((person) {
       final addedPerson = ListItemNewPerson(person, this);
       people.add(addedPerson);
       if (person == currentlySelectedPerson) {

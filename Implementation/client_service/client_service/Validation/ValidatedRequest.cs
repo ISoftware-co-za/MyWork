@@ -1,11 +1,10 @@
 namespace ClientService.Validation;
 
-public class ValidatedRequest(Type? create, Type? update, ValidatedPropertyCollection properties)
+public class ValidatedRequest(string createTypeName, ValidatedPropertyCollection properties)
 {
     #region PROPERTIES
     
-    public Type? Create { get; } = create;
-    public Type? Update { get; } = update;
+    public string CreateTypeNameRequestName { get; } = createTypeName;
     public ValidatedPropertyCollection Properties { get; } = properties;
     
     #endregion

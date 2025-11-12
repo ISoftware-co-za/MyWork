@@ -98,7 +98,7 @@ class _MainPageState extends State<MainPage>
 
   @override
   Widget build(BuildContext context) {
-    var stateProvider = ProviderStateApplication(
+    var stateProvider =  ProviderStateApplication(
       state: _stateApplication,
       child: Builder(
         builder: (context) {
@@ -138,7 +138,7 @@ class _MainPageState extends State<MainPage>
   }
 
   Future _obtainerDataFromService(
-    StateModel stateModel,
+  StateModel stateModel,
     StateApplication stateApplication,
   ) async {
     await Executor.runCommandAsync('_obtainerDataFromService', '_MainPageState', () async {
@@ -181,7 +181,7 @@ class _MainPageState extends State<MainPage>
       stateApplication.registerController(_workController);
       stateApplication.registerController(_activityListController);
       stateApplication.registerController(
-        ControllerActivity(people, _activityListController.selectedActivity),
+        ControllerActivity(people, _activityListController.modelPropertyContext, _activityListController.selectedActivity),
       );
       stateApplication.registerController(_controllerTabBar);
       stateApplication.registerCoordinator(

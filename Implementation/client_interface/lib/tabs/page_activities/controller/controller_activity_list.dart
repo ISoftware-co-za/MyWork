@@ -8,6 +8,8 @@ import '../../../model/person_list.dart';
 import '../../../model/work.dart';
 
 class ControllerActivityList extends ControllerBase {
+  //#region PROPERTIES
+
   final ValueNotifier<ActivityList?> activityList =
       ValueNotifier<ActivityList?>(null);
   final ModelPropertyChangeContext modelPropertyContext = ModelPropertyChangeContext(
@@ -16,9 +18,17 @@ class ControllerActivityList extends ControllerBase {
   late final ValueListenable<Activity?> selectedActivity;
   ValueNotifier<bool> isSaving = ValueNotifier<bool>(false);
 
+  //#endregion
+
+  //#region CONSTRUCTION
+
   ControllerActivityList(PersonList people) : _people = people {
     selectedActivity = _selectedActivity;
   }
+
+  //#endregion
+
+  //#region METHODS
 
   bool canNavigateFrom() {
     if (selectedActivity.value != null &&
@@ -45,6 +55,25 @@ class ControllerActivityList extends ControllerBase {
     }
     return true;
   }
+
+  Future loadActivitiesIfRequired() async {
+    assert(
+    _selectedWork != null,
+    'Work must be selected to load its activities',
+    );
+    if (activityList.value == null ||
+        _selectedWork!.id != activityList.value!.workId) {
+      activityList.value = ActivityList(
+        modelPropertyContext,
+        _selectedWork!.id,
+      );
+      await activityList.value!.loadAll(_people);
+    }
+  }
+
+  //#endregion
+
+  //#region EVENT HANDLERS
 
   Future onSelectActivity(Activity? activity) async {
     if (await saveActivityIfRequired()) {
@@ -84,7 +113,7 @@ class ControllerActivityList extends ControllerBase {
         return;
       }
     }
-    final newActivity = Activity.create(
+    final newActivity = Activity.createNew(
       modelPropertyContext,
       _selectedWork!.id,
     );
@@ -92,7 +121,7 @@ class ControllerActivityList extends ControllerBase {
     activityList.value!.add(newActivity);
   }
 
-  Future<void> onDeleteActivity() async {
+  Future onDeleteActivity() async {
     assert(_selectedActivity.value != null, 'No activity selected to delete.');
     await _selectedActivity.value!.delete();
     activityList.value!.remove(_selectedActivity.value!);
@@ -107,7 +136,7 @@ class ControllerActivityList extends ControllerBase {
       isSaving.value = true;
       try {
         if (activity.isNew) {
-          await activity.save();
+          await activity.create();
         } else {
           await activity.update();
         }
@@ -124,24 +153,15 @@ class ControllerActivityList extends ControllerBase {
     modelPropertyContext.rejectChanges();
   }
 
-  Future loadActivitiesIfRequired() async {
-    assert(
-      _selectedWork != null,
-      'Work must be selected to load its activities',
-    );
-    if (activityList.value == null ||
-        _selectedWork!.id != activityList.value!.workId) {
-      activityList.value = ActivityList(
-        modelPropertyContext,
-        _selectedWork!.id,
-      );
-      await activityList.value!.loadAll(_people);
-    }
-  }
+  //#endregion
+
+  //#region FIELDS
 
   final ValueNotifier<Activity?> _selectedActivity = ValueNotifier<Activity?>(
     null,
   );
   final PersonList _people;
   Work? _selectedWork;
+
+  //#endregion
 }

@@ -7,18 +7,24 @@ import 'validator_base.dart';
 
 //----------------------------------------------------------------------------------------------------------------------
 
-class PropertyOwner extends ChangeNotifier {
+class ContextOwner extends ChangeNotifier {
   final ModelPropertyChangeContext context;
+  ContextOwner(this.context);
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class PropertyOwner extends ContextOwner {
   late final Map<String, ModelProperty> properties;
 
-  PropertyOwner(ModelPropertyChangeContext context) : context = context;
+  PropertyOwner(ModelPropertyChangeContext super.context);
 
-  List<UpdateEntityProperty> listUpdatedProperties() {
-    var updatedProperties = <UpdateEntityProperty>[];
+  List<EntityProperty> listUpdatedProperties() {
+    var updatedProperties = <EntityProperty>[];
     for (var propertyEntry in properties.entries) {
       if (propertyEntry.value.isChanged) {
         updatedProperties.add(
-          UpdateEntityProperty(
+          EntityProperty(
             name: mapPropertyToUpdateRequestProperty(propertyEntry.key),
             value: propertyEntry.value.value,
           ),
@@ -78,6 +84,7 @@ class ModelProperty<T> extends PropertyChangeNotifier {
   bool get hasValue => _value != null;
   bool get isValid => _invalidMessage == null;
   String get valueAsString => (_value != null) ? _value.toString() : '';
+  bool get isValueNotifying => notifyingProperty == 'value';
 
   ModelProperty({
     required ModelPropertyChangeContext context,
@@ -106,6 +113,7 @@ class ModelProperty<T> extends PropertyChangeNotifier {
         notifyPropertyChange("value");
       }
       return true;
+
     }
     return false;
   }

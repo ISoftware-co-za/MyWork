@@ -1,3 +1,4 @@
+import 'package:client_interfaces1/model/activity_note.dart';
 import 'package:client_interfaces1/model/data_conversion.dart';
 import 'package:client_interfaces1/model/person.dart';
 import 'package:get_it/get_it.dart';
@@ -6,6 +7,7 @@ import '../service/activities/create_activity.dart';
 import '../service/activities/service_client_activities.dart';
 import '../service/service_client_base.dart';
 import '../service/update_entity.dart';
+import 'activity_note_list.dart';
 import 'model_property.dart';
 import 'model_property_change_context.dart';
 import 'validator_base.dart';
@@ -37,6 +39,8 @@ enum ActivityState {
 }
 
 class Activity extends PropertyOwner {
+  //#region PROPERTIES
+
   late String id;
   late String workId;
   late final ModelProperty<String> what;
@@ -45,8 +49,13 @@ class Activity extends PropertyOwner {
   late final ModelProperty<Person?> recipient;
   late final ModelProperty<String> why;
   late final ModelProperty<String> how;
+  late final ActivityNoteList notes;
 
   bool get isNew => id.isEmpty;
+
+  //#endregion
+
+  //#region CONSTRUCTION
 
   Activity(
     ModelPropertyChangeContext context,
@@ -58,18 +67,24 @@ class Activity extends PropertyOwner {
     Person? recipient,
     String? why,
     String? how,
+    this.notes,
   ) : super(context) {
     _context = context;
     _initialiseInstance(what, state, dueDate, recipient, why, how);
   }
 
-  Activity.create(ModelPropertyChangeContext context, String workId)
+  Activity.createNew(ModelPropertyChangeContext context, String workId)
     : super(context) {
     _context = context;
     id = '';
     this.workId = workId;
+    notes = ActivityNoteList([]);
     _initialiseInstance('', ActivityState.idle);
   }
+
+  //#endrgion
+
+  //#region METHODS
 
   bool validate() {
     return what.validate() &&
@@ -77,38 +92,54 @@ class Activity extends PropertyOwner {
         dueDate.validate() &&
         recipient.validate() &&
         why.validate() &&
-        how.validate();
+        how.validate() &&
+        notes.validate();
   }
 
-  Future save() async {
-    var request = CreateActivityRequest(
-      what: what.value,
-      state: state.value.name,
-      dueDate: DataConversionModelToService.dateTimeToDateString(dueDate.value),
-      recipientId: recipient.value == null ? null : recipient.value!.id,
-      why: why.value.isEmpty ? null : why.value,
-      how: how.value.isEmpty ? null : how.value,
+  Future create() async {
+    List<CreateActivityNote>? notesInRequest =
+        _addNotesToCreateActivityRequest();
+    CreateActivityRequest request = _createCreateActivityRequest(
+      notesInRequest,
     );
 
     var response = await _serviceClient.create(workId, request);
     if (response is CreateActivityResponse) {
       id = response.id;
+      if (response.noteIds != null) {
+        notes.setNoteIds(response.noteIds!);
+        notes.acceptChanged();
+      }
     } else if (response is ValidationProblemResponse) {
       invalidate(response.errors);
     }
   }
 
   Future update() async {
-    List<UpdateEntityProperty> updatedProperties = listUpdatedProperties();
-    if (updatedProperties.isNotEmpty) {
-      var request = UpdateEntityRequest(
-        id: id,
-        updatedProperties: updatedProperties,
+    List<EntityProperty>? updatedProperties = listUpdatedProperties();
+    List<ChangeChildEntity>? childUpdates = <ChangeChildEntity>[];
+    _addNoteChanges(childUpdates);
+
+    if (updatedProperties.isNotEmpty || childUpdates.isNotEmpty) {
+      var request = ChangeEntityRequest(
+        updatedProperties: (updatedProperties.length > 0)
+            ? updatedProperties
+            : null,
+        childUpdates: (childUpdates.length > 0) ? childUpdates : null,
       );
-      var response = await _serviceClient.update(workId, request);
+      var response = await _serviceClient.update(workId, id, request);
       if (response is ValidationProblemResponse) {
         invalidate(response.errors);
+      } else if (response is ChangeEntityResponse) {
+        ChildEntityTypeInResponse? noteChanges = response
+            .getUpdateForEntityType('CreateActivityNote');
+        if (noteChanges != null && noteChanges.createResults != null) {
+          List<String>? noteId = noteChanges.listCreateIds();
+          if (noteId != null && noteId.isNotEmpty)
+            notes.setNoteIds(noteId);
+        }
       }
+      notes.acceptChanged();
     }
   }
 
@@ -120,6 +151,10 @@ class Activity extends PropertyOwner {
   String mapPropertyToUpdateRequestProperty(String name) {
     return (name == 'recipient') ? 'recipientId' : name;
   }
+
+  //#endregion
+
+  //#region PRIVATE METHODS
 
   void _initialiseInstance(
     String what,
@@ -148,7 +183,11 @@ class Activity extends PropertyOwner {
     );
     this.state = ModelProperty(context: _context, value: state);
     this.dueDate = ModelProperty(context: _context, value: dueDate);
-    this.recipient = ModelProperty(context: context, value: recipient, validators: [ValidatorFirstLastName()]);
+    this.recipient = ModelProperty(
+      context: context,
+      value: recipient,
+      validators: [ValidatorFirstLastName()],
+    );
     this.why = ModelProperty(
       context: _context,
       value: why,
@@ -180,7 +219,103 @@ class Activity extends PropertyOwner {
     };
   }
 
+  List<CreateActivityNote>? _addNotesToCreateActivityRequest() {
+    List<CreateActivityNote>? notesInRequest;
+    if (notes.items.isNotEmpty) {
+      notesInRequest = notes.items
+          .map(
+            (note) => CreateActivityNote(
+              DataConversionModelToService.toISO8601DateTime(note.timestamp),
+              note.text.value,
+            ),
+          )
+          .toList();
+    }
+    return notesInRequest;
+  }
+
+  CreateActivityRequest _createCreateActivityRequest(
+    List<CreateActivityNote>? notesInRequest,
+  ) {
+    var request = CreateActivityRequest(
+      what: what.value,
+      state: state.value.name,
+      dueDate: dueDate.value == null
+          ? null
+          : DataConversionModelToService.toISO8601Date(dueDate.value),
+      recipientId: recipient.value == null ? null : recipient.value!.id,
+      why: why.value.isEmpty ? null : why.value,
+      how: how.value.isEmpty ? null : how.value,
+      notes: notesInRequest,
+    );
+    return request;
+  }
+
+  void _addNoteChanges(List<ChangeChildEntity> childrenChanges) {
+    List<CreateChild>? newNotes = _listCreatedNotes();
+    List<UpdateChild>? updatedNotes = _listUpdatedNotes();
+    List<DeleteChild>? deletedNotes = _listDeletedNotes();
+
+    if (newNotes != null || updatedNotes != null || deletedNotes != null) {
+      childrenChanges.add(
+        ChangeChildEntity(
+          createTypeName: 'CreateActivityNote',
+          create: newNotes,
+          update: updatedNotes,
+          delete: deletedNotes,
+        ),
+      );
+    }
+  }
+
+  List<CreateChild>? _listCreatedNotes() {
+    List<CreateChild> createdNotes = [];
+    for (ActivityNote note in notes.items) {
+      if (note.isNew && note.isChanged) {
+        var noteProperties = <EntityProperty>[
+          EntityProperty(
+            name: 'created',
+            value: DataConversionModelToService.toISO8601DateTime(
+              note.timestamp,
+            ),
+          ),
+          EntityProperty(name: 'text', value: note.text.value),
+        ];
+        createdNotes.add(CreateChild(noteProperties));
+      }
+    }
+    return (createdNotes.isNotEmpty) ? createdNotes : null;
+  }
+
+  List<UpdateChild>? _listUpdatedNotes() {
+    List<UpdateChild>? updatedNotes = [];
+    for (ActivityNote note in notes.items) {
+      if (note.isNew == false && note.isChanged) {
+        var updatedProperties = <EntityProperty>[
+          EntityProperty(name: 'text', value: note.text.value),
+        ];
+        updatedNotes.add(UpdateChild(note.id, updatedProperties));
+      }
+    }
+    return (updatedNotes.isNotEmpty) ? updatedNotes : null;
+  }
+
+  List<DeleteChild>? _listDeletedNotes() {
+    List<DeleteChild>? deletedNotes = [];
+    List<String> deletedNoteIds = notes.listDeletedNoteId();
+    for (String id in deletedNoteIds) {
+      deletedNotes.add(DeleteChild(id));
+    }
+    return (deletedNotes.isNotEmpty) ? deletedNotes : null;
+  }
+
+  //#endregion
+
+  //#region FIELDS
+
   late final ModelPropertyChangeContext _context;
   ServiceClientActivities _serviceClient =
       GetIt.instance<ServiceClientActivities>();
+
+  //#endregoin
 }

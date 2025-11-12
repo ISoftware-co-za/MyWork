@@ -4,7 +4,7 @@ import 'person_details.dart';
 
 class ModifyPeopleRequest {
   List<PersonDetails>? addedPeople;
-  List<UpdateEntityRequest>? updatedPeople;
+  List<UpdateChild>? updatedPeople;
   List<String>? removedPeopleIds;
   ModifyPeopleRequest(
     this.addedPeople,

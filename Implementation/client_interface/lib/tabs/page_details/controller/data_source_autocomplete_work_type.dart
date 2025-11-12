@@ -4,7 +4,7 @@ import 'package:client_interfaces1/ui_toolkit/form/form.dart';
 import '../../../model/work_type.dart';
 import '../../../model/model_property.dart';
 
-class DataSourceAutocompleteWorkType extends AutocompleteDataSource {
+class  DataSourceAutocompleteWorkType extends AutocompleteDataSource {
 
   DataSourceAutocompleteWorkType(String userID, WorkTypeList workTypes, ModelProperty<String>? property)
       : _workTypes = workTypes, _property = property;

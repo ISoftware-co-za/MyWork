@@ -30,8 +30,7 @@ public static class HandlersPerson
                 [new RequiredAttribute(), new StringLengthAttribute(maximumLength: 30)])
         ];
         requestValidation.RegisterValidation(new ValidatedRequest(
-            typeof(PersonDetails), 
-            typeof(UpdatedPerson), 
+            nameof(PersonDetails), 
             new ValidatedPropertyCollection(properties.ToArray())
         ));
     }
@@ -149,7 +148,7 @@ public static class HandlersPerson
         ModifyPeopleResponse response)
     {
         bool hasErrors = false;
-        IValidator peopleAddedValidator = requestValidation.GetValidatorForRequest(typeof(PersonDetails));
+        IValidator peopleAddedValidator = requestValidation.GetValidatorForRequest(nameof(PersonDetails));
         for (int index = 0; index < peopleAdded.Length; index++)
         {
             ValidationResult[] validationResult = peopleAddedValidator.Validate(peopleAdded[index]);
@@ -167,7 +166,7 @@ public static class HandlersPerson
         ModifyPeopleResponse response)
     {
         bool hasErrors = false;
-        IValidator peopleUpdatedValidator = requestValidation.GetValidatorForRequest(typeof(PersonDetails));
+        IValidator peopleUpdatedValidator = requestValidation.GetValidatorForRequest(nameof(PersonDetails));
         for (int index = 0; index < updatedPersons.Length; index++)
         {
             ValidationResult[] validationResult = peopleUpdatedValidator.Validate(updatedPersons[index]);

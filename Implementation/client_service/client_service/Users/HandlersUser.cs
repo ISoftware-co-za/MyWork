@@ -34,8 +34,7 @@ public static class HandlersUser
                 [new RequiredNonWhitespaceAttribute(), new StringLengthAttribute(maximumLength: 80)]),
         ];
         requestValidation.RegisterValidation(new ValidatedRequest(
-            typeof(LoginRequest), 
-            null, 
+            nameof(LoginRequest), 
             new ValidatedPropertyCollection(loginRequestProperties.ToArray())
         ));
         
@@ -45,8 +44,7 @@ public static class HandlersUser
                 [new RequiredNonWhitespaceAttribute(), new StringLengthAttribute(maximumLength: 50)]),
         ];
         requestValidation.RegisterValidation(new ValidatedRequest(
-            typeof(AddWorkTypeRequest), 
-            null, 
+            nameof(AddWorkTypeRequest), 
             new ValidatedPropertyCollection(newWorkTypeProperties.ToArray())
         ));
     }
@@ -57,8 +55,9 @@ public static class HandlersUser
     
     private static async Task<IResult> PostLogin([FromBody] LoginRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpRequest httpRequest)
     {
-        var validationResults = requestValidation.Validate(request);
-        if (validationResults.Length == 0)
+        var validationResults = new List<ValidationResult>();
+        requestValidation.Validate(request, nameof(LoginRequest), false, validationResults);
+        if (validationResults.Count == 0)
         {
             return await Executor.RunProcessAsync($"{CollectionName}.Find(filter).FirstOrDefaultAsync();", Executor.CategoryMongoDB, "Unable to login user.", async () =>
             {
@@ -87,8 +86,9 @@ public static class HandlersUser
 
     private static async Task<IResult> PostWorkType(AddWorkTypeRequest request, [FromServices]  RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpRequest httpRequest)
     {
-        var validationResults = requestValidation.Validate(request);
-        if (validationResults.Length == 0)
+        var validationResults = new List<ValidationResult>();
+        requestValidation.Validate(request, nameof(AddWorkTypeRequest), false, validationResults);
+        if (validationResults.Count == 0)
         {
             return await Executor.RunProcessAsync($"{CollectionName}.UpdateOneAsync(filter, update)", Executor.CategoryMongoDB, "Unable to add a work type.", async () =>
             {

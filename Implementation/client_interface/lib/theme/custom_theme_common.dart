@@ -61,7 +61,7 @@ mixin CustomThemeCommon {
   );
 
   static ThemeExtensionForm formTheme = ThemeExtensionForm(
-    labelStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
+    labelStyle: TextStyle(fontSize: 12.0, color: Colors.grey),
     valueStyle: TextStyle(fontSize: 16.0),
     valueStyleEmphasised: TextStyle(
       fontSize: 20.0,
@@ -146,17 +146,11 @@ mixin CustomThemeCommon {
     invalidMessageStyle: TextStyle(fontSize: 13.0, color: Colors.red),
   );
 
-  static ThemeExtensionControlActivityStateAndWhat controlActivityStateAndWhatTheme =  ThemeExtensionControlActivityStateAndWhat(
-      stateWidth: 160,
-    stateTextStyle: TextStyle(
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
-      ),
-      stateHeightConstraints: BoxConstraints(minHeight: 40, maxHeight: 40),
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 0,
-      )
+  static ThemeExtensionControlActivityStateAndWhat
+  controlActivityStateAndWhatTheme = ThemeExtensionControlActivityStateAndWhat(
+    stateWidth: 160,
+    stateTextStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+    stateHeightConstraints: BoxConstraints(minHeight: 40, maxHeight: 40),
+    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
   );
-
 }

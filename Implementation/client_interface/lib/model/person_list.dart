@@ -1,8 +1,8 @@
 import 'dart:collection';
+import 'package:client_interfaces1/model/model_property.dart';
 import 'package:client_interfaces1/model/person.dart';
 import 'package:client_interfaces1/service/people/list_all_people_response.dart';
 import 'package:client_interfaces1/service/people/modify_people.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 
 import '../service/people/person_details.dart';
@@ -10,22 +10,19 @@ import '../service/people/service_client_people.dart';
 import '../service/update_entity.dart';
 import 'model_property_change_context.dart';
 
-class PersonList extends ChangeNotifier {
+class PersonList extends ContextOwner {
   //#region PROPERTIES
 
-  late final List<Person> peopleAdded;
+  late final List<Person> addedPeople;
   late final List<Person> people;
-  final ModelPropertyChangeContext modelPropertyContext = ModelPropertyChangeContext(
-    name: 'PersonList',
-  );
   int removeCount = 0;
 
   //#endregion
 
   //#region CONSTRUCTION
 
-  PersonList() {
-    peopleAdded = UnmodifiableListView(_peopleAdded);
+  PersonList() : super(ModelPropertyChangeContext(name: 'PersonList')) {
+    addedPeople = UnmodifiableListView(_peopleAdded);
     people = UnmodifiableListView(_people);
   }
 
@@ -39,7 +36,7 @@ class PersonList extends ChangeNotifier {
     _people.addAll(
       response.people.map(
         (item) => Person(
-          modelPropertyContext,
+          context,
           item.id,
           item.firstName,
           item.lastName,
@@ -50,6 +47,19 @@ class PersonList extends ChangeNotifier {
 
   Person? find(String id) => _people.firstWhere((person) => person.id == id);
 
+  bool validate() {
+    bool areUpdatesValid = true;
+    _peopleAdded.forEach((person) {
+      areUpdatesValid &= person.validate();
+    });
+    _people.forEach((person) {
+      if (person.isChanged) {
+        areUpdatesValid &= person.validate();
+      }
+    });
+    return areUpdatesValid;
+  }
+
   void add(Person person) {
     _peopleAdded.add(person);
     notifyListeners();
@@ -58,10 +68,10 @@ class PersonList extends ChangeNotifier {
   void remove(Person person) {
     if (person.isNew) {
       if (person.firstName.isChanged) {
-        modelPropertyContext.removeChangedProperty(person.firstName);
+        context.removeChangedProperty(person.firstName);
       }
       if (person.lastName.isChanged) {
-        modelPropertyContext.removeChangedProperty(person.lastName);
+        context.removeChangedProperty(person.lastName);
       }
       _peopleAdded.remove(person);
     } else {
@@ -72,18 +82,6 @@ class PersonList extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool validate() {
-    bool areUpdatesValid = true;
-    _peopleAdded.forEach((person) {
-      areUpdatesValid &= person.validate();
-    });
-    _people.forEach((person) {
-      if (person.isUpdated) {
-        areUpdatesValid &= person.validate();
-      }
-    });
-    return areUpdatesValid;
-  }
 
   List<String> getPeopleRemovedIds() {
     final removedPeopleIds = <String>[];
@@ -96,8 +94,8 @@ class PersonList extends ChangeNotifier {
   }
 
   Future acceptChanges() async {
-    List<PersonDetails>? addedPeople =_listAddedPeople();
-    List<UpdateEntityRequest>? updatedPeople = _listedUpdatedPeople();
+    List<PersonDetails>? addedPeople = _listAddedPeople();
+    List<UpdateChild>? updatedPeople = _listedUpdatedPeople();
     List<String>? removedPeopleIds = getPeopleRemovedIds();
 
     final request = ModifyPeopleRequest(
@@ -113,7 +111,7 @@ class PersonList extends ChangeNotifier {
     String errorMessage = _getErrorMessage(response);
     _peopleAdded.clear();
     _peopleRemoved.clear();
-    modelPropertyContext.acceptChanges();
+    context.acceptChanges();
     if (errorMessage.isNotEmpty) {
       throw Exception(errorMessage);
     }
@@ -138,24 +136,23 @@ class PersonList extends ChangeNotifier {
     return addedPeople;
   }
 
-  List<UpdateEntityRequest>? _listedUpdatedPeople() {
-    var updatedPeople = <UpdateEntityRequest>[];
+  List<UpdateChild>? _listedUpdatedPeople() {
+    var updatedPeople = <UpdateChild>[];
     for (int index = 0; index < _people.length; ++index) {
       final person = _people[index];
-      if (person.isUpdated) {
-        final List<UpdateEntityProperty> updatedProperties = person
+      if (person.isChanged) {
+        final List<EntityProperty> updatedProperties = person
             .listUpdatedProperties();
-        final updateRequest = UpdateEntityRequest(
-          id: person.id,
-          updatedProperties: updatedProperties,
-        );
-        updatedPeople.add(updateRequest);
+        final updateChild = UpdateChild(person.id, updatedProperties);
+        updatedPeople.add(updateChild);
       }
     }
     return (updatedPeople.length == 0) ? null : updatedPeople;
   }
 
-  Future<(bool, ModifyPeopleResponse)> _callService(ModifyPeopleRequest request) async {
+  Future<(bool, ModifyPeopleResponse)> _callService(
+    ModifyPeopleRequest request,
+  ) async {
     bool mustSortPeople = false;
     final response = await _serviceClient.modify(request);
     if (response.addedPeople != null) {
