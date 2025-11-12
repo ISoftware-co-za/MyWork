@@ -52,7 +52,7 @@ class ActivityList extends ContextOwner {
           recipient,
           item.why,
           item.how,
-          ActivityNoteList(notes), // TODO: Obtain this from the response.
+          ActivityNoteList(notes),
         ),
       );
     }
