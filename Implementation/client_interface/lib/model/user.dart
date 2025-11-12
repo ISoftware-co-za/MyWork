@@ -8,8 +8,6 @@ import 'work_type.dart';
 class User {
   String? userID;
 
-  User();
-
   Future<ResultLogin> login(String email, String password) async {
     var response = await _serviceClient
         .login(LoginRequest(email: email, password: password));
@@ -20,7 +18,7 @@ class User {
   }
 
   Future<bool> logout() async {
-    await _serviceClient.logout() as LoginResponse;
+    await _serviceClient.logout();
     return true;
   }
 

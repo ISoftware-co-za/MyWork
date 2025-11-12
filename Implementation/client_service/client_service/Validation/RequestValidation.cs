@@ -7,10 +7,11 @@ public class RequestValidation
 {
     #region METHODS
     
-    public ValidationResult[] Validate(object request)
+    public void Validate(object request, string createRequestName, bool update, List<ValidationResult> validationResults)
     {
-        var validator = GetValidatorForRequest(request.GetType())!;
-        return validator.Validate(request);
+        var validator = GetValidatorForRequest(createRequestName, update);
+        ValidationResult[] results = validator.Validate(request);
+        validationResults.AddRange(results);
     }
 
     public void RegisterValidation(ValidatedRequest request)
@@ -18,7 +19,7 @@ public class RequestValidation
         _validationRequests.Add(request);
     }
     
-    public static IResult GenerateValidationFailedResponse(ValidationResult[] validationResults)
+    public static IResult GenerateValidationFailedResponse(List<ValidationResult> validationResults)
     {
         var consolidatedError = new Dictionary<string, string[]>();
         foreach(var validationResult in validationResults)
@@ -34,15 +35,13 @@ public class RequestValidation
         return Results.ValidationProblem(consolidatedError);
     }
     
-    public IValidator GetValidatorForRequest(Type type)
+    public IValidator GetValidatorForRequest(string createTypeName, bool update = false)
     {
-        var requestValidation = _validationRequests.FirstOrDefault(x => x.Create == type || x.Update == type);
-        Debug.Assert(requestValidation != null, $"IValidator for request with type {type.Name} is not found.");
-        if (requestValidation.Create == type)
+        var requestValidation = _validationRequests.FirstOrDefault(x => x.CreateTypeNameRequestName == createTypeName);
+        Debug.Assert(requestValidation != null, $"IValidator for request with type name {createTypeName} is not found.");
+        if (!update)
             return new ValidatorCreate(requestValidation!.Properties);
-        if (requestValidation.Update == type)
-            return new ValidatorUpdate(requestValidation!.Properties);
-        throw new Exception($"IValidator for request with type {type.Name} is not found.");
+        return new ValidatorUpdate(requestValidation!.Properties);
     }
     
     #endregion

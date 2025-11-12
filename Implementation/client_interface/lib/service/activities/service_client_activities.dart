@@ -26,15 +26,15 @@ class ServiceClientActivities extends ServiceClientBase {
             () => CreateActivityResponse.fromJson(jsonDecode(response.body)))!;
   }
 
-  Future<ServiceClientResponse?> update(String workID, UpdateEntityRequest request) async {
+  Future<ServiceClientResponse?> update(String workID, String activityID, ChangeEntityRequest request) async {
     Map<String, String> headers = setupCommonHeaders();
-    final uri = generateUri('/work/${workID}/activities/${request.id}');
+    final uri = generateUri('/work/${workID}/activities/$activityID');
     final body = jsonEncode(request.toJson());
     final response = await httpPatch(uri, headers, body);
-    return processResponse(response, 204, () => null);
+    return processResponse(response, 207, () => ChangeEntityResponse.fromJson(jsonDecode(response.body)))!;
   }
 
-  Future<void> delete(String workId, String id) async {
+  Future delete(String workId, String id) async {
     Map<String, String> headers = setupCommonHeaders();
     var uri = generateUri('/work/$workId/activities/$id');
     final response = await httpDelete(uri, headers);

@@ -6,15 +6,25 @@ import 'controller_work.dart';
 import 'coordinator_base.dart';
 
 class CoordinatorWorkActivityList extends CoordinatorBase {
+  //# region PROPERTIES
+
   final ControllerWork workController;
-  final ControllerActivityList activityController;
+  final ControllerActivityList activityListController;
   final TabController tabController;
+
+  //#endregion
+
+  //#region CONSTRUCTION
 
   CoordinatorWorkActivityList(
     this.workController,
-    this.activityController,
+    this.activityListController,
     this.tabController
   );
+
+  //#endregion
+
+  //#region EVENT HANDLERS
 
   Future onNewWork() async {
     if (await _saveUnsavedEdits() == false) {
@@ -22,8 +32,8 @@ class CoordinatorWorkActivityList extends CoordinatorBase {
     }
     tabController.index = 0;
     workController.newWork();
-    activityController.selectWork(workController.selectedWork.value);
-    activityController.emptyActivityList();
+    activityListController.selectWork(workController.selectedWork.value);
+    activityListController.emptyActivityList();
   }
 
   Future onWorkSelected(Work work) async {
@@ -32,17 +42,21 @@ class CoordinatorWorkActivityList extends CoordinatorBase {
     }
     await work.loadDetails();
     workController.selectWork(work);
-    activityController.selectWork(work);
-    await activityController.loadActivitiesIfRequired();
+    activityListController.selectWork(work);
+    await activityListController.loadActivitiesIfRequired();
   }
 
   Future onDeleteWork() async {
     await workController.deleteWork();
-    activityController.emptyActivityList();
+    activityListController.emptyActivityList();
   }
 
+  //#endregion
+
+  //#region PRIVATE METHODS
+
   Future<bool> _saveUnsavedEdits() async {
-    if (await activityController.saveActivityIfRequired() == false) {
+    if (await activityListController.saveActivityIfRequired() == false) {
       return false;
     }
     if (await workController.saveActivityIfRequired() == false) {
@@ -50,4 +64,6 @@ class CoordinatorWorkActivityList extends CoordinatorBase {
     }
     return true;
   }
+
+  //#endregion
 }

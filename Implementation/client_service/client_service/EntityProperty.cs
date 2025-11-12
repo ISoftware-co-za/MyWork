@@ -1,6 +1,6 @@
 namespace ClientService;
 
-public record UpdateProperty(string Name, object? Value)
+public record EntityProperty(string Name, object? Value)
 {
     public string NameInPascalCase()
     {

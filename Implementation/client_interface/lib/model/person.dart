@@ -4,7 +4,7 @@ import 'package:client_interfaces1/service/update_entity.dart';
 
 import 'model_property.dart';
 
-class Person extends PropertyOwner implements UpdateEntityPropertyProvider, Comparable<Person> {
+class Person extends PropertyOwner implements EntityPropertyProvider, Comparable<Person> {
 
   //#region PROPERTIES
 
@@ -14,23 +14,23 @@ class Person extends PropertyOwner implements UpdateEntityPropertyProvider, Comp
   dynamic get providedProperty => id;
 
   bool get isNew => id.isEmpty;
-  bool get isUpdated => firstName.isChanged || lastName.isChanged;
+  bool get isChanged => firstName.isChanged || lastName.isChanged;
 
   //#endregion
 
   //#region CONSTRUCTION
 
-  Person(ModelPropertyChangeContext context, String id, String firstName, String lastName) : super(context) {
+  Person(ModelPropertyChangeContext super.context, String id, String firstName, String lastName) {
     this.id = id;
     _initialiseInstance(firstName, lastName);
   }
 
-  Person.create(ModelPropertyChangeContext context) : super(context) {
+  Person.create(ModelPropertyChangeContext super.context) {
     id = '';
     _initialiseInstance('', '');
   }
 
-  Person.createWithFullName(ModelPropertyChangeContext context, String fullName) : super(context) {
+  Person.createWithFullName(ModelPropertyChangeContext super.context, String fullName) {
     id = '';
     final List<String> words = fullName.split(' ');
     final String firstName = words.isNotEmpty ? words.first : '';

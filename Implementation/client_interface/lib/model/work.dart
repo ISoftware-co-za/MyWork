@@ -19,7 +19,7 @@ class Work extends PropertyOwner {
 
   bool get isNew => id.isEmpty;
 
-  Work.create(ModelPropertyChangeContext context) : super(context) {
+  Work.create(ModelPropertyChangeContext super.context) {
     id = '';
     _initialiseInstance('', null, false, null);
   }
@@ -27,6 +27,7 @@ class Work extends PropertyOwner {
   Work({
     required ModelPropertyChangeContext context,
     required this.id,
+
     required String name,
     required String? reference,
     required String? type,
@@ -58,13 +59,12 @@ class Work extends PropertyOwner {
   }
 
   Future update() async {
-    List<UpdateEntityProperty> updatedProperties = listUpdatedProperties();
+    List<EntityProperty> updatedProperties = listUpdatedProperties();
     if (updatedProperties.isNotEmpty) {
-      var request = UpdateEntityRequest(
-        id: id,
+      var request = ChangeEntityRequest(
         updatedProperties: updatedProperties,
       );
-      var response = await _serviceClient.update(request);
+      var response = await _serviceClient.update(id, request);
       if (response is ValidationProblemResponse) {
         invalidate(response.errors);
       }

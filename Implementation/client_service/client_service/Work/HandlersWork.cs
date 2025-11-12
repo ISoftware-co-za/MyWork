@@ -38,8 +38,7 @@ public static class HandlersWork
                 [new StringLengthAttribute(maximumLength: 40)])
         ];
         requestValidation.RegisterValidation(new ValidatedRequest(
-            typeof(CreateWorkRequest), 
-            typeof(UpdateEntityRequest), 
+            nameof(CreateWorkRequest), 
             new ValidatedPropertyCollection(properties.ToArray())
         ));
     }
@@ -85,8 +84,9 @@ public static class HandlersWork
 
     private static async Task<IResult> Post([FromBody] CreateWorkRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger, HttpRequest httpRequest)
     {
-        var validationResults = requestValidation.Validate(request);
-        if (validationResults.Length == 0)
+        var validationResults = new List<ValidationResult>();
+        requestValidation.Validate(request, nameof(CreateWorkRequest), false, validationResults);
+        if (validationResults.Count == 0)
         {
             return await Executor.RunProcessAsync($"{CollectionName}.InsertOne(workDocument)", Executor.CategoryMongoDB, "Unable to save the new work", async () =>
             {
@@ -106,17 +106,18 @@ public static class HandlersWork
         return Validation.RequestValidation.GenerateValidationFailedResponse(validationResults);
     }
 
-    private static async Task<IResult> Patch(string id, UpdateEntityRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
+    private static async Task<IResult> Patch(string id, ChangeEntityRequest request, [FromServices] RequestValidation requestValidation, [FromServices] IMongoDatabase database, [FromServices] ILogger<Program> logger)
     {
-        var validationResults = requestValidation.Validate(request);
-        if (validationResults.Length == 0)
+        var validationResults = new List<ValidationResult>();
+        requestValidation.Validate(request, nameof(CreateWorkRequest), true, validationResults);
+        if (validationResults.Count == 0)
         {
             return await Executor.RunProcessAsync($"{CollectionName}.UpdateOneAsync({id})", Executor.CategoryMongoDB, "Unable to save the updated work",
                 async () =>
                 {
                     var filter = Builders<DocumentWork>.Filter.Eq("_id", ObjectId.Parse(id));
                     List<UpdateDefinition<DocumentWork>> updates = [];
-                    foreach (var updateProperty in request.UpdatedProperties)
+                    foreach (var updateProperty in request.UpdatedProperties!)
                         updates.Add(Builders<DocumentWork>.Update.Set(updateProperty.NameInPascalCase(), updateProperty.Value));
                     IMongoCollection<DocumentWork> workCollection = database.GetCollection<DocumentWork>(CollectionName); 
                     UpdateDefinition<DocumentWork> combinedUpdates =

@@ -13,4 +13,6 @@ public record class CreateActivityRequest
     public string? Why { get; init; }
     
     public string? How { get; init; }
+    
+    public CreateActivityNote[]? Notes { get; init; }
 }

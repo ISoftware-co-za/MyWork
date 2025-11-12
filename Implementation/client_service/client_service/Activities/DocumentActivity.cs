@@ -32,4 +32,7 @@ public record class DocumentActivity
 
     [BsonElement("dueDate")]
     public string? DueDate { get; init; }
+    
+    [BsonElement("notes")]
+    public required ActivityNote[] Notes { get; init; }
 }

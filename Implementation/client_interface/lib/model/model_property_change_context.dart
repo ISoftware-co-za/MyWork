@@ -23,13 +23,11 @@ class ModelPropertyChangeContext {
   void addChangedProperty(ModelProperty property) {
     _changedProperties.add(property);
     hasChanges.value = _changedProperties.isNotEmpty;
-    debugPrint('addChangedProperty - ${property.notifyingProperty} - ${property.value}');
   }
 
   void removeChangedProperty(ModelProperty property) {
     _changedProperties.remove(property);
     hasChanges.value = _changedProperties.isNotEmpty;
-    debugPrint('removeChangedProperty - ${property.notifyingProperty} - ${property.value}');
   }
 
   void acceptChanges() {

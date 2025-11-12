@@ -41,9 +41,9 @@ class ServiceClientWork extends ServiceClientBase {
         () => CreateWorkResponse.fromJson(jsonDecode(response.body)))!;
   }
 
-  Future<ServiceClientResponse?> update(UpdateEntityRequest request) async {
+  Future<ServiceClientResponse?> update(String id, ChangeEntityRequest request) async {
     Map<String, String> headers = setupCommonHeaders();
-    final uri = generateUri('/work/${request.id}');
+    final uri = generateUri('/work/$id');
     final body = jsonEncode(request.toJson());
     final response = await httpPatch(uri, headers, body);
     return processResponse(response, 204, () => null);
